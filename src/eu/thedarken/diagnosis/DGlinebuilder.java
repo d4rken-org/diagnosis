@@ -20,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import com.commonsware.cwac.tlv.TouchListView;
 import eu.thedarken.extra.ObjectSerializer;
 
 public class DGlinebuilder extends ListActivity {
