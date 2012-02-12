@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>
+      SMS Backup+ error report
+    </title>
+
+    <style type="text/css">
+      A:link {text-decoration: none }
+      body {
+         font-family: Arial;
+         border: 0 none;
+      }
+    </style>
+
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1', {packages: ['corechart', 'table']});
+    </script>
+    <script type="text/javascript">
+      function show(spreadsheet, analysis, analysisContainer) {
+        var q = new google.visualization.Query(spreadsheet);
+        q.setQuery(analysis['query']);
+
+        q.send(function(response) {
+          var spinner = document.getElementById('spinner'),
+              errors = document.getElementById('errors');
+
+
+          if (response.isError()) {
+            var i = response.getReasons().length,
+                timeout = false;
+            while (i--) if (response.getReasons()[i] === 'timeout') timeout = true;
+
+            if (timeout) {
+              if (spinner) spinner.innerHTML = "request timed out, retrying...";
+              show(spreadsheet, analysis, analysisContainer);
+            } else {
+              errors.innerHTML = 'Error in query: ' + response.getMessage() +
+                                 ' ' + response.getDetailedMessage();
+            }
+          } else {
+            if (spinner) spinner.style.display = "none";
+
+            var toc = document.getElementById('toc-' + analysis['id']);
+            if (toc) toc.style.display = '';
+
+            var data = response.getDataTable();
+            var id = analysis['id'];
+
+            var container = document.createElement('div');
+            container.setAttribute('id', id + '-' + 'table');
+            analysisContainer.appendChild(container);
+
+            var table = new google.visualization.Table(container),
+                view = new google.visualization.DataView(data);
+
+            // reverse columns - most recent version first
+            var columns = [0].concat(view.getViewColumns().slice(1, view.getViewColumns().length).reverse());
+
+            columns.push({
+              calc: function(table, rowNum) {
+                var sum = 0;
+                for (var i=1; i<columns.length-1; i++) sum += table.getValue(rowNum, i);
+                return sum;
+              },
+              type: 'number',
+              label: 'Total'
+            });
+
+            view.setColumns(columns);
+            table.draw(view, {title: analysis['title']});
+
+            var view2 = new google.visualization.DataView(data);
+            view2.setColumns(columns);
+            var columns = view2.getViewColumns();
+            // produce one piechart per pivot point
+            for (var i=1; i < columns.length; i++) {
+              view2.setColumns([0, columns[i]]);
+
+              var version = view2.getColumnLabel(1);
+              if (version && !(version === "")) {
+                var container = document.createElement('div');
+                container.setAttribute("id", id + '-' + version);
+                analysisContainer.appendChild(container);
+
+                var piechart = new google.visualization.PieChart(container);
+                piechart.draw(view2, {legend: 'bottom',
+                                     pieSliceText: 'label',
+                                     height: 500,
+                                     title: analysis['title'] + ': App version ' + version});
+              }
+            }
+          }
+        });
+      }
+
+      google.setOnLoadCallback(function() {
+        var sheet = document.getElementById('spreadsheet');
+        if (sheet) {
+          // N = model, B = version, F = android_version
+          var reports = [
+            {
+              id: 'crash-by-version',
+              query: 'SELECT F, COUNT(A) GROUP BY F PIVOT B',
+              title: 'Number of crashes by Android version'
+            },
+            {
+              id: 'crash-by-model',
+              query: 'SELECT N, COUNT(A) GROUP BY N PIVOT B',
+              title: 'Number of crashes by Android model',
+            }
+          ];
+
+          for (var i=0; i<reports.length;i++) {
+            var q = reports[i];
+
+            var li = document.createElement('li');
+            li.setAttribute('id', 'toc-' + q['id']);
+            li.style.display = 'none';
+            document.getElementById('toc').appendChild(li);
+            var a = document.createElement("a");
+            a.href = '#' + q['id'];
+            a.innerHTML = q['title'];
+            li.appendChild(a);
+
+            var analysisContainer = document.createElement('div');
+            analysisContainer.setAttribute('id', q['id']);
+
+            var anchor = document.createElement('a');
+            anchor.setAttribute('name', q['id']);
+            anchor.innerHTML = q['title'];
+            analysisContainer.appendChild(anchor);
+
+            document.getElementById('reports').appendChild(analysisContainer);
+
+            show(sheet.href, q, analysisContainer);
+          }
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <h1><a href="http://github.com/jberkel/sms-backup-plus#readme">SMS Backup+</a> error reports</h1>
+
+    <p>
+     <a href="https://github.com/jberkel/sms-backup-plus/tree/gh-pages#readme">What is this?<a>
+    </p>
+
+    <a id="spreadsheet"
+       href="https://docs.google.com/spreadsheet/ccc?key=0AgoXRNB2W15rdExNZ2w0N1pWLW54aTg4RnJBQjV3YVE">
+      Spreadsheet
+    </a>
+
+    <span id="spinner">
+      loading, please wait...
+    </span>
+
+    <div id="errors"/>
+    <div>
+      <ul id="toc">
+      </ul>
+    </div>
+    <div id="reports"/>
+  </body>
+</html>

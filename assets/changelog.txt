@@ -1,0 +1,99 @@
+﻿v0.5.9(16)
+- removed unnecessary code
+- made overlay redraws more efficient
+- rewritten various code passages
+- added permission 'android.permission.ACCESS_WIFI_STATE'
+- added permission 'android.permission.CHANGE_NETWORK_STATE'
+- added cell signal strength info
+- added wifi signal strength info
+- rewritten statistics tab and database feature
+
+v0.5.8(15)
+- Reduced resource usage when the screen is off and database is disabled
+- Prevented crash on Net/Space tab
+- Improved behavior on errors 
+
+v0.5.7(14)
+- Fixed ping function ignoring settings
+- Decreased ping traffic cost
+- Fixed FC undercertain database settings
+- Trying new fix for device compatibility
+
+v0.5.6(13)
+- Fixed bug that caused FC when editing the lines live
+- Hiding/Showing tabs now if database is enabled/disabled
+- Added feature to load/store 3 selfmade presets
+- Added possibility to type in hex color codes
+- Changed battery temp display to round to two decimal places
+- Added INTERNET permissions
+- Added crash report tool
+- Added ping/latency display
+
+v0.5.5(12)
+- Prevent the user from entering settings that caused a FC
+- significantly reduced cpu usage when database is disabled
+- fixed possible crash on ICS
+- cleaned code, optimized some code
+- changed cpu tab to show avg cpu in user,system,io
+- fixed cpu io data not getting saved in database
+- trying a new icon
+- improved startup
+- fixed error during retrieval of read/write stats
+- changed battery infos to 0 if there is no data yet
+- unified display output
+
+v0.5.4(11)
+- added 4th line
+- added functionality for customizing each line independently
+- added functionality to build custom info lines
+- improved database code
+- rearranged some dependencies
+- fixed FC when changing orientation while selecting color
+- fixed FC when entering no x or y pos
+- fixed FC caused by open cursor
+- fixed possible FC after dialogs
+- small UI tweaks
+- added functionality to have a background drawn behind the text
+
+v0.5.3(10)
+- Fixed apptab layout being cut off
+- Fixed apptab layout not resizing properly on landscapemode
+- Fixed apptab display of cpu and ram usage always being XX.00%
+- Updated some helpfile text
+- Added another line for selection
+- Revamped whole database interface, faster better stronger :)
+- Added 10 presets to try out
+
+v0.5.2(9)
+- Removed unused permission
+
+v0.5.1(8)
+- Changed some UI texts
+
+v0.5
+- added disk read/write information
+- added alot of extra line options offering disk read/write rate as information
+- improved various small code pieces
+- added code to remove old database when updating app to prevent problems
+- better view to change lines
+- added help file in 'About' dialog, thanks to DarkhShadow
+
+v0.4
+- fixed database enabling only working after restart of app
+- added changelog
+- added about dialog, with XDA link and email button
+- improved some UI stuff
+- rewrote database saving code
+- added new info lines with temperature instead of cpu frequency
+- added option for fahrenheit instead of celsius
+- changed default cache value to 24
+
+v0.3.1
+- Eased cpu usage a bit by adding a small delay
+- Corrected some debug output
+- lowered default density to from 12 to 6
+- decreased maximum density from 120 to 60
+- added text for default x and y position in preferences
+
+v0.3
+- Initial release

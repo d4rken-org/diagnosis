@@ -1,0 +1,57 @@
+﻿Diagnosis by darken
+Helpfile by DarkhShadow
+
+Official IRC chat:
+Server: chat.freenode.net
+Channel: #dark3n
+http://webchat.freenode.net/?channels=#dark3n
+See you soon?
+
+Should you have any question, problem or request, just send me an email (support@thedarken.eu).
+
+This help guide will cover the basics of the diagnosis app.
+
+Some important information about the overlay!
+The overlay can hang/lag or even vanish, if other apps need the resources desperately, this is preferred though as we do want to prevent Diagnosis to influence other apps. Don't worry, it will fix itself when resources are available again.
+
+Introduction:
+Now first things first, if you wish to use the various statistics available within the app you will need to turn database collection on, in order to do this, press menu>settings>then tick "Enable database".
+Please keep in mind this can cause lag on lower end phones and if so you may not be able to use this function.
+The update interval is how often data is collected (in seconds) and the information overlay is updated. Lower values use more CPU but offer faster updates. A value of 3-5 is usually fine, lower end devices might need to increase this to 9-10 to avoid lag.
+Now onto the overlay, by default, the first line displays CPU usage in %, number of active apps in brackets, the current processor speed in MHZ, download- and uploadrate per second of your device (includes 3G and Wifi).
+The second line displays apps running with there CPU usage in %, by default the third line shows nothing.
+
+Customisation:
+The overlay can be customized in various ways, one is what each line displays. Opening the settings you will see entries called Line1/2/3, these will determine what each line of the overlay displays. There are alot to choose from and probably more to come with each update, just look through them and find your preferred information.
+"Use Fahrenheit" switches the temperature unit.
+Below that we find the menu entry "Style and Position":
+The default settings will display the text in top left corner of your screen and color it green. The text can be moved by changing the X-Coordinate (Left<->Right) annd Y-Coordinate(Up<->Down). Fontsize will obviously change the size of the font. Normal text colors refers to the color of all information displayed excluding the names of active applications which will be colored in the alert text color. Change this to your preference or to improve visibility. You can also change the font type and alignment of the text (i.e. if you would like to have the text attached to the right side of your screen).
+
+As display space is scarse acronyms are used to label the information in the overlay.
+Let me explain:
+
+C=Central processor unit, shown in %, the closer to 100% the more likely it is that you will encounter lag.
+
+M=Memory, refers to free RAM (in this case its the sum of free,buffered and cached memory).
+
+XXXMHZ=Megahertz, the current clockspeed of the CPU, with less load this is likely to go lower to conserve battery power.
+
+DL/UP=Download/Upload, current rate of your network interfaces (3G+Wifi+Bluetooth).
+
+Bat=Battery,Chargelevel of your battery
+
+YY°C or XX°F=Temperature of your battery
+
+X,xxxV=Voltage, this is the current voltage your battery is running at.
+
+R/W=Is the read/write rate at which your device is currently reading/writing data from a device.
+
+(X)=Tells you the number of active processes
+
+...XXXXXXX @ YY% Are the names of processes using YY amount of CPU
+
+Advanced settings:
+You don't really need to change these. The default settings are usually okay.
+Update interval is how often Diagnosis will collect data(this will also update overlay),cache size is how much to store into RAM before attempting to write to disk, this defaults at 24, a bigger data density means smaller database file but less accurate information, so with density of 5 and cache at 10 it will cache 10 data sets, condense them into 2 and then write to database.
+"Drop database" will delete the database, thus freeing the diskspace, but removing the saved data.
+Data age limit lets you specificy an amount of hours for which you want to keep the data, any data older than this will be deleted the next time you start the overlay.\n\n\n\n 
