@@ -2,7 +2,8 @@ package eu.thedarken.diagnosis;
 
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
-import eu.thedarken.diagnosis.Helper.ProgDialog;
+
+import eu.thedarken.diagnosis.InfoClass.BattInfo;
 import eu.thedarken.diagnosis.InfoClass.BattTabInfo;
 import eu.thedarken.diagnosis.InfoClass.CpuTabInfo;
 import eu.thedarken.diagnosis.InfoClass.DiskTabInfo;
@@ -13,6 +14,7 @@ import eu.thedarken.diagnosis.InfoClass.PhoneTabInfo;
 import eu.thedarken.diagnosis.InfoClass.PingTabInfo;
 import eu.thedarken.diagnosis.InfoClass.SpaceTabInfo;
 import eu.thedarken.diagnosis.InfoClass.WlanTabInfo;
+import eu.thedarken.extra.ProgDialog;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -236,10 +238,10 @@ public class DGstats extends Activity {
 	    		voltage_max.setText(String.valueOf(battinfo.voltage_max)+"mV");
 	    		action.setText(battinfo.getStatus());
 	    		tech.setText(battinfo.tech);
-	    		temp_cur.setText(" "+Helper.getTemp(battinfo.batt_temp_cur, settings.getBoolean("layout.usefahrenheit", false)));
-	    		temp_avg.setText(" "+Helper.getTemp((int)battinfo.batt_temp_avg, settings.getBoolean("layout.usefahrenheit", false)));
-	    		temp_min.setText(" "+Helper.getTemp(battinfo.batt_temp_min, settings.getBoolean("layout.usefahrenheit", false)));
-	    		temp_max.setText(" "+Helper.getTemp(battinfo.batt_temp_max, settings.getBoolean("layout.usefahrenheit", false)));
+	    		temp_cur.setText(" "+battinfo.formatTemp(battinfo.batt_temp_cur, settings.getBoolean("layout.usefahrenheit", false)));
+	    		temp_avg.setText(" "+battinfo.formatTemp((int)battinfo.batt_temp_avg, settings.getBoolean("layout.usefahrenheit", false)));
+	    		temp_min.setText(" "+battinfo.formatTemp(battinfo.batt_temp_min, settings.getBoolean("layout.usefahrenheit", false)));
+	    		temp_max.setText(" "+battinfo.formatTemp(battinfo.batt_temp_max, settings.getBoolean("layout.usefahrenheit", false)));
             } else {
             	batt_table.setVisibility(View.GONE);
             }

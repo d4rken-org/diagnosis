@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import eu.thedarken.diagnosis.DGoverlay.Line;
 import eu.thedarken.diagnosis.R;
-import eu.thedarken.diagnosis.Helper.ProgDialog;
 import eu.thedarken.extra.ObjectSerializer;
+import eu.thedarken.extra.ProgDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;

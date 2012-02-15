@@ -9,6 +9,23 @@ public class InfoClass {
 		String tech = "";
 		long system_time = 0;
 		int health = 0;
+		
+		String formatTemp(int temp, boolean use_fahrenheit) {
+				StringBuilder ret = new StringBuilder();
+				//Log.d("eu.thedarken.diagnosis", "temp" + temp);
+				float ctemp = 0;
+				if(!use_fahrenheit) {
+					ctemp = ((float)temp/10);
+					ret.append(String.valueOf((float)Math.round(ctemp*1000)/1000));
+					ret.append("°C");
+				} else {
+					ctemp = (((((float)temp*90)/50)+320)/10);
+					ret.append(String.valueOf((float)Math.round(ctemp*1000)/1000));
+					ret.append("°F");
+				}
+				return ret.toString();
+		}
+		
 		String getHealth() {
 			switch(health) {
 				default:

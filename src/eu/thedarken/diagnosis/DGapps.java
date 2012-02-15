@@ -1,12 +1,10 @@
 package eu.thedarken.diagnosis;
 
 import java.util.ArrayList;
-import org.achartengine.ChartFactory;
-import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
-import eu.thedarken.diagnosis.Helper.ProgDialog;
 import eu.thedarken.diagnosis.InfoClass.AppTabInfo;
+import eu.thedarken.extra.ProgDialog;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -15,7 +13,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -84,7 +81,7 @@ public class DGapps extends Activity {
     
     private class updateTask extends AsyncTask<String, Void, Boolean> {
     	private Context context;
-        private Helper.ProgDialog dialog;
+        private ProgDialog dialog;
         private ArrayList <AppTabInfo> infos = null;
     	private int sortmode;
         public updateTask(Context c, int sm) {
@@ -199,20 +196,5 @@ public class DGapps extends Activity {
 	    		return false;
 	    	}
 		}
-    }
-    
-    public void showGraph(View view) {
-    	Log.d(mContext.getPackageName(), "Getting chart...");
-        XYMultipleSeriesDataset temp;
-        if((temp = db.getAppGraphSet(settings.getInt("statistics.statistic4.age", 24)*60*60*1000,6,0)) != null) {
-        	XYMultipleSeriesDataset data = new XYMultipleSeriesDataset();
-        	
-        	data = temp;
-        	
-        	XYMultipleSeriesRenderer renderer = buildCategoryRenderer(Helper.getColors(data.getSeriesCount()));
-            startActivity(ChartFactory.getTimeChartIntent(mContext,data,renderer, null));
-        } else {
-        	Toast.makeText(mContext, "No data available yet.",Toast.LENGTH_LONG).show();
-        }
     }
 }

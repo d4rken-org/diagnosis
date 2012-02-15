@@ -530,7 +530,7 @@ public class DGoverlay extends Service{
 					break;
 		        //<item>Battery temp</item>
 				case 22: //Batt temp
-					toset.append(Helper.getTemp(data.getBatt().batt_temp_cur,use_fahrenheit));
+					toset.append(data.getBatt().formatTemp(data.getBatt().batt_temp_cur,use_fahrenheit));
 					break;
 		        //<item>Time</item>
 				case 23: //Time
