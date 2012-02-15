@@ -321,76 +321,6 @@ public class DGdatabase {
     	}
     }
     
-    public synchronized XYMultipleSeriesDataset getCpuGraphSet(long age) {
-    	XYMultipleSeriesDataset ret = new XYMultipleSeriesDataset();
-    	if(openRead()) {
-	    	Cursor c = null;
-	    	long time = System.currentTimeMillis() - age;
-	    	try {
-	    		c = mDB.rawQuery("SELECT usage, active_apps, cpu_frequency, cpu_max_frequency, system_time FROM " + CPU_TABLE + " WHERE system_time>"+time+";",null);
-	    	} catch (SQLiteException e) {
-	    		tryClose();
-	    		return null;
-	    	}
-	    	Log.d(mContext.getPackageName(),"" + graph_data_points);
-	    	Log.d(mContext.getPackageName(),"" + c.getCount());
-			if(c != null && c.getCount()>=graph_data_points) {
-				int sets = (int) Math.floor((c.getCount()/graph_data_points));
-				Log.d(mContext.getPackageName(),""+(c.getCount()/graph_data_points));
-				c.moveToFirst();
-				XYSeries usage = new XYSeries("Cpu use(in %)");
-				XYSeries active_apps = new XYSeries("Active apps");
-				XYSeries cpu_frequency = new XYSeries("Cpu frequency(in %)");
-				boolean cycle = true;
-				do {
-					long systime = 0;
-					int use = 0;
-					int active = 0;
-					int freq = 0;
-					//Log.d(mContext.getPackageName(),"while");
-					for(int i=0;i<sets;i++) {
-						//Log.d(mContext.getPackageName(),"for");
-						systime += c.getLong(c.getColumnIndex("system_time"));
-						//Log.d(mContext.getPackageName(),""+  c.getLong(c.getColumnIndex("system_time")));
-						use += c.getInt(c.getColumnIndex("usage"));
-						//Log.d(mContext.getPackageName(),""+  c.getInt(c.getColumnIndex("usage")));
-						active += c.getInt(c.getColumnIndex("active_apps"));
-						//Log.d(mContext.getPackageName(),""+ c.getInt(c.getColumnIndex("active_apps")));
-						if(c.getInt(c.getColumnIndex("cpu_max_frequency")) != 0) {
-							freq += (c.getInt(c.getColumnIndex("cpu_frequency"))*100/c.getInt(c.getColumnIndex("cpu_max_frequency")));
-						} else {
-							freq += sets;
-						}
-						//Log.d(mContext.getPackageName(),""+ (c.getInt(c.getColumnIndex("cpu_frequency"))*100/c.getInt(c.getColumnIndex("cpu_max_frequency"))));
-						if(!c.moveToNext()) {
-							cycle = false;
-							break;
-						}
-					}
-					if(cycle) {
-						systime /= sets;
-						use /= sets;
-						active /= sets;
-						freq /= sets;
-						
-						usage.add(systime, use);
-						active_apps.add(systime, active);
-						cpu_frequency.add(systime, freq);
-					}
-				} while(cycle);
-				ret.addSeries(usage);
-				ret.addSeries(active_apps);
-				ret.addSeries(cpu_frequency);
-				c.close();
-			} else {
-				tryClose();
-				return null;
-			}
-    	}
-       	tryClose();
-    	return ret;
-    }
-    
     public synchronized CpuTabInfo getCpuTabInfo() {
     	CpuTabInfo ret = new CpuTabInfo();
     	if(openRead()) {
@@ -463,60 +393,7 @@ public class DGdatabase {
     		tryClose();
     	}
     }
-    
-    public synchronized XYMultipleSeriesDataset getMemGraphSet(long age) {
-    	XYMultipleSeriesDataset ret = new XYMultipleSeriesDataset();
-    	if(openRead()) {
-	    	Cursor c = null;
-	    	long time = System.currentTimeMillis() - age;
-	    	try {
-	    		c = mDB.rawQuery("SELECT total_free, usage, system_time FROM " + MEM_TABLE + " WHERE system_time>"+time+";",null);
-	    	} catch (SQLiteException e) {
-	    		tryClose();
-	    		return null;
-	    	}
-			if(c != null && c.getCount()>=graph_data_points) {
-				int sets = (int) Math.floor((c.getCount()/graph_data_points));
-				Log.d(mContext.getPackageName(),""+(c.getCount()/graph_data_points));
-				c.moveToFirst();
-				XYSeries total_free = new XYSeries("Free memory");
-				XYSeries usage = new XYSeries("Memory used (in %)");
-				boolean cycle = true;
-				do {
-					long systime = 0;
-					int totalfree = 0;
-					float use = 0;
-					for(int i=0;i<sets;i++) {
-						systime += c.getLong(c.getColumnIndex("system_time"));
-						totalfree += c.getInt(c.getColumnIndex("total_free"));
-						use += c.getFloat(c.getColumnIndex("usage"));
-						if(!c.moveToNext()) {
-							cycle = false;
-							break;
-						}
-					}
-					if(cycle) {
-						systime /= sets;
-						totalfree /= sets;
-						use /= sets;
-						
-						total_free.add(systime, totalfree);
-						usage.add(systime, use);
-					}
-				} while(cycle);
-				ret.addSeries(usage);
-				ret.addSeries(total_free);
-				c.close();
-			} else {
-				Log.d(mContext.getPackageName(),"null2");
-				tryClose();
-				return null;
-			}
-		}
-	   	tryClose();
-    	return ret;
-    }
-    
+        
     public synchronized MemTabInfo getMemTabInfo() {
     	MemTabInfo ret = new MemTabInfo();
     	if(openRead()) {
@@ -608,70 +485,6 @@ public class DGdatabase {
     	}
     }
     
-    public synchronized XYMultipleSeriesDataset getNetGraphSet(long age) {
-    	XYMultipleSeriesDataset ret = new XYMultipleSeriesDataset();
-    	if(openRead()) {
-	    	Cursor c = null;
-	    	long time = System.currentTimeMillis() - age;
-	    	try {
-	    		c = mDB.rawQuery("SELECT traffic_up, traffic_down, rate_up, rate_down, system_time FROM " + NET_TABLE + " WHERE system_time>"+time+";",null);
-	    	} catch (SQLiteException e) {
-	    		tryClose();
-	    		return null;
-	    	}
-			if(c != null && c.getCount()>=graph_data_points) {
-				int sets = (int) Math.floor((c.getCount()/graph_data_points));
-				Log.d(mContext.getPackageName(),""+(c.getCount()/graph_data_points));
-				c.moveToFirst();
-				XYSeries traffic_up = new XYSeries("Traffic up");
-				XYSeries traffic_down = new XYSeries("Traffic down");
-				XYSeries upload = new XYSeries("upload (Byte/s)");
-				XYSeries download = new XYSeries("download (Byte/s)");
-				boolean cycle = true;
-				do {
-					long systime = 0;
-					long up = 0;
-					long down = 0;
-					long upl = 0;
-					long downl = 0;
-					//Log.d(mContext.getPackageName(),"while");
-					for(int i=0;i<sets;i++) {
-						systime += c.getLong(c.getColumnIndex("system_time"));
-						up += c.getLong(c.getColumnIndex("traffic_up"));
-						down += c.getLong(c.getColumnIndex("traffic_down"));
-						upl += c.getLong(c.getColumnIndex("rate_up"));
-						downl += c.getLong(c.getColumnIndex("rate_down"));
-						if(!c.moveToNext()) {
-							cycle = false;
-							break;
-						}
-					}
-					if(cycle) {
-						systime /= sets;
-						up /= sets;
-						down /= sets;
-						upl /= sets;
-						downl /= sets;
-						
-						traffic_up.add(systime, up);
-						traffic_down.add(systime, down);
-						upload.add(systime, upl);
-						download.add(systime, downl);
-					}
-				} while(cycle);
-				ret.addSeries(traffic_up);
-				ret.addSeries(traffic_down);
-				ret.addSeries(upload);
-				ret.addSeries(download);
-				c.close();
-			} else {
-				tryClose();
-				return null;
-			}
-		}
-	   	tryClose();
-    	return ret;
-    }
         
     public synchronized NetTabInfo getNetTabInfo() {
     	NetTabInfo ret = new NetTabInfo();
@@ -813,66 +626,7 @@ public class DGdatabase {
     		tryClose();
     	}
     }
-    
-    public synchronized XYMultipleSeriesDataset getBatGraphSet(long age) {
-    	XYMultipleSeriesDataset ret = new XYMultipleSeriesDataset();
-    	if(openRead()) {
-	    	Cursor c = null;
-	    	long time = System.currentTimeMillis() - age;
-	    	try {
-	    		c = mDB.rawQuery("SELECT level, voltage, temp, system_time FROM " + BATT_TABLE + " WHERE system_time>"+time+";",null);
-	    	} catch (SQLiteException e) {
-	    		tryClose();
-	    		return null;
-	    	}
-	    	Log.d(mContext.getPackageName(),"" + graph_data_points);
-	    	Log.d(mContext.getPackageName(),"" + c.getCount());
-			if(c != null && c.getCount()>=graph_data_points) {
-				int sets = (int) Math.floor((c.getCount()/graph_data_points));
-				Log.d(mContext.getPackageName(),""+(c.getCount()/graph_data_points));
-				c.moveToFirst();
-				XYSeries level = new XYSeries("level(%)");
-				XYSeries voltage = new XYSeries("voltage(V)");
-				XYSeries temp = new XYSeries("temperature(°C)");
-				boolean cycle = true;
-				do {
-					long systime = 0;
-					int lev = 0;
-					int volt = 0;
-					int te = 0;
-					for(int i=0;i<sets;i++) {
-						systime += c.getLong(c.getColumnIndex("system_time"));
-						lev += c.getInt(c.getColumnIndex("level"));
-						volt += c.getInt(c.getColumnIndex("voltage"))/1000;
-						te += c.getInt(c.getColumnIndex("temp"))/10;
-						if(!c.moveToNext()) {
-							cycle = false;
-							break;
-						}
-					}
-					if(cycle) {
-						systime /= sets;
-						lev /= sets;
-						volt /= sets;
-						te /= sets;
-						
-						level.add(systime, lev);
-						voltage.add(systime, volt);
-						temp.add(systime, te);
-					}
-				} while(cycle);
-				ret.addSeries(level);
-				ret.addSeries(voltage);
-				ret.addSeries(temp);
-				c.close();
-			} else {
-				tryClose();
-				return null;
-			}
-		}
-	   	tryClose();
-    	return ret;
-    }
+
         
     public synchronized BattTabInfo getBattTabInfo() {
     	BattTabInfo ret = new BattTabInfo();
@@ -948,75 +702,6 @@ public class DGdatabase {
     	if(!keepopen) {
     		tryClose();
     	}
-    }
-    
-    public synchronized XYMultipleSeriesDataset getAppGraphSet(long age, int apps, int sortmode) {
-    	XYMultipleSeriesDataset ret = new XYMultipleSeriesDataset();
-    	if(openRead()) {
-	    	ArrayList<String> cmds = new ArrayList<String>();
-	    	Cursor c = null;
-	    	long time = System.currentTimeMillis() - age;
-	    	try {
-	    		c = mDB.rawQuery("SELECT command, COUNT(command) AS cnt FROM " + APP_TABLE + " GROUP BY command ORDER BY cnt DESC;",null);
-			} catch (SQLiteException e) {
-				tryClose();
-				return null;
-			}
-	    	if(c != null && c.getCount() >= apps) {
-	    		if(c.getCount() < apps) {
-	    			apps = c.getCount();
-	    		}
-				c.moveToFirst();
-	    		for(int i=0;i<apps;i++) {
-	    			cmds.add(c.getString(c.getColumnIndex("command")));
-	    			c.moveToNext();
-	    		}
-	    		c.close();
-	    	} else {
-	    		tryClose();
-				return null;
-			}
-		    for(String cmd : cmds) {
-	    		try {
-		    		c = mDB.rawQuery("SELECT command, system_time, cpu, mem FROM " + APP_TABLE + " WHERE command=\"" + cmd + "\" AND system_time>="+ time + " ORDER BY system_time ASC;",null);
-				} catch (SQLiteException e) {
-					tryClose();
-					return null;
-				}	
-				if(c != null && c.getCount()>=graph_data_points) {
-					int sets = (int) Math.floor((c.getCount()/graph_data_points));
-					c.moveToFirst();
-					XYSeries app = new XYSeries(cmd);
-					boolean cycle = true;
-					do {
-						long systime = 0;
-						float cpu = 0;
-						float mem = 0;
-						for(int j=0;j<sets;j++) {
-							systime += c.getLong(c.getColumnIndex("system_time"));
-							cpu += c.getFloat(c.getColumnIndex("cpu"));
-							mem +=c.getFloat(c.getColumnIndex("mem"));
-							//Log.d(mContext.getPackageName(),"j " + j);
-							if(!c.moveToNext()) {
-								cycle = false;
-								break;
-							}
-						}
-						if(cycle) {
-							systime /= sets;
-							cpu /= sets;
-							mem /= sets;
-							app.add(systime, cpu);
-							//app.add(systime, mem);
-						}
-					} while(cycle);
-					ret.addSeries(app);
-					c.close();
-				}
-			}
-		}
-	   	tryClose();
-    	return ret;
     }
     
     
@@ -1123,73 +808,6 @@ public class DGdatabase {
     	if(!keepopen) {
     		tryClose();
     	}
-    }
-
-    public synchronized XYMultipleSeriesDataset getSpaceGraphSet(long age) {
-    	XYMultipleSeriesDataset ret = new XYMultipleSeriesDataset();
-    	if(openRead()) {
-	    	Cursor c = null;
-	    	long time = System.currentTimeMillis() - age;
-	    	try {
-	    		c = mDB.rawQuery("SELECT extern_total, extern_used, sdcard_total, sdcard_used, system_total, system_used, data_total, data_used, system_time FROM " + SPACE_TABLE + " WHERE system_time>"+time+";",null);
-	    	} catch (SQLiteException e) {
-	    		tryClose();
-	    		return null;
-	    	}
-	    	Log.d(mContext.getPackageName(),"" + graph_data_points);
-	    	Log.d(mContext.getPackageName(),"" + c.getCount());
-			if(c != null && c.getCount()>=graph_data_points) {
-				int sets = (int) Math.floor((c.getCount()/graph_data_points));
-				Log.d(mContext.getPackageName(),""+(c.getCount()/graph_data_points));
-				c.moveToFirst();
-				XYSeries extern = new XYSeries("External sdcard");
-				XYSeries sdcard = new XYSeries("Internal sdcard");
-				XYSeries system = new XYSeries("Syste");
-				XYSeries data = new XYSeries("App data");
-				boolean cycle = true;
-				do {
-					long systime = 0;
-					long ext = 0;
-					long sd = 0;
-					long sys = 0;
-					long dat = 0;
-					//Log.d(mContext.getPackageName(),"while");
-					for(int i=0;i<sets;i++) {
-						systime += c.getLong(c.getColumnIndex("system_time"));
-						ext += (c.getLong(c.getColumnIndex("extern_total")) - c.getLong(c.getColumnIndex("extern_used")));
-						sd += (c.getLong(c.getColumnIndex("sdcard_total")) - c.getLong(c.getColumnIndex("sdcard_used")));
-						sys += (c.getLong(c.getColumnIndex("system_total")) - c.getLong(c.getColumnIndex("system_used")));
-						dat += (c.getLong(c.getColumnIndex("data_total")) - c.getLong(c.getColumnIndex("data_used")));
-						if(!c.moveToNext()) {
-							cycle = false;
-							break;
-						}
-					}
-					if(cycle) {
-						systime /= sets;
-						ext /= sets;
-						sd /= sets;
-						sys /= sets;
-						dat /= sets;
-						
-						extern.add(systime, ext);
-						sdcard.add(systime, sd);
-						system.add(systime, sys);
-						data.add(systime, dat);
-					}
-				} while(cycle);
-				ret.addSeries(extern);
-				ret.addSeries(sdcard);
-				ret.addSeries(system);
-				ret.addSeries(data);
-				c.close();
-			} else {
-				tryClose();
-				return null;
-			}
-		}
-	   	tryClose();
-    	return ret;
     }
     
     public synchronized SpaceTabInfo getSpaceTabInfo() {
