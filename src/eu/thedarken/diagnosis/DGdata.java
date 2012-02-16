@@ -1041,7 +1041,7 @@ public class DGdata {
 			wlan.system_time = current_time;
 			wlan.signal = wi.getRssi();
 			wlanlist.add(wlan);
-			Log.d(mContext.getPackageName(), "wifi signal " + wlan.signal);
+//			Log.d(mContext.getPackageName(), "wifi signal " + wlan.signal);
 		}
 	}
 	

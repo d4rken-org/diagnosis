@@ -1047,7 +1047,7 @@ public class DGdatabase {
                 ih.prepareForInsert();
             	ih.bind(system_time, pings.system_time);
             	ih.bind(ping , pings.ping);
-            	Log.d(mContext.getPackageName(), "a" + pings.ping);
+//            	Log.d(mContext.getPackageName(), "a" + pings.ping);
             	ih.execute();
             }
             ih.close();
