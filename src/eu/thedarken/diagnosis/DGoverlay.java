@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import eu.thedarken.diagnosis.InfoClass.AppInfo;
-import eu.thedarken.extra.ObjectSerializer;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.Service;

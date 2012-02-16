@@ -2,8 +2,6 @@ package eu.thedarken.diagnosis;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import org.achartengine.model.XYMultipleSeriesDataset;
-import org.achartengine.model.XYSeries;
 import eu.thedarken.diagnosis.InfoClass.AppInfo;
 import eu.thedarken.diagnosis.InfoClass.AppTabInfo;
 import eu.thedarken.diagnosis.InfoClass.BattInfo;

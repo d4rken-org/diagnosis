@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 import eu.thedarken.diagnosis.InfoClass.AppTabInfo;
-import eu.thedarken.extra.ProgDialog;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -22,6 +21,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
 public class DGapps extends Activity {
     private Context mContext;
     private SharedPreferences settings;

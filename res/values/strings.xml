@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Diagnosis</string>
-    <string name="no_data_yet">No data yet, give it a few mins.\nIs the database enabled?</string> 
-	<string name="crash_toast_text" >Sorry, but Diagnosis crashed.</string>
+    <string name="no_data_yet">No data yet, give it a few mins.\nIs the database enabled?</string>
+    <string name="crash_toast_text">Sorry, but Diagnosis crashed.</string>
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Color Picker</string>
+    <string name="press_color_to_apply"></string>
+
 </resources>

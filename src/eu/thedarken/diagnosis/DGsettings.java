@@ -2,11 +2,8 @@ package eu.thedarken.diagnosis;
 
 import java.io.File;
 import java.util.ArrayList;
-
 import eu.thedarken.diagnosis.DGoverlay.Line;
 import eu.thedarken.diagnosis.R;
-import eu.thedarken.extra.ObjectSerializer;
-import eu.thedarken.extra.ProgDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -48,32 +45,32 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 	        prefEditor.putInt("overlay.color.background.line"+i, settings.getInt("overlay.color.background.line"+i, DGoverlay.default_color_bg));
 	    	prefEditor.commit();
 
-	        ((eu.thedarken.extra.ColorPickerPreference)findPreference("overlay.color.normal.line"+i)).setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+	        ((ColorPickerPreference)findPreference("overlay.color.normal.line"+i)).setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 				@Override
 				public boolean onPreferenceChange(Preference preference, Object newValue) {
-					preference.setSummary(eu.thedarken.extra.ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue))));
+					preference.setSummary(ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue))));
 					return true;
 				}
 	        });
-	        ((eu.thedarken.extra.ColorPickerPreference)findPreference("overlay.color.normal.line"+i)).setAlphaSliderEnabled(true);
+	        ((ColorPickerPreference)findPreference("overlay.color.normal.line"+i)).setAlphaSliderEnabled(true);
 	
-	        ((eu.thedarken.extra.ColorPickerPreference)findPreference("overlay.color.alert.line"+i)).setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+	        ((ColorPickerPreference)findPreference("overlay.color.alert.line"+i)).setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 				@Override
 				public boolean onPreferenceChange(Preference preference, Object newValue) {
-					preference.setSummary(eu.thedarken.extra.ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue))));
+					preference.setSummary(ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue))));
 					return true;
 				}
 	        });
-	        ((eu.thedarken.extra.ColorPickerPreference)findPreference("overlay.color.alert.line"+i)).setAlphaSliderEnabled(true);
+	        ((ColorPickerPreference)findPreference("overlay.color.alert.line"+i)).setAlphaSliderEnabled(true);
 	        
-	        ((eu.thedarken.extra.ColorPickerPreference)findPreference("overlay.color.background.line"+i)).setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+	        ((ColorPickerPreference)findPreference("overlay.color.background.line"+i)).setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 				@Override
 				public boolean onPreferenceChange(Preference preference, Object newValue) {
-					preference.setSummary(eu.thedarken.extra.ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue))));
+					preference.setSummary(ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue))));
 					return true;
 				}
 	        });
-	        ((eu.thedarken.extra.ColorPickerPreference)findPreference("overlay.color.background.line"+i)).setAlphaSliderEnabled(true);
+	        ((ColorPickerPreference)findPreference("overlay.color.background.line"+i)).setAlphaSliderEnabled(true);
 	        
         }   
     }

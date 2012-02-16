@@ -14,7 +14,6 @@ import eu.thedarken.diagnosis.InfoClass.PhoneTabInfo;
 import eu.thedarken.diagnosis.InfoClass.PingTabInfo;
 import eu.thedarken.diagnosis.InfoClass.SpaceTabInfo;
 import eu.thedarken.diagnosis.InfoClass.WlanTabInfo;
-import eu.thedarken.extra.ProgDialog;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;

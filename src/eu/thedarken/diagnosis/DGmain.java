@@ -7,8 +7,6 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import eu.thedarken.diagnosis.DGdatabase;
-import eu.thedarken.extra.ObjectSerializer;
-import eu.thedarken.extra.ProgDialog;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
