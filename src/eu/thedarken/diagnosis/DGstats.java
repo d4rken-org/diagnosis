@@ -2,8 +2,6 @@ package eu.thedarken.diagnosis;
 
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
-
-import eu.thedarken.diagnosis.InfoClass.BattInfo;
 import eu.thedarken.diagnosis.InfoClass.BattTabInfo;
 import eu.thedarken.diagnosis.InfoClass.CpuTabInfo;
 import eu.thedarken.diagnosis.InfoClass.DiskTabInfo;

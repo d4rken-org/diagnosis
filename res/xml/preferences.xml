@@ -2,7 +2,7 @@
 <PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="General">
-		<eu.thedarken.extra.SeekBarPreference android:key="general.intervall"
+		<eu.thedarken.diagnosis.SeekBarPreference android:key="general.intervall"
 		        android:title="Update intervall"
 		        android:summary="How often diagnosis should refresh. A smaller number means more accurate values, but also more database size and resources."
 		        android:dialogMessage="Intervall"
@@ -154,7 +154,7 @@
 		            android:digits="0123456789"
 		            android:inputType="number"
 		            android:defaultValue="45"/>
-				<eu.thedarken.extra.SeekBarPreference 
+				<eu.thedarken.diagnosis.SeekBarPreference 
 					android:key="overlay.font.size.line0"
 			        android:title="Fontsize"
 			        android:summary="How big the letters will be"
@@ -162,13 +162,13 @@
 			        android:defaultValue="15"
 			        android:text=""
 			        android:max="50"/>
-				<eu.thedarken.extra.ColorPickerPreference
+				<eu.thedarken.diagnosis.ColorPickerPreference
 				    android:key="overlay.color.normal.line0"
 				    android:title="Normal text color"
 				    android:summary="Text color used for normal display"
 				    android:defaultValue="0xff00ff00"     
 				    alphaSlider="true"/>
-				<eu.thedarken.extra.ColorPickerPreference
+				<eu.thedarken.diagnosis.ColorPickerPreference
 				    android:key="overlay.color.alert.line0"
 				    android:title="Alert text color"
 				    android:summary="Text color used to highlight alerts"
@@ -191,7 +191,7 @@
 			        android:title="Draw background"
 			        android:summary="Draw a background behind the text to make it easier readable."
 			        android:defaultValue="false"/>
-   				<eu.thedarken.extra.ColorPickerPreference
+   				<eu.thedarken.diagnosis.ColorPickerPreference
 				    android:key="overlay.color.background.line0"
 				    android:title="Text background color"
 				    android:summary="Color used as background"
@@ -225,7 +225,7 @@
 		            android:digits="0123456789"
 		            android:inputType="number"
 		            android:defaultValue="60"/>
-				<eu.thedarken.extra.SeekBarPreference 
+				<eu.thedarken.diagnosis.SeekBarPreference 
 					android:key="overlay.font.size.line1"
 			        android:title="Fontsize"
 			        android:summary="How big the letters will be"
@@ -233,13 +233,13 @@
 			        android:defaultValue="15"
 			        android:text=""
 			        android:max="50"/>
-				<eu.thedarken.extra.ColorPickerPreference
+				<eu.thedarken.diagnosis.ColorPickerPreference
 				    android:key="overlay.color.normal.line1"
 				    android:title="Normal text color"
 				    android:summary="Text color used for normal display"
 				    android:defaultValue="0xff00ff00"     
 				    alphaSlider="true"/>
-				<eu.thedarken.extra.ColorPickerPreference
+				<eu.thedarken.diagnosis.ColorPickerPreference
 				    android:key="overlay.color.alert.line1"
 				    android:title="Alert text color"
 				    android:summary="Text color used to highlight alerts"
@@ -262,7 +262,7 @@
 			        android:title="Draw background"
 			        android:summary="Draw a background behind the text to make it easier readable."
 			        android:defaultValue="false"/>
-   				<eu.thedarken.extra.ColorPickerPreference
+   				<eu.thedarken.diagnosis.ColorPickerPreference
 				    android:key="overlay.color.background.line1"
 				    android:title="Text background color"
 				    android:summary="Color used as background"
@@ -296,7 +296,7 @@
 		            android:digits="0123456789"
 		            android:inputType="number"
 		            android:defaultValue="75"/>
-				<eu.thedarken.extra.SeekBarPreference 
+				<eu.thedarken.diagnosis.SeekBarPreference 
 					android:key="overlay.font.size.line2"
 			        android:title="Fontsize"
 			        android:summary="How big the letters will be"
@@ -304,13 +304,13 @@
 			        android:defaultValue="15"
 			        android:text=""
 			        android:max="50"/>
-				<eu.thedarken.extra.ColorPickerPreference
+				<eu.thedarken.diagnosis.ColorPickerPreference
 				    android:key="overlay.color.normal.line2"
 				    android:title="Normal text color"
 				    android:summary="Text color used for normal display"
 				    android:defaultValue="0xff00ff00"     
 				    alphaSlider="true"/>
-				<eu.thedarken.extra.ColorPickerPreference
+				<eu.thedarken.diagnosis.ColorPickerPreference
 				    android:key="overlay.color.alert.line2"
 				    android:title="Alert text color"
 				    android:summary="Text color used to highlight alerts"
@@ -333,7 +333,7 @@
 			        android:title="Draw background"
 			        android:summary="Draw a background behind the text to make it easier readable."
 			        android:defaultValue="false"/>
-   				<eu.thedarken.extra.ColorPickerPreference
+   				<eu.thedarken.diagnosis.ColorPickerPreference
 				    android:key="overlay.color.background.line2"
 				    android:title="Text background color"
 				    android:summary="Color used as background"
@@ -367,7 +367,7 @@
 		            android:digits="0123456789"
 		            android:inputType="number"
 		            android:defaultValue="90"/>
-				<eu.thedarken.extra.SeekBarPreference 
+				<eu.thedarken.diagnosis.SeekBarPreference 
 					android:key="overlay.font.size.line3"
 			        android:title="Fontsize"
 			        android:summary="How big the letters will be"
@@ -375,13 +375,13 @@
 			        android:defaultValue="15"
 			        android:text=""
 			        android:max="50"/>
-				<eu.thedarken.extra.ColorPickerPreference
+				<eu.thedarken.diagnosis.ColorPickerPreference
 				    android:key="overlay.color.normal.line3"
 				    android:title="Normal text color"
 				    android:summary="Text color used for normal display"
 				    android:defaultValue="0xff00ff00"     
 				    alphaSlider="true"/>
-				<eu.thedarken.extra.ColorPickerPreference
+				<eu.thedarken.diagnosis.ColorPickerPreference
 				    android:key="overlay.color.alert.line3"
 				    android:title="Alert text color"
 				    android:summary="Text color used to highlight alerts"
@@ -404,7 +404,7 @@
 			        android:title="Draw background"
 			        android:summary="Draw a background behind the text to make it easier readable."
 			        android:defaultValue="false"/>
-   				<eu.thedarken.extra.ColorPickerPreference
+   				<eu.thedarken.diagnosis.ColorPickerPreference
 				    android:key="overlay.color.background.line3"
 				    android:title="Text background color"
 				    android:summary="Color used as background"
@@ -417,39 +417,8 @@
   	    <PreferenceScreen
 		    android:key="advanced"
 		    android:title="Advanced settings">
-        	<!-- <PreferenceCategory android:title="Statistics">
-		   		<eu.thedarken.extra.SeekBarPreference android:key="statistics.statistic1.age"
-			        android:title="Statistic1 data age"
-			        android:summary="How old should the displayed data be?"
-			        android:dialogMessage="Age"
-			        android:defaultValue="168"
-			        android:text=" hours"
-			        android:max="168"/>
-		   		<eu.thedarken.extra.SeekBarPreference android:key="statistics.statistic2.age"
-			        android:title="Statistic2 data age"
-			        android:summary="How old should the displayed data be?"
-			        android:dialogMessage="Age"
-			        android:defaultValue="168"
-			        android:text=" hours"
-			        android:max="168"/>
-		        <eu.thedarken.extra.SeekBarPreference android:key="statistics.statistic3.age"
-			        android:title="Statistic3 data age"
-			        android:summary="How old should the displayed data be?"
-			        android:dialogMessage="Age"
-			        android:defaultValue="168"
-			        android:text=" hours"
-			        android:max="168"/>
-		        <eu.thedarken.extra.SeekBarPreference android:key="statistics.statistic4.age"
-			        android:title="Statistic4 data age"
-			        android:summary="How old should the displayed data be?"
-			        android:dialogMessage="Age"
-			        android:defaultValue="168"
-			        android:text=" hours"
-			        android:max="168"/>
-    		</PreferenceCategory> -->
-
 		    <PreferenceCategory android:title="Database">
-		   		<eu.thedarken.extra.SeekBarPreference android:key="database.agelimit"
+		   		<eu.thedarken.diagnosis.SeekBarPreference android:key="database.agelimit"
 			        android:title="Data age limit"
 			        android:summary="After what amount of time should old data be deleted?(Happens when starting service)"
 			        android:dialogMessage="Data age"
@@ -460,27 +429,20 @@
 				    android:key="database.dropall"
 				    android:title="Drop database"
 				    android:summary="Drop all database tables thus reseting it." />
-	    		<eu.thedarken.extra.SeekBarPreference android:key="database.density"
+	    		<eu.thedarken.diagnosis.SeekBarPreference android:key="database.density"
 			        android:title="Data density"
 			        android:summary="Condenses multiple datasets into one. A smaller number means more accurate data, but bigger database."
 			        android:dialogMessage="Data density"
 			        android:defaultValue="6"
 			        android:text=""
 			        android:max="60"/>
-   	    		<eu.thedarken.extra.SeekBarPreference android:key="database.cachesize"
+   	    		<eu.thedarken.diagnosis.SeekBarPreference android:key="database.cachesize"
 			        android:title="Cache size"
 			        android:summary="How many entries should be safed in RAM before attempting to write to memory"
 			        android:dialogMessage="Cache size"
 			        android:defaultValue="24"
 			        android:text=" "
 			        android:max="50"/>
-   		       <!-- <eu.thedarken.extra.SeekBarPreference android:key="database.graphs.data_points"
-			        android:title="Graph datapoints"
-			        android:summary="How many datapoints should be used for the graph? If you use to many panning/zooming will lag."
-			        android:dialogMessage="Graph datapoints"
-			        android:defaultValue="50"
-			        android:text=" datapoints"
-			        android:max="250"/> -->
         	</PreferenceCategory>  
 		</PreferenceScreen>
 	</PreferenceCategory>
