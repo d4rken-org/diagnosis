@@ -255,20 +255,27 @@ public class DGdatabase {
     	return true;
     }
     
-    public synchronized  void clean(long time) {
-    	if(openWrite()) {
+	public synchronized void clean(long time, ProgDialog p) {
+		if (openWrite()) {
 			try {
-		    	for(String t : mDBhelper.getTables()){
-		    		 mDB.execSQL("DELETE FROM " + t + " WHERE system_time<"+(System.currentTimeMillis()-time)+";");
-		    	}
-		    	Log.d(mContext.getPackageName(), "Cleaning old entries");
+				Log.d(mContext.getPackageName(), "Cleaning old entries");
+				for (String t : mDBhelper.getTables()) {
+					p.updateMessage("Cleaning " + t);
+					mDB.execSQL("DELETE FROM " + t + " WHERE system_time<" + (System.currentTimeMillis() - time) + ";");
+					Log.d(mContext.getPackageName(), "Done cleaning " + t);
+					p.incrProgress();
+				}
 			} catch (SQLiteException e) {
 				tryClose();
 			}
-    	}
-       	tryClose();
-    }
+		}
+		tryClose();
+	}
     
+    public int getTableSize() {
+    	return mDBhelper.getTables().size();
+    }
+
     public synchronized long getItemCount() {
     	long ret = 0;
     	if(openRead()) {

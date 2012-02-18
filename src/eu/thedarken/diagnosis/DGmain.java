@@ -698,6 +698,7 @@ public class DGmain extends Activity {
     	
     	DGoverlay.initReset();
     }
+    
     public void setStyle9(View view) {
 		Display display = getWindowManager().getDefaultDisplay(); 
 		int lineno;
@@ -838,33 +839,32 @@ public class DGmain extends Activity {
     	}
     }
     
-
     
     private class startinfoTask extends AsyncTask<String, Void, Boolean> {
-    	private Context context;
-        private ProgDialog dialog;
         private StringBuilder db_size_sb = new StringBuilder();
-        File db;
-        public startinfoTask(Context c) {
-        	context = c;
+        private Activity mActivity;
+        private File db;
+        private ProgDialog dialog;
+        public startinfoTask(Activity a) {
+        	mActivity = a;
         	db = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/eu.thedarken.diagnosis/databases/database.db");
         }
 
         protected void onPreExecute() {
-          	dialog = new ProgDialog(context);
+          	dialog = new ProgDialog(mActivity);
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             dialog.show();
-            dialog.setMessage("Loading...");
+            dialog.updateMessage("Loading...");
         	Log.d(mContext.getPackageName(), "VersionName: " + versName);
         	Log.d(mContext.getPackageName(), "VersionCode: " + versCode);
     		if(settings.getInt("dbversion", 0) < DB_DELETE_VERSION && db.exists()) {
     			if(db.delete()) {
-    				dialog.setMessage("DB deletion successfull");
+    				dialog.updateMessage("DB deletion successfull");
     				Log.d(mContext.getPackageName(), "DB deletion successfull");
     				prefEditor.putInt("dbversion", versCode);
     				prefEditor.commit();
     			} else {
-    				dialog.setMessage("Could not delete DB");
+    				dialog.updateMessage("Could not delete DB");
     				Log.d(mContext.getPackageName(), "Could not delete DB");
     				showDialog(2);
     			}
@@ -875,6 +875,7 @@ public class DGmain extends Activity {
 				prefEditor.putInt("dbversion", versCode);
 				prefEditor.commit();
     		}
+
         }
 
         @Override
@@ -897,7 +898,7 @@ public class DGmain extends Activity {
 		        db_status.setText(db_status_sb.toString());
 	        	try {
 		            if(dialog.isShowing()) {
-		                dialog.dismiss();
+		            	dialog.dismiss();
 		            }
 		        } catch (Exception e) { }
         	}
@@ -906,72 +907,70 @@ public class DGmain extends Activity {
 		@Override
 		protected Boolean doInBackground(String... params) {
 			dialog.updateMessage("Loading database info");
-	        
-	        if(db.exists()) {
-	        	db_size_sb.append("Database size:" + Formatter.formatFileSize(mContext, db.length()));
-	        } else {
-	        	db_size_sb.append("No DB yet");
-	        }
-	        
-	    	DGdatabase db_object = DGdatabase.getInstance(mContext.getApplicationContext());
-	    	db_size_sb.append(" | DB item count: " + db_object.getItemCount());
-	    	
-	    	dialog.updateMessage("Getting busybox version");
+
+			if (db.exists()) {
+				db_size_sb.append("Database size:" + Formatter.formatFileSize(mContext, db.length()));
+			} else {
+				db_size_sb.append("No DB yet");
+			}
+
+			DGdatabase db_object = DGdatabase.getInstance(mContext.getApplicationContext());
+			db_size_sb.append(" | DB item count: " + db_object.getItemCount());
+
+			dialog.updateMessage("Getting busybox version");
 
 			Process q = null;
-		    String line = null;
+			String line = null;
 			try {
 				q = Runtime.getRuntime().exec("sh");
 				OutputStreamWriter os = new OutputStreamWriter(q.getOutputStream());
 				Scanner e = new Scanner(q.getErrorStream());
 				Scanner s = new Scanner(q.getInputStream());
 				os.write(BUSYBOX + "\n");
-			    os.write("exit\n");  
-			    os.flush();		    
-			    q.waitFor();
-			    os.close();
-			    //Print Errors
-			    while(e.hasNext())
-		  		{
-			 		Log.d(mContext.getPackageName(), e.nextLine());
-		  		}
-			    e.close();
-			    line = s.nextLine();
-			    s.close();
+				os.write("exit\n");
+				os.flush();
+				q.waitFor();
+				os.close();
+				// Print Errors
+				while (e.hasNext()) {
+					Log.d(mContext.getPackageName(), e.nextLine());
+				}
+				e.close();
+				line = s.nextLine();
+				s.close();
 			} catch (Exception e) {
-				if(q!=null) q.destroy();
+				if (q != null)
+					q.destroy();
 				e.printStackTrace();
 				Log.d(mContext.getPackageName(), "Error while getting busybox version");
 			}
 			String ret = "WARNING No busybox";
-			if(line != null) {
+			if (line != null) {
 				ret = line;
-				if(line.length() > 20) {
-					ret = (String) line.subSequence(0,21);
+				if (line.length() > 20) {
+					ret = (String) line.subSequence(0, 21);
 				}
 				Log.d(mContext.getPackageName(), "Busybox version: " + ret);
 			} else {
 				return false;
 			}
-			
-			
-			
+
 			return true;
 		}
-    }
+	}
  
     private class setupTask extends AsyncTask<String, Void, Boolean> {
-    	private Context context;
+    	private Activity mActivity;
         private ProgDialog dialog;
-        public setupTask(Context c ) {
-        	context = c;
+        public setupTask(Activity a ) {
+        	mActivity = a;
         }
 
         protected void onPreExecute() {
-          	dialog = new ProgDialog(context);
+          	dialog = new ProgDialog(mActivity);
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             dialog.show();
-            dialog.setMessage("Loading...");	
+            dialog.updateMessage("Loading...");	
         }
 
         @Override
@@ -995,8 +994,8 @@ public class DGmain extends Activity {
         
     private class serviceTask extends AsyncTask<String, Void, Boolean> {
     	private Activity mActivity;
-        private ProgDialog dialog;
         private boolean isRunning = false;
+        private ProgDialog dialog;
         public serviceTask(Activity activity ) {
         	mActivity = activity;
 
@@ -1004,14 +1003,10 @@ public class DGmain extends Activity {
 
         protected void onPreExecute() {
           	dialog = new ProgDialog(mActivity);
-            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setProgressStyle(DGoverlay.isRunning ? ProgressDialog.STYLE_SPINNER : ProgressDialog.STYLE_HORIZONTAL);
+            dialog.updateMessage(DGoverlay.isRunning ? "Stopping service..." : "Starting service...");
             dialog.show();
-        	if(DGoverlay.isRunning) {
-        		this.isRunning = true;
-        		dialog.setMessage("Stopping service...");
-        	} else {
-        		dialog.setMessage("Starting service...");
-        	}
+        	if(DGoverlay.isRunning) this.isRunning = true;
         }
 
         @Override
@@ -1027,7 +1022,6 @@ public class DGmain extends Activity {
         	try {
 	            if(dialog.isShowing()) {
 	                dialog.dismiss();
-	            	mActivity.removeDialog(dialog.hashCode());
 	            }
 	        } catch (Exception e) { }
         }
@@ -1039,14 +1033,16 @@ public class DGmain extends Activity {
 					DGoverlay.haltoverlay = true;
 					while(DGoverlay.isRunning) Thread.sleep(25);
 				} else {
+					
 			    	dialog.updateMessage("Cleaning old database entries");
 			    	DGdatabase db_object = DGdatabase.getInstance(mContext.getApplicationContext());
-			    	db_object.clean((long)(settings.getInt("database.agelimit", 48)*3600000));
+			    	dialog.setMax(db_object.getTableSize());
+			    	db_object.clean((long)(settings.getInt("database.agelimit", 48)*3600000), dialog);
+			    	
 		    		startService(service);
 		    		while(!DGoverlay.isRunning) Thread.sleep(25);
 				}
 			} catch (Exception e) {
-				
 				e.printStackTrace();
 			}
 			return true;
