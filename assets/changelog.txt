@@ -7,6 +7,7 @@
 - added cell signal strength info
 - added wifi signal strength info
 - rewritten statistics tab and database feature
+- Database cleanup shows progress now
 
 v0.5.8(15)
 - Reduced resource usage when the screen is off and database is disabled
