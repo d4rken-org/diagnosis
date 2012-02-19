@@ -1,8 +1,6 @@
 package eu.thedarken.diagnosis;
 
 import java.util.ArrayList;
-import org.achartengine.renderer.XYMultipleSeriesRenderer;
-import org.achartengine.renderer.XYSeriesRenderer;
 import eu.thedarken.diagnosis.InfoClass.AppTabInfo;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -54,21 +52,7 @@ public class DGapps extends Activity {
         //apps_table.setColumnCollapsed(1, true);
        	//showGraph(null);
     }
-    
-    protected XYMultipleSeriesRenderer buildCategoryRenderer(int[] colors) {
-    	XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-    	for (int color : colors) {
-    		XYSeriesRenderer r = new XYSeriesRenderer();
-	    	r.setColor(color);
-	    	r.setLineWidth(4);
-	    	renderer.addSeriesRenderer(r);
-    	}
-    	renderer.setLegendTextSize(20);
-    	renderer.setLegendHeight(160);
-    	renderer.setLabelsTextSize(15);
-    	return renderer;
-	}
-    
+
     @Override
     public void onResume() {
     	super.onResume();

@@ -1,7 +1,5 @@
 package eu.thedarken.diagnosis;
 
-import org.achartengine.renderer.XYMultipleSeriesRenderer;
-import org.achartengine.renderer.XYSeriesRenderer;
 import eu.thedarken.diagnosis.InfoClass.BattTabInfo;
 import eu.thedarken.diagnosis.InfoClass.CpuTabInfo;
 import eu.thedarken.diagnosis.InfoClass.DiskTabInfo;
@@ -41,18 +39,6 @@ public class DGstats extends Activity {
         Toast.makeText(mContext, "Enable choosen statistics in the settings!",Toast.LENGTH_LONG).show();
     }
     
-    protected XYMultipleSeriesRenderer buildCategoryRenderer(int[] colors) {
-    	XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-    	for (int color : colors) {
-    		XYSeriesRenderer r = new XYSeriesRenderer();
-	    	r.setColor(color);
-	    	r.setLineWidth(4);
-	    	renderer.addSeriesRenderer(r);
-    	}
-    	renderer.setLegendTextSize(20);
-    	renderer.setLabelsTextSize(15);
-    	return renderer;
-	}
     @Override
     public void onResume() {
     	super.onResume();
