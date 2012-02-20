@@ -1,7 +1,6 @@
 package eu.thedarken.diagnosis;
 
 import java.io.File;
-import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import eu.thedarken.diagnosis.InfoClass.AppInfo;
 import android.app.Notification;
-import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -59,20 +58,11 @@ public class DGoverlay extends Service{
 	public static boolean use_fahrenheit = false;
 	private int overlay_width;
 	private int overlay_height;
-    @SuppressWarnings("rawtypes")
-	private static final Class[] mStartForegroundSignature = new Class[] {int.class, Notification.class};
-    @SuppressWarnings("rawtypes")
-	private static final Class[] mStopForegroundSignature = new Class[] {boolean.class};
-	@SuppressWarnings("unused")
-	private NotificationManager mNM;
-    @SuppressWarnings("unused")
-	private Method mStartForeground;
-    @SuppressWarnings("unused")
-	private Method mStopForeground;
     public static String external_sd_path = "";
     public static int default_color_normal = 0xff06ff00;
     public static int default_color_alert = 0xffffff00;
     public static int default_color_bg = 0x70000000;
+    private final static int NOTIFICATION_ID = 88;
 	public class Line {
 		String text = new String();
 		int x_pos = 0;
@@ -172,16 +162,19 @@ public class DGoverlay extends Service{
         
         isRunning = true;
 	    Toast.makeText(this.getApplicationContext(), "Diagnosis service created", Toast.LENGTH_SHORT).show();
-	    //wl.acquire();
 	    
-        mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-        try {
-            mStartForeground = getClass().getMethod("startForeground", mStartForegroundSignature);
-            mStopForeground = getClass().getMethod("stopForeground", mStopForegroundSignature);
-        } catch (NoSuchMethodException e) {
-            // Running on an older platform.
-            mStartForeground = mStopForeground = null;
-        }
+		Notification note = new Notification(R.drawable.note, "We now know whats going on!", System.currentTimeMillis());
+		Intent i = new Intent(this, DGtabhost.class);
+
+		i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+		PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
+
+		note.setLatestEventInfo(this, "Diagnosis", "Click me to open the App", pi);
+		note.flags |= Notification.FLAG_NO_CLEAR;
+		note.flags |= Notification.FLAG_FOREGROUND_SERVICE; 
+		note.flags |= Notification.FLAG_ONGOING_EVENT;
+		this.startForeground(NOTIFICATION_ID, note);
 	}
 	
 	@Override
@@ -195,6 +188,12 @@ public class DGoverlay extends Service{
         isRunning = false;
         stopForeground(true);
 		super.onDestroy();
+	}
+	
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		return START_STICKY ;
+
 	}
 
 	public static Line getLine(int position) {

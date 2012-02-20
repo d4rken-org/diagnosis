@@ -8,6 +8,7 @@
 - added wifi signal strength info
 - rewritten statistics tab and database feature
 - Database cleanup shows progress now
+- Added notifaction when Diagnosis is running, which increases the apps chances to survive memory cleanings
 
 v0.5.8(15)
 - Reduced resource usage when the screen is off and database is disabled
