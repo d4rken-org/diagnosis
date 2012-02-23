@@ -770,14 +770,14 @@ public class DGdata {
 				FreqInfo avg = new FreqInfo();
 				while(cnt != 0) {
 					FreqInfo temp = dbfreqlist.removeFirst();
-					avg.cpu_frequency = temp.cpu_frequency;
+					avg.system_time += temp.system_time;
+					avg.cpu_frequency += temp.cpu_frequency;
 					avg.cpu_max_frequency = temp.cpu_max_frequency;
 					avg.cpu_min_frequency = temp.cpu_min_frequency;
 					cnt--;
 				}
 				avg.system_time /= this.density;
 				avg.cpu_frequency /= this.density;
-				
 				f_inserts.add(avg);
 			}
 			if(f_inserts.size() > 0) mDB.addFreqs(f_inserts,false);
@@ -1149,34 +1149,6 @@ public class DGdata {
 		disklist.add(ret);
 	}
 	
-	/*private String getCpuGovenor() {
-		String ret = "";
-		Process q = null;
-		try {
-			Thread.sleep(SHELLDELAY);
-			q = Runtime.getRuntime().exec("sh");
-			OutputStreamWriter os = new OutputStreamWriter(q.getOutputStream());
-			Scanner e = new Scanner(q.getErrorStream());
-			os.write("BUSYBOX=" + DGdata.BUSYBOX +"\n");
-			os.write("$BUSYBOX cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor\n");
-			os.write("exit\n");  
-			os.flush();
-			q.waitFor();
-			os.close();
-			while(e.hasNext()) Log.d(mContext.getPackageName(), e.nextLine());
-			e.close();
-			Scanner s = new Scanner(q.getInputStream());
-			if(s.hasNextLine()) {
-				ret = s.next();
-			}
-			s.close();
-		} catch (Exception e) {
-			if(q!=null) q.destroy();
-			e.printStackTrace();
-		}
-		//Log.d(mContext.getPackageName(), "" + ret);
-		return ret;
-	}*/	
 	
 	private int getCpuMinFrequency() {
 		int ret = 0;
@@ -1375,6 +1347,7 @@ public class DGdata {
 		freq.cpu_frequency = getCpuFrequency();
 		freq.cpu_max_frequency = getCpuMaxFrequency();
 		freq.cpu_min_frequency = getCpuMinFrequency();
+		freq.system_time = current_time;
 		freqlist.add(freq);
 	}
 }
