@@ -61,7 +61,7 @@ public class DGstats extends Activity {
     	
         TableLayout freq_table;
     	FreqTabInfo freqinfo = null;
-        TextView cpu_cur,cpu_max,cpu_min,poss_cpu_max,poss_cpu_min;
+        TextView cpu_avg,cpu_max,cpu_min,poss_cpu_max,poss_cpu_min;
         
         TableLayout mem_table;
     	MemTabInfo meminfo = null;
@@ -141,7 +141,7 @@ public class DGstats extends Activity {
             avg_io = (TextView) findViewById(R.id.cpu_avg_io);
             
             freq_table = (TableLayout)findViewById(R.id.freq_table);
-            cpu_cur = (TextView) findViewById(R.id.observed_cpu_cur);
+            cpu_avg = (TextView) findViewById(R.id.observed_cpu_avg);
             cpu_max = (TextView) findViewById(R.id.observed_cpu_max);
             cpu_min = (TextView) findViewById(R.id.observed_cpu_min);
             poss_cpu_max = (TextView) findViewById(R.id.possible_cpu_max);
@@ -242,7 +242,7 @@ public class DGstats extends Activity {
             
             if(pull_freq) {
             	freq_table.setVisibility(View.VISIBLE);
-        		cpu_cur.setText(String.valueOf(freqinfo.cpu_frequency/1000) + " MHZ");
+        		cpu_avg.setText(String.valueOf((int)(freqinfo.avg_cpu_freq/1000)) + " MHZ");
         		cpu_max.setText(String.valueOf(freqinfo.max_obs_cpu_freq/1000) + " MHZ");
         		cpu_min.setText(String.valueOf(freqinfo.min_obs_cpu_freq/1000) + " MHZ");
         		poss_cpu_max.setText(String.valueOf(freqinfo.cpu_max_frequency/1000) + " MHZ");
