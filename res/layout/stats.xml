@@ -20,7 +20,7 @@
        		        android:layout_width="wrap_content"
        		        android:layout_height="wrap_content"
        		        android:background="@drawable/bg4"
-       		        android:padding="15px">
+       		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
        		        android:layout_width="wrap_content"
        		        android:layout_height="wrap_content"
        		        android:background="@drawable/bg4"
-       		        android:padding="15px">
+       		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
        		        android:layout_width="wrap_content"
        		        android:layout_height="wrap_content"
        		        android:background="@drawable/bg4"
-       		        android:padding="15px">
+       		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -208,7 +208,7 @@
        		        android:layout_width="wrap_content"
        		        android:layout_height="wrap_content"
        		        android:background="@drawable/bg4"
-       		        android:padding="15px">
+       		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -238,7 +238,7 @@
        		        android:layout_width="wrap_content"
        		        android:layout_height="wrap_content"
        		        android:background="@drawable/bg4"
-       		        android:padding="15px">
+       		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -268,7 +268,7 @@
        		        android:layout_width="wrap_content"
        		        android:layout_height="wrap_content"
        		        android:background="@drawable/bg4"
-       		        android:padding="15px">
+       		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -376,7 +376,7 @@
        		        android:layout_width="wrap_content"
        		        android:layout_height="wrap_content"
        		        android:background="@drawable/bg4"
-       		        android:padding="15px">
+       		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -431,7 +431,7 @@
        		        android:layout_width="wrap_content"
        		        android:layout_height="wrap_content"
        		        android:background="@drawable/bg4"
-       		        android:padding="15px">
+       		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -515,7 +515,7 @@
        		        android:layout_width="wrap_content"
        		        android:layout_height="wrap_content"
        		        android:background="@drawable/bg4"
-       		        android:padding="15px">
+       		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -551,7 +551,7 @@
        		        android:layout_width="wrap_content"
        		        android:layout_height="wrap_content"
        		        android:background="@drawable/bg4"
-       		        android:padding="15px">
+       		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -629,7 +629,7 @@
        		        android:layout_width="wrap_content"
        		        android:layout_height="wrap_content"
        		        android:background="@drawable/bg4"
-       		        android:padding="15px">
+       		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -689,7 +689,7 @@
        		        android:layout_width="fill_parent"
        		        android:layout_height="wrap_content"
        		        android:background="@drawable/bg4"
-       		        android:padding="15px">
+       		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -843,7 +843,7 @@
 	   		        android:layout_width="fill_parent"
 	   		        android:layout_height="wrap_content"
 	   		        android:background="@drawable/bg4"
-	   		        android:padding="15px">
+	   		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -998,7 +998,7 @@
    		        android:layout_width="fill_parent"
    		        android:layout_height="wrap_content"
    		        android:background="@drawable/bg4"
-   		        android:padding="15px">
+   		        android:padding="10dp">
 		        <TableRow
 		            android:layout_width="fill_parent"
 		            android:layout_height="wrap_content"
@@ -1202,7 +1202,7 @@
  		        android:layout_width="fill_parent"
  		        android:layout_height="wrap_content"
  		        android:background="@drawable/bg4"
- 		        android:padding="15px">
+ 		        android:padding="10dp">
 			     <TableRow
 			         android:layout_width="fill_parent"
 			         android:layout_height="wrap_content"
@@ -1282,7 +1282,7 @@
   		        android:layout_width="fill_parent"
   		        android:layout_height="wrap_content"
   		        android:background="@drawable/bg4"
-  		        android:padding="15px">
+  		        android:padding="10dp">
 		        <TableRow
 		            android:layout_width="fill_parent"
 		            android:layout_height="wrap_content"
@@ -1362,7 +1362,7 @@
    		        android:layout_width="fill_parent"
    		        android:layout_height="wrap_content"
    		        android:background="@drawable/bg4"
-   		        android:padding="15px">
+   		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
@@ -1441,7 +1441,7 @@
    		        android:layout_width="fill_parent"
    		        android:layout_height="wrap_content"
    		        android:background="@drawable/bg4"
-   		        android:padding="15px">
+   		        android:padding="10dp">
 			        <TableRow
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
