@@ -1,4 +1,9 @@
-﻿v0.5.9(16)
+﻿v0.6.0(17)
+- Fixed bug causing CPU frequency statistics not to show
+- Removed DB count display on start page
+- Moved some code
+
+v0.5.9(16)
 - removed unnecessary code
 - made overlay redraws more efficient
 - rewritten various code passages
