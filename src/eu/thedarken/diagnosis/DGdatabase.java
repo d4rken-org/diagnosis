@@ -275,26 +275,6 @@ public class DGdatabase {
     public int getTableSize() {
     	return mDBhelper.getTables().size();
     }
-
-    public synchronized long getItemCount() {
-    	long ret = 0;
-    	if(openRead()) {
-	    	Cursor c = null;
-	    	try {
-	    		c = mDB.rawQuery("SELECT Count(*) AS cnt FROM " + CPU_TABLE + ";",null);
-	    		if(c != null) {
-	    			c.moveToFirst();
-	    			ret = c.getLong(c.getColumnIndex("cnt"));
-	    			c.close();
-	    		}	
-	    	} catch (SQLiteException e) {
-	    		tryClose();
-	    		return 0;
-	    	}
-    	}
-    	tryClose();
-    	return ret;
-    }
     
     public synchronized void addCpus(LinkedList<CpuInfo> c, boolean keepopen) {
     	if(openWrite()) {
