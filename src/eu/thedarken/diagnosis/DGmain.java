@@ -914,9 +914,6 @@ public class DGmain extends Activity {
 				db_size_sb.append("No DB yet");
 			}
 
-			DGdatabase db_object = DGdatabase.getInstance(mContext.getApplicationContext());
-			db_size_sb.append(" | DB item count: " + db_object.getItemCount());
-
 			dialog.updateMessage("Getting busybox version");
 
 			Process q = null;
