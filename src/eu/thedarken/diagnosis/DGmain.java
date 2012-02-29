@@ -138,11 +138,11 @@ public class DGmain extends Activity {
 
     public void setUI() {
     	if(DGoverlay.isRunning) {
-    		start.setText("Stop tracking");
     		start.setChecked(true);
+    		start.setText("Stop tracking");
     	} else {
-    		start.setText("Start tracking");
     		start.setChecked(false);
+    		start.setText("Start tracking");
     	}
     }
     
