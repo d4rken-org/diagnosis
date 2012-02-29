@@ -23,7 +23,6 @@ import android.preference.PreferenceManager;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 

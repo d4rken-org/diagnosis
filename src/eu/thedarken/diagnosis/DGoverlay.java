@@ -37,7 +37,6 @@ import android.widget.Toast;
 
 public class DGoverlay extends Service{
     private SharedPreferences settings;
-    private static SharedPreferences.Editor prefEditor;
 	private Context mContext;
 	private Overlay mOverlay;
 	private WindowManager wm;
@@ -115,7 +114,6 @@ public class DGoverlay extends Service{
 	public void onCreate() {
 		mContext = this;
         settings = PreferenceManager.getDefaultSharedPreferences(mContext);
-        prefEditor = settings.edit();
         PreferenceManager.setDefaultValues(mContext, R.xml.preferences, false);
 
         data = new DGdata(mContext);
