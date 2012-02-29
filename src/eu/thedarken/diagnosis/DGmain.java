@@ -25,9 +25,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class DGmain extends Activity {
-	private static Button start;
+	private static ToggleButton start;
     private Intent service;
     private SharedPreferences settings;
     private static SharedPreferences.Editor prefEditor;
@@ -43,16 +44,14 @@ public class DGmain extends Activity {
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.maintab);
-        start = (Button) findViewById(R.id.start);
+        start = (ToggleButton) findViewById(R.id.start);
         
         service = new Intent(this, DGoverlay.class);
         settings = PreferenceManager.getDefaultSharedPreferences(this);
         prefEditor = settings.edit();
 
         PreferenceManager.setDefaultValues(mContext, R.xml.preferences, false);
-        
-        isRunning();
-        
+
 		BUSYBOX  = mContext.getFilesDir() + "/busybox";
         
         prefEditor.putString("BUSYBOX", BUSYBOX);
@@ -86,7 +85,7 @@ public class DGmain extends Activity {
     
     @Override
     public void onResume() {
-    	isRunning();
+    	setUI();
     	super.onResume();
 		new startinfoTask(this).execute();
     }
@@ -137,11 +136,13 @@ public class DGmain extends Activity {
 		s.setStyle0();
 	}
 
-    public void isRunning() {
+    public void setUI() {
     	if(DGoverlay.isRunning) {
     		start.setText("Stop tracking");
+    		start.setChecked(true);
     	} else {
     		start.setText("Start tracking");
+    		start.setChecked(false);
     	}
     }
     
@@ -314,14 +315,7 @@ public class DGmain extends Activity {
 
         @Override
         protected void onPostExecute(final Boolean ok) {
-        	if(DGoverlay.isRunning) {
-        		start.setText("Stop tracking");
-        	} else {
-        		start.setText("Start tracking");
-        		prefEditor.putBoolean("general.running", false);
-                prefEditor.commit();  
-        	}
-
+        	setUI();
         	try {
 	            if(dialog.isShowing()) {
 	                dialog.dismiss();
@@ -339,6 +333,7 @@ public class DGmain extends Activity {
 					
 			    	dialog.updateMessage("Cleaning old database entries");
 			    	DGdatabase db_object = DGdatabase.getInstance(mContext.getApplicationContext());
+			    	
 			    	dialog.setMax(db_object.getTableSize());
 			    	db_object.clean((long)(settings.getInt("database.agelimit", 48)*3600000), dialog);
 			    	

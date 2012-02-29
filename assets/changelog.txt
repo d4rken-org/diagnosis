@@ -2,6 +2,7 @@
 - Fixed bug causing CPU frequency statistics not to show
 - Removed DB count display on start page
 - Moved some code
+- Fixed button displaying wrong state
 
 v0.5.9(16)
 - removed unnecessary code

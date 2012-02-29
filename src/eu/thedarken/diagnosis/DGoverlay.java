@@ -122,8 +122,6 @@ public class DGoverlay extends Service{
         mOverlay = new Overlay(mContext);
         Log.d(mContext.getPackageName(), "Overlay service started");
         super.onCreate();
-		prefEditor.putBoolean("general.running", true);
-        prefEditor.commit();
         
         INTERVALL = (settings.getInt("general.intervall", 5)*1000);
         
@@ -183,8 +181,6 @@ public class DGoverlay extends Service{
 		wm.removeView(mOverlay);
 		this.unregisterReceiver(screenOnReciever);
 		data.close();
-		prefEditor.putBoolean("general.running", false);
-        prefEditor.commit();
         isRunning = false;
         stopForeground(true);
 		super.onDestroy();
