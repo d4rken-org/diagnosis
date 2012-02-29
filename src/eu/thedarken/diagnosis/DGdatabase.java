@@ -271,10 +271,18 @@ public class DGdatabase {
 		}
 		tryClose();
 	}
-    
-    public int getTableSize() {
-    	return mDBhelper.getTables().size();
-    }
+
+	public int getTableSize() {
+		if (openRead()) {
+			int size = 0;
+
+			size = mDBhelper.getTables().size();
+			tryClose();
+
+			return size;
+		}
+		return 0;
+	}
     
     public synchronized void addCpus(LinkedList<CpuInfo> c, boolean keepopen) {
     	if(openWrite()) {
