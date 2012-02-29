@@ -3,6 +3,7 @@
 - Removed DB count display on start page
 - Moved some code
 - Fixed button displaying wrong state
+- Added custom target for ping
 
 v0.5.9(16)
 - removed unnecessary code

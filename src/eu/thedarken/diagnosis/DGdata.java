@@ -968,28 +968,34 @@ public class DGdata {
 		}
     }
     
-    private void doPing() {
-    	PingInfo ping = new PingInfo();
-    	try {		
-	        URL url = new URL("http://google.com");
-	
+	private void doPing() {
+		PingInfo ping = new PingInfo();
+		try {
+			URL url;
+			try {
+				url = new URL("http://" + settings.getString("general.internet.ping.target", "www.google.com"));
+			} catch (Exception e) {
+				url = new URL("http://www.google.com");
+			}
 			HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-			//urlc.setRequestProperty("User-Agent", "Android Application:"+Z.APP_VERSION);
+			// urlc.setRequestProperty("User-Agent",
+			// "Android Application:"+Z.APP_VERSION);
 			urlc.setRequestProperty("Connection", "close");
 			urlc.setConnectTimeout(500); // mTimeout is in seconds
 			long time = System.currentTimeMillis();
 			ping.system_time = time;
-	        urlc.connect();
-	        ping.ping = (int)(System.currentTimeMillis() - time);
-			//Log.d(mContext.getPackageName(), "ping response:" + urlc.getResponseCode());
+			urlc.connect();
+			ping.ping = (int) (System.currentTimeMillis() - time);
+			// Log.d(mContext.getPackageName(), "ping response:" +
+			// urlc.getResponseCode());
 		} catch (MalformedURLException e1) {
-	        ping.ping = 1000;
+			ping.ping = 1000;
 		} catch (IOException e) {
 			ping.ping = 1000;
-	    }
+		}
 		Log.d(mContext.getPackageName(), "ping!");
 		pinglist.add(ping);
-    }
+	}
     	
 	private void doSpace() {
 		SpaceInfo ret = new SpaceInfo();

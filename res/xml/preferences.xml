@@ -1,449 +1,486 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="General">
-		<eu.thedarken.diagnosis.SeekBarPreference android:key="general.intervall"
-		        android:title="Update intervall"
-		        android:summary="How often diagnosis should refresh. A smaller number means more accurate values, but also more database size and resources."
-		        android:dialogMessage="Intervall"
-		        android:defaultValue="5"
-		        android:text=" seconds"
-		        android:max="30"/>
-    	<CheckBoxPreference
-	        android:key="general.database.hidesystem"
-	        android:title="Hide core processes"
-	        android:summary="Hides the system entries, leaving only apps to be shown."
-	        android:defaultValue="false"/>
-   	    <CheckBoxPreference
-	        android:key="layout.usefahrenheit"
-	        android:title="Use Fahrenheit"
-	        android:summary="Uses Fahrenheit instead of Celsius for temperature"
-	        android:defaultValue="false"/>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="General" >
+        <eu.thedarken.diagnosis.SeekBarPreference
+            android:defaultValue="5"
+            android:dialogMessage="Intervall"
+            android:key="general.intervall"
+            android:max="30"
+            android:summary="How often diagnosis should refresh. A smaller number means more accurate values, but also more database size and resources."
+            android:text=" seconds"
+            android:title="Update intervall" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="general.database.hidesystem"
+            android:summary="Hides the system entries, leaving only apps to be shown."
+            android:title="Hide core processes" />
+
+        <EditTextPreference
+            android:defaultValue="www.google.com"
+            android:dialogTitle="Targets can only be webservers so far.(i.e. &apos;www.google.com&apos;))"
+            android:key="general.internet.ping.target"
+            android:summary="Which address should the ping feature target?"
+            android:title="Ping target" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="Database">
-   	    <PreferenceScreen
-   	        android:key="general.database"
-   	        android:summary="Which information will be saved and displayed in the 'Statistics' tab"
-			android:title="Database">
-	    	<CheckBoxPreference
-		        android:key="general.database.doapps"
-		        android:title="Save application statistics"
-		        android:summary="Keeps a list of watched apps, their cpu usage, memory and more"
-		        android:defaultValue="false"/>
-	    	<CheckBoxPreference
-		        android:key="general.database.dobatt"
-		        android:title="Save battery statistics"
-		        android:summary="Charge level, temperature, voltage,..."
-		        android:defaultValue="false"/>
-	    	<CheckBoxPreference
-		        android:key="general.database.docpu"
-		        android:title="Save cpu statistics"
-		        android:summary="Cpu infos, io/system/user/nice/idle usages..."
-		        android:defaultValue="false"/>
-	    	<CheckBoxPreference
-		        android:key="general.database.dofreq"
-		        android:title="Cpu frequency statistics"
-		        android:summary="Frequency, max ,min, possible"
-		        android:defaultValue="false"/>
-	    	<CheckBoxPreference
-		        android:key="general.database.domem"
-		        android:title="Save memory statistics"
-		        android:summary="uhm? \o/ memory statistics (not being displayed to its fullest atm)"
-		        android:defaultValue="false"/>
-	    	<CheckBoxPreference
-		        android:key="general.database.donet"
-		        android:title="Network statistics"
-		        android:summary="Traffic, upload + download"
-		        android:defaultValue="false"/>
-	    	<CheckBoxPreference
-		        android:key="general.database.dospace"
-		        android:title="Partition statistics"
-		        android:summary="android os, system, app data, sdcard, external cards..."
-		        android:defaultValue="false"/>
-	    	<CheckBoxPreference
-		        android:key="general.database.dowifi"
-		        android:title="Wifi statistics"
-		        android:summary="Signal strength"
-		        android:defaultValue="false"/>
-	    	<CheckBoxPreference
-		        android:key="general.database.dophone"
-		        android:title="Phone statistics"
-		        android:summary="GSM signal"
-		        android:defaultValue="false"/>
-    		<CheckBoxPreference
-		        android:key="general.database.doping"
-		        android:title="Internet statistics"
-		        android:summary="Statistics that would cause data usage (ping only at this moment)"
-		        android:defaultValue="false"/>
-    		<CheckBoxPreference
-		        android:key="general.database.dodisk"
-		        android:title="Disk statistics"
-		        android:summary="Read/Write speed to flash memory"
-		        android:defaultValue="false"/>
-	    	<CheckBoxPreference
-		        android:key="general.database.doload"
-		        android:title="Load statistics"
-		        android:summary="System load unix style"
-		        android:defaultValue="false"/>
-    	</PreferenceScreen>
+    <PreferenceCategory android:title="Database" >
+        <PreferenceScreen
+            android:key="general.database"
+            android:summary="Which information will be saved and displayed in the &apos;Statistics&apos; tab"
+            android:title="Database" >
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.doapps"
+                android:summary="Keeps a list of watched apps, their cpu usage, memory and more"
+                android:title="Save application statistics" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.dobatt"
+                android:summary="Charge level, temperature, voltage,..."
+                android:title="Save battery statistics" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.docpu"
+                android:summary="Cpu infos, io/system/user/nice/idle usages..."
+                android:title="Save cpu statistics" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.dofreq"
+                android:summary="Frequency, max ,min, possible"
+                android:title="Cpu frequency statistics" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.domem"
+                android:summary="uhm? \o/ memory statistics (not being displayed to its fullest atm)"
+                android:title="Save memory statistics" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.donet"
+                android:summary="Traffic, upload + download"
+                android:title="Network statistics" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.dospace"
+                android:summary="android os, system, app data, sdcard, external cards..."
+                android:title="Partition statistics" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.dowifi"
+                android:summary="Signal strength"
+                android:title="Wifi statistics" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.dophone"
+                android:summary="GSM signal"
+                android:title="Phone statistics" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.doping"
+                android:summary="Statistics that would cause data usage (ping only at this moment)"
+                android:title="Internet statistics" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.dodisk"
+                android:summary="Read/Write speed to flash memory"
+                android:title="Disk statistics" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.doload"
+                android:summary="System load unix style"
+                android:title="Load statistics" />
+        </PreferenceScreen>
     </PreferenceCategory>
-    <PreferenceCategory android:title="Load/Save Presets">
-   	    <PreferenceScreen
-   	        android:key="presets"
-			android:title="Load/Save custom presets">
-		    <PreferenceCategory
-		        android:key="preset.load"
-				android:title="Load">
-			    <PreferenceScreen
-					android:key="presets.load.slot1"
-					android:title="Load slot 1"/>
-			    <PreferenceScreen
-					android:key="presets.load.slot2"
-					android:title="Load slot 2"/>
-			    <PreferenceScreen
-					android:key="presets.load.slot3"
-					android:title="Load slot 3"/>
-			</PreferenceCategory>
-   		    <PreferenceCategory
-				android:title="Save a preset"/>
-	    	    <PreferenceScreen
-	    	        android:key="preset.save"
-					android:title="Save...">
-				    <PreferenceScreen
-						android:key="presets.save.slot1"
-						android:title="Save to slot 1"/>
-				    <PreferenceScreen
-						android:key="presets.save.slot2"
-						android:title="Save to slot 2"/>
-				    <PreferenceScreen
-						android:key="presets.save.slot3"
-						android:title="Save to slot 3"/>
-			    </PreferenceScreen>
-		</PreferenceScreen>
-	</PreferenceCategory>
-    <PreferenceCategory android:title="Customisation">
-   		<EditTextPreference
-            android:key="overlay.divider"
-            android:title="Divider"
-            android:summary="Change the symbol that seperates information in the overlay."
+    <PreferenceCategory android:title="Load/Save Presets" >
+        <PreferenceScreen
+            android:key="presets"
+            android:title="Load/Save custom presets" >
+            <PreferenceCategory
+                android:key="preset.load"
+                android:title="Load" >
+                <PreferenceScreen
+                    android:key="presets.load.slot1"
+                    android:title="Load slot 1" />
+                <PreferenceScreen
+                    android:key="presets.load.slot2"
+                    android:title="Load slot 2" />
+                <PreferenceScreen
+                    android:key="presets.load.slot3"
+                    android:title="Load slot 3" />
+            </PreferenceCategory>
+            <PreferenceCategory android:title="Save a preset" />
+
+            <PreferenceScreen
+                android:key="preset.save"
+                android:title="Save..." >
+                <PreferenceScreen
+                    android:key="presets.save.slot1"
+                    android:title="Save to slot 1" />
+                <PreferenceScreen
+                    android:key="presets.save.slot2"
+                    android:title="Save to slot 2" />
+                <PreferenceScreen
+                    android:key="presets.save.slot3"
+                    android:title="Save to slot 3" />
+            </PreferenceScreen>
+        </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Customisation" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="layout.usefahrenheit"
+            android:summary="Uses Fahrenheit instead of Celsius for temperature"
+            android:title="Use Fahrenheit" />
+
+        <EditTextPreference
+            android:defaultValue="|"
             android:dialogTitle="Enter divider:"
-            android:defaultValue="|"/>
+            android:key="overlay.divider"
+            android:summary="Change the symbol that seperates information in the overlay."
+            android:title="Divider" />
+
         <PreferenceScreen
-		    android:key="edit.line0"
-		    android:title="Edit line 1">
-	        <PreferenceCategory android:title="Layout">
-	      	    <PreferenceScreen
-				    android:key="layout.line0"
-				    android:title="Line 1"
-				    android:summary="Edit layout of line 1" />
-      		</PreferenceCategory>
-	        <PreferenceCategory android:title="Style and position">
-	   	        <EditTextPreference
-		            android:key="overlay.x_pos.line0"
-		            android:title="X-position"
-		            android:summary="Horizontal position of the overlay"
-		            android:dialogTitle="In pixel (Default 1)"
-		            android:digits="0123456789"
-		            android:inputType="number"
-		            android:defaultValue="1"/>
-		        <EditTextPreference
-		            android:key="overlay.y_pos.line0"
-		            android:title="Y-position"
-		            android:summary="Vertical position of the overlay"
-		            android:dialogTitle="In pixel (Default 45)"
-		            android:digits="0123456789"
-		            android:inputType="number"
-		            android:defaultValue="45"/>
-				<eu.thedarken.diagnosis.SeekBarPreference 
-					android:key="overlay.font.size.line0"
-			        android:title="Fontsize"
-			        android:summary="How big the letters will be"
-			        android:dialogMessage="Fontsize"
-			        android:defaultValue="15"
-			        android:text=""
-			        android:max="50"/>
-				<eu.thedarken.diagnosis.ColorPickerPreference
-				    android:key="overlay.color.normal.line0"
-				    android:title="Normal text color"
-				    android:summary="Text color used for normal display"
-				    android:defaultValue="0xff00ff00"     
-				    alphaSlider="true"/>
-				<eu.thedarken.diagnosis.ColorPickerPreference
-				    android:key="overlay.color.alert.line0"
-				    android:title="Alert text color"
-				    android:summary="Text color used to highlight alerts"
-				    android:defaultValue="0xffffff00"     
-				    alphaSlider="true"/>
-				<ListPreference
-		            android:title="Font"
-		            android:summary="Choose what font type is used."
-		            android:key="overlay.font.type.line0"
-		            android:defaultValue="1"
-		            android:entries="@array/fontNames"
-		            android:entryValues="@array/fontValues" />
-		   	    <CheckBoxPreference
-			        android:key="overlay.align.right.line0"
-			        android:title="Align right"
-			        android:summary="The text will be drawn left of the setup position(i.e. turn this on an set x to your screen width)"
-			        android:defaultValue="false"/>
-  		   	    <CheckBoxPreference
-			        android:key="overlay.drawbackground.line0"
-			        android:title="Draw background"
-			        android:summary="Draw a background behind the text to make it easier readable."
-			        android:defaultValue="false"/>
-   				<eu.thedarken.diagnosis.ColorPickerPreference
-				    android:key="overlay.color.background.line0"
-				    android:title="Text background color"
-				    android:summary="Color used as background"
-				    android:defaultValue="0x70000000"     
-				    alphaSlider="true"/>
-			</PreferenceCategory>
-	    </PreferenceScreen>
+            android:key="edit.line0"
+            android:title="Edit line 1" >
+            <PreferenceCategory android:title="Layout" >
+                <PreferenceScreen
+                    android:key="layout.line0"
+                    android:summary="Edit layout of line 1"
+                    android:title="Line 1" />
+            </PreferenceCategory>
+            <PreferenceCategory android:title="Style and position" >
+                <EditTextPreference
+                    android:defaultValue="1"
+                    android:dialogTitle="In pixel (Default 1)"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:key="overlay.x_pos.line0"
+                    android:summary="Horizontal position of the overlay"
+                    android:title="X-position" />
+                <EditTextPreference
+                    android:defaultValue="45"
+                    android:dialogTitle="In pixel (Default 45)"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:key="overlay.y_pos.line0"
+                    android:summary="Vertical position of the overlay"
+                    android:title="Y-position" />
+
+                <eu.thedarken.diagnosis.SeekBarPreference
+                    android:defaultValue="15"
+                    android:dialogMessage="Fontsize"
+                    android:key="overlay.font.size.line0"
+                    android:max="50"
+                    android:summary="How big the letters will be"
+                    android:text=""
+                    android:title="Fontsize" />
+
+                <eu.thedarken.diagnosis.ColorPickerPreference
+                    alphaSlider="true"
+                    android:defaultValue="0xff00ff00"
+                    android:key="overlay.color.normal.line0"
+                    android:summary="Text color used for normal display"
+                    android:title="Normal text color" />
+                <eu.thedarken.diagnosis.ColorPickerPreference
+                    alphaSlider="true"
+                    android:defaultValue="0xffffff00"
+                    android:key="overlay.color.alert.line0"
+                    android:summary="Text color used to highlight alerts"
+                    android:title="Alert text color" />
+
+                <ListPreference
+                    android:defaultValue="1"
+                    android:entries="@array/fontNames"
+                    android:entryValues="@array/fontValues"
+                    android:key="overlay.font.type.line0"
+                    android:summary="Choose what font type is used."
+                    android:title="Font" />
+
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="overlay.align.right.line0"
+                    android:summary="The text will be drawn left of the setup position(i.e. turn this on an set x to your screen width)"
+                    android:title="Align right" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="overlay.drawbackground.line0"
+                    android:summary="Draw a background behind the text to make it easier readable."
+                    android:title="Draw background" />
+
+                <eu.thedarken.diagnosis.ColorPickerPreference
+                    alphaSlider="true"
+                    android:defaultValue="0x70000000"
+                    android:key="overlay.color.background.line0"
+                    android:summary="Color used as background"
+                    android:title="Text background color" />
+            </PreferenceCategory>
+        </PreferenceScreen>
         <PreferenceScreen
-		    android:key="edit.line1"
-		    android:title="Edit line 2">
-  	        <PreferenceCategory android:title="Layout">
-	      	    <PreferenceScreen
-				    android:key="layout.line1"
-				    android:title="Line 2"
-				    android:summary="Edit layout of line 2" />
-      		</PreferenceCategory>
-	        <PreferenceCategory android:title="Style and position">
-	   	        <EditTextPreference
-		            android:key="overlay.x_pos.line1"
-		            android:title="X-position"
-		            android:summary="Horizontal position of the overlay"
-		            android:dialogTitle="In pixel (Default 1)"
-		            android:digits="0123456789"
-		            android:inputType="number"
-		            android:defaultValue="1"/>
-		        <EditTextPreference
-		            android:key="overlay.y_pos.line1"
-		            android:title="Y-position"
-		            android:summary="Vertical position of the overlay"
-		            android:dialogTitle="In pixel (Default 60)"
-		            android:digits="0123456789"
-		            android:inputType="number"
-		            android:defaultValue="60"/>
-				<eu.thedarken.diagnosis.SeekBarPreference 
-					android:key="overlay.font.size.line1"
-			        android:title="Fontsize"
-			        android:summary="How big the letters will be"
-			        android:dialogMessage="Fontsize"
-			        android:defaultValue="15"
-			        android:text=""
-			        android:max="50"/>
-				<eu.thedarken.diagnosis.ColorPickerPreference
-				    android:key="overlay.color.normal.line1"
-				    android:title="Normal text color"
-				    android:summary="Text color used for normal display"
-				    android:defaultValue="0xff00ff00"     
-				    alphaSlider="true"/>
-				<eu.thedarken.diagnosis.ColorPickerPreference
-				    android:key="overlay.color.alert.line1"
-				    android:title="Alert text color"
-				    android:summary="Text color used to highlight alerts"
-				    android:defaultValue="0xffffff00"     
-				    alphaSlider="true"/>
-				<ListPreference
-		            android:title="Font"
-		            android:summary="Choose what font type is used."
-		            android:key="overlay.font.type.line1"
-		            android:defaultValue="1"
-		            android:entries="@array/fontNames"
-		            android:entryValues="@array/fontValues" />
-		   	    <CheckBoxPreference
-			        android:key="overlay.align.right.line1"
-			        android:title="Align right"
-			        android:summary="The text will be drawn left of the setup position(i.e. turn this on an set x to your screen width)"
-			        android:defaultValue="false"/>
-  		   	    <CheckBoxPreference
-			        android:key="overlay.drawbackground.line1"
-			        android:title="Draw background"
-			        android:summary="Draw a background behind the text to make it easier readable."
-			        android:defaultValue="false"/>
-   				<eu.thedarken.diagnosis.ColorPickerPreference
-				    android:key="overlay.color.background.line1"
-				    android:title="Text background color"
-				    android:summary="Color used as background"
-				    android:defaultValue="0x70000000"     
-				    alphaSlider="true"/>
-			</PreferenceCategory>
-		</PreferenceScreen>
-       	<PreferenceScreen
-		    android:key="edit.line2"
-		    android:title="Edit line 3">
-	        <PreferenceCategory android:title="Layout">
-	      	    <PreferenceScreen
-				    android:key="layout.line2"
-				    android:title="Line 3"
-				    android:summary="Edit layout of line 3" />
-      		</PreferenceCategory>
-	        <PreferenceCategory android:title="Style and position">
-	   	        <EditTextPreference
-		            android:key="overlay.x_pos.line2"
-		            android:title="X-position"
-		            android:summary="Horizontal position of the overlay"
-		            android:dialogTitle="In pixel (Default 1)"
-		            android:digits="0123456789"
-		            android:inputType="number"
-		            android:defaultValue="1"/>
-		        <EditTextPreference
-		            android:key="overlay.y_pos.line2"
-		            android:title="Y-position"
-		            android:summary="Vertical position of the overlay"
-		            android:dialogTitle="In pixel (Default 75)"
-		            android:digits="0123456789"
-		            android:inputType="number"
-		            android:defaultValue="75"/>
-				<eu.thedarken.diagnosis.SeekBarPreference 
-					android:key="overlay.font.size.line2"
-			        android:title="Fontsize"
-			        android:summary="How big the letters will be"
-			        android:dialogMessage="Fontsize"
-			        android:defaultValue="15"
-			        android:text=""
-			        android:max="50"/>
-				<eu.thedarken.diagnosis.ColorPickerPreference
-				    android:key="overlay.color.normal.line2"
-				    android:title="Normal text color"
-				    android:summary="Text color used for normal display"
-				    android:defaultValue="0xff00ff00"     
-				    alphaSlider="true"/>
-				<eu.thedarken.diagnosis.ColorPickerPreference
-				    android:key="overlay.color.alert.line2"
-				    android:title="Alert text color"
-				    android:summary="Text color used to highlight alerts"
-				    android:defaultValue="0xffffff00"     
-				    alphaSlider="true"/>
-				<ListPreference
-		            android:title="Font"
-		            android:summary="Choose what font type is used."
-		            android:key="overlay.font.type.line2"
-		            android:defaultValue="1"
-		            android:entries="@array/fontNames"
-		            android:entryValues="@array/fontValues" />
-		   	    <CheckBoxPreference
-			        android:key="overlay.align.right.line2"
-			        android:title="Align right"
-			        android:summary="The text will be drawn left of the setup position(i.e. turn this on an set x to your screen width)"
-			        android:defaultValue="false"/>
-  		   	    <CheckBoxPreference
-			        android:key="overlay.drawbackground.line2"
-			        android:title="Draw background"
-			        android:summary="Draw a background behind the text to make it easier readable."
-			        android:defaultValue="false"/>
-   				<eu.thedarken.diagnosis.ColorPickerPreference
-				    android:key="overlay.color.background.line2"
-				    android:title="Text background color"
-				    android:summary="Color used as background"
-				    android:defaultValue="0x70000000"     
-				    alphaSlider="true"/>
-			</PreferenceCategory>
-		</PreferenceScreen>
+            android:key="edit.line1"
+            android:title="Edit line 2" >
+            <PreferenceCategory android:title="Layout" >
+                <PreferenceScreen
+                    android:key="layout.line1"
+                    android:summary="Edit layout of line 2"
+                    android:title="Line 2" />
+            </PreferenceCategory>
+            <PreferenceCategory android:title="Style and position" >
+                <EditTextPreference
+                    android:defaultValue="1"
+                    android:dialogTitle="In pixel (Default 1)"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:key="overlay.x_pos.line1"
+                    android:summary="Horizontal position of the overlay"
+                    android:title="X-position" />
+                <EditTextPreference
+                    android:defaultValue="60"
+                    android:dialogTitle="In pixel (Default 60)"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:key="overlay.y_pos.line1"
+                    android:summary="Vertical position of the overlay"
+                    android:title="Y-position" />
+
+                <eu.thedarken.diagnosis.SeekBarPreference
+                    android:defaultValue="15"
+                    android:dialogMessage="Fontsize"
+                    android:key="overlay.font.size.line1"
+                    android:max="50"
+                    android:summary="How big the letters will be"
+                    android:text=""
+                    android:title="Fontsize" />
+
+                <eu.thedarken.diagnosis.ColorPickerPreference
+                    alphaSlider="true"
+                    android:defaultValue="0xff00ff00"
+                    android:key="overlay.color.normal.line1"
+                    android:summary="Text color used for normal display"
+                    android:title="Normal text color" />
+                <eu.thedarken.diagnosis.ColorPickerPreference
+                    alphaSlider="true"
+                    android:defaultValue="0xffffff00"
+                    android:key="overlay.color.alert.line1"
+                    android:summary="Text color used to highlight alerts"
+                    android:title="Alert text color" />
+
+                <ListPreference
+                    android:defaultValue="1"
+                    android:entries="@array/fontNames"
+                    android:entryValues="@array/fontValues"
+                    android:key="overlay.font.type.line1"
+                    android:summary="Choose what font type is used."
+                    android:title="Font" />
+
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="overlay.align.right.line1"
+                    android:summary="The text will be drawn left of the setup position(i.e. turn this on an set x to your screen width)"
+                    android:title="Align right" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="overlay.drawbackground.line1"
+                    android:summary="Draw a background behind the text to make it easier readable."
+                    android:title="Draw background" />
+
+                <eu.thedarken.diagnosis.ColorPickerPreference
+                    alphaSlider="true"
+                    android:defaultValue="0x70000000"
+                    android:key="overlay.color.background.line1"
+                    android:summary="Color used as background"
+                    android:title="Text background color" />
+            </PreferenceCategory>
+        </PreferenceScreen>
         <PreferenceScreen
-		    android:key="edit.line3"
-		    android:title="Edit line 4">
-	        <PreferenceCategory android:title="Layout">
-	      	    <PreferenceScreen
-				    android:key="layout.line3"
-				    android:title="Line 4"
-				    android:summary="Edit layout of line 4" />
-      		</PreferenceCategory>
-	        <PreferenceCategory android:title="Style and position">
-	   	        <EditTextPreference
-		            android:key="overlay.x_pos.line3"
-		            android:title="X-position"
-		            android:summary="Horizontal position of the overlay"
-		            android:dialogTitle="In pixel (Default 1)"
-		            android:digits="0123456789"
-		            android:inputType="number"
-		            android:defaultValue="1"/>
-		        <EditTextPreference
-		            android:key="overlay.y_pos.line3"
-		            android:title="Y-position"
-		            android:summary="Vertical position of the overlay"
-		            android:dialogTitle="In pixel (Default 90)"
-		            android:digits="0123456789"
-		            android:inputType="number"
-		            android:defaultValue="90"/>
-				<eu.thedarken.diagnosis.SeekBarPreference 
-					android:key="overlay.font.size.line3"
-			        android:title="Fontsize"
-			        android:summary="How big the letters will be"
-			        android:dialogMessage="Fontsize"
-			        android:defaultValue="15"
-			        android:text=""
-			        android:max="50"/>
-				<eu.thedarken.diagnosis.ColorPickerPreference
-				    android:key="overlay.color.normal.line3"
-				    android:title="Normal text color"
-				    android:summary="Text color used for normal display"
-				    android:defaultValue="0xff00ff00"     
-				    alphaSlider="true"/>
-				<eu.thedarken.diagnosis.ColorPickerPreference
-				    android:key="overlay.color.alert.line3"
-				    android:title="Alert text color"
-				    android:summary="Text color used to highlight alerts"
-				    android:defaultValue="0xffffff00"     
-				    alphaSlider="true"/>
-				<ListPreference
-		            android:title="Font"
-		            android:summary="Choose what font type is used."
-		            android:key="overlay.font.type.line3"
-		            android:defaultValue="1"
-		            android:entries="@array/fontNames"
-		            android:entryValues="@array/fontValues" />
-		   	    <CheckBoxPreference
-			        android:key="overlay.align.right.line3"
-			        android:title="Align right"
-			        android:summary="The text will be drawn left of the setup position(i.e. turn this on an set x to your screen width)"
-			        android:defaultValue="false"/>
-  		   	    <CheckBoxPreference
-			        android:key="overlay.drawbackground.line3"
-			        android:title="Draw background"
-			        android:summary="Draw a background behind the text to make it easier readable."
-			        android:defaultValue="false"/>
-   				<eu.thedarken.diagnosis.ColorPickerPreference
-				    android:key="overlay.color.background.line3"
-				    android:title="Text background color"
-				    android:summary="Color used as background"
-				    android:defaultValue="0x70000000"     
-				    alphaSlider="true"/>
-			</PreferenceCategory>
-		</PreferenceScreen>
+            android:key="edit.line2"
+            android:title="Edit line 3" >
+            <PreferenceCategory android:title="Layout" >
+                <PreferenceScreen
+                    android:key="layout.line2"
+                    android:summary="Edit layout of line 3"
+                    android:title="Line 3" />
+            </PreferenceCategory>
+            <PreferenceCategory android:title="Style and position" >
+                <EditTextPreference
+                    android:defaultValue="1"
+                    android:dialogTitle="In pixel (Default 1)"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:key="overlay.x_pos.line2"
+                    android:summary="Horizontal position of the overlay"
+                    android:title="X-position" />
+                <EditTextPreference
+                    android:defaultValue="75"
+                    android:dialogTitle="In pixel (Default 75)"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:key="overlay.y_pos.line2"
+                    android:summary="Vertical position of the overlay"
+                    android:title="Y-position" />
+
+                <eu.thedarken.diagnosis.SeekBarPreference
+                    android:defaultValue="15"
+                    android:dialogMessage="Fontsize"
+                    android:key="overlay.font.size.line2"
+                    android:max="50"
+                    android:summary="How big the letters will be"
+                    android:text=""
+                    android:title="Fontsize" />
+
+                <eu.thedarken.diagnosis.ColorPickerPreference
+                    alphaSlider="true"
+                    android:defaultValue="0xff00ff00"
+                    android:key="overlay.color.normal.line2"
+                    android:summary="Text color used for normal display"
+                    android:title="Normal text color" />
+                <eu.thedarken.diagnosis.ColorPickerPreference
+                    alphaSlider="true"
+                    android:defaultValue="0xffffff00"
+                    android:key="overlay.color.alert.line2"
+                    android:summary="Text color used to highlight alerts"
+                    android:title="Alert text color" />
+
+                <ListPreference
+                    android:defaultValue="1"
+                    android:entries="@array/fontNames"
+                    android:entryValues="@array/fontValues"
+                    android:key="overlay.font.type.line2"
+                    android:summary="Choose what font type is used."
+                    android:title="Font" />
+
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="overlay.align.right.line2"
+                    android:summary="The text will be drawn left of the setup position(i.e. turn this on an set x to your screen width)"
+                    android:title="Align right" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="overlay.drawbackground.line2"
+                    android:summary="Draw a background behind the text to make it easier readable."
+                    android:title="Draw background" />
+
+                <eu.thedarken.diagnosis.ColorPickerPreference
+                    alphaSlider="true"
+                    android:defaultValue="0x70000000"
+                    android:key="overlay.color.background.line2"
+                    android:summary="Color used as background"
+                    android:title="Text background color" />
+            </PreferenceCategory>
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:key="edit.line3"
+            android:title="Edit line 4" >
+            <PreferenceCategory android:title="Layout" >
+                <PreferenceScreen
+                    android:key="layout.line3"
+                    android:summary="Edit layout of line 4"
+                    android:title="Line 4" />
+            </PreferenceCategory>
+            <PreferenceCategory android:title="Style and position" >
+                <EditTextPreference
+                    android:defaultValue="1"
+                    android:dialogTitle="In pixel (Default 1)"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:key="overlay.x_pos.line3"
+                    android:summary="Horizontal position of the overlay"
+                    android:title="X-position" />
+                <EditTextPreference
+                    android:defaultValue="90"
+                    android:dialogTitle="In pixel (Default 90)"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:key="overlay.y_pos.line3"
+                    android:summary="Vertical position of the overlay"
+                    android:title="Y-position" />
+
+                <eu.thedarken.diagnosis.SeekBarPreference
+                    android:defaultValue="15"
+                    android:dialogMessage="Fontsize"
+                    android:key="overlay.font.size.line3"
+                    android:max="50"
+                    android:summary="How big the letters will be"
+                    android:text=""
+                    android:title="Fontsize" />
+
+                <eu.thedarken.diagnosis.ColorPickerPreference
+                    alphaSlider="true"
+                    android:defaultValue="0xff00ff00"
+                    android:key="overlay.color.normal.line3"
+                    android:summary="Text color used for normal display"
+                    android:title="Normal text color" />
+                <eu.thedarken.diagnosis.ColorPickerPreference
+                    alphaSlider="true"
+                    android:defaultValue="0xffffff00"
+                    android:key="overlay.color.alert.line3"
+                    android:summary="Text color used to highlight alerts"
+                    android:title="Alert text color" />
+
+                <ListPreference
+                    android:defaultValue="1"
+                    android:entries="@array/fontNames"
+                    android:entryValues="@array/fontValues"
+                    android:key="overlay.font.type.line3"
+                    android:summary="Choose what font type is used."
+                    android:title="Font" />
+
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="overlay.align.right.line3"
+                    android:summary="The text will be drawn left of the setup position(i.e. turn this on an set x to your screen width)"
+                    android:title="Align right" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="overlay.drawbackground.line3"
+                    android:summary="Draw a background behind the text to make it easier readable."
+                    android:title="Draw background" />
+
+                <eu.thedarken.diagnosis.ColorPickerPreference
+                    alphaSlider="true"
+                    android:defaultValue="0x70000000"
+                    android:key="overlay.color.background.line3"
+                    android:summary="Color used as background"
+                    android:title="Text background color" />
+            </PreferenceCategory>
+        </PreferenceScreen>
     </PreferenceCategory>
-	<PreferenceCategory android:title="Advanced settings">
-  	    <PreferenceScreen
-		    android:key="advanced"
-		    android:title="Advanced settings">
-		    <PreferenceCategory android:title="Database">
-		   		<eu.thedarken.diagnosis.SeekBarPreference android:key="database.agelimit"
-			        android:title="Data age limit"
-			        android:summary="After what amount of time should old data be deleted?(Happens when starting service)"
-			        android:dialogMessage="Data age"
-			        android:defaultValue="48"
-			        android:text="hours"
-			        android:max="168"/>
-		  	    <PreferenceScreen
-				    android:key="database.dropall"
-				    android:title="Drop database"
-				    android:summary="Drop all database tables thus reseting it." />
-	    		<eu.thedarken.diagnosis.SeekBarPreference android:key="database.density"
-			        android:title="Data density"
-			        android:summary="Condenses multiple datasets into one. A smaller number means more accurate data, but bigger database."
-			        android:dialogMessage="Data density"
-			        android:defaultValue="6"
-			        android:text=""
-			        android:max="60"/>
-   	    		<eu.thedarken.diagnosis.SeekBarPreference android:key="database.cachesize"
-			        android:title="Cache size"
-			        android:summary="How many entries should be safed in RAM before attempting to write to memory"
-			        android:dialogMessage="Cache size"
-			        android:defaultValue="24"
-			        android:text=" "
-			        android:max="50"/>
-        	</PreferenceCategory>  
-		</PreferenceScreen>
-	</PreferenceCategory>
+    <PreferenceCategory android:title="Advanced settings" >
+        <PreferenceScreen
+            android:key="advanced"
+            android:title="Advanced settings" >
+            <PreferenceCategory android:title="Database" >
+                <eu.thedarken.diagnosis.SeekBarPreference
+                    android:defaultValue="48"
+                    android:dialogMessage="Data age"
+                    android:key="database.agelimit"
+                    android:max="168"
+                    android:summary="After what amount of time should old data be deleted?(Happens when starting service)"
+                    android:text="hours"
+                    android:title="Data age limit" />
+
+                <PreferenceScreen
+                    android:key="database.dropall"
+                    android:summary="Drop all database tables thus reseting it."
+                    android:title="Drop database" />
+
+                <eu.thedarken.diagnosis.SeekBarPreference
+                    android:defaultValue="6"
+                    android:dialogMessage="Data density"
+                    android:key="database.density"
+                    android:max="60"
+                    android:summary="Condenses multiple datasets into one. A smaller number means more accurate data, but bigger database."
+                    android:text=""
+                    android:title="Data density" />
+                <eu.thedarken.diagnosis.SeekBarPreference
+                    android:defaultValue="24"
+                    android:dialogMessage="Cache size"
+                    android:key="database.cachesize"
+                    android:max="50"
+                    android:summary="How many entries should be safed in RAM before attempting to write to memory"
+                    android:text=" "
+                    android:title="Cache size" />
+            </PreferenceCategory>
+        </PreferenceScreen>
+    </PreferenceCategory>
+
 </PreferenceScreen>

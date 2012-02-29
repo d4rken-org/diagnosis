@@ -138,6 +138,14 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 				prefEditor.putString(key, "1");
 				prefEditor.commit();
 			}
+		} else if(key.equals("general.internet.ping.target")) {
+			String target = sharedPreferences.getString(key, "www.google.com");
+			if(target.length() < 5) {
+				
+				target = "www.google.com"; 
+				prefEditor.putString(key, target);
+				prefEditor.commit();
+			}
 		}
 		Log.d("eu.thedarken.diagnosis", "preferences changed");
 		DGoverlay.initReset();

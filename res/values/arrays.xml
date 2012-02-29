@@ -33,7 +33,7 @@
         <item>Free sdcard space</item><!-- 29 -->
         <item>Free system space</item><!-- 30 -->
         <item>Free internal space</item><!-- 31 -->
-        <item>Ping to google.com</item><!-- 32 -->
+        <item>Ping</item><!-- 32 -->
         <item>WIFI signal strength</item><!-- 33 -->
 		<item>CELL signal strength</item><!-- 34 -->
 	</string-array>
