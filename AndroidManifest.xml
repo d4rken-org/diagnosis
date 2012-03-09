@@ -37,7 +37,6 @@
 			android:label="Apps" 
 			android:theme="@android:style/Theme.NoTitleBar"
 			android:configChanges="orientation"/>
-		<activity android:name="org.achartengine.GraphicalActivity"/> 
 		<service android:name="eu.thedarken.diagnosis.DGoverlay"
 			android:theme="@android:style/Theme.NoTitleBar"
 			android:configChanges="orientation"/>

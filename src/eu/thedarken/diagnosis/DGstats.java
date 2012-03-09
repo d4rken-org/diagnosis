@@ -391,21 +391,4 @@ public class DGstats extends Activity {
 	    	return true;
 		}
     }
-    
-    /*public void showGraph(View view) {
-    	Log.d(mContext.getPackageName(), "Getting chart...");
-
-        XYMultipleSeriesDataset temp1,temp2;
-        if((temp1 = db.getCpuGraphSet(settings.getInt("statistics.statistic2.age", 24)*60*60*1000)) != null && (temp2 = db.getMemGraphSet(settings.getInt("statistics.statistic2.age", 24)*60*60*1000)) != null) {
-        	XYMultipleSeriesDataset data = new XYMultipleSeriesDataset();;
-        	data.addSeries(temp1.getSeriesAt(0));
-        	data.addSeries(temp1.getSeriesAt(2));
-        	data.addSeries(temp2.getSeriesAt(0));
-            XYMultipleSeriesRenderer renderer = buildCategoryRenderer(Helper.getColors(data.getSeriesCount()));
-            startActivity(ChartFactory.getTimeChartIntent(mContext,data,renderer, null));
-        } else {
-
-        	Toast.makeText(mContext, "No data available yet.",Toast.LENGTH_LONG).show();
-        }
-    }*/
 }
