@@ -4,6 +4,8 @@
 - Moved some code
 - Fixed button displaying wrong state
 - Added custom target for ping
+- Fixed wifi info not always displaying
+- Added chat button to about dialog (As test for now)
 
 v0.5.9(16)
 - removed unnecessary code
