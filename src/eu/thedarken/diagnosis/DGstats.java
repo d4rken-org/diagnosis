@@ -18,6 +18,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
@@ -109,7 +110,7 @@ public class DGstats extends Activity {
         	pull_cpu = settings.getBoolean("general.database.docpu", false);
         	pull_freq = settings.getBoolean("general.database.dofreq", false);
         	pull_mem = settings.getBoolean("general.database.domem", false);
-        	pull_wlan = settings.getBoolean("general.database.doload", false);
+        	pull_wlan = settings.getBoolean("general.database.dowifi", false);
         	pull_phone = settings.getBoolean("general.database.dophone", false);
         	pull_net = settings.getBoolean("general.database.donet", false);
         	pull_space = settings.getBoolean("general.database.dospace", false);
@@ -370,7 +371,7 @@ public class DGstats extends Activity {
 	        if(meminfo == null) pull_mem = false;
 	        
 	        wlaninfo = db.getWlanTabInfo();
-	        if(wlaninfo == null) pull_wlan = false;
+	        if(wlaninfo == null) pull_wlan = false; 
 	        
 	        phoneinfo = db.getPhoneTabInfo();
 	        if(phoneinfo == null) pull_phone = false;
