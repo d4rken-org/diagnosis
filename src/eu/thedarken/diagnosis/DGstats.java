@@ -37,7 +37,7 @@ public class DGstats extends Activity {
         db = DGdatabase.getInstance(this.getApplicationContext());
         setContentView(R.layout.stats);
         //showGraph(null);
-        Toast.makeText(mContext, "Enable choosen statistics in the settings!",Toast.LENGTH_LONG).show();
+        Toast.makeText(mContext, "Enable chosen statistics in the settings!",Toast.LENGTH_LONG).show();
     }
     
     @Override

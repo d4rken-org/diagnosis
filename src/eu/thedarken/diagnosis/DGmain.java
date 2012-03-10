@@ -194,9 +194,9 @@ public class DGmain extends Activity {
         		StringBuilder db_status_sb = new StringBuilder();
         		int intervall = settings.getInt("general.intervall", 5);
         		if(intervall > 1) {
-        			db_status_sb.append("Update intervall is " + intervall  + " seconds.\n" );
+        			db_status_sb.append("Update interval is " + intervall  + " seconds.\n" );
         		} else {
-        			db_status_sb.append("Update intervall is " + intervall  + " second.\n" );
+        			db_status_sb.append("Update interval is " + intervall  + " second.\n" );
         		}
         		
 		        db_status_sb.append(settings.getInt("database.density",6) +" data set(s) will be condensed into 1\n" + settings.getInt("database.cachesize", 24) +" set(s) are cached before saving to database");
