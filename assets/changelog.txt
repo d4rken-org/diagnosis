@@ -1,4 +1,9 @@
-﻿v0.6.0(17)
+﻿v0.6.1(18)
+- Make notification optional (advanced settings)
+- Move line customisations to subsetting
+- Fixed typos
+
+v0.6.0(17)
 - Fixed bug causing CPU frequency statistics not to show
 - Removed DB count display on start page
 - Moved some code
