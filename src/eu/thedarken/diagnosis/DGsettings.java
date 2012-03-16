@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -189,6 +190,9 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 			loadSlot(Integer.parseInt(String.valueOf(preference.getKey().charAt(preference.getKey().length()-1))));
 		} else if(preference.getKey().contains("presets.save.slot")) {
 			saveSlot(Integer.parseInt(String.valueOf(preference.getKey().charAt(preference.getKey().length()-1))));
+		} else if(preference.getKey().equals("License.ACRA")) {
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://code.google.com/p/acra/source/browse/trunk/acra/LICENSE"));
+			startActivity(browserIntent);
 		}
 		return false;
 	}

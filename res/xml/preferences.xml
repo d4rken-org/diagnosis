@@ -482,5 +482,10 @@
             </PreferenceCategory>
         </PreferenceScreen>
     </PreferenceCategory>
-
+    <PreferenceCategory android:title="Licenses" >
+   		<PreferenceScreen
+		    android:key="License.ACRA"
+		    android:title="ACRA"
+		    android:summary="Under APACHE v2"/>  
+    </PreferenceCategory>
 </PreferenceScreen>
