@@ -170,7 +170,8 @@ public class DGoverlay extends Service{
 		note.flags |= Notification.FLAG_NO_CLEAR;
 		note.flags |= Notification.FLAG_FOREGROUND_SERVICE; 
 		note.flags |= Notification.FLAG_ONGOING_EVENT;
-		this.startForeground(NOTIFICATION_ID, note);
+		if(settings.getBoolean("general.notification.enabled", true))
+			this.startForeground(NOTIFICATION_ID, note);
 	}
 	
 	@Override

@@ -448,6 +448,11 @@
         <PreferenceScreen
             android:key="advanced"
             android:title="Advanced settings" >
+            <CheckBoxPreference
+	            android:defaultValue="true"
+	            android:key="general.notification.enabled"
+	            android:summary="Without the notification Diagnosis is more likely to be killed by the system."
+	            android:title="Show notification" />
             <PreferenceCategory android:title="Database" >
                 <eu.thedarken.diagnosis.SeekBarPreference
                     android:defaultValue="48"
