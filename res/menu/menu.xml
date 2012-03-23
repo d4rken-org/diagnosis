@@ -1,5 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/start" android:title="Start Tracking" android:showAsAction="ifRoom|withText" />
+    <item android:id="@+id/starttracking" android:title="Start Tracking" android:showAsAction="ifRoom|withText" />
     <item android:id="@+id/settings" android:title="Settings"/>
     <item android:id="@+id/changelog" android:title="Changelog"/>
     <item android:id="@+id/about" android:title="About"/>

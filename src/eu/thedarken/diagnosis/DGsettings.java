@@ -205,6 +205,9 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 		} else if(preference.getKey().equals("License.ACRA")) {
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://code.google.com/p/acra/source/browse/trunk/acra/LICENSE"));
 			startActivity(browserIntent);
+		} else if(preference.getKey().equals("License.SHERLOCK")) {
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/JakeWharton/ActionBarSherlock/blob/master/LICENSE.txt"));
+			startActivity(browserIntent);
 		} else if(preference.getKey().equals("autostart.enabled")) {
 			if(preference.getSharedPreferences().getBoolean(preference.getKey(), false)) {
 				packageManager.setComponentEnabledSetting(autostart, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);

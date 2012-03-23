@@ -1,5 +1,7 @@
 package eu.thedarken.diagnosis;
 
+import java.util.ArrayList;
+
 import com.actionbarsherlock.app.SherlockFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,7 +12,9 @@ import android.preference.PreferenceManager;
 import android.text.format.Formatter;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class DGinfo extends SherlockFragment {
@@ -19,77 +23,66 @@ public class DGinfo extends SherlockFragment {
 	private TextView db_size;
 	private TextView db_status;
 	private View mView;
-
+	private ArrayList<Button> styleButtons = new ArrayList<Button>();
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout and save it
-		mView = inflater.inflate(R.layout.maintab, container, false);
+		mView = inflater.inflate(R.layout.info, container, false);
 		return mView;
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
 		mContext = this.getSherlockActivity();
-		
 		settings = PreferenceManager.getDefaultSharedPreferences(mContext);
-		
 		db_size = (TextView) mView.findViewById(R.id.db_size);
 		db_status = (TextView) mView.findViewById(R.id.db_status);
 
-		new startinfoTask(mContext).execute();
+		Button b = (Button) mView.findViewById(R.id.style1);
+		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle1();}});
+		styleButtons.add(b);
+		b = (Button) mView.findViewById(R.id.style2);
+		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle2();}});
+		styleButtons.add(b);
+		b = (Button) mView.findViewById(R.id.style3);
+		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle3();}});
+		styleButtons.add(b);
+		b = (Button) mView.findViewById(R.id.style4);
+		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle4();}});
+		styleButtons.add(b);
+		b = (Button) mView.findViewById(R.id.style5);
+		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle5();}});
+		styleButtons.add(b);
+		b = (Button) mView.findViewById(R.id.style6);
+		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle6();}});
+		styleButtons.add(b);
+		b = (Button) mView.findViewById(R.id.style7);
+		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle7();}});
+		styleButtons.add(b);
+		b = (Button) mView.findViewById(R.id.style8);
+		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle8();}});
+		styleButtons.add(b);
+		b = (Button) mView.findViewById(R.id.style9);
+		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle9();}});
+		styleButtons.add(b);
+		b = (Button) mView.findViewById(R.id.style10);
+		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle10();}});
+		styleButtons.add(b);
+		b = (Button) mView.findViewById(R.id.style11);
+		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle11();}});
+		styleButtons.add(b);
+		b = (Button) mView.findViewById(R.id.style12);
+		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle12();}});
+		styleButtons.add(b);
+		
 		
 	}
-
-	public void setStyle1(View view) {
-		Styles s = new Styles(mContext);
-		s.setStyle1();
-	}
-
-	public void setStyle2(View view) {
-		Styles s = new Styles(mContext);
-		s.setStyle2();
-	}
-
-	public void setStyle3(View view) {
-		Styles s = new Styles(mContext);
-		s.setStyle3();
-	}
-
-	public void setStyle4(View view) {
-		Styles s = new Styles(mContext);
-		s.setStyle4();
-	}
-
-	public void setStyle5(View view) {
-		Styles s = new Styles(mContext);
-		s.setStyle5();
-	}
-
-	public void setStyle6(View view) {
-		Styles s = new Styles(mContext);
-		s.setStyle6();
-	}
-
-	public void setStyle7(View view) {
-		Styles s = new Styles(mContext);
-		s.setStyle7();
-	}
-
-	public void setStyle8(View view) {
-		Styles s = new Styles(mContext);
-		s.setStyle8();
-	}
-
-	public void setStyle9(View view) {
-		Styles s = new Styles(mContext);
-		s.setStyle9();
-	}
-
-	public void setStyle0(View view) {
-		Styles s = new Styles(mContext);
-		s.setStyle0();
+	
+	@Override
+	public void onResume() {
+        super.onResume();
+		new startinfoTask(mContext).execute();
 	}
 
 	private class startinfoTask extends AsyncTask<String, Void, Boolean> {

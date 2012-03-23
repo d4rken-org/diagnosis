@@ -731,7 +731,7 @@ public class DGdata {
         
 		@Override
 		protected Boolean doInBackground(String... params) {
-			Log.d(mContext.getPackageName(), "Writing to DB...");
+//			Log.d(mContext.getPackageName(), "Writing to DB...");
 			//Cpu data
 			LinkedList<CpuInfo> c_inserts = new LinkedList<CpuInfo>();
 			//Log.d(mContext.getPackageName(), "dbcpulistsize" + dbcpulist.size());
@@ -959,7 +959,7 @@ public class DGdata {
 			}
 			if(pi_inserts.size() > 0) mDB.addPings(pi_inserts,false);
 
-			Log.d(mContext.getPackageName(), "...done writing to DB!");
+//			Log.d(mContext.getPackageName(), "...done writing to DB!");
 			return true;
 		}
     }
@@ -989,7 +989,7 @@ public class DGdata {
 		} catch (IOException e) {
 			ping.ping = 1000;
 		}
-		Log.d(mContext.getPackageName(), "ping!");
+//		Log.d(mContext.getPackageName(), "ping!");
 		pinglist.add(ping);
 	}
     	

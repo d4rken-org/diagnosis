@@ -34,34 +34,28 @@
         <activity
             android:name=".DGinfo"
             android:configChanges="orientation"
-            android:label="DGmain"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="DGmain"/>
         <activity
-            android:name="DGsettings"
+            android:name=".DGsettings"
             android:configChanges="orientation"
-            android:label="DGsettings"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="Settings"/>
         <activity
-            android:name="DGstats"
+            android:name=".DGstats"
             android:configChanges="orientation"
-            android:label="Statistics"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="Statistics"/>
         <activity
-            android:name="DGapps"
+            android:name=".DGapps"
             android:configChanges="orientation"
-            android:label="Apps"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="Apps"/>
 
         <service
             android:name="eu.thedarken.diagnosis.DGoverlay"
-            android:configChanges="orientation"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:configChanges="orientation"/>
 
         <activity
-            android:name="DGlinebuilder"
+            android:name=".DGlinebuilder"
             android:configChanges="orientation"
-            android:label="Linebuilder"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="Linebuilder"/>
 
         <receiver
             android:name=".DGautostart"

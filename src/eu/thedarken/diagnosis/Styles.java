@@ -18,7 +18,7 @@ public class Styles {
         prefEditor = settings.edit();
         display = ((WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 	}
-	
+		
 	public void initLines() {
 		if(!settings.getBoolean("initdone", false)) {
 			String defl1 = "kmonaaafhdhcaabdgkgbhggbcohfhegjgmcoebhchcgbhjemgjhdhehiibncbnjjmhgbjnadaaabejaaaehdgjhkgfhihaaaaaaaaghhaeaaaaaaamhdhcaabbgkgbhggbcogmgbgoghcoejgohegfghgfhcbcockakephibihdiacaaabejaaafhggbgmhfgfhihcaabagkgbhggbcogmgbgoghcoeohfgngcgfhcigkmjfbnaljeoailacaaaahihaaaaaaaaehdhbaahoaaacaaaaaabdhdhbaahoaaacaaaaaablhdhbaahoaaacaaaaaaakhdhbaahoaaacaaaaaabahdhbaahoaaacaaaaaabbhi";
@@ -692,7 +692,137 @@ public class Styles {
     	DGoverlay.initReset();
     }
  
-    public void setStyle0() {
+    public void setStyle10() {
+		
+		int lineno;
+		ArrayList<Integer> line = new ArrayList<Integer>();
+    	
+  		lineno = 0;
+    	prefEditor.putString("layout.line"+lineno,ObjectSerializer.serialize(line));
+		prefEditor.putString("overlay.x_pos.line"+lineno, "1");
+		prefEditor.putString("overlay.y_pos.line"+lineno, "15");
+		prefEditor.putBoolean("overlay.align.right.line"+lineno, false);
+    	prefEditor.putInt("overlay.color.normal.line"+lineno, -16318720);
+    	prefEditor.putInt("overlay.color.alert.line"+lineno,-256);
+    	prefEditor.putString("overlay.font.type.line"+lineno, "1");
+    	prefEditor.putInt("overlay.font.size.line"+lineno,15);
+		prefEditor.putBoolean("overlay.drawbackground.line" + lineno, false);
+		prefEditor.putInt("overlay.color.background.line" + lineno,0x70000000);
+    	
+    	line.clear();
+    	line.add(4);
+		lineno = 1;
+    	prefEditor.putString("layout.line"+lineno,ObjectSerializer.serialize(line));
+		prefEditor.putString("overlay.x_pos.line"+lineno, String.valueOf(display.getWidth()-1));
+		prefEditor.putString("overlay.y_pos.line"+lineno, "15");
+		prefEditor.putBoolean("overlay.align.right.line"+lineno, true);
+    	prefEditor.putInt("overlay.color.normal.line"+lineno, -16318720);
+    	prefEditor.putInt("overlay.color.alert.line"+lineno,-256);
+    	prefEditor.putString("overlay.font.type.line"+lineno, "1");
+    	prefEditor.putInt("overlay.font.size.line"+lineno,14);
+		prefEditor.putBoolean("overlay.drawbackground.line" + lineno, false);
+		prefEditor.putInt("overlay.color.background.line" + lineno,0x70000000);
+    	
+    	line.clear();
+    	line.add(3);
+		lineno = 2;
+    	prefEditor.putString("layout.line"+lineno,ObjectSerializer.serialize(line));
+		prefEditor.putString("overlay.x_pos.line"+lineno, "1");
+		prefEditor.putString("overlay.y_pos.line"+lineno, String.valueOf(display.getHeight()));
+		prefEditor.putBoolean("overlay.align.right.line"+lineno, false);
+    	prefEditor.putInt("overlay.color.normal.line"+lineno, -16318720);
+    	prefEditor.putInt("overlay.color.alert.line"+lineno,-256);
+    	prefEditor.putString("overlay.font.type.line"+lineno, "1");
+    	prefEditor.putInt("overlay.font.size.line"+lineno,14);
+		prefEditor.putBoolean("overlay.drawbackground.line" + lineno, false);
+		prefEditor.putInt("overlay.color.background.line" + lineno,0x70000000);
+    	
+    	line.clear();
+    	line.add(10);
+		lineno = 3;
+    	prefEditor.putString("layout.line"+lineno,ObjectSerializer.serialize(line));
+		prefEditor.putString("overlay.x_pos.line"+lineno, String.valueOf(display.getWidth()-1));
+		prefEditor.putString("overlay.y_pos.line"+lineno, "40");
+		prefEditor.putBoolean("overlay.align.right.line"+lineno, true);
+    	prefEditor.putInt("overlay.color.normal.line"+lineno, -16318720);
+    	prefEditor.putInt("overlay.color.alert.line"+lineno,-256);
+    	prefEditor.putString("overlay.font.type.line"+lineno, "1");
+    	prefEditor.putInt("overlay.font.size.line"+lineno,14);
+		prefEditor.putBoolean("overlay.drawbackground.line" + lineno, false);
+		prefEditor.putInt("overlay.color.background.line" + lineno,0x70000000);
+		
+		prefEditor.putString("overlay.divider", " <> ");
+    	prefEditor.commit();
+    	
+    	DGoverlay.initReset();
+    }
+    
+    public void setStyle11() {
+		
+		int lineno;
+		ArrayList<Integer> line = new ArrayList<Integer>();
+    	
+  		lineno = 0;
+    	prefEditor.putString("layout.line"+lineno,ObjectSerializer.serialize(line));
+		prefEditor.putString("overlay.x_pos.line"+lineno, "1");
+		prefEditor.putString("overlay.y_pos.line"+lineno, "15");
+		prefEditor.putBoolean("overlay.align.right.line"+lineno, false);
+    	prefEditor.putInt("overlay.color.normal.line"+lineno, -16318720);
+    	prefEditor.putInt("overlay.color.alert.line"+lineno,-256);
+    	prefEditor.putString("overlay.font.type.line"+lineno, "1");
+    	prefEditor.putInt("overlay.font.size.line"+lineno,15);
+		prefEditor.putBoolean("overlay.drawbackground.line" + lineno, false);
+		prefEditor.putInt("overlay.color.background.line" + lineno,0x70000000);
+    	
+    	line.clear();
+    	line.add(4);
+		lineno = 1;
+    	prefEditor.putString("layout.line"+lineno,ObjectSerializer.serialize(line));
+		prefEditor.putString("overlay.x_pos.line"+lineno, String.valueOf(display.getWidth()-1));
+		prefEditor.putString("overlay.y_pos.line"+lineno, "15");
+		prefEditor.putBoolean("overlay.align.right.line"+lineno, true);
+    	prefEditor.putInt("overlay.color.normal.line"+lineno, -16318720);
+    	prefEditor.putInt("overlay.color.alert.line"+lineno,-256);
+    	prefEditor.putString("overlay.font.type.line"+lineno, "1");
+    	prefEditor.putInt("overlay.font.size.line"+lineno,14);
+		prefEditor.putBoolean("overlay.drawbackground.line" + lineno, false);
+		prefEditor.putInt("overlay.color.background.line" + lineno,0x70000000);
+    	
+    	line.clear();
+    	line.add(3);
+		lineno = 2;
+    	prefEditor.putString("layout.line"+lineno,ObjectSerializer.serialize(line));
+		prefEditor.putString("overlay.x_pos.line"+lineno, "1");
+		prefEditor.putString("overlay.y_pos.line"+lineno, String.valueOf(display.getHeight()));
+		prefEditor.putBoolean("overlay.align.right.line"+lineno, false);
+    	prefEditor.putInt("overlay.color.normal.line"+lineno, -16318720);
+    	prefEditor.putInt("overlay.color.alert.line"+lineno,-256);
+    	prefEditor.putString("overlay.font.type.line"+lineno, "1");
+    	prefEditor.putInt("overlay.font.size.line"+lineno,14);
+		prefEditor.putBoolean("overlay.drawbackground.line" + lineno, false);
+		prefEditor.putInt("overlay.color.background.line" + lineno,0x70000000);
+    	
+    	line.clear();
+    	line.add(10);
+		lineno = 3;
+    	prefEditor.putString("layout.line"+lineno,ObjectSerializer.serialize(line));
+		prefEditor.putString("overlay.x_pos.line"+lineno, String.valueOf(display.getWidth()-1));
+		prefEditor.putString("overlay.y_pos.line"+lineno, "40");
+		prefEditor.putBoolean("overlay.align.right.line"+lineno, true);
+    	prefEditor.putInt("overlay.color.normal.line"+lineno, -16318720);
+    	prefEditor.putInt("overlay.color.alert.line"+lineno,-256);
+    	prefEditor.putString("overlay.font.type.line"+lineno, "1");
+    	prefEditor.putInt("overlay.font.size.line"+lineno,14);
+		prefEditor.putBoolean("overlay.drawbackground.line" + lineno, false);
+		prefEditor.putInt("overlay.color.background.line" + lineno,0x70000000);
+		
+		prefEditor.putString("overlay.divider", " <> ");
+    	prefEditor.commit();
+    	
+    	DGoverlay.initReset();
+    }
+    
+    public void setStyle12() {
 		
 		int lineno;
 		ArrayList<Integer> line = new ArrayList<Integer>();

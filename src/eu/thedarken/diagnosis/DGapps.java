@@ -1,11 +1,8 @@
 package eu.thedarken.diagnosis;
 
 import java.util.ArrayList;
-
 import com.actionbarsherlock.app.SherlockFragment;
-
 import eu.thedarken.diagnosis.InfoClass.AppTabInfo;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -50,7 +47,7 @@ public class DGapps extends SherlockFragment {
         db = DGdatabase.getInstance(mContext);
         apps_table = (TableLayout) mView.findViewById(R.id.apps_table);
        	sortmode = (Spinner) mView.findViewById(R.id.sortmode);
-       	
+
        	sortmode.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
                 public void onItemSelected(AdapterView<?> parent, View itemSelected, int selectedItemPosition, long selected){
                 	update();

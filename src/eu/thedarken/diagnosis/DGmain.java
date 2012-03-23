@@ -54,29 +54,30 @@ public class DGmain extends SherlockFragmentActivity {
 	private SharedPreferences.Editor prefEditor;
 	private final String TAG = "eu.thedarken.diagnosis.DGmain";
 	public static File db;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mContext = this;
-		setContentView(R.layout.tabhost);
-		
-		isPro = checkPro();
-		
+		setContentView(R.layout.main);
+
+		checkPro();
+
 		service = new Intent(mContext, DGoverlay.class);
-		
+
 		settings = PreferenceManager.getDefaultSharedPreferences(mContext);
 		prefEditor = settings.edit();
 
 		PreferenceManager.setDefaultValues(mContext, R.xml.preferences, false);
 
 		BUSYBOX = mContext.getFilesDir() + "/busybox";
-		
+
 		new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/eu.thedarken.diagnosis/databases/").mkdirs();
 		db = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/eu.thedarken.diagnosis/databases/database.db");
-		
+
 		prefEditor.putString("BUSYBOX", BUSYBOX);
 		prefEditor.commit();
-		
+
 		new setupTask(mContext).execute();
 
 		try {
@@ -84,15 +85,16 @@ public class DGmain extends SherlockFragmentActivity {
 			versName = mContext.getPackageManager().getPackageInfo("eu.thedarken.diagnosis", 0).versionName;
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
+			versCode = 0;
+			versName = "";
 		}
 		Log.d(TAG, "VersionName: " + DGmain.versName);
 		Log.d(TAG, "VersionCode: " + DGmain.versCode);
-		
+
 		// setup action bar for tabs
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayShowTitleEnabled(true);
-		actionBar.setTitle(versName);
 
 		Tab tab = actionBar.newTab().setText("info").setTabListener(new TabListener<DGinfo>(this, "Info", DGinfo.class));
 		actionBar.addTab(tab);
@@ -102,15 +104,25 @@ public class DGmain extends SherlockFragmentActivity {
 
 		tab = actionBar.newTab().setText("apps").setTabListener(new TabListener<DGapps>(this, "apps", DGapps.class));
 		actionBar.addTab(tab);
-		
-		// if(isPro && settings.getBoolean("pro.advertised", false)) {
-		prefEditor.putBoolean("pro.advertised", true);
-		prefEditor.commit();
 
-		showMyDialog(Dialogs.NEWS);
 
-		// }
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		checkPro();
+		if (DGmain.isPro) {
+			getSupportActionBar().setTitle("Pro");
+		} else {
+			getSupportActionBar().setTitle("");
+		}
 		
+		if(!DGmain.isPro && !settings.getBoolean("pro.advertised", false)) {
+			prefEditor.putBoolean("pro.advertised", true);
+			prefEditor.commit();
+			showMyDialog(Dialogs.NEWS);
+		}
 	}
 
 	public static class TabListener<T extends Fragment> implements ActionBar.TabListener {
@@ -164,7 +176,7 @@ public class DGmain extends SherlockFragmentActivity {
 			// User selected the already selected tab. Usually do nothing.
 		}
 	}
-	
+
 	private class setupTask extends AsyncTask<String, Void, Boolean> {
 		private Context context;
 		private ProgDialog dialog;
@@ -182,7 +194,7 @@ public class DGmain extends SherlockFragmentActivity {
 
 		@Override
 		protected void onPostExecute(final Boolean ok) {
-			if (dialog.isShowing()) 
+			if (dialog.isShowing())
 				dialog.dismiss();
 		}
 
@@ -196,12 +208,12 @@ public class DGmain extends SherlockFragmentActivity {
 
 			try {
 				BUSYBOX_VERSION = getBusyboxVersion();
-			} catch(NullPointerException e) {
+			} catch (NullPointerException e) {
 				dialog.updateMessage("Startup ERROR!");
 				showDialog(Dialogs.BUSYBOX_ERROR);
 			}
 			showDialog(Dialogs.BUSYBOX_ERROR);
-			
+
 			if (settings.getInt("dbversion", 0) < DB_DELETE_VERSION && db.exists()) {
 				if (db.delete()) {
 					dialog.updateMessage("DB deletion successfull");
@@ -220,17 +232,16 @@ public class DGmain extends SherlockFragmentActivity {
 				prefEditor.putInt("dbversion", DGmain.versCode);
 				prefEditor.commit();
 			}
-			
+
 			Styles s = new Styles(mContext);
 			s.initLines();
-			
+
 			return true;
 		}
 	}
-		
+
 	private class serviceTask extends AsyncTask<String, Void, Boolean> {
 		private Context context;
-		private boolean isRunning = false;
 		private ProgDialog dialog;
 
 		public serviceTask(Context c) {
@@ -242,24 +253,20 @@ public class DGmain extends SherlockFragmentActivity {
 			dialog.setProgressStyle(DGoverlay.isRunning ? ProgressDialog.STYLE_SPINNER : ProgressDialog.STYLE_HORIZONTAL);
 			dialog.updateMessage(DGoverlay.isRunning ? "Stopping service..." : "Starting service...");
 			dialog.show();
-			if (DGoverlay.isRunning)
-				this.isRunning = true;
+
 		}
 
 		@Override
 		protected void onPostExecute(final Boolean ok) {
-			try {
-				if (dialog.isShowing()) {
-					dialog.dismiss();
-				}
-			} catch (Exception e) {
-			}
+			invalidateOptionsMenu();
+			if (dialog.isShowing())
+				dialog.dismiss();
 		}
 
 		@Override
 		protected Boolean doInBackground(String... params) {
 			try {
-				if (this.isRunning) {
+				if (DGoverlay.isRunning) {
 					DGoverlay.haltoverlay = true;
 					while (DGoverlay.isRunning)
 						Thread.sleep(25);
@@ -281,7 +288,7 @@ public class DGmain extends SherlockFragmentActivity {
 			return true;
 		}
 	}
-	
+
 	private Boolean CopyAssets() {
 		if (!new File(mContext.getFilesDir() + "/busybox").exists()) {
 			AssetManager am = mContext.getAssets();
@@ -326,7 +333,7 @@ public class DGmain extends SherlockFragmentActivity {
 			Log.d(TAG, "Error when trying to set rights for non rooted busybox.");
 		}
 	}
-	
+
 	private String getBusyboxVersion() {
 		Process q = null;
 		String line = null;
@@ -365,20 +372,23 @@ public class DGmain extends SherlockFragmentActivity {
 			return null;
 		}
 	}
-	
-	private boolean checkPro() {
+
+	public void checkPro() {
 		Context diagnosispro = null;
 		try {
 			diagnosispro = mContext.createPackageContext("eu.thedarken.diagnosis.pro", 0);
 		} catch (NameNotFoundException e) {
-			return false;
+			DGmain.isPro = false;
+			return;
 		}
 		if (diagnosispro != null) {
-			if (mContext.getPackageManager().checkSignatures(TAG, diagnosispro.getPackageName()) == PackageManager.SIGNATURE_MATCH) {
-				return true;
+			if (mContext.getPackageManager().checkSignatures(mContext.getPackageName(), diagnosispro.getPackageName()) == PackageManager.SIGNATURE_MATCH) {
+				DGmain.isPro = true;
+				return;
 			}
 		}
-		return false;
+		DGmain.isPro = false;
+		return;
 	}
 
 	private void showChangelog() {
@@ -400,7 +410,7 @@ public class DGmain extends SherlockFragmentActivity {
 			text.setText(buffer.toString());
 			reader.close();
 		} catch (IOException e) {
-			Log.d(this.getPackageName(), "Error while reading changelog.txt");
+			Log.d(TAG, "Error while reading changelog.txt");
 			e.printStackTrace();
 		}
 		dialog.show();
@@ -409,7 +419,7 @@ public class DGmain extends SherlockFragmentActivity {
 	private void showAbout() {
 		final Dialog dialog = new Dialog(this);
 		dialog.setContentView(R.layout.aboutbox);
-		dialog.setTitle("About Diagnosis");
+		dialog.setTitle("Diagnosis " + versName+"("+versCode+")");
 		Button xda = (Button) dialog.findViewById(R.id.xda);
 		xda.setOnClickListener(new OnClickListener() {
 			@Override
@@ -425,13 +435,6 @@ public class DGmain extends SherlockFragmentActivity {
 				createSupportEmail();
 			}
 		});
-		Button close = (Button) dialog.findViewById(R.id.close);
-		close.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				dialog.dismiss();
-			}
-		});
 
 		TextView text = (TextView) dialog.findViewById(R.id.HelpTextView);
 		InputStreamReader reader;
@@ -444,7 +447,7 @@ public class DGmain extends SherlockFragmentActivity {
 			}
 			reader.close();
 		} catch (IOException e) {
-			Log.d(this.getPackageName(), "Error while reading about file");
+			Log.d(TAG, "Error while reading about file");
 			e.printStackTrace();
 		}
 		dialog.show();
@@ -473,45 +476,55 @@ public class DGmain extends SherlockFragmentActivity {
 				+ "Diagnosis Version: " + version.toString() + "\n" + "FINGERPRINT: " + android.os.Build.FINGERPRINT + "\n");
 		startActivity(Intent.createChooser(intent, ""));
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
+		if(DGoverlay.isRunning) {
+			menu.findItem(R.id.starttracking).setTitle("Stop Tracking");
+		} else {
+			menu.findItem(R.id.starttracking).setTitle("Start Tracking");
+		}
+
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.start:
-				new serviceTask(mContext).execute();
-				break;
-			case R.id.settings:
-				Intent startPreferencesActivity = new Intent(this, DGsettings.class);
-				this.startActivity(startPreferencesActivity);
-				break;
-			case R.id.changelog:
-				showChangelog();
-				break;
-			case R.id.about:
-				showAbout();
-				break;
+		case android.R.id.home:
+			showMyDialog(Dialogs.NEWS);
+			break;
+		case R.id.starttracking:
+			new serviceTask(mContext).execute();
+			break;
+		case R.id.settings:
+			Intent startPreferencesActivity = new Intent(this, DGsettings.class);
+			this.startActivity(startPreferencesActivity);
+			break;
+		case R.id.changelog:
+			showChangelog();
+			break;
+		case R.id.about:
+			showAbout();
+			break;
 		}
 		return true;
 	}
-	
+
 	private void showMyDialog(int type) {
-	    FragmentManager ft = getSupportFragmentManager();
-	    DialogFragment newFragment = Dialogs.newInstance(type);
-	    newFragment.show(ft, "dialog");
+		FragmentManager ft = getSupportFragmentManager();
+		DialogFragment newFragment = Dialogs.newInstance(type);
+		newFragment.show(ft, "dialog");
 	}
-	
+
 	private static class Dialogs extends DialogFragment {
 		final static int BUSYBOX_ERROR = 0;
 		final static int DATABASE_REMOVAL = 1;
 		final static int REINSTALL = 2;
 		final static int NEWS = 3;
+
 		public static Dialogs newInstance(int type) {
 			Dialogs frag = new Dialogs();
 			Bundle args = new Bundle();
@@ -563,7 +576,7 @@ public class DGmain extends SherlockFragmentActivity {
 						.setTitle("News")
 						.setCancelable(true)
 						.setMessage(
-								"I have published 'Diagnosis Pro'.\nDon't worry, all previous features are still free, but now you can gain a few additional features while also supporting my work.")
+								"I'm sure you have noticed the new UI and i hope you like it.\n\nI have published 'Diagnosis Pro'.\nWhich you can purchase to enable a few additional options and support my work.\nThank you.")
 						.setPositiveButton("Diagnosis Pro", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {

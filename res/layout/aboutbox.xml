@@ -16,7 +16,6 @@
 
 			<Button android:id="@+id/xda" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_alignParentBottom="true" android:layout_gravity="left" android:text="Visit XDA"></Button>
 			<Button android:id="@+id/email" android:layout_height="wrap_content" android:layout_width="wrap_content"  android:layout_alignParentBottom="true" android:layout_gravity="center" android:text="Email darken"></Button>
-			<Button android:id="@+id/close" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_alignParentRight="true" android:layout_gravity="right" android:layout_width="match_parent" android:text="Close"></Button>
 		</LinearLayout>
 	</RelativeLayout>
 </RelativeLayout>

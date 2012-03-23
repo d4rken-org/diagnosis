@@ -13,19 +13,6 @@
 
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="general.database.hidesystem"
-            android:summary="Hides the system entries, leaving only apps to be shown."
-            android:title="Hide core processes" />
-
-        <EditTextPreference
-            android:defaultValue="www.google.com"
-            android:dialogTitle="Targets can only be webservers so far.(i.e. &apos;www.google.com&apos;))"
-            android:key="general.internet.ping.target"
-            android:summary="Which address should the ping feature target?"
-            android:title="Ping target" />
-
-        <CheckBoxPreference
-            android:defaultValue="false"
             android:enabled="false"
             android:key="autostart.enabled"
             android:summary="Start Diagnosis automaticly after a reboot.\nRequires [Diagnosis Pro]"
@@ -34,7 +21,7 @@
             android:defaultValue="true"
             android:enabled="false"
             android:key="general.notification.enabled"
-            android:summary="Without the notification Diagnosis is more likely to be killed by the system.\nRequires [Diagnosis Pro]"
+            android:summary="Shows/Hides the notifaction bar entry\nRequires [Diagnosis Pro]"
             android:title="Show notification" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Database" >
@@ -139,19 +126,6 @@
         </PreferenceScreen>
     </PreferenceCategory>
     <PreferenceCategory android:title="Customisation" >
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="layout.usefahrenheit"
-            android:summary="Uses Fahrenheit instead of Celsius for temperature"
-            android:title="Use Fahrenheit" />
-
-        <EditTextPreference
-            android:defaultValue="|"
-            android:dialogTitle="Enter divider:"
-            android:key="overlay.divider"
-            android:summary="Change the symbol that seperates information in the overlay."
-            android:title="Divider" />
-
         <PreferenceScreen
             android:key="edit.lines"
             android:summary="Customize and tailor each info line to your needs."
@@ -461,6 +435,32 @@
                 </PreferenceCategory>
             </PreferenceScreen>
         </PreferenceScreen>
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="layout.usefahrenheit"
+            android:summary="Uses Fahrenheit instead of Celsius for temperature"
+            android:title="Use Fahrenheit" />
+
+        <EditTextPreference
+            android:defaultValue="|"
+            android:dialogTitle="Enter divider:"
+            android:key="overlay.divider"
+            android:summary="Change the symbol that seperates information in the overlay."
+            android:title="Divider" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="general.database.hidesystem"
+            android:summary="Hides the system entries, leaving only apps to be shown."
+            android:title="Hide core processes" />
+
+        <EditTextPreference
+            android:defaultValue="www.google.com"
+            android:dialogTitle="Targets can only be webservers so far.(i.e. &apos;www.google.com&apos;))"
+            android:key="general.internet.ping.target"
+            android:summary="Which address should the ping feature target?"
+            android:title="Ping target" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Advanced settings" >
         <PreferenceScreen
@@ -505,6 +505,10 @@
             android:key="License.ACRA"
             android:summary="Under APACHE v2"
             android:title="ACRA" />
+        <PreferenceScreen
+            android:key="License.SHERLOCK"
+            android:summary="Under APACHE v2"
+            android:title="ActionBarSherlock" />
     </PreferenceCategory>
 
 </PreferenceScreen>
