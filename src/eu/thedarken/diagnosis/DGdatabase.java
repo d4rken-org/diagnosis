@@ -272,13 +272,16 @@ public class DGdatabase {
 		tryClose();
 	}
 
+	public void init() {
+		if(openRead())
+			tryClose();
+	}
+	
 	public int getTableSize() {
 		if (openRead()) {
 			int size = 0;
-
 			size = mDBhelper.getTables().size();
 			tryClose();
-
 			return size;
 		}
 		return 0;

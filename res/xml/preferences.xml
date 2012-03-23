@@ -23,6 +23,13 @@
             android:key="general.internet.ping.target"
             android:summary="Which address should the ping feature target?"
             android:title="Ping target" />
+        
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="autostart.enabled"
+            android:summary="Start Diagnosis automaticly after a reboot.\nRequires [Diagnosis Pro]"
+            android:title="Autostart"
+            android:enabled="false"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="Database" >
         <PreferenceScreen
@@ -455,8 +462,9 @@
             <CheckBoxPreference
 	            android:defaultValue="true"
 	            android:key="general.notification.enabled"
-	            android:summary="Without the notification Diagnosis is more likely to be killed by the system."
-	            android:title="Show notification" />
+	            android:summary="Without the notification Diagnosis is more likely to be killed by the system.\nRequires [Diagnosis Pro]"
+	            android:title="Show notification"
+	            android:enabled="false"/>
             <PreferenceCategory android:title="Database" >
                 <eu.thedarken.diagnosis.SeekBarPreference
                     android:defaultValue="48"

@@ -1,48 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="eu.thedarken.diagnosis"
-      android:versionCode="18" android:versionName="0.6.1">
-    <uses-sdk android:minSdkVersion="8" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-	<uses-permission android:name="android.permission.INTERNET"/>
-	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>	
-    
-    <supports-screens android:anyDensity="true" />
+    package="eu.thedarken.diagnosis"
+    android:versionCode="18"
+    android:versionName="0.6.1" >
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar" android:name="Diagnosis">
-        <activity android:name=".DGtabhost"
-                  android:label="@string/app_name"
-                  android:configChanges="orientation">
+    <uses-sdk android:minSdkVersion="8" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <supports-screens android:anyDensity="true" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <application
+        android:name="Diagnosis"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar" >
+        <activity
+            android:name=".DGtabhost"
+            android:configChanges="orientation"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="DGmain"
-         	android:label="DGmain"
-         	android:theme="@android:style/Theme.NoTitleBar"
-         	android:configChanges="orientation"/>
-        <activity android:name="DGsettings"
-         	android:label="DGsettings"
-			android:theme="@android:style/Theme.NoTitleBar"
-         	android:configChanges="orientation"/>
-         <activity android:name="DGstats" 
-			android:label="Statistics" 
-			android:theme="@android:style/Theme.NoTitleBar"
-			android:configChanges="orientation"/>
-         <activity android:name="DGapps" 
-			android:label="Apps" 
-			android:theme="@android:style/Theme.NoTitleBar"
-			android:configChanges="orientation"/>
-		<service android:name="eu.thedarken.diagnosis.DGoverlay"
-			android:theme="@android:style/Theme.NoTitleBar"
-			android:configChanges="orientation"/>
-         <activity android:name="DGlinebuilder" 
-			android:label="Linebuilder" 
-			android:theme="@android:style/Theme.NoTitleBar"
-			android:configChanges="orientation"/>
+        <activity
+            android:name="DGmain"
+            android:configChanges="orientation"
+            android:label="DGmain"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="DGsettings"
+            android:configChanges="orientation"
+            android:label="DGsettings"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="DGstats"
+            android:configChanges="orientation"
+            android:label="Statistics"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="DGapps"
+            android:configChanges="orientation"
+            android:label="Apps"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <service
+            android:name="eu.thedarken.diagnosis.DGoverlay"
+            android:configChanges="orientation"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <activity
+            android:name="DGlinebuilder"
+            android:configChanges="orientation"
+            android:label="Linebuilder"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <receiver
+            android:name=".DGautostart"
+            android:enabled="false"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
     </application>
+
 </manifest>

@@ -1,7 +1,11 @@
 ﻿v0.6.1(18)
-- Make notification optional (advanced settings)
-- Move line customisations to subsetting
+- Moved some settings around
+- Make notification optional (Pro)
+- Moved line customizations to subsetting
 - Fixed typos
+- Fixed calculation of total upload/download and read/written stats
+- Fixed crash after dropping database
+- Added autostart (Pro)
 
 v0.6.0(17)
 - Fixed bug causing CPU frequency statistics not to show

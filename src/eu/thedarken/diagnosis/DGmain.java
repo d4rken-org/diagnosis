@@ -14,8 +14,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -38,6 +40,7 @@ public class DGmain extends Activity {
     private static String versName = "";
     private static int versCode = 0;
     private final static int DB_DELETE_VERSION = 17;
+    public static boolean isPro = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,20 @@ public class DGmain extends Activity {
 			e.printStackTrace();
 		}
 		
+		isPro = checkPro();
+		
+//		if(isPro && settings.getBoolean("pro.advertised", false)) {
+			prefEditor.putBoolean("pro.advertised", true);
+			prefEditor.commit();
+			
+			showDialog(3);
+//		}
+		
+		if(isPro) {
+			TextView appstatus = (TextView) findViewById(R.id.appstatus);
+			appstatus.append(" Pro");
+		}
+		
         db_size  = (TextView) findViewById(R.id.db_size);
         db_status = (TextView) findViewById(R.id.db_status);
         
@@ -80,6 +97,21 @@ public class DGmain extends Activity {
 		
 		initLines();
 
+    }
+    
+    public boolean checkPro() {
+    	Context diagnosispro = null;
+		try {
+			diagnosispro = createPackageContext("eu.thedarken.diagnosis.pro", 0);
+		} catch (NameNotFoundException e) {
+			return false;
+		}
+		if(diagnosispro != null) {
+			if(mContext.getPackageManager().checkSignatures(mContext.getPackageName(), diagnosispro.getPackageName()) == PackageManager.SIGNATURE_MATCH) {
+				return true;
+			}
+		}
+		return false;
     }
     
     @Override
@@ -397,49 +429,71 @@ public class DGmain extends Activity {
 	@Override
 	protected Dialog onCreateDialog(int id) {
 	    switch(id) {
-	    case 0:
-	    	return new AlertDialog.Builder(this)
-	    			.setTitle("BUSYBOX error!")
-	    			.setCancelable(true)
-	    			.setMessage("Could not use our BUSYBOX :-(\nTo prevent unwanted behavior Diagnosis will close now.\nPlease try restarting or reinstalling Diagnosis.\nShould this not help please write me an email:\n(support@thedarken.eu)\nSorry for your troubles!")
-	    			.setPositiveButton("Close",
-	    					new DialogInterface.OnClickListener() {
-	    						@Override
-	    						public void onClick(DialogInterface dialog,
-	    								int which) {
-	    					    	finish();
-	    						    //android.os.Process.killProcess(android.os.Process.myPid());
-	    						}
-	    					})
-	    			.create();
-	    case 1:
-	    	return new AlertDialog.Builder(this)
-	    			.setTitle("Database removal")
-	    			.setCancelable(true)
-	    			.setMessage("This newer version of Diagnosis uses a different structure to store the periodic data.\nTo avoid errors and unwanted behavior, the previous version has been removed. I'm telling you this so that you are not suprised that the database is empty.")
-	    			.setPositiveButton("Dismiss",
-	    					new DialogInterface.OnClickListener() {
-	    						@Override
-	    						public void onClick(DialogInterface dialog,
-	    								int which) {
-	    							
-	    						}
-	    					})
-	    			.create();
-	    case 2:
-	    	return new AlertDialog.Builder(this)
-	    			.setTitle("Error")
-	    			.setCancelable(true)
-	    			.setMessage("Sorry, something went wrong and you will have to reinstall this app.")
-	    			.setNegativeButton("Quit",
-	    					new DialogInterface.OnClickListener() {
-	    						@Override
-	    						public void onClick(DialogInterface dialog,
-	    								int which) {
-	    					    	finish();
-	    						}
-	    					})
-	    			.create();
+		    case 0:
+		    	return new AlertDialog.Builder(this)
+		    			.setTitle("BUSYBOX error!")
+		    			.setCancelable(true)
+		    			.setMessage("Could not use our BUSYBOX :-(\nTo prevent unwanted behavior Diagnosis will close now.\nPlease try restarting or reinstalling Diagnosis.\nShould this not help please write me an email:\n(support@thedarken.eu)\nSorry for your troubles!")
+		    			.setPositiveButton("Close",
+		    					new DialogInterface.OnClickListener() {
+		    						@Override
+		    						public void onClick(DialogInterface dialog,
+		    								int which) {
+		    					    	finish();
+		    						    //android.os.Process.killProcess(android.os.Process.myPid());
+		    						}
+		    					})
+		    			.create();
+		    case 1:
+		    	return new AlertDialog.Builder(this)
+		    			.setTitle("Database removal")
+		    			.setCancelable(true)
+		    			.setMessage("This newer version of Diagnosis uses a different structure to store the periodic data.\nTo avoid errors and unwanted behavior, the previous version has been removed. I'm telling you this so that you are not suprised that the database is empty.")
+		    			.setPositiveButton("Dismiss",
+		    					new DialogInterface.OnClickListener() {
+		    						@Override
+		    						public void onClick(DialogInterface dialog,
+		    								int which) {
+		    							
+		    						}
+		    					})
+		    			.create();
+		    case 2:
+		    	return new AlertDialog.Builder(this)
+		    			.setTitle("Error")
+		    			.setCancelable(true)
+		    			.setMessage("Sorry, something went wrong and you will have to reinstall this app.")
+		    			.setNegativeButton("Quit",
+		    					new DialogInterface.OnClickListener() {
+		    						@Override
+		    						public void onClick(DialogInterface dialog,
+		    								int which) {
+		    					    	finish();
+		    						}
+		    					})
+		    			.create();
+		    case 3:
+		    	return new AlertDialog.Builder(this)
+		    			.setTitle("News")
+		    			.setCancelable(true)
+		    			.setMessage("I have published 'Diagnosis Pro'.\nDon't worry, all previous features are still free, but now you can gain a few additional features while also supporting my work.")
+		    			.setPositiveButton("Diagnosis Pro",
+		    					new DialogInterface.OnClickListener() {
+		    						@Override
+		    						public void onClick(DialogInterface dialog,
+		    								int which) {
+										Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=eu.thedarken.diagnosis.pro"));
+										startActivity(marketIntent);
+		    						}
+		    					})
+		    			.setNegativeButton("Close",
+		    					new DialogInterface.OnClickListener() {
+		    						@Override
+		    						public void onClick(DialogInterface dialog,
+		    								int which) {
+		    						}
+		    					})
+		    			.create();
 	    }
 	    Dialog dialog = null;
 	    return dialog;

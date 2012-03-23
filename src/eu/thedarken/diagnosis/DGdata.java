@@ -855,8 +855,6 @@ public class DGdata {
 				}
 				avg.rate_down /= this.density;
 				avg.rate_up /= this.density;
-				avg.traffic_down /= this.density;
-				avg.traffic_up /= this.density;
 				avg.system_time /= this.density;
 				n_inserts.add(avg);
 			}
@@ -916,8 +914,6 @@ public class DGdata {
 					cnt--;
 				}
 				avg.system_time /= this.density;
-				avg.read /= this.density;
-				avg.written /= this.density;
 				avg.read_rate /= this.density;
 				avg.write_rate /= this.density;
 				d_inserts.add(avg);

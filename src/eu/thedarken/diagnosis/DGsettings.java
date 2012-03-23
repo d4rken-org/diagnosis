@@ -5,15 +5,18 @@ import java.util.ArrayList;
 import eu.thedarken.diagnosis.DGoverlay.Line;
 import eu.thedarken.diagnosis.R;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
@@ -26,6 +29,8 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 	private Context mContext;
 	private SharedPreferences settings;
 	private Editor prefEditor;
+	private PackageManager packageManager;
+	private ComponentName autostart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mContext = this;
@@ -73,6 +78,13 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 	        });
 	        ((ColorPickerPreference)findPreference("overlay.color.background.line"+i)).setAlphaSliderEnabled(true);
 	        
+			packageManager = this.getPackageManager();
+			autostart = new ComponentName(DGsettings.this, DGautostart.class);
+	        ((CheckBoxPreference) findPreference("autostart.enabled")).setChecked((packageManager.getComponentEnabledSetting(autostart) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED));
+	        if(DGmain.isPro) {
+	        	((CheckBoxPreference) findPreference("autostart.enabled")).setEnabled(true);
+	        	((CheckBoxPreference) findPreference("general.notification.enabled")).setEnabled(true);
+	        }
         }   
     }
     
@@ -193,6 +205,13 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 		} else if(preference.getKey().equals("License.ACRA")) {
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://code.google.com/p/acra/source/browse/trunk/acra/LICENSE"));
 			startActivity(browserIntent);
+		} else if(preference.getKey().equals("autostart.enabled")) {
+			if(preference.getSharedPreferences().getBoolean(preference.getKey(), false)) {
+				packageManager.setComponentEnabledSetting(autostart, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+			} else {
+				packageManager.setComponentEnabledSetting(autostart, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+			}
+
 		}
 		return false;
 	}
@@ -271,6 +290,8 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 		protected Boolean doInBackground(String... params) {
 		    File db = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/eu.thedarken.diagnosis/databases/database.db");
 		    if(db.delete()) {
+		    	DGdatabase db_object = DGdatabase.getInstance(mContext.getApplicationContext());
+		    	db_object.init();
 		    	return true;
 		    }
 			return false;
