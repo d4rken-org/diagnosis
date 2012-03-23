@@ -160,7 +160,7 @@ public class DGoverlay extends Service{
 	    Toast.makeText(this.getApplicationContext(), "Diagnosis service created", Toast.LENGTH_SHORT).show();
 	    
 		Notification note = new Notification(R.drawable.note, "We now know whats going on!", System.currentTimeMillis());
-		Intent i = new Intent(this, DGtabhost.class);
+		Intent i = new Intent(this, DGmain.class);
 
 		i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 

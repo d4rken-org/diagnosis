@@ -1,4 +1,5 @@
 ﻿v0.6.1(18)
+- Complete new UI!
 - Moved some settings around
 - Make notification optional (Pro)
 - Moved line customizations to subsetting

@@ -1,6 +1,9 @@
 package eu.thedarken.diagnosis;
 
 import java.util.ArrayList;
+
+import com.actionbarsherlock.app.SherlockFragment;
+
 import eu.thedarken.diagnosis.InfoClass.AppTabInfo;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -11,7 +14,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -20,23 +25,31 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DGapps extends Activity {
+public class DGapps extends SherlockFragment {
     private Context mContext;
     private SharedPreferences settings;
     private TableLayout apps_table;
     private Spinner sortmode;
     private DGdatabase db;
     
-    
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+	private View mView;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		// Inflate the layout for this fragment and save it for the fragment to
+		// use
+		mView = inflater.inflate(R.layout.apps, container, false);
+		return mView;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = this;
+        mContext = getSherlockActivity();
         settings = PreferenceManager.getDefaultSharedPreferences(mContext);
-        setContentView(R.layout.apps);
-        db = DGdatabase.getInstance(this.getApplicationContext());
-        apps_table = (TableLayout) findViewById(R.id.apps_table);
-       	sortmode = (Spinner) findViewById(R.id.sortmode);
+        db = DGdatabase.getInstance(mContext);
+        apps_table = (TableLayout) mView.findViewById(R.id.apps_table);
+       	sortmode = (Spinner) mView.findViewById(R.id.sortmode);
        	
        	sortmode.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
                 public void onItemSelected(AdapterView<?> parent, View itemSelected, int selectedItemPosition, long selected){
@@ -60,7 +73,7 @@ public class DGapps extends Activity {
     }
     
     private void update() {
-    	new updateTask(this,sortmode.getSelectedItemPosition()).execute();
+    	new updateTask(mContext,sortmode.getSelectedItemPosition()).execute();
     }
     
     private class updateTask extends AsyncTask<String, Void, Boolean> {
