@@ -51,7 +51,7 @@ public class DGoverlay extends Service{
 	public static boolean screenON = true;
 	private BroadcastReceiver screenOnReciever;
 	public static boolean isRunning = false;
-	private float ALERT_BARRIER_HIGH = 65;
+	public static float ALERT_BARRIER_CUSTOM = 70;
 	private float ALERT_BARRIER_MEDIUM = 40;
 	private float ALERT_BARRIER_LOW = 1;
 	public static boolean use_fahrenheit = false;
@@ -422,9 +422,9 @@ public class DGoverlay extends Service{
 				case 0:
 					toset.append("");
 					break;
-		    	//<item>Apps >70%CPU</item>
+		    	//<item>Apps >X%CPU</item>
 				case 1:
-					toset.append(prepHighest(ALERT_BARRIER_HIGH));
+					toset.append(prepHighest(ALERT_BARRIER_CUSTOM));
 					if(toset.length() > 0) {
 						lines.get(line).textstyle.setColor(settings.getInt("overlay.color.alert.line"+line, default_color_alert));
 					} else {
@@ -577,6 +577,20 @@ public class DGoverlay extends Service{
 				//<item>CELL signal strength</item>
 				case 34:
 					toset.append("Cell " + data.getPhone().formatSignal(data.getPhone().gsm_signal));
+					break;
+				case 35:
+					if(data.getWlan().ip == 0) {
+						toset.append("no ip");
+					} else {
+						toset.append(Formatter.formatIpAddress(data.getWlan().ip));
+					}
+					break;
+				case 36:
+					if(data.getWlan().name.length() > 0) {
+						toset.append(data.getWlan().name);
+					} else {
+						toset.append("no wifi");
+					}
 					break;
 				default:
 					toset.append("");

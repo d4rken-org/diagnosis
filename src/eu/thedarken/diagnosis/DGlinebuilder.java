@@ -3,7 +3,6 @@ package eu.thedarken.diagnosis;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DGlinebuilder extends ListActivity {
 	private SharedPreferences settings;
@@ -27,15 +27,15 @@ public class DGlinebuilder extends ListActivity {
 	private IconicAdapter adapter = null;
 	private ArrayList<Integer> array = new ArrayList<Integer>();
 	private int line = 99;
-	ArrayAdapter<CharSequence> itemadapter;
-
+	private ArrayAdapter<CharSequence> itemadapter;
+	private Context mContext;
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.linebuilder);
 		settings = PreferenceManager.getDefaultSharedPreferences(this);
 		prefEditor = settings.edit();
-
+		mContext = this;
 		itemadapter = ArrayAdapter.createFromResource(this, R.array.infolist, android.R.layout.simple_spinner_item);
 		itemadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -64,8 +64,12 @@ public class DGlinebuilder extends ListActivity {
 		itemspinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View arg1, int arg2, long arg3) {
 				if (parent.getSelectedItemPosition() != 0) {
-					adapter.insert(parent.getSelectedItemPosition(), adapter.getCount());
-					adapter.notifyDataSetChanged();
+					if (!DGmain.isPro && (parent.getSelectedItemPosition() == 35 || parent.getSelectedItemPosition() == 36)) {
+						Toast.makeText(mContext, "Sorry, but this is only available in Diagnosis Pro", Toast.LENGTH_LONG).show();
+					} else {
+						adapter.insert(parent.getSelectedItemPosition(), adapter.getCount());
+						adapter.notifyDataSetChanged();
+					}
 				}
 			}
 

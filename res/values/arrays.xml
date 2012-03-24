@@ -2,7 +2,7 @@
 <resources>
     <string-array name="infolist">
         <item>Select something</item><!-- 0 -->
-        <item>Apps >70%CPU</item><!-- 1 -->
+        <item>Apps >[Settings]%CPU</item><!-- 1 -->
         <item>Apps >40%CPU</item><!-- 2 -->
         <item>Apps >1% CPU</item><!-- 3 -->
         <item>Total Cpu use</item><!--4 -->
@@ -36,6 +36,8 @@
         <item>Ping</item><!-- 32 -->
         <item>WIFI signal strength</item><!-- 33 -->
 		<item>CELL signal strength</item><!-- 34 -->
+		<item>WIFI IP address [Pro]</item><!-- 35 -->
+		<item>WIFI name [Pro]</item><!-- 36 -->
 	</string-array>
     <string-array name="dividerlist">
         <item>Select something</item>

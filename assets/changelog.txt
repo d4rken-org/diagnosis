@@ -2,6 +2,7 @@
 - Complete new UI!
 - Make notification optional (Pro)
 - Added autostart (Pro)
+- Threshold for Apps can be choosen from 0 to 100% CPU use (Pro)
 - Moved some settings around
 - Fixed typos
 - Fixed calculation of total upload/download and read/written stats
@@ -9,6 +10,7 @@
 - Improved selector when editing lines
 - Added 2 more line presets
 - Tweaked some presets
+- Added WIFI IP and WIFI Name information (Pro)
 
 v0.6.0(17)
 - Fixed bug causing CPU frequency statistics not to show

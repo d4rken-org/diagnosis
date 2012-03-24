@@ -251,6 +251,8 @@ public class InfoClass {
 	public static class WlanInfo {
 		int signal = 0;
 		long system_time = 0;
+		int ip = 0;
+		String name = "";
 		String formatSignal(int sig) {
 			int s = 100+sig;
 			//if(s > 150) return "N/A";

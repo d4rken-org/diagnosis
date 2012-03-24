@@ -654,7 +654,7 @@ public class DGdata {
 	        				dospace = true;
 	        			} else if(x==32) {
 	        				doping = true;
-	        			} else if(x==33) {
+	        			} else if(x==33 || x==35 || x==36) {
 	        				dowifi = true;
 	        			} else if(x==34) {
 	        				//do cell?
@@ -1042,6 +1042,9 @@ public class DGdata {
 			WlanInfo wlan = new WlanInfo();
 			wlan.system_time = current_time;
 			wlan.signal = wi.getRssi();
+			wlan.ip = wi.getIpAddress();
+			if(wi.getSSID() != null)
+				wlan.name = wi.getSSID();
 			wlanlist.add(wlan);
 //			Log.d(mContext.getPackageName(), "wifi signal " + wlan.signal);
 		}

@@ -84,6 +84,7 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 	        if(DGmain.isPro) {
 	        	((CheckBoxPreference) findPreference("autostart.enabled")).setEnabled(true);
 	        	((CheckBoxPreference) findPreference("general.notification.enabled")).setEnabled(true);
+	        	((eu.thedarken.diagnosis.SeekBarPreference) findPreference("overlay.cpu.threshold")).setEnabled(true);
 	        }
         }   
     }
@@ -159,7 +160,9 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 				prefEditor.putString(key, target);
 				prefEditor.commit();
 			}
-		}
+		} else if(key.equals("overlay.cpu.threshold")) {
+			DGoverlay.ALERT_BARRIER_CUSTOM = (float)sharedPreferences.getInt(key, 70);
+		} 
 		Log.d("eu.thedarken.diagnosis", "preferences changed");
 		DGoverlay.initReset();
 	}

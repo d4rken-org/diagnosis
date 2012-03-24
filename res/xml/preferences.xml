@@ -435,32 +435,46 @@
                 </PreferenceCategory>
             </PreferenceScreen>
         </PreferenceScreen>
+        <PreferenceScreen
+            android:key="customisation.general"
+            android:summary="Change options which affect every line"
+            android:title="Customize options" >
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="layout.usefahrenheit"
+                android:summary="Uses Fahrenheit instead of Celsius for temperature"
+                android:title="Use Fahrenheit" />
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="layout.usefahrenheit"
-            android:summary="Uses Fahrenheit instead of Celsius for temperature"
-            android:title="Use Fahrenheit" />
+            <EditTextPreference
+                android:defaultValue="|"
+                android:dialogTitle="Enter divider:"
+                android:key="overlay.divider"
+                android:summary="Change the symbol that seperates information in the overlay."
+                android:title="Divider" />
 
-        <EditTextPreference
-            android:defaultValue="|"
-            android:dialogTitle="Enter divider:"
-            android:key="overlay.divider"
-            android:summary="Change the symbol that seperates information in the overlay."
-            android:title="Divider" />
+            <eu.thedarken.diagnosis.SeekBarPreference
+                android:defaultValue="70"
+                android:dialogMessage="Cpu threshold"
+                android:enabled="false"
+                android:key="overlay.cpu.threshold"
+                android:max="100"
+                android:summary="How high does the CPU need to be, for an app to be shown.[Diagnosis Pro]"
+                android:text="%"
+                android:title="Cpu threshold" />
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="general.database.hidesystem"
-            android:summary="Hides the system entries, leaving only apps to be shown."
-            android:title="Hide core processes" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="general.database.hidesystem"
+                android:summary="Hides the system entries, leaving only apps to be shown."
+                android:title="Hide core processes" />
 
-        <EditTextPreference
-            android:defaultValue="www.google.com"
-            android:dialogTitle="Targets can only be webservers so far.(i.e. &apos;www.google.com&apos;))"
-            android:key="general.internet.ping.target"
-            android:summary="Which address should the ping feature target?"
-            android:title="Ping target" />
+            <EditTextPreference
+                android:defaultValue="www.google.com"
+                android:dialogTitle="Targets can only be webservers so far.(i.e. &apos;www.google.com&apos;))"
+                android:key="general.internet.ping.target"
+                android:summary="Which address should the ping feature target?"
+                android:title="Ping target" />
+        </PreferenceScreen>
     </PreferenceCategory>
     <PreferenceCategory android:title="Advanced settings" >
         <PreferenceScreen

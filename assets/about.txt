@@ -1,31 +1,20 @@
 ﻿Diagnosis by darken
 Helpfile by DarkhShadow
 
-Official IRC chat:
-Server: chat.freenode.net
-Channel: #dark3n
-http://webchat.freenode.net/?channels=#dark3n
-See you soon?
-
 Should you have any question, problem or request, just send me an email (support@thedarken.eu).
 
-This help guide will cover the basics of the diagnosis app.
+This help guide will cover the basics of the Diagnosis app.
 
 Some important information about the overlay!
 The overlay can hang/lag or even vanish, if other apps need the resources desperately, this is preferred though as we do want to prevent Diagnosis to influence other apps. Don't worry, it will fix itself when resources are available again.
 
 Introduction:
-Now first things first, if you wish to use the various statistics available within the app you will need to turn database collection on, in order to do this, press menu>settings>then tick "Enable database".
+Now first things first, if you wish to use the various statistics available within the app you will need to turn database collection on, in order to do this, have a look at the settings.
 Please keep in mind this can cause lag on lower end phones and if so you may not be able to use this function.
 The update interval is how often data is collected (in seconds) and the information overlay is updated. Lower values use more CPU but offer faster updates. A value of 3-5 is usually fine, lower end devices might need to increase this to 9-10 to avoid lag.
-Now onto the overlay, by default, the first line displays CPU usage in %, number of active apps in brackets, the current processor speed in MHZ, download- and uploadrate per second of your device (includes 3G and Wifi).
-The second line displays apps running with there CPU usage in %, by default the third line shows nothing.
 
 Customisation:
-The overlay can be customized in various ways, one is what each line displays. Opening the settings you will see entries called Line1/2/3, these will determine what each line of the overlay displays. There are alot to choose from and probably more to come with each update, just look through them and find your preferred information.
-"Use Fahrenheit" switches the temperature unit.
-Below that we find the menu entry "Style and Position":
-The default settings will display the text in top left corner of your screen and color it green. The text can be moved by changing the X-Coordinate (Left<->Right) annd Y-Coordinate(Up<->Down). Fontsize will obviously change the size of the font. Normal text colors refers to the color of all information displayed excluding the names of active applications which will be colored in the alert text color. Change this to your preference or to improve visibility. You can also change the font type and alignment of the text (i.e. if you would like to have the text attached to the right side of your screen).
+The overlay can be customized in various ways, one is what each line displays. Opening the settings you will see an entry called 'Customize lines' containing Line1/2/3/4, these will determine what each line of the overlay displays. There are alot to choose from and probably more to come with each update, just look through them and find your preferred information.
 
 As display space is scarse acronyms are used to label the information in the overlay.
 Let me explain:
