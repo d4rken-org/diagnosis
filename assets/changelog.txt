@@ -1,4 +1,4 @@
-﻿v0.6.1(18)
+﻿v0.7.0(18)
 - Complete new UI!
 - Make notification optional (Pro)
 - Added autostart (Pro)
@@ -6,7 +6,9 @@
 - Fixed typos
 - Fixed calculation of total upload/download and read/written stats
 - Fixed crash after dropping database
-
+- Improved selector when editing lines
+- Added 2 more line presets
+- Tweaked some presets
 
 v0.6.0(17)
 - Fixed bug causing CPU frequency statistics not to show

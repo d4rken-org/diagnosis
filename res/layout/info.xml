@@ -14,6 +14,16 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/style_welcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg4"
+                android:gravity="center"
+                android:text="Style examples (create your own in settings!):"
+                android:textColor="#000000" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -21,15 +31,6 @@
                 android:background="@drawable/bg4"
                 android:gravity="center"
                 android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="Style examples (create your own in settings!):"
-                    android:textColor="#000000"
-                    android:id="@+id/style_welcome"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -43,7 +44,7 @@
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Style01"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/Black" />
 
                     <Button
                         android:id="@+id/style2"
@@ -51,7 +52,7 @@
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Style02"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/Black" />
 
                     <Button
                         android:id="@+id/style3"
@@ -59,7 +60,7 @@
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Style03"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/Black" />
 
                     <Button
                         android:id="@+id/style4"
@@ -67,7 +68,7 @@
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Style04"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/Black" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -82,14 +83,15 @@
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Style05"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/Black" />
+
                     <Button
                         android:id="@+id/style6"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Style06"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/Black" />
 
                     <Button
                         android:id="@+id/style7"
@@ -97,7 +99,7 @@
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Style07"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/Black" />
 
                     <Button
                         android:id="@+id/style8"
@@ -105,7 +107,7 @@
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Style08"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/Black" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -120,7 +122,7 @@
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Style09"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/Black" />
 
                     <Button
                         android:id="@+id/style10"
@@ -128,7 +130,7 @@
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Style10"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/Black" />
 
                     <Button
                         android:id="@+id/style11"
@@ -136,7 +138,7 @@
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Style11"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/Black" />
 
                     <Button
                         android:id="@+id/style12"
@@ -144,7 +146,7 @@
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Style12"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/Black" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -160,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Press &apos;Start tracking&apos; to begin!\n\nTo use the additional tabs you need to turn the ~DATABASE~ in settings on and wait a few minutes till enough data is gathered.\n\nCheck out the settings!\nThe app is still in beta status so please don&apos;t be upset if you encounter errors.\n\nIf you encounter bugs/problems or have requests, i would be happy if you send me an email(support@thedarken.eu), thanks!"
+                    android:text="Press &apos;Start tracking&apos; to begin!\n\nCheck out the settings!\nEverything is highly customizable!\n\nIf you encounter bugs/problems or have requests, i would be happy if you send me an email(support@thedarken.eu), thanks!"
                     android:textColor="#000000" />
             </LinearLayout>
 

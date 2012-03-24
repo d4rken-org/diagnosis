@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg4"
                 android:id="@+id/nodata"
-                android:text="No data saved yet!\nOpen the settings and select which data you want save."
+                android:text="No data saved yet!\nOpen the settings and select which data you want save.\n(It may take a few minutes until enough data is gathered)"
                 android:textColor="#000000" />
    		    <TableLayout
    		        xmlns:android="http://schemas.android.com/apk/res/android"
