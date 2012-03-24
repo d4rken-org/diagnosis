@@ -76,7 +76,8 @@ public class DGinfo extends SherlockFragment {
 		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle12();}});
 		styleButtons.add(b);
 		
-		
+		TextView welcome = (TextView) mView.findViewById(R.id.style_welcome);
+		welcome.setText("Welcome to Diagnosis " + DGmain.versName + ", try one of these styles or visit the settings and create your own.");
 	}
 	
 	@Override
