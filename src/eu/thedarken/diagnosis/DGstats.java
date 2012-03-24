@@ -25,7 +25,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class DGstats extends SherlockFragment {
 	private Context mContext;
@@ -45,9 +44,6 @@ public class DGstats extends SherlockFragment {
 		super.onActivityCreated(savedInstanceState);
 		mContext = this.getSherlockActivity();
 		settings = PreferenceManager.getDefaultSharedPreferences(mContext);
-		
-
-		Toast.makeText(mContext, "Enable chosen statistics in the settings!", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
@@ -224,6 +220,14 @@ public class DGstats extends SherlockFragment {
 
 		@Override
 		protected void onPostExecute(final Boolean ok) {
+			if(ok) {
+				TextView nodata = (TextView) mView.findViewById(R.id.nodata);
+				nodata.setVisibility(View.GONE);
+			} else {
+				TextView nodata = (TextView) mView.findViewById(R.id.nodata);
+				nodata.setVisibility(View.VISIBLE);
+			}
+			
 			if (pull_batt) {
 				batt_table.setVisibility(View.VISIBLE);
 				health.setText(battinfo.getHealth());
@@ -371,47 +375,69 @@ public class DGstats extends SherlockFragment {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
+			boolean gotdata = false;
 			battinfo = db.getBattTabInfo();
-			if (battinfo == null)
+			if (battinfo == null) 
 				pull_batt = false;
+			else
+				gotdata = true;
+
 
 			cpuinfo = db.getCpuTabInfo();
-			if (cpuinfo == null)
+			if (cpuinfo == null) 
 				pull_cpu = false;
+			else
+				gotdata = true;
 
 			freqinfo = db.getFreqTabInfo();
 			if (freqinfo == null)
 				pull_freq = false;
+			else
+				gotdata = true;
 
 			meminfo = db.getMemTabInfo();
 			if (meminfo == null)
 				pull_mem = false;
+			else
+				gotdata = true;
 
 			wlaninfo = db.getWlanTabInfo();
 			if (wlaninfo == null)
 				pull_wlan = false;
+			else
+				gotdata = true;
 
 			phoneinfo = db.getPhoneTabInfo();
 			if (phoneinfo == null)
 				pull_phone = false;
+			else
+				gotdata = true;
 
 			netinfo = db.getNetTabInfo();
 			if (netinfo == null)
 				pull_net = false;
+			else
+				gotdata = true;
 
 			spaceinfo = db.getSpaceTabInfo();
 			if (spaceinfo == null)
 				pull_space = false;
+			else
+				gotdata = true;
 
 			pinginfo = db.getPingTabInfo();
 			if (pinginfo == null)
 				pull_ping = false;
+			else
+				gotdata = true;
 
 			diskinfo = db.getDiskTabInfo();
 			if (diskinfo == null)
 				pull_disk = false;
+			else
+				gotdata = true;
 
-			return true;
+			return gotdata;
 		}
 	}
 }

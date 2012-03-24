@@ -20,7 +20,6 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class DGapps extends SherlockFragment {
     private Context mContext;
@@ -94,6 +93,9 @@ public class DGapps extends SherlockFragment {
         protected void onPostExecute(final Boolean ok) {
         	apps_table.removeAllViews();
             if(ok) {
+				TextView nodata = (TextView) mView.findViewById(R.id.nodata);
+				nodata.setVisibility(View.GONE);
+            	
         		apps_table.setVisibility(View.VISIBLE);
             	TableRow tr = new TableRow(context);
             	tr.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
@@ -171,7 +173,8 @@ public class DGapps extends SherlockFragment {
                 }
             } else {
         		apps_table.setVisibility(View.GONE);
-        		Toast.makeText(mContext, mContext.getText(R.string.no_data_yet),Toast.LENGTH_SHORT).show();
+				TextView nodata = (TextView) mView.findViewById(R.id.nodata);
+				nodata.setVisibility(View.VISIBLE);
             }
 
         	try {
