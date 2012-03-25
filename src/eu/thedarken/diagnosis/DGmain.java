@@ -206,10 +206,10 @@ public class DGmain extends SherlockFragmentActivity {
 			setNonRootBusyBox();
 			dialog.updateMessage("Getting busybox version");
 
-
+			BUSYBOX_VERSION = getBusyboxVersion();
 			if(BUSYBOX_VERSION == null || (BUSYBOX_VERSION != null && BUSYBOX_VERSION.length() == 0)) {
 				dialog.updateMessage("Startup ERROR!");
-				showDialog(Dialogs.BUSYBOX_ERROR);
+				showMyDialog(Dialogs.BUSYBOX_ERROR);
 			}
 
 			if (settings.getInt("dbversion", 0) < DB_DELETE_VERSION && db.exists()) {
@@ -221,11 +221,11 @@ public class DGmain extends SherlockFragmentActivity {
 				} else {
 					dialog.updateMessage("Could not delete DB");
 					Log.d(TAG, "Could not delete DB");
-					showDialog(Dialogs.REINSTALL);
+					showMyDialog(Dialogs.REINSTALL);
 				}
 				prefEditor.putInt("dbversion", DGmain.versCode);
 				prefEditor.commit();
-				showDialog(Dialogs.DATABASE_REMOVAL);
+				showMyDialog(Dialogs.DATABASE_REMOVAL);
 			} else {
 				prefEditor.putInt("dbversion", DGmain.versCode);
 				prefEditor.commit();
@@ -234,6 +234,13 @@ public class DGmain extends SherlockFragmentActivity {
 			Styles s = new Styles(mContext);
 			s.initLines();
 
+			try {
+				if(!FeelGood.isSignatureOfficial(mContext, mContext.getPackageName()))
+					isPro = false;
+			} catch (NameNotFoundException e) {
+				isPro = false;
+			}
+			
 			return true;
 		}
 	}
