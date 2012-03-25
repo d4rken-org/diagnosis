@@ -63,11 +63,12 @@ public class DGlinebuilder extends ListActivity {
 
 		itemspinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View arg1, int arg2, long arg3) {
-				if (parent.getSelectedItemPosition() != 0) {
-					if (!DGmain.isPro && (parent.getSelectedItemPosition() == 35 || parent.getSelectedItemPosition() == 36)) {
+				int arraypos = parent.getSelectedItemPosition();
+				if (arraypos != 0) {
+					if (!DGmain.isPro && (arraypos == 35 || arraypos == 36 || arraypos == 37 || arraypos == 38 || arraypos == 39)) {
 						Toast.makeText(mContext, "Sorry, but this is only available in Diagnosis Pro", Toast.LENGTH_LONG).show();
 					} else {
-						adapter.insert(parent.getSelectedItemPosition(), adapter.getCount());
+						adapter.insert(arraypos, adapter.getCount());
 						adapter.notifyDataSetChanged();
 					}
 				}

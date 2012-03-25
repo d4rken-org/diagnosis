@@ -38,6 +38,9 @@
 		<item>CELL signal strength</item><!-- 34 -->
 		<item>WIFI IP address [Pro]</item><!-- 35 -->
 		<item>WIFI name [Pro]</item><!-- 36 -->
+		<item>WIFI linkspeed [Pro]</item><!-- 37 -->
+		<item>Download (cell) [Pro]</item><!-- 38 -->
+		<item>Upload (cell) [Pro]</item><!-- 39 -->
 	</string-array>
     <string-array name="dividerlist">
         <item>Select something</item>

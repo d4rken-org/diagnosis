@@ -637,7 +637,7 @@ public class DGdata {
 	        				docpu = true;
 	        			} else if(x==10||x==11||x==12||x==13||x==14) {
 	        				domem = true;
-	        			} else if(x==16||x==17) {
+	        			} else if(x==16||x==17 || x==38 || x==39) {
 	        				donet = true;
 	        			} else if(x==18) {
 	        				doload = true;
@@ -654,7 +654,7 @@ public class DGdata {
 	        				dospace = true;
 	        			} else if(x==32) {
 	        				doping = true;
-	        			} else if(x==33 || x==35 || x==36) {
+	        			} else if(x==33 || x==35 || x==36 || x == 37) {
 	        				dowifi = true;
 	        			} else if(x==34) {
 	        				//do cell?
@@ -850,11 +850,17 @@ public class DGdata {
 					avg.rate_up += temp.rate_up;
 					avg.traffic_down += temp.traffic_down;
 					avg.traffic_up += temp.traffic_up;
+					avg.mobile_rate_down += temp.mobile_rate_down;
+					avg.mobile_rate_up += temp.mobile_rate_up;
+					avg.mobile_traffic_down += temp.mobile_traffic_down;
+					avg.mobile_traffic_up += temp.mobile_traffic_up;
 					avg.system_time += temp.system_time;
 					cnt--;
 				}
 				avg.rate_down /= this.density;
 				avg.rate_up /= this.density;
+				avg.mobile_rate_down /= this.density;
+				avg.mobile_rate_up /= this.density;
 				avg.system_time /= this.density;
 				n_inserts.add(avg);
 			}
@@ -1034,6 +1040,8 @@ public class DGdata {
 
 	long global_last_down = TrafficStats.getTotalRxBytes();
 	long global_last_up = TrafficStats.getTotalTxBytes();
+	long mobile_global_last_down = TrafficStats.getMobileRxBytes();
+	long mobile_global_last_up = TrafficStats.getMobileTxBytes();
 	long net_duration = 0;
 	
 	private void doWifi() {
@@ -1043,6 +1051,7 @@ public class DGdata {
 			wlan.system_time = current_time;
 			wlan.signal = wi.getRssi();
 			wlan.ip = wi.getIpAddress();
+			wlan.linkspeed = wi.getLinkSpeed();
 			if(wi.getSSID() != null)
 				wlan.name = wi.getSSID();
 			wlanlist.add(wlan);
@@ -1053,23 +1062,56 @@ public class DGdata {
 	private void doNet() {
 		NetInfo ret = new NetInfo();
 
-		long current_down = TrafficStats.getTotalRxBytes();
-		long current_up = TrafficStats.getTotalTxBytes();
-
-		//Rates
-		long intervall = System.currentTimeMillis() - net_duration;
-		ret.rate_down = Math.round((current_down - global_last_down)*1000/intervall);
-		ret.rate_up = Math.round((current_up - global_last_up)*1000/intervall);	
-		if(ret.rate_down < 0) ret.rate_down = 0;
-		if(ret.rate_up < 0) ret.rate_up = 0;
-		//Traffic
-		ret.traffic_down = current_down - global_last_down;
-		ret.traffic_up = current_up - global_last_up;
-		if(ret.traffic_down < 0) ret.traffic_down = 0;
-		if(ret.traffic_up < 0) ret.traffic_up = 0;
+		if(global_last_down == TrafficStats.UNSUPPORTED || global_last_up == TrafficStats.UNSUPPORTED) {
+			ret.traffic_up = TrafficStats.UNSUPPORTED;
+			ret.traffic_down = TrafficStats.UNSUPPORTED;
+			ret.rate_up = TrafficStats.UNSUPPORTED;
+			ret.rate_down = TrafficStats.UNSUPPORTED;
+		} else {
+			long current_down = TrafficStats.getTotalRxBytes();
+			long current_up = TrafficStats.getTotalTxBytes();
+	
+			//Rates
+			long intervall = System.currentTimeMillis() - net_duration;
+			ret.rate_down = Math.round((current_down - global_last_down)*1000/intervall);
+			ret.rate_up = Math.round((current_up - global_last_up)*1000/intervall);	
+			if(ret.rate_down < 0) ret.rate_down = 0;
+			if(ret.rate_up < 0) ret.rate_up = 0;
+			//Traffic
+			ret.traffic_down = current_down - global_last_down;
+			ret.traffic_up = current_up - global_last_up;
+			if(ret.traffic_down < 0) ret.traffic_down = 0;
+			if(ret.traffic_up < 0) ret.traffic_up = 0;
+			
+			global_last_down = current_down;
+			global_last_up = current_up;		
+		}
 		
-		global_last_down = current_down;
-		global_last_up = current_up;
+		if(mobile_global_last_down == TrafficStats.UNSUPPORTED || mobile_global_last_down == TrafficStats.UNSUPPORTED) {
+			ret.mobile_traffic_up = TrafficStats.UNSUPPORTED;
+			ret.mobile_traffic_down = TrafficStats.UNSUPPORTED;
+			ret.mobile_rate_up = TrafficStats.UNSUPPORTED;
+			ret.mobile_rate_down = TrafficStats.UNSUPPORTED;
+		} else {
+			long mobile_current_down = TrafficStats.getMobileRxBytes();
+			long mobile_current_up = TrafficStats.getMobileTxBytes();
+
+			//Rates
+			long intervall = System.currentTimeMillis() - net_duration;
+			ret.mobile_rate_down = Math.round((mobile_current_down - mobile_global_last_down)*1000/intervall);
+			ret.mobile_rate_up = Math.round((mobile_current_up - mobile_global_last_up)*1000/intervall);	
+			if(ret.mobile_rate_down < 0) ret.mobile_rate_down = 0;
+			if(ret.mobile_rate_up < 0) ret.mobile_rate_up = 0;
+			//Traffic
+			ret.mobile_traffic_down = mobile_current_down - mobile_global_last_down;
+			ret.mobile_traffic_up = mobile_current_up - mobile_global_last_up;
+			if(ret.mobile_traffic_down < 0) ret.mobile_traffic_down = 0;
+			if(ret.mobile_traffic_up < 0) ret.mobile_traffic_up = 0;
+			
+			mobile_global_last_down = mobile_current_down;
+			mobile_global_last_up = mobile_current_up;
+		}
+		
 		net_duration = System.currentTimeMillis();
 		ret.system_time =  current_time;
 		netlist.add(ret);

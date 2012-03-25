@@ -74,10 +74,16 @@ public class DGstats extends SherlockFragment {
 		private MemTabInfo meminfo = null;
 		private TextView mem_avg;
 
-		private TableLayout net_table;
+		
 		private NetTabInfo netinfo = null;
+		private TableLayout net_table;
 		private TextView latest_down_rate, latest_up_rate, max_down, max_up, yes_down, yes_up, traffic_last_3h_down, traffic_last_3h_up, traffic_last_day_down,
 				traffic_last_day_up, traffic_last_week_down, traffic_last_week_up;
+		
+		private TableLayout mobile_traffic_rates_table;
+		private TableLayout mobile_traffic_total_table;
+		private TextView mobile_latest_down_rate, mobile_latest_up_rate, mobile_max_down, mobile_max_up, mobile_yes_down, mobile_yes_up, mobile_traffic_last_3h_down, mobile_traffic_last_3h_up, mobile_traffic_last_day_down,
+		mobile_traffic_last_day_up, mobile_traffic_last_week_down, mobile_traffic_last_week_up;
 
 		private TableLayout space_table;
 		private SpaceTabInfo spaceinfo = null;
@@ -172,6 +178,21 @@ public class DGstats extends SherlockFragment {
 			traffic_last_day_up = (TextView) mView.findViewById(R.id.traffic_last_day_up);
 			traffic_last_week_down = (TextView) mView.findViewById(R.id.traffic_last_week_down);
 			traffic_last_week_up = (TextView) mView.findViewById(R.id.traffic_last_week_up);
+
+			mobile_traffic_rates_table = (TableLayout) mView.findViewById(R.id.mobile_traffic_rates);
+			mobile_traffic_total_table = (TableLayout) mView.findViewById(R.id.mobile_traffic_total);
+			mobile_latest_down_rate = (TextView) mView.findViewById(R.id.mobile_latest_download_rate);
+			mobile_latest_up_rate = (TextView) mView.findViewById(R.id.mobile_latest_upload_rate);
+			mobile_max_down = (TextView) mView.findViewById(R.id.mobile_max_obs_download);
+			mobile_max_up = (TextView) mView.findViewById(R.id.mobile_max_obs_upload);
+			mobile_yes_down = (TextView) mView.findViewById(R.id.mobile_yesterday_max_download);
+			mobile_yes_up = (TextView) mView.findViewById(R.id.mobile_yesterday_max_upload);
+			mobile_traffic_last_3h_down = (TextView) mView.findViewById(R.id.mobile_traffic_last_threehours_down);
+			mobile_traffic_last_3h_up = (TextView) mView.findViewById(R.id.mobile_traffic_last_threehours_up);
+			mobile_traffic_last_day_down = (TextView) mView.findViewById(R.id.mobile_traffic_last_day_down);
+			mobile_traffic_last_day_up = (TextView) mView.findViewById(R.id.mobile_traffic_last_day_up);
+			mobile_traffic_last_week_down = (TextView) mView.findViewById(R.id.mobile_traffic_last_week_down);
+			mobile_traffic_last_week_up = (TextView) mView.findViewById(R.id.mobile_traffic_last_week_up);
 
 			space_table = (TableLayout) mView.findViewById(R.id.space_table);
 			extern_total = (TextView) mView.findViewById(R.id.extern_total);
@@ -291,6 +312,37 @@ public class DGstats extends SherlockFragment {
 				traffic_last_day_up.setText(Formatter.formatFileSize(mContext, netinfo.traffic_last_day_up));
 				traffic_last_week_down.setText(Formatter.formatFileSize(mContext, netinfo.traffic_last_week_down));
 				traffic_last_week_up.setText(Formatter.formatFileSize(mContext, netinfo.traffic_last_week_up));
+				
+				if (DGmain.isPro) {
+					if (netinfo.mobile_rate_down > 0 || netinfo.mobile_rate_up > 0 || netinfo.mobile_peak_rate_down_last_3_hours > 0
+							|| netinfo.mobile_peak_rate_up_last_3_hours > 0 || netinfo.mobile_peak_rate_down_last_24_hours > 0
+							|| netinfo.mobile_peak_rate_up_last_24_hours > 0)
+						mobile_traffic_rates_table.setVisibility(View.VISIBLE);
+					else
+						mobile_traffic_rates_table.setVisibility(View.GONE);
+					if (netinfo.mobile_traffic_last_threehour_down > 0 || netinfo.mobile_traffic_last_threehour_up > 0
+							|| netinfo.mobile_traffic_last_day_down > 0 || netinfo.mobile_traffic_last_day_up > 0 || netinfo.mobile_traffic_last_week_down > 0
+							|| netinfo.mobile_traffic_last_week_up > 0)
+						mobile_traffic_total_table.setVisibility(View.VISIBLE);
+					else
+						mobile_traffic_total_table.setVisibility(View.GONE);
+					mobile_latest_down_rate.setText(Formatter.formatFileSize(mContext, netinfo.mobile_rate_down) + "/s");
+					mobile_latest_up_rate.setText(Formatter.formatFileSize(mContext, netinfo.mobile_rate_up) + "/s");
+					mobile_max_down.setText(Formatter.formatFileSize(mContext, netinfo.mobile_peak_rate_down_last_3_hours) + "/s");
+					mobile_max_up.setText(Formatter.formatFileSize(mContext, netinfo.mobile_peak_rate_up_last_3_hours) + "/s");
+					mobile_yes_down.setText(Formatter.formatFileSize(mContext, netinfo.mobile_peak_rate_down_last_24_hours) + "/s");
+					mobile_yes_up.setText(Formatter.formatFileSize(mContext, netinfo.mobile_peak_rate_up_last_24_hours) + "/s");
+
+					mobile_traffic_last_3h_down.setText(Formatter.formatFileSize(mContext, netinfo.mobile_traffic_last_threehour_down));
+					mobile_traffic_last_3h_up.setText(Formatter.formatFileSize(mContext, netinfo.mobile_traffic_last_threehour_up));
+					mobile_traffic_last_day_down.setText(Formatter.formatFileSize(mContext, netinfo.mobile_traffic_last_day_down));
+					mobile_traffic_last_day_up.setText(Formatter.formatFileSize(mContext, netinfo.mobile_traffic_last_day_up));
+					mobile_traffic_last_week_down.setText(Formatter.formatFileSize(mContext, netinfo.mobile_traffic_last_week_down));
+					mobile_traffic_last_week_up.setText(Formatter.formatFileSize(mContext, netinfo.mobile_traffic_last_week_up));
+				} else {
+					mobile_traffic_rates_table.setVisibility(View.GONE);
+					mobile_traffic_total_table.setVisibility(View.GONE);
+				}
 			} else {
 				net_table.setVisibility(View.GONE);
 			}

@@ -167,6 +167,10 @@ public class InfoClass {
 		long traffic_down = 0;
 		long rate_up = 0;
 		long rate_down = 0;
+		long mobile_traffic_up = 0;
+		long mobile_traffic_down = 0;
+		long mobile_rate_up = 0;
+		long mobile_rate_down = 0;
 		long system_time = 0;
 	}
 	
@@ -181,6 +185,16 @@ public class InfoClass {
 		long traffic_last_day_up = 0;
 		long traffic_last_week_down = 0;
 		long traffic_last_week_up = 0;
+		long mobile_peak_rate_down_last_3_hours = 0;
+		long mobile_peak_rate_up_last_3_hours = 0;
+		long mobile_peak_rate_down_last_24_hours = 0;
+		long mobile_peak_rate_up_last_24_hours = 0;
+		long mobile_traffic_last_threehour_down = 0;
+		long mobile_traffic_last_threehour_up = 0;
+		long mobile_traffic_last_day_down = 0;
+		long mobile_traffic_last_day_up = 0;
+		long mobile_traffic_last_week_down = 0;
+		long mobile_traffic_last_week_up = 0;
 	}
 	
 	public static class SpaceInfo {
@@ -253,6 +267,7 @@ public class InfoClass {
 		long system_time = 0;
 		int ip = 0;
 		String name = "";
+		int linkspeed = 0;
 		String formatSignal(int sig) {
 			int s = 100+sig;
 			//if(s > 150) return "N/A";

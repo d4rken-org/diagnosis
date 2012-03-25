@@ -10,7 +10,8 @@
 - Improved selector when editing lines
 - Added 2 more line presets
 - Tweaked some presets
-- Added WIFI IP and WIFI Name information (Pro)
+- Added WIFI IP,name and linkspeed information (Pro)
+- Added sepperate Download/Upload stats for cellular network (Pro)
 
 v0.6.0(17)
 - Fixed bug causing CPU frequency statistics not to show

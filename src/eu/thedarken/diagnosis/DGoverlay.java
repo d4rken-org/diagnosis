@@ -23,6 +23,7 @@ import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.net.TrafficStats;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
@@ -499,11 +500,19 @@ public class DGoverlay extends Service{
 					break;
 		        //<item>Download</item>
 				case 16: //Download
-					toset.append("DL " + Formatter.formatFileSize(mContext, data.getNet().rate_down) + "/s");
+					if(data.getNet().rate_down == TrafficStats.UNSUPPORTED) {
+						toset.append("N/A");
+					} else {
+						toset.append("DL " + Formatter.formatFileSize(mContext, data.getNet().rate_down) + "/s");
+					}
 					break;
 		        //<item>Upload</item>
 				case 17: //Upload
-					toset.append("UL " + Formatter.formatFileSize(mContext, data.getNet().rate_up) + "/s");
+					if(data.getNet().rate_up == TrafficStats.UNSUPPORTED) {
+						toset.append("N/A");
+					} else {
+						toset.append("UL " + Formatter.formatFileSize(mContext, data.getNet().rate_up) + "/s");
+					}
 					break;
 		        //<item>System load</item>
 				case 18: //Load
@@ -590,6 +599,27 @@ public class DGoverlay extends Service{
 						toset.append(data.getWlan().name);
 					} else {
 						toset.append("no wifi");
+					}
+					break;
+				case 37:
+					if(data.getWlan().linkspeed > 0) {
+						toset.append(data.getWlan().linkspeed + "Mbps");
+					} else {
+						toset.append("no link");
+					}
+					break;
+				case 38:
+					if(data.getNet().mobile_rate_down == TrafficStats.UNSUPPORTED) {
+						toset.append("N/A");
+					} else {
+						toset.append("cDL " + Formatter.formatFileSize(mContext, data.getNet().mobile_rate_down) + "/s");
+					}
+					break;
+				case 39:
+					if(data.getNet().mobile_rate_up == TrafficStats.UNSUPPORTED) {
+						toset.append("N/A");
+					} else {
+						toset.append("cUL " + Formatter.formatFileSize(mContext, data.getNet().mobile_rate_up) + "/s");
 					}
 					break;
 				default:

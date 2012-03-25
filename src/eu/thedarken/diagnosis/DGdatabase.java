@@ -84,7 +84,11 @@ public class DGdatabase {
 	    "traffic_up long, " +
 	    "traffic_down long, " +
 	    "rate_up long, " +
-	    "rate_down long); ";
+	    "rate_down long, " +
+	    "mobile_traffic_up long, " +
+	    "mobile_traffic_down long, " +
+	    "mobile_rate_up long, " +
+	    "mobile_rate_down long); ";
 	static final String create_batt_data = "create table IF NOT EXISTS "+BATT_TABLE+" " +
 	    "(system_time long, " +
 	    "scale integer, " +
@@ -464,6 +468,10 @@ public class DGdatabase {
             int traffic_down = ih.getColumnIndex("traffic_down");
             int rate_up = ih.getColumnIndex("rate_up");
             int rate_down = ih.getColumnIndex("rate_down");
+            int mobile_traffic_up = ih.getColumnIndex("mobile_traffic_up");
+            int mobile_traffic_down = ih.getColumnIndex("mobile_traffic_down");
+            int mobile_rate_up = ih.getColumnIndex("mobile_rate_up");
+            int mobile_rate_down = ih.getColumnIndex("mobile_rate_down");
             int system_time = ih.getColumnIndex("system_time");       
             for(NetInfo ni : n) {
                 ih.prepareForInsert();
@@ -471,6 +479,10 @@ public class DGdatabase {
             	ih.bind(traffic_down, ni.traffic_down);
             	ih.bind(rate_up, ni.rate_up);
             	ih.bind(rate_down, ni.rate_down);
+            	ih.bind(mobile_traffic_up, ni.mobile_traffic_up);
+            	ih.bind(mobile_traffic_down, ni.mobile_traffic_down);
+            	ih.bind(mobile_rate_up, ni.mobile_rate_up);
+            	ih.bind(mobile_rate_down, ni.mobile_rate_down);
                	ih.bind(system_time, ni.system_time);
             	ih.execute();
             }
@@ -487,7 +499,7 @@ public class DGdatabase {
     	if(openRead()) {
 	    	Cursor c = null;
 	    	try {
-	    		c = mDB.rawQuery("SELECT traffic_up, traffic_down, rate_up, rate_down, system_time " +
+	    		c = mDB.rawQuery("SELECT traffic_up, traffic_down, rate_up, rate_down, mobile_traffic_up, mobile_traffic_down, mobile_rate_up, mobile_rate_down,system_time " +
 	    				"FROM " + NET_TABLE + " " +
 	    				"ORDER BY system_time DESC " +
 	    				"LIMIT 1;",null);
@@ -502,6 +514,10 @@ public class DGdatabase {
 				ret.traffic_down = c.getLong(c.getColumnIndex("traffic_down"));
 				ret.rate_up = c.getLong(c.getColumnIndex("rate_up"));
 				ret.rate_down= c.getLong(c.getColumnIndex("rate_down"));
+				ret.mobile_traffic_up = c.getLong(c.getColumnIndex("mobile_traffic_up"));
+				ret.mobile_traffic_down = c.getLong(c.getColumnIndex("mobile_traffic_down"));
+				ret.mobile_rate_up = c.getLong(c.getColumnIndex("mobile_rate_up"));
+				ret.mobile_rate_down= c.getLong(c.getColumnIndex("mobile_rate_down"));
 				ret.system_time = c.getLong(c.getColumnIndex("system_time"));
 				c.close();
 			} else {
@@ -512,8 +528,7 @@ public class DGdatabase {
 			//3 hours
 			c = null;
 	    	try {
-	    		c = mDB.rawQuery("SELECT MAX(rate_up) AS peak_rate_up_last_3_hours, " +
-	    				"MAX(rate_down) AS peak_rate_down_last_3_hours, SUM(traffic_down) AS traffic_last_threehour_down, SUM(traffic_up) AS traffic_last_threehour_up,  " +
+	    		c = mDB.rawQuery("SELECT MAX(rate_up) AS peak_rate_up_last_3_hours, MAX(rate_down) AS peak_rate_down_last_3_hours, SUM(traffic_down) AS traffic_last_threehour_down, SUM(traffic_up) AS traffic_last_threehour_up, MAX(mobile_rate_up) AS mobile_peak_rate_up_last_3_hours, MAX(mobile_rate_down) AS mobile_peak_rate_down_last_3_hours, SUM(mobile_traffic_down) AS mobile_traffic_last_threehour_down, SUM(mobile_traffic_up) AS mobile_traffic_last_threehour_up,  " +
 	    				"system_time " +
 	    				"FROM " + NET_TABLE + " " +
 	    				"WHERE system_time > " + (System.currentTimeMillis()-10800000) + ";",null);
@@ -528,6 +543,10 @@ public class DGdatabase {
 				ret.peak_rate_up_last_3_hours = c.getLong(c.getColumnIndex("peak_rate_up_last_3_hours"));
 				ret.traffic_last_threehour_down = c.getLong(c.getColumnIndex("traffic_last_threehour_down"));
 				ret.traffic_last_threehour_up = c.getLong(c.getColumnIndex("traffic_last_threehour_up"));
+				ret.mobile_peak_rate_down_last_3_hours = c.getLong(c.getColumnIndex("mobile_peak_rate_down_last_3_hours"));
+				ret.mobile_peak_rate_up_last_3_hours = c.getLong(c.getColumnIndex("mobile_peak_rate_up_last_3_hours"));
+				ret.mobile_traffic_last_threehour_down = c.getLong(c.getColumnIndex("mobile_traffic_last_threehour_down"));
+				ret.mobile_traffic_last_threehour_up = c.getLong(c.getColumnIndex("mobile_traffic_last_threehour_up"));
 				c.close();
 			} else {
 				Log.d(mContext.getPackageName(),"getNetTabInfo query2 resulted in null cursor");
@@ -537,8 +556,7 @@ public class DGdatabase {
 			//24 hours
 			c = null;
 	    	try {
-	    		c = mDB.rawQuery("SELECT MAX(rate_up) AS peak_rate_up_last_24_hours, " +
-	    				"MAX(rate_down) AS peak_rate_down_last_24_hours, SUM(traffic_down) AS traffic_last_day_down, SUM(traffic_up) AS traffic_last_day_up, " +
+	    		c = mDB.rawQuery("SELECT MAX(rate_up) AS peak_rate_up_last_24_hours, MAX(rate_down) AS peak_rate_down_last_24_hours, SUM(traffic_down) AS traffic_last_day_down, SUM(traffic_up) AS traffic_last_day_up, MAX(mobile_rate_up) AS mobile_peak_rate_up_last_24_hours, MAX(mobile_rate_down) AS mobile_peak_rate_down_last_24_hours, SUM(mobile_traffic_down) AS mobile_traffic_last_day_down, SUM(mobile_traffic_up) AS mobile_traffic_last_day_up," +
 	    				"system_time " +
 	    				"FROM " + NET_TABLE + " " +
 	    				"WHERE system_time > " + (System.currentTimeMillis()-86400000) + ";",null);
@@ -553,6 +571,10 @@ public class DGdatabase {
 				ret.peak_rate_up_last_24_hours = c.getLong(c.getColumnIndex("peak_rate_up_last_24_hours"));
 				ret.traffic_last_day_down = c.getLong(c.getColumnIndex("traffic_last_day_down"));
 				ret.traffic_last_day_up = c.getLong(c.getColumnIndex("traffic_last_day_up"));
+				ret.mobile_peak_rate_down_last_24_hours = c.getLong(c.getColumnIndex("mobile_peak_rate_down_last_24_hours"));
+				ret.mobile_peak_rate_up_last_24_hours = c.getLong(c.getColumnIndex("mobile_peak_rate_up_last_24_hours"));
+				ret.mobile_traffic_last_day_down = c.getLong(c.getColumnIndex("mobile_traffic_last_day_down"));
+				ret.mobile_traffic_last_day_up = c.getLong(c.getColumnIndex("mobile_traffic_last_day_up"));
 				c.close();
 			} else {
 				Log.d(mContext.getPackageName(),"getNetTabInfo query3 resulted in null cursor");
@@ -562,8 +584,7 @@ public class DGdatabase {
 			//1 week
 			c = null;
 	    	try {
-	    		c = mDB.rawQuery("SELECT MAX(rate_up) AS peak_rate_up_last_24_hours, " +
-	    				"MAX(rate_down) AS peak_rate_down_last_24_hours, SUM(traffic_down) AS traffic_last_week_down, SUM(traffic_up) AS traffic_last_week_up, " +
+	    		c = mDB.rawQuery("SELECT MAX(rate_up) AS peak_rate_up_last_24_hours, MAX(rate_down) AS peak_rate_down_last_24_hours, SUM(traffic_down) AS traffic_last_week_down, SUM(traffic_up) AS traffic_last_week_up, MAX(mobile_rate_up) AS mobile_peak_rate_up_last_24_hours, MAX(mobile_rate_down) AS mobile_peak_rate_down_last_24_hours, SUM(mobile_traffic_down) AS mobile_traffic_last_week_down, SUM(mobile_traffic_up) AS mobile_traffic_last_week_up, " +
 	    				"system_time " +
 	    				"FROM " + NET_TABLE + " " +
 	    				"WHERE system_time > " + (System.currentTimeMillis()-604800000) + ";",null);
@@ -578,6 +599,10 @@ public class DGdatabase {
 				ret.peak_rate_up_last_24_hours = c.getLong(c.getColumnIndex("peak_rate_up_last_24_hours"));
 				ret.traffic_last_week_down = c.getLong(c.getColumnIndex("traffic_last_week_down"));
 				ret.traffic_last_week_up = c.getLong(c.getColumnIndex("traffic_last_week_up"));
+				ret.mobile_peak_rate_down_last_24_hours = c.getLong(c.getColumnIndex("mobile_peak_rate_down_last_24_hours"));
+				ret.mobile_peak_rate_up_last_24_hours = c.getLong(c.getColumnIndex("mobile_peak_rate_up_last_24_hours"));
+				ret.mobile_traffic_last_week_down = c.getLong(c.getColumnIndex("mobile_traffic_last_week_down"));
+				ret.mobile_traffic_last_week_up = c.getLong(c.getColumnIndex("mobile_traffic_last_week_up"));
 				c.close();
 			} else {
 				Log.d(mContext.getPackageName(),"getNetTabInfo query3 resulted in null cursor");
