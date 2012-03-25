@@ -202,8 +202,7 @@ public class DGmain extends SherlockFragmentActivity {
 		protected Boolean doInBackground(String... params) {
 			dialog.updateMessage("Copying busybox...");
 			CopyAssets();
-			dialog.updateMessage("Setting busybox rights");
-			setNonRootBusyBox();
+
 			dialog.updateMessage("Getting busybox version");
 
 			BUSYBOX_VERSION = getBusyboxVersion();
@@ -314,6 +313,7 @@ public class DGmain extends SherlockFragmentActivity {
 				return false;
 			}
 			Log.d(TAG, "busybox has been successfully created.");
+			setNonRootBusyBox();
 			return true;
 		} else {
 			Log.d(TAG, "busybox found.");
