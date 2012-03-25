@@ -206,13 +206,11 @@ public class DGmain extends SherlockFragmentActivity {
 			setNonRootBusyBox();
 			dialog.updateMessage("Getting busybox version");
 
-			try {
-				BUSYBOX_VERSION = getBusyboxVersion();
-			} catch (NullPointerException e) {
+
+			if(BUSYBOX_VERSION == null || (BUSYBOX_VERSION != null && BUSYBOX_VERSION.length() == 0)) {
 				dialog.updateMessage("Startup ERROR!");
 				showDialog(Dialogs.BUSYBOX_ERROR);
 			}
-			showDialog(Dialogs.BUSYBOX_ERROR);
 
 			if (settings.getInt("dbversion", 0) < DB_DELETE_VERSION && db.exists()) {
 				if (db.delete()) {
