@@ -581,7 +581,7 @@ public class DGmain extends SherlockFragmentActivity {
 						.setTitle("News")
 						.setCancelable(true)
 						.setMessage(
-								"I'm sure you have noticed the new UI and i hope you like it.\n\nI have published 'Diagnosis Pro'.\nWhich you can purchase to enable a few additional options and support my work.\nThank you.")
+								"I'm sure you have noticed the new UI and i hope you like it.\n\n'Diagnosis Pro' is now available, it unlocks a few additional features.\nIf you like my work, you can purchase it to support me, if you don't like my work, you can still purchase it to use one of the extra features.\nThank you.")
 						.setPositiveButton("Diagnosis Pro", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
