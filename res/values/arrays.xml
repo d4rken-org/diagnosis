@@ -42,6 +42,21 @@
 		<item>Download (cell) [Pro]</item><!-- 38 -->
 		<item>Upload (cell) [Pro]</item><!-- 39 -->
 	</string-array>
+	    <string-array name="stylelist">
+        <item>Click me and choose!</item><!-- 0 -->
+        <item>Style 1</item><!-- 1 -->
+        <item>Style 2</item><!-- 2 -->
+        <item>Style 3</item><!-- 3 -->
+        <item>Style 4</item><!--4 -->
+        <item>Style 5</item><!-- 5 -->
+        <item>Style 6</item><!-- 6 -->
+        <item>Style 7</item><!-- 7 -->
+        <item>Style 8</item><!-- 8 -->
+        <item>Style 9</item><!-- 9 -->
+        <item>Style 10</item><!-- 10 -->
+        <item>Style 11</item><!--11 -->
+        <item>Style 12</item><!-- 12 -->
+	</string-array>
     <string-array name="dividerlist">
         <item>Select something</item>
         <item>blank/space</item>

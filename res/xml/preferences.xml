@@ -4,12 +4,12 @@
     <PreferenceCategory android:title="General" >
         <eu.thedarken.diagnosis.SeekBarPreference
             android:defaultValue="5"
-            android:dialogMessage="Intervall"
+            android:dialogMessage="Interval"
             android:key="general.intervall"
             android:max="30"
             android:summary="How often diagnosis should refresh. A smaller number means more accurate values, but also more database size and resources."
             android:text=" seconds"
-            android:title="Update intervall" />
+            android:title="Update interval" />
 
         <CheckBoxPreference
             android:defaultValue="false"

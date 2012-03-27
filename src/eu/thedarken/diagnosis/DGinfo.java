@@ -14,8 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class DGinfo extends SherlockFragment {
 	private Context mContext;
@@ -38,46 +43,64 @@ public class DGinfo extends SherlockFragment {
 		settings = PreferenceManager.getDefaultSharedPreferences(mContext);
 		db_size = (TextView) mView.findViewById(R.id.db_size);
 		db_status = (TextView) mView.findViewById(R.id.db_status);
-
-		Button b = (Button) mView.findViewById(R.id.style1);
-		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle1();}});
-		styleButtons.add(b);
-		b = (Button) mView.findViewById(R.id.style2);
-		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle2();}});
-		styleButtons.add(b);
-		b = (Button) mView.findViewById(R.id.style3);
-		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle3();}});
-		styleButtons.add(b);
-		b = (Button) mView.findViewById(R.id.style4);
-		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle4();}});
-		styleButtons.add(b);
-		b = (Button) mView.findViewById(R.id.style5);
-		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle5();}});
-		styleButtons.add(b);
-		b = (Button) mView.findViewById(R.id.style6);
-		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle6();}});
-		styleButtons.add(b);
-		b = (Button) mView.findViewById(R.id.style7);
-		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle7();}});
-		styleButtons.add(b);
-		b = (Button) mView.findViewById(R.id.style8);
-		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle8();}});
-		styleButtons.add(b);
-		b = (Button) mView.findViewById(R.id.style9);
-		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle9();}});
-		styleButtons.add(b);
-		b = (Button) mView.findViewById(R.id.style10);
-		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle10();}});
-		styleButtons.add(b);
-		b = (Button) mView.findViewById(R.id.style11);
-		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle11();}});
-		styleButtons.add(b);
-		b = (Button) mView.findViewById(R.id.style12);
-		b.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {Styles s = new Styles(mContext);s.setStyle12();}});
-		styleButtons.add(b);
 		
 		TextView welcome = (TextView) mView.findViewById(R.id.style_welcome);
 		welcome.setText("Welcome to Diagnosis " + DGmain.versName + ", try one of these styles or visit the settings and create your own.");
+	
+		ArrayAdapter<CharSequence> stylesadapter = ArrayAdapter.createFromResource(mContext, R.array.stylelist, android.R.layout.simple_spinner_item );
+		stylesadapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+		Spinner styles = (Spinner) mView.findViewById( R.id.stylespinner );
+		styles.setAdapter( stylesadapter );
+		styles.setOnItemSelectedListener(new OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View arg1, int arg2, long arg3) {
+				int arraypos = parent.getSelectedItemPosition();
+				Styles s = new Styles(mContext);
+				switch(arraypos) {
+					case 0:
+//						s.initLines();
+						break;
+					case 1:
+						s.setStyle1();
+						break;
+					case 2:
+						s.setStyle2();
+						break;
+					case 3:
+						s.setStyle3();
+						break;
+					case 4:
+						s.setStyle4();
+						break;
+					case 5:
+						s.setStyle5();
+						break;
+					case 6:
+						s.setStyle6();
+						break;
+					case 7:
+						s.setStyle7();
+						break;
+					case 8:
+						s.setStyle8();
+						break;
+					case 9:
+						s.setStyle9();
+						break;
+					case 10:
+						s.setStyle10();
+						break;
+					case 11:
+						s.setStyle11();
+						break;
+					case 12:
+						s.setStyle12();
+						break;
+				}
+			}
+
+			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
 	}
 	
 	@Override
