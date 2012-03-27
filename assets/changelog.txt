@@ -12,6 +12,7 @@
 - Tweaked some presets
 - Added WIFI IP,name and linkspeed information (Pro)
 - Added sepperate Download/Upload stats for cellular network (Pro)
+- Replaced example buttons with a spinner
 
 v0.6.0(17)
 - Fixed bug causing CPU frequency statistics not to show
