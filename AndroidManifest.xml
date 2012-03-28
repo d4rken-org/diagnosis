@@ -34,7 +34,7 @@
         <activity
             android:name=".DGinfo"
             android:configChanges="orientation"
-            android:label="DGmain"/>
+            android:label="Info"/>
         <activity
             android:name=".DGsettings"
             android:configChanges="orientation"
