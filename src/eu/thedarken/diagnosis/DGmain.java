@@ -518,18 +518,18 @@ public class DGmain extends SherlockFragmentActivity {
 		return true;
 	}
 
-	private void showMyDialog(int type) {
+	public void showMyDialog(int type) {
 		FragmentManager ft = getSupportFragmentManager();
 		DialogFragment newFragment = Dialogs.newInstance(type);
 		newFragment.show(ft, "dialog");
 	}
-
-	private static class Dialogs extends DialogFragment {
+	
+	public static class Dialogs extends DialogFragment {
 		final static int BUSYBOX_ERROR = 0;
 		final static int DATABASE_REMOVAL = 1;
 		final static int REINSTALL = 2;
 		final static int NEWS = 3;
-
+		
 		public static Dialogs newInstance(int type) {
 			Dialogs frag = new Dialogs();
 			Bundle args = new Bundle();
@@ -552,7 +552,6 @@ public class DGmain extends SherlockFragmentActivity {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 								getActivity().finish();
-								// android.os.Process.killProcess(android.os.Process.myPid());
 							}
 						}).create();
 			case 1:

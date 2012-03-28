@@ -1,4 +1,7 @@
-﻿v0.7.1(19)
+﻿v0.7.2(20)
+- 2nd fix for startup crash(the new UI does not want to play nice on some devices)
+
+v0.7.1(19)
 - Fixed startup crash on some android versions
 
 v0.7.0(18)

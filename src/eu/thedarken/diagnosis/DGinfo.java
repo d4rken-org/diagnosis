@@ -1,7 +1,5 @@
 package eu.thedarken.diagnosis;
 
-import java.util.ArrayList;
-
 import com.actionbarsherlock.app.SherlockFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -12,14 +10,11 @@ import android.preference.PreferenceManager;
 import android.text.format.Formatter;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class DGinfo extends SherlockFragment {
@@ -28,7 +23,6 @@ public class DGinfo extends SherlockFragment {
 	private TextView db_size;
 	private TextView db_status;
 	private View mView;
-	private ArrayList<Button> styleButtons = new ArrayList<Button>();
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout and save it
