@@ -1,4 +1,7 @@
-﻿v0.7.0(18)
+﻿v0.7.1(19)
+- Fixed startup crash on some android versions
+
+v0.7.0(18)
 - Complete new UI!
 - Make notification optional (Pro)
 - Added autostart (Pro)

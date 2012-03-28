@@ -551,7 +551,7 @@ public class DGmain extends SherlockFragmentActivity {
 						.setPositiveButton("Close", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
-								getActivity().getParent().finish();
+								getActivity().finish();
 								// android.os.Process.killProcess(android.os.Process.myPid());
 							}
 						}).create();
