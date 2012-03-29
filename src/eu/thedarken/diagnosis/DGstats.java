@@ -12,6 +12,7 @@ import eu.thedarken.diagnosis.InfoClass.PhoneTabInfo;
 import eu.thedarken.diagnosis.InfoClass.PingTabInfo;
 import eu.thedarken.diagnosis.InfoClass.SpaceTabInfo;
 import eu.thedarken.diagnosis.InfoClass.WlanTabInfo;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -27,7 +28,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 public class DGstats extends SherlockFragment {
-	private Context mContext;
+
 	private SharedPreferences settings;
 	private View mView;
 
@@ -42,18 +43,17 @@ public class DGstats extends SherlockFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mContext = this.getSherlockActivity();
-		settings = PreferenceManager.getDefaultSharedPreferences(mContext);
+		settings = PreferenceManager.getDefaultSharedPreferences(this.getSherlockActivity());
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		new updateTask(mContext).execute();
+		new updateTask(this.getSherlockActivity()).execute();
 	}
 
 	private class updateTask extends AsyncTask<String, Void, Boolean> {
-		private Context context;
+		private Activity mActivity;
 		private ProgDialog dialog;
 
 		private TableLayout batt_table;
@@ -119,7 +119,7 @@ public class DGstats extends SherlockFragment {
 
 		private DGdatabase db;
 		
-		public updateTask(Context c) {
+		public updateTask(Activity a) {
 			pull_batt = settings.getBoolean("general.database.dobatt", false);
 			pull_cpu = settings.getBoolean("general.database.docpu", false);
 			pull_freq = settings.getBoolean("general.database.dofreq", false);
@@ -131,7 +131,7 @@ public class DGstats extends SherlockFragment {
 			pull_ping = settings.getBoolean("general.database.doping", false);
 			pull_disk = settings.getBoolean("general.database.dodisk", false);
 
-			context = c;
+			mActivity = a;
 
 			batt_table = (TableLayout) mView.findViewById(R.id.batt_table);
 			health = (TextView) mView.findViewById(R.id.batteryhealth);
@@ -229,11 +229,11 @@ public class DGstats extends SherlockFragment {
 			disk_write_max = (TextView) mView.findViewById(R.id.disk_write_max);
 			disk_read_max = (TextView) mView.findViewById(R.id.disk_read_max);
 
-			db = DGdatabase.getInstance(mContext);
+			db = DGdatabase.getInstance(mActivity);
 		}
 
 		protected void onPreExecute() {
-			dialog = new ProgDialog(context);
+			dialog = new ProgDialog(mActivity);
 			dialog.setMessage("Loading data, please wait.");
 			dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			dialog.show();
@@ -292,26 +292,26 @@ public class DGstats extends SherlockFragment {
 
 			if (pull_mem) {
 				mem_table.setVisibility(View.VISIBLE);
-				mem_avg.setText(Formatter.formatFileSize(mContext, meminfo.avg_free_mem));
+				mem_avg.setText(Formatter.formatFileSize(mActivity, meminfo.avg_free_mem));
 			} else {
 				mem_table.setVisibility(View.GONE);
 			}
 
 			if (pull_net) {
 				net_table.setVisibility(View.VISIBLE);
-				latest_down_rate.setText(Formatter.formatFileSize(mContext, netinfo.rate_down) + "/s");
-				latest_up_rate.setText(Formatter.formatFileSize(mContext, netinfo.rate_up) + "/s");
-				max_down.setText(Formatter.formatFileSize(mContext, netinfo.peak_rate_down_last_3_hours) + "/s");
-				max_up.setText(Formatter.formatFileSize(mContext, netinfo.peak_rate_up_last_3_hours) + "/s");
-				yes_down.setText(Formatter.formatFileSize(mContext, netinfo.peak_rate_down_last_24_hours) + "/s");
-				yes_up.setText(Formatter.formatFileSize(mContext, netinfo.peak_rate_up_last_24_hours) + "/s");
+				latest_down_rate.setText(Formatter.formatFileSize(mActivity, netinfo.rate_down) + "/s");
+				latest_up_rate.setText(Formatter.formatFileSize(mActivity, netinfo.rate_up) + "/s");
+				max_down.setText(Formatter.formatFileSize(mActivity, netinfo.peak_rate_down_last_3_hours) + "/s");
+				max_up.setText(Formatter.formatFileSize(mActivity, netinfo.peak_rate_up_last_3_hours) + "/s");
+				yes_down.setText(Formatter.formatFileSize(mActivity, netinfo.peak_rate_down_last_24_hours) + "/s");
+				yes_up.setText(Formatter.formatFileSize(mActivity, netinfo.peak_rate_up_last_24_hours) + "/s");
 
-				traffic_last_3h_down.setText(Formatter.formatFileSize(mContext, netinfo.traffic_last_threehour_down));
-				traffic_last_3h_up.setText(Formatter.formatFileSize(mContext, netinfo.traffic_last_threehour_up));
-				traffic_last_day_down.setText(Formatter.formatFileSize(mContext, netinfo.traffic_last_day_down));
-				traffic_last_day_up.setText(Formatter.formatFileSize(mContext, netinfo.traffic_last_day_up));
-				traffic_last_week_down.setText(Formatter.formatFileSize(mContext, netinfo.traffic_last_week_down));
-				traffic_last_week_up.setText(Formatter.formatFileSize(mContext, netinfo.traffic_last_week_up));
+				traffic_last_3h_down.setText(Formatter.formatFileSize(mActivity, netinfo.traffic_last_threehour_down));
+				traffic_last_3h_up.setText(Formatter.formatFileSize(mActivity, netinfo.traffic_last_threehour_up));
+				traffic_last_day_down.setText(Formatter.formatFileSize(mActivity, netinfo.traffic_last_day_down));
+				traffic_last_day_up.setText(Formatter.formatFileSize(mActivity, netinfo.traffic_last_day_up));
+				traffic_last_week_down.setText(Formatter.formatFileSize(mActivity, netinfo.traffic_last_week_down));
+				traffic_last_week_up.setText(Formatter.formatFileSize(mActivity, netinfo.traffic_last_week_up));
 				
 				if (DGmain.isPro) {
 					if (netinfo.mobile_rate_down > 0 || netinfo.mobile_rate_up > 0 || netinfo.mobile_peak_rate_down_last_3_hours > 0
@@ -326,19 +326,19 @@ public class DGstats extends SherlockFragment {
 						mobile_traffic_total_table.setVisibility(View.VISIBLE);
 					else
 						mobile_traffic_total_table.setVisibility(View.GONE);
-					mobile_latest_down_rate.setText(Formatter.formatFileSize(mContext, netinfo.mobile_rate_down) + "/s");
-					mobile_latest_up_rate.setText(Formatter.formatFileSize(mContext, netinfo.mobile_rate_up) + "/s");
-					mobile_max_down.setText(Formatter.formatFileSize(mContext, netinfo.mobile_peak_rate_down_last_3_hours) + "/s");
-					mobile_max_up.setText(Formatter.formatFileSize(mContext, netinfo.mobile_peak_rate_up_last_3_hours) + "/s");
-					mobile_yes_down.setText(Formatter.formatFileSize(mContext, netinfo.mobile_peak_rate_down_last_24_hours) + "/s");
-					mobile_yes_up.setText(Formatter.formatFileSize(mContext, netinfo.mobile_peak_rate_up_last_24_hours) + "/s");
+					mobile_latest_down_rate.setText(Formatter.formatFileSize(mActivity, netinfo.mobile_rate_down) + "/s");
+					mobile_latest_up_rate.setText(Formatter.formatFileSize(mActivity, netinfo.mobile_rate_up) + "/s");
+					mobile_max_down.setText(Formatter.formatFileSize(mActivity, netinfo.mobile_peak_rate_down_last_3_hours) + "/s");
+					mobile_max_up.setText(Formatter.formatFileSize(mActivity, netinfo.mobile_peak_rate_up_last_3_hours) + "/s");
+					mobile_yes_down.setText(Formatter.formatFileSize(mActivity, netinfo.mobile_peak_rate_down_last_24_hours) + "/s");
+					mobile_yes_up.setText(Formatter.formatFileSize(mActivity, netinfo.mobile_peak_rate_up_last_24_hours) + "/s");
 
-					mobile_traffic_last_3h_down.setText(Formatter.formatFileSize(mContext, netinfo.mobile_traffic_last_threehour_down));
-					mobile_traffic_last_3h_up.setText(Formatter.formatFileSize(mContext, netinfo.mobile_traffic_last_threehour_up));
-					mobile_traffic_last_day_down.setText(Formatter.formatFileSize(mContext, netinfo.mobile_traffic_last_day_down));
-					mobile_traffic_last_day_up.setText(Formatter.formatFileSize(mContext, netinfo.mobile_traffic_last_day_up));
-					mobile_traffic_last_week_down.setText(Formatter.formatFileSize(mContext, netinfo.mobile_traffic_last_week_down));
-					mobile_traffic_last_week_up.setText(Formatter.formatFileSize(mContext, netinfo.mobile_traffic_last_week_up));
+					mobile_traffic_last_3h_down.setText(Formatter.formatFileSize(mActivity, netinfo.mobile_traffic_last_threehour_down));
+					mobile_traffic_last_3h_up.setText(Formatter.formatFileSize(mActivity, netinfo.mobile_traffic_last_threehour_up));
+					mobile_traffic_last_day_down.setText(Formatter.formatFileSize(mActivity, netinfo.mobile_traffic_last_day_down));
+					mobile_traffic_last_day_up.setText(Formatter.formatFileSize(mActivity, netinfo.mobile_traffic_last_day_up));
+					mobile_traffic_last_week_down.setText(Formatter.formatFileSize(mActivity, netinfo.mobile_traffic_last_week_down));
+					mobile_traffic_last_week_up.setText(Formatter.formatFileSize(mActivity, netinfo.mobile_traffic_last_week_up));
 				} else {
 					mobile_traffic_rates_table.setVisibility(View.GONE);
 					mobile_traffic_total_table.setVisibility(View.GONE);
@@ -349,29 +349,29 @@ public class DGstats extends SherlockFragment {
 
 			if (pull_space) {
 				space_table.setVisibility(View.VISIBLE);
-				extern_total.setText(Formatter.formatFileSize(mContext, spaceinfo.extern_total));
-				extern_used.setText(Formatter.formatFileSize(mContext, spaceinfo.extern_used));
+				extern_total.setText(Formatter.formatFileSize(mActivity, spaceinfo.extern_total));
+				extern_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.extern_used));
 				externalspacebar.setMax(100);
 				if (spaceinfo.extern_total != 0) {
 					externalspacebar.setProgress(Math.round((spaceinfo.extern_used * 100 / spaceinfo.extern_total)));
 				}
 
-				sdcard_total.setText(Formatter.formatFileSize(mContext, spaceinfo.sdcard_total));
-				sdcard_used.setText(Formatter.formatFileSize(mContext, spaceinfo.sdcard_used));
+				sdcard_total.setText(Formatter.formatFileSize(mActivity, spaceinfo.sdcard_total));
+				sdcard_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.sdcard_used));
 				internalspacebar.setMax(100);
 				if (spaceinfo.sdcard_total != 0) {
 					internalspacebar.setProgress(Math.round((spaceinfo.sdcard_used * 100 / spaceinfo.sdcard_total)));
 				}
 
-				system_total.setText(Formatter.formatFileSize(mContext, spaceinfo.system_total));
-				system_used.setText(Formatter.formatFileSize(mContext, spaceinfo.system_used));
+				system_total.setText(Formatter.formatFileSize(mActivity, spaceinfo.system_total));
+				system_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.system_used));
 				systemspacebar.setMax(100);
 				if (spaceinfo.system_total != 0) {
 					systemspacebar.setProgress(Math.round((spaceinfo.system_used * 100 / spaceinfo.system_total)));
 				}
 
-				data_total.setText(Formatter.formatFileSize(mContext, spaceinfo.data_total));
-				data_used.setText(Formatter.formatFileSize(mContext, spaceinfo.data_used));
+				data_total.setText(Formatter.formatFileSize(mActivity, spaceinfo.data_total));
+				data_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.data_used));
 				dataspacebar.setMax(100);
 				if (spaceinfo.data_total != 0) {
 					dataspacebar.setProgress(Math.round((spaceinfo.data_used * 100 / spaceinfo.data_total)));
@@ -409,10 +409,10 @@ public class DGstats extends SherlockFragment {
 
 			if (pull_disk) {
 				disk_table.setVisibility(View.VISIBLE);
-				disk_write_avg.setText(Formatter.formatFileSize(mContext, diskinfo.avg_write_rate));
-				disk_read_avg.setText(Formatter.formatFileSize(mContext, diskinfo.avg_read_rate));
-				disk_write_max.setText(Formatter.formatFileSize(mContext, diskinfo.max_write_rate));
-				disk_read_max.setText(Formatter.formatFileSize(mContext, diskinfo.max_read_rate));
+				disk_write_avg.setText(Formatter.formatFileSize(mActivity, diskinfo.avg_write_rate));
+				disk_read_avg.setText(Formatter.formatFileSize(mActivity, diskinfo.avg_read_rate));
+				disk_write_max.setText(Formatter.formatFileSize(mActivity, diskinfo.max_write_rate));
+				disk_read_max.setText(Formatter.formatFileSize(mActivity, diskinfo.max_read_rate));
 			} else {
 				disk_table.setVisibility(View.GONE);
 			}

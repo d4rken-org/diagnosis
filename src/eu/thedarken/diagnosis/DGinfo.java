@@ -1,6 +1,8 @@
 package eu.thedarken.diagnosis;
 
 import com.actionbarsherlock.app.SherlockFragment;
+
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -100,20 +102,20 @@ public class DGinfo extends SherlockFragment {
 	@Override
 	public void onResume() {
         super.onResume();
-		new startinfoTask(mContext).execute();
+		new startinfoTask(this.getSherlockActivity()).execute();
 	}
 
 	private class startinfoTask extends AsyncTask<String, Void, Boolean> {
 		private StringBuilder db_size_sb = new StringBuilder();
-		private Context context;
+		private Activity mActivity;
 		private ProgDialog dialog;
 
-		public startinfoTask(Context c) {
-			context = c;
+		public startinfoTask(Activity a) {
+			mActivity = a;
 		}
 
 		protected void onPreExecute() {
-			dialog = new ProgDialog(context);
+			dialog = new ProgDialog(mActivity);
 			dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			dialog.show();
 			dialog.updateMessage("Loading...");

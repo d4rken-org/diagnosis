@@ -78,7 +78,7 @@ public class DGmain extends SherlockFragmentActivity {
 		prefEditor.putString("BUSYBOX", BUSYBOX);
 		prefEditor.commit();
 
-		new setupTask(mContext).execute();
+		new setupTask(this).execute();
 
 		try {
 			versCode = mContext.getPackageManager().getPackageInfo("eu.thedarken.diagnosis", 0).versionCode;
@@ -178,15 +178,15 @@ public class DGmain extends SherlockFragmentActivity {
 	}
 
 	private class setupTask extends AsyncTask<String, Void, Boolean> {
-		private Context context;
+		private Activity mActivity;
 		private ProgDialog dialog;
 
-		public setupTask(Context c) {
-			context = c;
+		public setupTask(Activity a) {
+			mActivity = a;
 		}
 
 		protected void onPreExecute() {
-			dialog = new ProgDialog(context);
+			dialog = new ProgDialog(mActivity);
 			dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			dialog.show();
 			dialog.updateMessage("Loading...");
@@ -245,15 +245,15 @@ public class DGmain extends SherlockFragmentActivity {
 	}
 
 	private class serviceTask extends AsyncTask<String, Void, Boolean> {
-		private Context context;
+		private Activity mActivity;
 		private ProgDialog dialog;
 
-		public serviceTask(Context c) {
-			context = c;
+		public serviceTask(Activity a) {
+			mActivity = a;
 		}
 
 		protected void onPreExecute() {
-			dialog = new ProgDialog(context);
+			dialog = new ProgDialog(mActivity);
 			dialog.setProgressStyle(DGoverlay.isRunning ? ProgressDialog.STYLE_SPINNER : ProgressDialog.STYLE_HORIZONTAL);
 			dialog.updateMessage(DGoverlay.isRunning ? "Stopping service..." : "Starting service...");
 			dialog.show();
@@ -502,7 +502,7 @@ public class DGmain extends SherlockFragmentActivity {
 			showMyDialog(Dialogs.NEWS);
 			break;
 		case R.id.starttracking:
-			new serviceTask(mContext).execute();
+			new serviceTask(this).execute();
 			break;
 		case R.id.settings:
 			Intent startPreferencesActivity = new Intent(this, DGsettings.class);
