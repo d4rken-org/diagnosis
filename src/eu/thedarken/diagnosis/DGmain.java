@@ -572,7 +572,7 @@ public class DGmain extends SherlockFragmentActivity {
 						.setNegativeButton("Quit", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
-								getActivity().getParent().finish();
+								getActivity().finish();
 							}
 						}).create();
 			case 3:
