@@ -18,6 +18,13 @@ public class ProgDialog extends ProgressDialog {
 		d = this;
 	}
 	
+	@Override
+	public void show() {
+		if(!((Activity)mContext).isFinishing()) {
+			super.show();
+		}
+	}
+	
     public void incrProgress() {
     	this.incrementProgressBy(1);
     }
