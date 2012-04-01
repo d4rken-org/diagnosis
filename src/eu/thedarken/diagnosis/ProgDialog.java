@@ -2,15 +2,14 @@ package eu.thedarken.diagnosis;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 
 
 public class ProgDialog extends ProgressDialog {
-	Context mContext;
+	Activity mActivity;
 	ProgressDialog d;
-	public ProgDialog(Context context) {
-		super(context);
-		this.mContext = context;
+	public ProgDialog(Activity activity) {
+		super(activity);
+		this.mActivity = activity;
 		this.setCancelable(false);
 		this.setIndeterminate(false);
 		this.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -21,7 +20,7 @@ public class ProgDialog extends ProgressDialog {
 	@Override
 	public void show() {
 		//Catch race condition when activity is finishing before dialog is shown
-		if(!((Activity)mContext).isFinishing()) {
+		if(!mActivity.isFinishing()) {
 			super.show();
 		}
 	}
@@ -79,7 +78,7 @@ public class ProgDialog extends ProgressDialog {
     
     public void updateMessage(String msg) {
 		final String message = msg;
-		((Activity) mContext).runOnUiThread(new Runnable() {
+		mActivity.runOnUiThread(new Runnable() {
 		    public void run() {
 		    	d.setMessage(message);
 		    }
@@ -88,7 +87,7 @@ public class ProgDialog extends ProgressDialog {
     
     public void updateTitle(String msg) {
 		final String message = msg;
-		((Activity) mContext).runOnUiThread(new Runnable() {
+		mActivity.runOnUiThread(new Runnable() {
 		    public void run() {
 		    	d.setTitle(message);
 		    }
