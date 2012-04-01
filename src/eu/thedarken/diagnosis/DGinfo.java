@@ -138,8 +138,7 @@ public class DGinfo extends SherlockFragment {
 
 			db_status.setText(db_status_sb.toString());
 
-			if (dialog.isShowing())
-				dialog.dismiss();
+			dialog.dismiss();
 
 		}
 

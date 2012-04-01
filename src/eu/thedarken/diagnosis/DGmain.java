@@ -194,8 +194,7 @@ public class DGmain extends SherlockFragmentActivity {
 
 		@Override
 		protected void onPostExecute(final Boolean ok) {
-			if (dialog.isShowing())
-				dialog.dismiss();
+			dialog.dismiss();
 		}
 
 		@Override
@@ -263,8 +262,7 @@ public class DGmain extends SherlockFragmentActivity {
 		@Override
 		protected void onPostExecute(final Boolean ok) {
 			invalidateOptionsMenu();
-			if (dialog.isShowing())
-				dialog.dismiss();
+			dialog.dismiss();
 		}
 
 		@Override

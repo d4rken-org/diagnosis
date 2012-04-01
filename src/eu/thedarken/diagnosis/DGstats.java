@@ -14,7 +14,6 @@ import eu.thedarken.diagnosis.InfoClass.SpaceTabInfo;
 import eu.thedarken.diagnosis.InfoClass.WlanTabInfo;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -417,12 +416,8 @@ public class DGstats extends SherlockFragment {
 				disk_table.setVisibility(View.GONE);
 			}
 
-			try {
-				if (dialog.isShowing()) {
-					dialog.dismiss();
-				}
-			} catch (Exception e) {
-			}
+			dialog.dismiss();
+
 		}
 
 		@Override

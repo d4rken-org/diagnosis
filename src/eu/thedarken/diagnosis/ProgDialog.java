@@ -20,9 +20,21 @@ public class ProgDialog extends ProgressDialog {
 	
 	@Override
 	public void show() {
+		//Catch race condition when activity is finishing before dialog is shown
 		if(!((Activity)mContext).isFinishing()) {
 			super.show();
 		}
+	}
+	
+	@Override
+	public void dismiss() {
+		//Catch exception in window is no longer available
+		try {
+			//Only dismiss if it is showing
+			if (d.isShowing()) {
+				super.dismiss();
+			}
+		} catch (Exception e) {}
 	}
 	
     public void incrProgress() {

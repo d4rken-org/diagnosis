@@ -178,11 +178,9 @@ public class DGapps extends SherlockFragment {
 				nodata.setVisibility(View.VISIBLE);
             }
 
-        	try {
-	            if(dialog.isShowing()) {
-	                dialog.dismiss();
-	            }
-	        } catch (Exception e) { }
+
+            dialog.dismiss();
+
         }
         
 		@Override

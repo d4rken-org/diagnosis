@@ -284,12 +284,8 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
         		Toast.makeText(mContext, "Sorry there was an error, maybe stop Diagnosis?",Toast.LENGTH_LONG).show();
         	}
         	Log.d("eu.thedarken.diagnosis", "...done");
-        	try {
-	            if(dialog.isShowing()) {
-	                dialog.dismiss();
-	            	mActivity.removeDialog(dialog.hashCode());
-	            }
-	        } catch (Exception e) { }
+
+            dialog.dismiss();
         }
         
 		@Override
