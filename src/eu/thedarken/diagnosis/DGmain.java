@@ -118,8 +118,8 @@ public class DGmain extends SherlockFragmentActivity {
 			getSupportActionBar().setTitle("");
 		}
 		
-		if(!DGmain.isPro && !settings.getBoolean("pro.advertised", false)) {
-			prefEditor.putBoolean("pro.advertised", true);
+		if(settings.getInt("news.shown", 0) < versCode) {
+			prefEditor.putInt("news.shown", versCode);
 			prefEditor.commit();
 			showMyDialog(Dialogs.NEWS);
 		}
@@ -578,14 +578,14 @@ public class DGmain extends SherlockFragmentActivity {
 						.setTitle("News")
 						.setCancelable(true)
 						.setMessage(
-								"I'm sure you have noticed the new UI and i hope you like it.\n\n'Diagnosis Pro' is now available, it unlocks a few additional features.\nIf you like my work, you can purchase it to support me, if you don't like my work, you can still purchase it to use one of the extra features.\nThank you.")
+								"v0.7.1/0.7.2/0.7.3:\nMainly bugfixes for some devices\n\nv0.7.0:\nNew user interface, i hope everyone likes it :-)\n\nHave a look 'Diagnosis Pro' if you are looking for additional features or want to support my work.\n\nQuestions,requests or ideas?\nMail me!")
 						.setPositiveButton("Diagnosis Pro", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 								Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=eu.thedarken.diagnosis.pro"));
 								startActivity(marketIntent);
 							}
-						}).setNegativeButton("Thanks, but no.", new DialogInterface.OnClickListener() {
+						}).setNegativeButton("Hide", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 							}

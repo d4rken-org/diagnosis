@@ -1,4 +1,9 @@
-﻿v0.7.2(20)
+﻿v0.7.3(21)
+- Improved ProgressDialog behavior under rare circumstances
+- Changed news dialog behavior
+- Fixed some rare crashs on device rotation and resume
+
+v0.7.2(20)
 - 2nd fix for startup crash(the new UI does not want to play nice on some devices)
 
 v0.7.1(19)
