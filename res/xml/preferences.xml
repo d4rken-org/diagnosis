@@ -508,7 +508,7 @@
                     android:dialogMessage="Cache size"
                     android:key="database.cachesize"
                     android:max="50"
-                    android:summary="How many entries should be safed in RAM before attempting to write to memory"
+                    android:summary="How many entries should be saved in RAM before attempting to write to memory"
                     android:text=" "
                     android:title="Cache size" />
             </PreferenceCategory>
