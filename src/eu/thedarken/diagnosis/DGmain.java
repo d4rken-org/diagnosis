@@ -40,6 +40,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DGmain extends SherlockFragmentActivity {
 	private static Context mContext;
@@ -582,8 +583,12 @@ public class DGmain extends SherlockFragmentActivity {
 						.setPositiveButton("Diagnosis Pro", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
-								Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=eu.thedarken.diagnosis.pro"));
-								startActivity(marketIntent);
+								try {
+									Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=eu.thedarken.diagnosis.pro"));
+									startActivity(marketIntent);
+								} catch (Exception e) {
+									Toast.makeText(getActivity(), "No Market Application found.", Toast.LENGTH_SHORT).show();
+								}
 							}
 						}).setNegativeButton("Hide", new DialogInterface.OnClickListener() {
 							@Override
