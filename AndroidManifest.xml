@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eu.thedarken.diagnosis"
-    android:versionCode="21"
-    android:versionName="0.7.3" >
+    android:versionCode="22"
+    android:versionName="0.7.4" >
 
     <uses-sdk android:minSdkVersion="8" />
 
@@ -32,22 +32,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DGinfo"
-            android:configChanges="orientation"
-            android:label="Info"/>
-        <activity
             android:name=".DGsettings"
             android:configChanges="orientation"
             android:label="Settings"/>
-        <activity
-            android:name=".DGstats"
-            android:configChanges="orientation"
-            android:label="Statistics"/>
-        <activity
-            android:name=".DGapps"
-            android:configChanges="orientation"
-            android:label="Apps"/>
-
         <service
             android:name="eu.thedarken.diagnosis.DGoverlay"
             android:configChanges="orientation"/>
