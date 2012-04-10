@@ -37,6 +37,7 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
         super.onCreate(savedInstanceState);
        	settings = PreferenceManager.getDefaultSharedPreferences(mContext);
        	prefEditor = settings.edit();
+       	
         try {
         	addPreferencesFromResource(R.xml.preferences);
         } catch (Exception e) {
@@ -77,15 +78,10 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 				}
 	        });
 	        ((ColorPickerPreference)findPreference("overlay.color.background.line"+i)).setAlphaSliderEnabled(true);
-	        
-			packageManager = this.getPackageManager();
+
+	        packageManager = this.getPackageManager();
 			autostart = new ComponentName(DGsettings.this, DGautostart.class);
 	        ((CheckBoxPreference) findPreference("autostart.enabled")).setChecked((packageManager.getComponentEnabledSetting(autostart) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED));
-	        if(DGmain.isPro) {
-	        	((CheckBoxPreference) findPreference("autostart.enabled")).setEnabled(true);
-	        	((CheckBoxPreference) findPreference("general.notification.enabled")).setEnabled(true);
-	        	((eu.thedarken.diagnosis.SeekBarPreference) findPreference("overlay.cpu.threshold")).setEnabled(true);
-	        }
         }   
     }
     
@@ -93,6 +89,15 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
     protected void onResume() {
         super.onResume();
         settings.registerOnSharedPreferenceChangeListener(this);
+        if(DGmain.isPro) {
+        	((CheckBoxPreference) findPreference("autostart.enabled")).setEnabled(true);
+        	((CheckBoxPreference) findPreference("general.notification.enabled")).setEnabled(true);
+        	((eu.thedarken.diagnosis.SeekBarPreference) findPreference("overlay.cpu.threshold")).setEnabled(true);
+        } else {
+        	((CheckBoxPreference) findPreference("autostart.enabled")).setEnabled(false);
+        	((CheckBoxPreference) findPreference("general.notification.enabled")).setEnabled(false);
+        	((eu.thedarken.diagnosis.SeekBarPreference) findPreference("overlay.cpu.threshold")).setEnabled(false);
+        }
     }
 
     @Override

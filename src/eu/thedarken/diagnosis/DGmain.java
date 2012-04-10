@@ -62,10 +62,7 @@ public class DGmain extends SherlockFragmentActivity {
 		mContext = this;
 		setContentView(R.layout.main);
 
-		checkPro();
-
 		service = new Intent(mContext, DGoverlay.class);
-
 		settings = PreferenceManager.getDefaultSharedPreferences(mContext);
 		prefEditor = settings.edit();
 
