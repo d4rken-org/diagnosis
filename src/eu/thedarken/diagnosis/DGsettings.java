@@ -89,7 +89,7 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
     protected void onResume() {
         super.onResume();
         settings.registerOnSharedPreferenceChangeListener(this);
-        if(DGmain.isPro) {
+        if(DGmain.checkPro(mContext, true)) {
         	((CheckBoxPreference) findPreference("autostart.enabled")).setEnabled(true);
         	((CheckBoxPreference) findPreference("general.notification.enabled")).setEnabled(true);
         	((eu.thedarken.diagnosis.SeekBarPreference) findPreference("overlay.cpu.threshold")).setEnabled(true);

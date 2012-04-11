@@ -45,7 +45,6 @@ import android.widget.Toast;
 public class DGmain extends SherlockFragmentActivity {
 	private static Context mContext;
 	private Intent service;
-	public static boolean isPro = false;
 	public static String versName = "";
 	public static int versCode = 0;
 	private final static int DB_DELETE_VERSION = 18;
@@ -109,8 +108,7 @@ public class DGmain extends SherlockFragmentActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		checkPro();
-		if (DGmain.isPro) {
+		if (DGmain.checkPro(mContext, true)) {
 			getSupportActionBar().setTitle("Pro");
 		} else {
 			getSupportActionBar().setTitle("");
@@ -229,13 +227,6 @@ public class DGmain extends SherlockFragmentActivity {
 
 			Styles s = new Styles(mContext);
 			s.initLines();
-
-			try {
-				if(!FeelGood.isSignatureOfficial(mContext, mContext.getPackageName()))
-					isPro = false;
-			} catch (NameNotFoundException e) {
-				isPro = false;
-			}
 			
 			return true;
 		}
@@ -374,22 +365,26 @@ public class DGmain extends SherlockFragmentActivity {
 		}
 	}
 
-	public void checkPro() {
+	public static boolean checkPro(Context useContext, boolean beThorough) {
 		Context diagnosispro = null;
 		try {
-			diagnosispro = mContext.createPackageContext("eu.thedarken.diagnosis.pro", 0);
+			diagnosispro = useContext.createPackageContext("eu.thedarken.diagnosis.pro", 0);
 		} catch (NameNotFoundException e) {
-			DGmain.isPro = false;
-			return;
+			return false;
 		}
 		if (diagnosispro != null) {
-			if (mContext.getPackageManager().checkSignatures(mContext.getPackageName(), diagnosispro.getPackageName()) == PackageManager.SIGNATURE_MATCH) {
-				DGmain.isPro = true;
-				return;
+			if (useContext.getPackageManager().checkSignatures(useContext.getPackageName(), diagnosispro.getPackageName()) == PackageManager.SIGNATURE_MATCH) {
+				if(beThorough) {
+					try {
+						return FeelGood.isSignatureOfficial(useContext, diagnosispro.getPackageName());
+					} catch (NameNotFoundException e) {
+						return false;
+					}
+				}
+				return true;
 			}
 		}
-		DGmain.isPro = false;
-		return;
+		return false;
 	}
 
 	private void showChangelog() {

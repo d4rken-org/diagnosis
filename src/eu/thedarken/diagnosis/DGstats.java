@@ -312,7 +312,7 @@ public class DGstats extends SherlockFragment {
 				traffic_last_week_down.setText(Formatter.formatFileSize(mActivity, netinfo.traffic_last_week_down));
 				traffic_last_week_up.setText(Formatter.formatFileSize(mActivity, netinfo.traffic_last_week_up));
 				
-				if (DGmain.isPro) {
+				if (DGmain.checkPro(mActivity, false)) {
 					if (netinfo.mobile_rate_down > 0 || netinfo.mobile_rate_up > 0 || netinfo.mobile_peak_rate_down_last_3_hours > 0
 							|| netinfo.mobile_peak_rate_up_last_3_hours > 0 || netinfo.mobile_peak_rate_down_last_24_hours > 0
 							|| netinfo.mobile_peak_rate_up_last_24_hours > 0)
