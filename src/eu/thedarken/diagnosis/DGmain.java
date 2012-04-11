@@ -108,7 +108,7 @@ public class DGmain extends SherlockFragmentActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (DGmain.checkPro(mContext, true)) {
+		if (DGmain.checkPro(mContext)) {
 			getSupportActionBar().setTitle("Pro");
 		} else {
 			getSupportActionBar().setTitle("");
@@ -365,7 +365,7 @@ public class DGmain extends SherlockFragmentActivity {
 		}
 	}
 
-	public static boolean checkPro(Context useContext, boolean beThorough) {
+	public static boolean checkPro(Context useContext) {
 		Context diagnosispro = null;
 		try {
 			diagnosispro = useContext.createPackageContext("eu.thedarken.diagnosis.pro", 0);
@@ -374,13 +374,6 @@ public class DGmain extends SherlockFragmentActivity {
 		}
 		if (diagnosispro != null) {
 			if (useContext.getPackageManager().checkSignatures(useContext.getPackageName(), diagnosispro.getPackageName()) == PackageManager.SIGNATURE_MATCH) {
-				if(beThorough) {
-					try {
-						return FeelGood.isSignatureOfficial(useContext, diagnosispro.getPackageName());
-					} catch (NameNotFoundException e) {
-						return false;
-					}
-				}
 				return true;
 			}
 		}
