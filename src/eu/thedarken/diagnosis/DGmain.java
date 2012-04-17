@@ -196,12 +196,13 @@ public class DGmain extends SherlockFragmentActivity {
 		@Override
 		protected Boolean doInBackground(String... params) {
 			dialog.updateMessage("Copying busybox...");
+			
 			CopyAssets();
 
 			dialog.updateMessage("Getting busybox version");
-
+			
 			BUSYBOX_VERSION = getBusyboxVersion();
-			if(BUSYBOX_VERSION == null || (BUSYBOX_VERSION != null && BUSYBOX_VERSION.length() == 0)) {
+			if(BUSYBOX_VERSION.length() == 0) {
 				dialog.updateMessage("Startup ERROR!");
 				showMyDialog(Dialogs.BUSYBOX_ERROR);
 			}
@@ -309,59 +310,27 @@ public class DGmain extends SherlockFragmentActivity {
 	}
 
 	private void setNonRootBusyBox() {
-		Process q = null;
-		try {
-			q = Runtime.getRuntime().exec("sh");
-			OutputStreamWriter os = new OutputStreamWriter(q.getOutputStream());
-			os.write("chmod 777 " + BUSYBOX + "\n");
-			os.write("exit\n");
-			os.flush();
-			q.waitFor();
-			os.close();
+		Cmd c = new Cmd();
+		c.addCommand("chmod 777 " + DGmain.BUSYBOX + "\n");
+		c.execute();
+		if(c.getExitCode() == 0) {
 			Log.d(TAG, "Rights for non root busybox successfully set.");
-		} catch (Exception e) {
-			if (q != null)
-				q.destroy();
+		} else {
 			Log.d(TAG, "Error when trying to set rights for non rooted busybox.");
 		}
 	}
 
 	private String getBusyboxVersion() {
-		Process q = null;
-		String line = null;
-		try {
-			q = Runtime.getRuntime().exec("sh");
-			OutputStreamWriter os = new OutputStreamWriter(q.getOutputStream());
-			Scanner e = new Scanner(q.getErrorStream());
-			Scanner s = new Scanner(q.getInputStream());
-			os.write(DGmain.BUSYBOX + "\n");
-			os.write("exit\n");
-			os.flush();
-			q.waitFor();
-			os.close();
-			// Print Errors
-			while (e.hasNext()) {
-				Log.d(TAG, e.nextLine());
-			}
-			e.close();
-			line = s.nextLine();
-			s.close();
-		} catch (Exception e) {
-			if (q != null)
-				q.destroy();
-			e.printStackTrace();
-			Log.d(TAG, "Error while getting busybox version");
-		}
-		String ret = "WARNING No busybox";
-		if (line != null) {
-			ret = line;
-			if (line.length() > 20) {
-				ret = (String) line.subSequence(0, 21);
-			}
-			Log.d(TAG, "Busybox version: " + ret);
-			return ret;
+		Cmd c = new Cmd();
+		c.addCommand(DGmain.BUSYBOX + " | " + DGmain.BUSYBOX + " head -n1" + "\n");
+		c.execute();
+		if (c.getOutput().size()>0 && c.getOutput().get(0).length() > 20) {
+			String vers = c.getOutput().get(0);
+			vers = (String) vers.subSequence(0, 21);
+			Log.d(TAG, "Busybox version: " + vers);
+			return vers;
 		} else {
-			return null;
+			return "";
 		}
 	}
 
