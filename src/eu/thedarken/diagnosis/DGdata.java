@@ -1126,35 +1126,15 @@ public class DGdata {
 		long current_written = 0;
 		long current_read = 0;
 	
-		Process q = null;
-		try {
-			Thread.sleep(SHELLDELAY);
-			//long x = System.currentTimeMillis();
-			q = Runtime.getRuntime().exec("sh");
-			OutputStreamWriter os = new OutputStreamWriter(q.getOutputStream());
-			Scanner e = new Scanner(q.getErrorStream());
-			Scanner s = new Scanner(q.getInputStream());
-			os.write("BUSYBOX=" + BUSYBOX +"\n");
-			os.write("$BUSYBOX iostat -d -z -k\n");
-		    os.write("exit\n");  
-		    os.flush();
-
-		    q.waitFor();
-		    //Log.d(mContext.getPackageName(), "getting disk IO time: " + (System.currentTimeMillis() - x));
-		    os.close();
-
-		    //Print Errors
-		    while(e.hasNext()) Log.d(mContext.getPackageName(), e.nextLine());
-		    e.close();
-		    //kernel text
-		    if(s.hasNextLine()) s.nextLine();
-		    //empty line
-		    if(s.hasNextLine()) s.nextLine();
-		    //Column desc
-		    if(s.hasNextLine()) s.nextLine();
+		Cmd c = new Cmd();
+		c.addCommand("BUSYBOX=" + BUSYBOX);
+		c.addCommand("$BUSYBOX iostat -d -z -k\n");
+		c.execute();
+		if(c.getOutput().size() > 3) {
 		    Matcher match;
-		    while(s.hasNextLine()) {
-			    match = IOSTAT_PATTERN.matcher(s.nextLine());
+		    //First three lines are kerneltext, empty line and column desc
+		    for(int i=3;i<c.getOutput().size();i++) {
+			    match = IOSTAT_PATTERN.matcher(c.getOutput().get(i));
 			    if(match.matches()) {
 			    	current_read += Long.parseLong(match.group(5))*1000;
 			    	current_written += Long.parseLong(match.group(6))*1000;
@@ -1162,10 +1142,7 @@ public class DGdata {
 			    	break;
 			    }
 		    }
-		    s.close();
-		} catch (Exception e) {
-			if(q!=null) q.destroy();
-			e.printStackTrace();
+		} else {
 			Log.d(mContext.getPackageName(), "Error while getting disk IO");
 		}
 
@@ -1189,121 +1166,70 @@ public class DGdata {
 		disk_duration = System.currentTimeMillis();
 		ret.system_time =  current_time;
 		
-		/*Log.d(mContext.getPackageName(), "write rate " + Formatter.formatFileSize(mContext,ret.write_rate));
-		Log.d(mContext.getPackageName(), "read rate " + Formatter.formatFileSize(mContext,ret.read_rate));
-		Log.d(mContext.getPackageName(), "written " + Formatter.formatFileSize(mContext,ret.written));
-		Log.d(mContext.getPackageName(), "read " + Formatter.formatFileSize(mContext,ret.read));*/
 		disklist.add(ret);
 	}
 	
 	
 	private int getCpuMinFrequency() {
 		int ret = 0;
-		Process q = null;
-		try {
-			Thread.sleep(SHELLDELAY);
-			q = Runtime.getRuntime().exec("sh");
-			OutputStreamWriter os = new OutputStreamWriter(q.getOutputStream());
-			Scanner e = new Scanner(q.getErrorStream());
-			os.write("BUSYBOX=" + DGdata.BUSYBOX +"\n");
-			os.write("$BUSYBOX cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq\n");
-			os.write("exit\n");  
-			os.flush();
-			q.waitFor();
-			os.close();
-			while(e.hasNext()) Log.d(mContext.getPackageName(), e.nextLine());
-			e.close();
-			Scanner s = new Scanner(q.getInputStream());
-			if(s.hasNextLine()) {
-				ret = s.nextInt();
-			}
-			s.close();
-		} catch (Exception e) {
-			if(q!=null) q.destroy();
-			e.printStackTrace();
+		Cmd c = new Cmd();
+		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"\n");
+		c.addCommand("$BUSYBOX cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq\n");
+		c.execute();
+		for(String err : c.getErrors())
+			Log.d(mContext.getPackageName(), err);
+
+		if(c.getOutput().size() > 0) {
+			ret = Integer.parseInt(c.getOutput().get(0));
 		}
-		//Log.d(mContext.getPackageName(), "" + ret);
+		
 		return ret;
 	}
 	
 	private int getCpuMaxFrequency() {
 		int ret = 0;
-		Process q = null;
-		try {
-			Thread.sleep(SHELLDELAY);
-			q = Runtime.getRuntime().exec("sh");
-			OutputStreamWriter os = new OutputStreamWriter(q.getOutputStream());
-			Scanner e = new Scanner(q.getErrorStream());
-			os.write("BUSYBOX=" + DGdata.BUSYBOX +"\n");
-			os.write("$BUSYBOX cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq\n");
-			os.write("exit\n");  
-			os.flush();
-			q.waitFor();
-			os.close();
-			while(e.hasNext()) Log.d(mContext.getPackageName(), e.nextLine());
-			e.close();
-			Scanner s = new Scanner(q.getInputStream());
-			if(s.hasNextLine()) {
-				ret = s.nextInt();
-			}
-			s.close();
-		} catch (Exception e) {
-			if(q!=null) q.destroy();
-			e.printStackTrace();
+		Cmd c = new Cmd();
+		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"\n");
+		c.addCommand("$BUSYBOX cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq\n");
+		c.execute();
+		for(String err : c.getErrors())
+			Log.d(mContext.getPackageName(), err);
+
+		if(c.getOutput().size() > 0) {
+			ret = Integer.parseInt(c.getOutput().get(0));
 		}
-		//Log.d(mContext.getPackageName(), "" + ret);
+		
 		return ret;
 	}
 	
 	private int getCpuFrequency() {
 		int ret = 0;
-		Process q = null;
-		try {
-			Thread.sleep(SHELLDELAY);
-			q = Runtime.getRuntime().exec("sh");
-			OutputStreamWriter os = new OutputStreamWriter(q.getOutputStream());
-			Scanner e = new Scanner(q.getErrorStream());
-			os.write("BUSYBOX=" + DGdata.BUSYBOX +"\n");
-			os.write("$BUSYBOX cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq\n");
-			os.write("exit\n");  
-			os.flush();
-			q.waitFor();
-			os.close();
-			while(e.hasNext()) Log.d(mContext.getPackageName(), e.nextLine());
-			e.close();
-			Scanner s = new Scanner(q.getInputStream());
-			if(s.hasNextLine()) {
-				ret = s.nextInt();
-			}
-			s.close();
-		} catch (Exception e) {
-			if(q!=null) q.destroy();
-			e.printStackTrace();
+		Cmd c = new Cmd();
+		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"\n");
+		c.addCommand("$BUSYBOX cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq\n");
+		c.execute();
+		for(String err : c.getErrors())
+			Log.d(mContext.getPackageName(), err);
+
+		if(c.getOutput().size() > 0) {
+			ret = Integer.parseInt(c.getOutput().get(0));
 		}
+
 		return ret;
 	}
 	
 	private void doTop(boolean domem,boolean docpu,boolean doload,boolean doapps) {
-		//Log.d("eu.thedarken.diagnosis", "dotop");
-		Process q = null;
-		try {
-			Thread.sleep(SHELLDELAY);
-			q = Runtime.getRuntime().exec("sh");
-			OutputStreamWriter os = new OutputStreamWriter(q.getOutputStream());
-			Scanner e = new Scanner(q.getErrorStream());
-			os.write("BUSYBOX=" + DGdata.BUSYBOX +"\n");
-			os.write("$BUSYBOX top -n1 \n");
-			os.write("exit\n");  
-			os.flush();
-			q.waitFor();
-			os.close();
-			while(e.hasNext()) Log.d(mContext.getPackageName(), e.nextLine());
-			e.close();
-			Scanner s = new Scanner(q.getInputStream());
+		Cmd c = new Cmd();
+		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"\n");
+		c.addCommand("$BUSYBOX top -n1 \n");
+		c.execute();
+		for(String err : c.getErrors())
+			Log.d(mContext.getPackageName(), err);
+		if(c.getOutput().size() > 4) {
 			Matcher matcher;
 			if(domem) {
 				//Memory
-				matcher = MEMORY_PATTERN.matcher(s.nextLine());
+				matcher = MEMORY_PATTERN.matcher(c.getOutput().get(0));
 				MemInfo mem = new MemInfo();
 				if(matcher.matches()) {
 					mem.used = Integer.parseInt(matcher.group(2))*1024;
@@ -1318,14 +1244,12 @@ public class DGdata {
 					//Log.d(mContext.getPackageName(), "" + mem.usage);
 				}
 				memlist.add(mem);
-			} else {
-				s.nextLine();
 			}
-
+	
 			CpuInfo cpu = new CpuInfo();
 			cpu.system_time =  current_time;
 			if(docpu) {
-				matcher = CPU_PATTERN2.matcher(s.nextLine());
+				matcher = CPU_PATTERN2.matcher(c.getOutput().get(1));
 				if(matcher.matches()) {
 					cpu.user = Float.parseFloat(matcher.group(2).substring(0,(matcher.group(2).length()-1)));
 					cpu.nice = Float.parseFloat(matcher.group(6).substring(0,(matcher.group(6).length()-1)));
@@ -1335,13 +1259,11 @@ public class DGdata {
 				}
 				cpu.usage = 100 - cpu.idle;
 				cpulist.add(cpu);
-			} else {
-				s.nextLine();
 			}
 			
 			if(doload) {
 				//Load
-				matcher = LOAD_PATTERN.matcher(s.nextLine());
+				matcher = LOAD_PATTERN.matcher(c.getOutput().get(2));
 				LoadInfo load = new LoadInfo();
 				if(matcher.matches()) {
 					load.first = Float.parseFloat(matcher.group(2));
@@ -1350,16 +1272,14 @@ public class DGdata {
 					load.system_time = current_time;
 				}
 				loadlist.add(load);
-			} else {
-				s.nextLine();
 			}
 			
-			s.nextLine(); //Column description
+			//Column description = 3
 			
 			active_apps.clear();
 			if(doapps) {
-				while(s.hasNextLine()) {
-					String te = s.nextLine();
+				for(int i = 4;i<c.getOutput().size();i++) {
+					String te = c.getOutput().get(i);
 					matcher = APP_PATTERN.matcher(te);
 					if(matcher.matches()) {
 						AppInfo temp = new AppInfo();
@@ -1379,13 +1299,9 @@ public class DGdata {
 					}
 				}
 				cpu.act_apps_cur = active_apps.size();
-			} else {
-				
 			}
-			s.close();
-		} catch (Exception e) {
-			if(q!=null) q.destroy();
-			e.printStackTrace();
+		} else {
+			Log.d(mContext.getPackageName(), "Error while getting TOP data");
 		}
 	}
 	
