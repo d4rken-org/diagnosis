@@ -349,28 +349,28 @@ public class DGstats extends SherlockFragment {
 			if (pull_space) {
 				space_table.setVisibility(View.VISIBLE);
 				extern_total.setText(Formatter.formatFileSize(mActivity, spaceinfo.extern_total));
-				extern_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.extern_used));
+				extern_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.extern_used) + " (AVG " + Formatter.formatFileSize(mActivity, spaceinfo.avg_extern_diff) + ")");
 				externalspacebar.setMax(100);
 				if (spaceinfo.extern_total != 0) {
 					externalspacebar.setProgress(Math.round((spaceinfo.extern_used * 100 / spaceinfo.extern_total)));
 				}
 
 				sdcard_total.setText(Formatter.formatFileSize(mActivity, spaceinfo.sdcard_total));
-				sdcard_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.sdcard_used));
+				sdcard_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.sdcard_used) + " (AVG " + Formatter.formatFileSize(mActivity, spaceinfo.avg_sdcard_diff) + ")");
 				internalspacebar.setMax(100);
 				if (spaceinfo.sdcard_total != 0) {
 					internalspacebar.setProgress(Math.round((spaceinfo.sdcard_used * 100 / spaceinfo.sdcard_total)));
 				}
 
 				system_total.setText(Formatter.formatFileSize(mActivity, spaceinfo.system_total));
-				system_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.system_used));
+				system_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.system_used) + " (AVG " + Formatter.formatFileSize(mActivity, spaceinfo.avg_system_diff) + ")");
 				systemspacebar.setMax(100);
 				if (spaceinfo.system_total != 0) {
 					systemspacebar.setProgress(Math.round((spaceinfo.system_used * 100 / spaceinfo.system_total)));
 				}
 
 				data_total.setText(Formatter.formatFileSize(mActivity, spaceinfo.data_total));
-				data_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.data_used));
+				data_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.data_used) + " (AVG " + Formatter.formatFileSize(mActivity, spaceinfo.avg_data_diff) + ")");
 				dataspacebar.setMax(100);
 				if (spaceinfo.data_total != 0) {
 					dataspacebar.setProgress(Math.round((spaceinfo.data_used * 100 / spaceinfo.data_total)));
