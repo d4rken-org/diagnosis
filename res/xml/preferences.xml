@@ -33,17 +33,17 @@
                 android:defaultValue="false"
                 android:key="general.database.doapps"
                 android:summary="Keeps a list of watched apps, their cpu usage, memory and more"
-                android:title="Save application statistics" />
+                android:title="Application statistics" />
             <CheckBoxPreference
                 android:defaultValue="false"
                 android:key="general.database.dobatt"
                 android:summary="Charge level, temperature, voltage,..."
-                android:title="Save battery statistics" />
+                android:title="Battery statistics" />
             <CheckBoxPreference
                 android:defaultValue="false"
                 android:key="general.database.docpu"
                 android:summary="Cpu infos, io/system/user/nice/idle usages..."
-                android:title="Save cpu statistics" />
+                android:title="Cpu statistics" />
             <CheckBoxPreference
                 android:defaultValue="false"
                 android:key="general.database.dofreq"
@@ -52,7 +52,7 @@
             <CheckBoxPreference
                 android:defaultValue="false"
                 android:key="general.database.domem"
-                android:summary="uhm? \o/ memory statistics (not being displayed to its fullest atm)"
+                android:summary="System memory (Total/Real/Buffered/Cached)"
                 android:title="Save memory statistics" />
             <CheckBoxPreference
                 android:defaultValue="false"
