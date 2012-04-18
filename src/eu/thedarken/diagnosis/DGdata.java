@@ -2,7 +2,6 @@ package eu.thedarken.diagnosis;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -161,7 +159,6 @@ public class DGdata {
     private SharedPreferences settings;
 	private DGdatabase mDB;
 	public static int DB_CACHE_SIZE = 0;
-	private int SHELLDELAY = 35;
 	public static boolean db_cache_reset_required = false;
 	private TelephonyManager telman;
 	private PhoneInfoListener phoneinfolistener;
@@ -1007,10 +1004,9 @@ public class DGdata {
 		ret.sdcard_used = getSpace(Environment.getExternalStorageDirectory()).used;
 		ret.system_total = getSpace(Environment.getRootDirectory()).total;
 		ret.system_used = getSpace(Environment.getRootDirectory()).used;
-		String ext_path = DGoverlay.external_sd_path;
-		if(ext_path.length() > 1) {
-			ret.extern_total = getSpace(new File(ext_path)).total;
-			ret.extern_used = getSpace(new File(ext_path)).used;
+		if(DGoverlay.getExternalSDs().size() > 0) {
+			ret.extern_total = getSpace(new File(DGoverlay.getExternalSDs().get(0).path.getAbsolutePath())).total;
+			ret.extern_used = getSpace(new File(DGoverlay.getExternalSDs().get(0).path.getAbsolutePath())).used;
 		}
 		ret.system_time =  current_time;
 		spacelist.add(ret);

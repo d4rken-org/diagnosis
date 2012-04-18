@@ -58,11 +58,12 @@ public class DGoverlay extends Service{
 	public static boolean use_fahrenheit = false;
 	private int overlay_width;
 	private int overlay_height;
-    public static String external_sd_path = "";
+    private static ArrayList<ExternalSD> external_sds = new ArrayList<ExternalSD>();
     public static int default_color_normal = 0xff06ff00;
     public static int default_color_alert = 0xffffff00;
     public static int default_color_bg = 0x70000000;
     private final static int NOTIFICATION_ID = 88;
+    private final String TAG = "eu.thedarken.diagnosis.overlay";
 	public class Line {
 		String text = new String();
 		int x_pos = 0;
@@ -119,7 +120,7 @@ public class DGoverlay extends Service{
 
         data = new DGdata(mContext);
         mOverlay = new Overlay(mContext);
-        Log.d(mContext.getPackageName(), "Overlay service started");
+        Log.d( TAG, "Overlay service started");
         super.onCreate();
         
         INTERVALL = (settings.getInt("general.intervall", 5)*1000);
@@ -177,7 +178,7 @@ public class DGoverlay extends Service{
 	
 	@Override
 	public void onDestroy() {
-        Log.d(mContext.getPackageName(), "Overlay service destroyed");
+        Log.d( TAG, "Overlay service destroyed");
 		wm.removeView(mOverlay);
 		this.unregisterReceiver(screenOnReciever);
 		data.close();
@@ -204,25 +205,55 @@ public class DGoverlay extends Service{
 		return lines;
 	}
 	
-    private void findExternalSD() {
-		if(new File("/mnt/sdcard-ext").exists() && new File("/mnt/sdcard-ext").canRead()) {
-			external_sd_path = "/mnt/sdcard-ext";
-		} else if(new File(Environment.getExternalStorageDirectory() + "/external_sd").exists()) {
-			external_sd_path = Environment.getExternalStorageDirectory() + "/external_sd";
-		}  else if(new File("/mnt/emmc").exists() && new File("/mnt/emmc").canRead()) {
-			external_sd_path = "/mnt/emmc";
-		} else if(new File("/emmc").exists() && new File("/emmc").canRead()) {
-			external_sd_path = "/emmc";
-		} else if(new File("/mnt/sdcard/_ExternalSD").exists() && new File("/mnt/sdcard/_ExternalSD").canRead()) {
-			external_sd_path = "/mnt/sdcard/_ExternalSD";
-		} else if(new File(Environment.getExternalStorageDirectory() + "/sd").exists() && new File(Environment.getExternalStorageDirectory() + "/sd").canRead()) {
-			external_sd_path = Environment.getExternalStorageDirectory() + "/sd";
-		} else if(new File("/mnt/sdcard2").exists() && new File("/mnt/sdcard2").canRead()) {
-			external_sd_path = "/mnt/sdcard2";
-		} else {
-			external_sd_path = "";
+    class ExternalSD {
+    	File path;
+    	boolean isCovered = false;
+    	String label = "";
+    }
+	
+	private void findExternalSD() {
+		ArrayList<String> canidates = new ArrayList<String>();
+		canidates.add("/mnt/sdcard-ext");
+		canidates.add(Environment.getExternalStorageDirectory().getAbsolutePath() + "/external_sd");
+		canidates.add("/mnt/emmc");
+		canidates.add("/emmc");
+		canidates.add(Environment.getExternalStorageDirectory().getAbsolutePath() + "/_ExternalSD");
+		canidates.add(Environment.getExternalStorageDirectory().getAbsolutePath() + "/sd");
+		canidates.add(Environment.getExternalStorageDirectory().getAbsolutePath() + "/sdcard2");
+		canidates.add("/mnt/sdcard2");
+		canidates.add("/mnt/external1");
+		canidates.add(Environment.getExternalStorageDirectory().getAbsolutePath() + "/ext_sd");
+//		canidates.add("/data/sdext2");
+		canidates.add("/mnt/usb_storage");
+		canidates.add("/mnt/sdcard/removable_sdcard");
+		
+		for(String c : canidates) {
+			File canidate = new File(c);
+			if (canidate.exists() && canidate.canRead()) {
+				ExternalSD e = new ExternalSD();
+				e.isCovered = alreadyCovered(canidate);
+				e.path = canidate;
+				e.label = e.path.getName();
+				external_sds.add(e);
+			}
 		}
-		Log.d(mContext.getPackageName(), "External SD found at " + external_sd_path);
+
+		for(ExternalSD sd : getExternalSDs())
+			Log.d(TAG, "External SD found at " + sd.path.getAbsolutePath().toString());
+	}
+	
+	private boolean alreadyCovered(File f) {
+		if (f.getAbsolutePath().toString().contains(Environment.getExternalStorageDirectory().getAbsolutePath().toString() + "/"))
+			return true;
+		for(ExternalSD sd : getExternalSDs()) {
+			if(sd.path.getAbsolutePath().toString().contains(f.getAbsolutePath().toString()))
+				return true;
+		}
+		return false;
+	}
+	
+   public static ArrayList<ExternalSD> getExternalSDs() {
+    	return external_sds;
     }
 	
 	class Overlay extends ViewGroup {
@@ -275,7 +306,7 @@ public class DGoverlay extends Service{
 	@Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);       
-        Log.d(mContext.getPackageName(), "Configuration changed, reloading...");
+        Log.d( TAG, "Configuration changed, reloading...");
         reset = true;
 	}
 	
@@ -300,7 +331,6 @@ public class DGoverlay extends Service{
 	    public void run() {
 	        data.update();
 	        if(screenON) {
-		        //Log.d(mContext.getPackageName(), "Screen is on, drawing...");
 		    	if(reset) {
 		            DisplayMetrics outMetrics = new DisplayMetrics();
 		            wm.getDefaultDisplay().getMetrics(outMetrics);
@@ -384,7 +414,7 @@ public class DGoverlay extends Service{
 		    		lines.add(init);
 		    		
 		    		
-			        Log.d(mContext.getPackageName(), "reset done");
+			        Log.d( TAG, "reset done");
 		    		setLine(0);
 		    		setLine(1);
 		    		setLine(2);
@@ -398,11 +428,11 @@ public class DGoverlay extends Service{
 		    	}
 		    	mOverlay.invalidate();
 	        } else {
-		        //Log.d(mContext.getPackageName(), "Screen is off");
+	        	//Screen was off
 	        }
 		    if(haltoverlay) {
 		    	haltoverlay = false;
-		        Log.d(mContext.getPackageName(), "halted");
+		        Log.d( TAG, "halted");
 		        reset = true;
 		        stopSelf();
 		    } else {
