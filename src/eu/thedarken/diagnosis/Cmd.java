@@ -35,6 +35,10 @@ public class Cmd {
 				exe.join();
 			} else {
 				exe.join(timeout);
+				if(output == null)
+					output = new ArrayList<String>();
+				if(errors == null)
+					errors = new ArrayList<String>();
 			}
 			if (DEBUG) {
 				for (String e : this.getErrors())
