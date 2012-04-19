@@ -78,9 +78,11 @@ public class DGapps extends SherlockFragment {
         private ProgDialog dialog;
         private ArrayList <AppTabInfo> infos = null;
     	private int sortmode;
+    	private boolean pull_apps;
         public updateTask(Activity a, int sm) {
         	mActivity = a;
         	sortmode = sm;
+        	pull_apps = settings.getBoolean("general.database.doapps", false);
         }
 
         protected void onPreExecute() {
@@ -93,7 +95,7 @@ public class DGapps extends SherlockFragment {
         @Override
         protected void onPostExecute(final Boolean ok) {
         	apps_table.removeAllViews();
-            if(ok) {
+            if(pull_apps) {
 				TextView nodata = (TextView) mView.findViewById(R.id.nodata);
 				nodata.setVisibility(View.GONE);
             	
@@ -186,11 +188,9 @@ public class DGapps extends SherlockFragment {
 		@Override
 		protected Boolean doInBackground(String... params) {
 	    	infos = db.getAppTabInfo(sortmode,settings.getBoolean("general.database.hidesystem", false));
-	    	if(infos != null) {
-	    		return true;
-	    	} else {
-	    		return false;
-	    	}
+	    	if(infos != null)
+	    		 pull_apps = true;
+	    	return pull_apps;
 		}
     }
 }
