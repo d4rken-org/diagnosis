@@ -532,7 +532,7 @@ public class DGmain extends SherlockFragmentActivity {
 						.setTitle("News")
 						.setCancelable(true)
 						.setMessage(
-								"v0.7.5:\n-Code improvements\n-Small tweaks to stats tab\n\nv0.7.4:\nFixed a few typos and bugs\n\nv0.7.1/0.7.2/0.7.3:\nMainly bugfixes for some devices\n\nv0.7.0:\nNew user interface, i hope everyone likes it :-)\n\nHave a look 'Diagnosis Pro' if you are looking for additional features or want to support my work.\n\nQuestions,requests or ideas?\nMail me!")
+								versName + ":\n-Bug fixes\n\nHave a look 'Diagnosis Pro' if you are looking for additional features or want to support my work.\n\nQuestions,requests or ideas?\nMail me!")
 						.setPositiveButton("Diagnosis Pro", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
