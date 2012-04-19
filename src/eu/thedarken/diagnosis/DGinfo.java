@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class DGinfo extends SherlockFragment {
@@ -25,10 +27,12 @@ public class DGinfo extends SherlockFragment {
 	private TextView db_size;
 	private TextView db_status;
 	private View mView;
+	private final String TAG = "eu.thedarken.diagnosis.DGinfo";
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout and save it
 		mView = inflater.inflate(R.layout.info, container, false);
+		
 		return mView;
 	}
 
@@ -46,12 +50,14 @@ public class DGinfo extends SherlockFragment {
 		ArrayAdapter<CharSequence> stylesadapter = ArrayAdapter.createFromResource(mContext, R.array.stylelist, android.R.layout.simple_spinner_item );
 		stylesadapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
 		Spinner styles = (Spinner) mView.findViewById( R.id.stylespinner );
-		styles.setAdapter( stylesadapter );
+
 		styles.setOnItemSelectedListener(new OnItemSelectedListener() {
-			public void onItemSelected(AdapterView<?> parent, View arg1, int arg2, long arg3) {
-				int arraypos = parent.getSelectedItemPosition();
+			public void onItemSelected(AdapterView<?> parent, View arg1, int pos, long arg3) {
+				Log.d(TAG, "Spinner call, parent: " + parent.getSelectedItemPosition() + " arg2 " + pos);
 				Styles s = new Styles(mContext);
-				switch(arraypos) {
+				switch(pos) {
+					default:
+						break;
 					case 0:
 //						s.initLines();
 						break;
@@ -92,16 +98,26 @@ public class DGinfo extends SherlockFragment {
 						s.setStyle12();
 						break;
 				}
+				if(pos != 0) {
+					Toast.makeText(mContext, "Style " + pos + " set!", Toast.LENGTH_SHORT).show();
+					parent.setSelection(0);
+				}
 			}
 
 			public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
+		styles.setAdapter( stylesadapter );
 	}
 	
 	@Override
+	public void onDetach() {
+		super.onDetach();
+	}
+		
+	@Override
 	public void onResume() {
-        super.onResume();
+		super.onResume();
 		new startinfoTask(this.getSherlockActivity()).execute();
 	}
 
