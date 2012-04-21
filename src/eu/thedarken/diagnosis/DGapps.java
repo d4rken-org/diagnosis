@@ -188,8 +188,8 @@ public class DGapps extends SherlockFragment {
 		@Override
 		protected Boolean doInBackground(String... params) {
 	    	infos = db.getAppTabInfo(sortmode,settings.getBoolean("general.database.hidesystem", false));
-	    	if(infos != null)
-	    		 pull_apps = true;
+	    	if(infos == null)
+	    		 pull_apps = false;
 	    	return pull_apps;
 		}
     }
