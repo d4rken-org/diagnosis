@@ -1,4 +1,7 @@
-﻿v0.7.6(24)
+﻿v0.7.7(25)
+- Fixed FC in app stats page
+
+v0.7.6(24)
 - Fixed resetting settings bug
 - Don't show app stats, if statistic for it is not enabled
 
