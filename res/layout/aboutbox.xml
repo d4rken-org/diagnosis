@@ -14,8 +14,8 @@
 		    android:background="@color/Gray"
 		    android:gravity="top" >
 
-			<Button android:id="@+id/xda" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_alignParentBottom="true" android:layout_gravity="left" android:text="Visit XDA"></Button>
-			<Button android:id="@+id/email" android:layout_height="wrap_content" android:layout_width="wrap_content"  android:layout_alignParentBottom="true" android:layout_gravity="center" android:text="Email darken"></Button>
+			<Button android:id="@+id/xda" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_alignParentBottom="true" android:layout_gravity="left" android:text="@string/visit_xda"></Button>
+			<Button android:id="@+id/email" android:layout_height="wrap_content" android:layout_width="wrap_content"  android:layout_alignParentBottom="true" android:layout_gravity="center" android:text="@string/email_darken"></Button>
 		</LinearLayout>
 	</RelativeLayout>
 </RelativeLayout>

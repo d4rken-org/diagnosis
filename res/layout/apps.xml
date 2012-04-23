@@ -15,7 +15,7 @@
 	            android:layout_gravity="center"
 	            android:layout_weight="1"
 	            android:gravity="center"
-	            android:text="Sortmode"
+	            android:text="@string/sortmode"
 	            android:textAppearance="?android:attr/textAppearanceMedium"
 	            android:textColor="#000000" />
 
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg4"
                 android:id="@+id/nodata"
-                android:text="No data saved yet!\nOpen the settings and select which data you want to save.\n(It may take a few minutes until enough data is gathered)"
+                android:text="@string/no_data_saved_yet"
                 android:textColor="#000000" />
    		    <TableLayout
    		        xmlns:android="http://schemas.android.com/apk/res/android"
@@ -57,27 +57,27 @@
    		            <TextView
    		                android:layout_width="match_parent"
    		                android:layout_height="wrap_content"
-   		                android:text="Seen"
+   		                android:text="@string/seen"
    		                android:textColor="#000000" />
 
    		            <TextView
    		                android:layout_width="match_parent"
    		                android:layout_height="wrap_content"
-   		                android:text="Name"
-   		                android:textColor="#000000" />
-
-   		            <TextView
-   		                android:id="@+id/cpu_last_apps"
-   		                android:layout_width="match_parent"
-   		                android:layout_height="wrap_content"
-   		                android:text="CPU%"
+   		                android:text="@string/name"
    		                android:textColor="#000000" />
 
    		            <TextView
    		                android:id="@+id/cpu_last_apps"
    		                android:layout_width="match_parent"
    		                android:layout_height="wrap_content"
-   		                android:text="RAM%"
+   		                android:text="@string/cpu_percent"
+   		                android:textColor="#000000" />
+
+   		            <TextView
+   		                android:id="@+id/cpu_last_apps"
+   		                android:layout_width="match_parent"
+   		                android:layout_height="wrap_content"
+   		                android:text="@string/ram_percent"
    		                android:textColor="#000000" />
    		        </TableRow>
 
@@ -95,7 +95,7 @@
    		            <TextView
    		                android:layout_width="match_parent"
    		                android:layout_height="wrap_content"
-   		                android:text="look.away.!.you.shouldnt.see.me.like.this"
+   		                android:text="@string/please_wait"
    		                android:textColor="#000000" />
 
    		            <TextView

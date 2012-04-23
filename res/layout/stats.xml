@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg4"
-                android:text="No data saved yet!\nOpen the settings and select which data you want to save.\n(It may take a few minutes until enough data is gathered)"
+                android:text="@string/no_data_yet"
                 android:textColor="#000000" />
 
             <TableLayout
@@ -42,14 +42,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="Your batteries health"
+                            android:text="@string/your_batteries_health"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:text="is"
+                            android:text="@string/is"
                             android:textColor="#000000" />
 
                         <TextView
@@ -77,14 +77,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="Charge level "
+                            android:text="@string/charge_level_"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="is currently"
+                            android:text="@string/is_currently"
                             android:textColor="#000000" />
 
                         <TextView
@@ -112,7 +112,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="is on average"
+                            android:text="@string/is_on_average"
                             android:textColor="#000000" />
 
                         <TextView
@@ -140,14 +140,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="Your batteries voltage "
+                            android:text="@string/your_batteries_voltage"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="is currently"
+                            android:text="@string/is_currently"
                             android:textColor="#000000" />
 
                         <TextView
@@ -175,7 +175,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="is on average"
+                            android:text="@string/is_on_average"
                             android:textColor="#000000" />
 
                         <TextView
@@ -203,7 +203,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="highest was"
+                            android:text="@string/highest_was"
                             android:textColor="#000000" />
 
                         <TextView
@@ -231,7 +231,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="lowest was"
+                            android:text="@string/lowest_was"
                             android:textColor="#000000" />
 
                         <TextView
@@ -259,14 +259,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="Your battery is "
+                            android:text="@string/your_battery_is"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="currently"
+                            android:text="@string/currently"
                             android:textColor="#000000" />
 
                         <TextView
@@ -301,7 +301,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="is"
+                            android:text="@string/is"
                             android:textColor="#000000" />
 
                         <TextView
@@ -329,14 +329,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="The battery temperature"
+                            android:text="@string/the_battery_temperature"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="is currently"
+                            android:text="@string/is_currently"
                             android:textColor="#000000" />
 
                         <TextView
@@ -364,7 +364,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="was on average"
+                            android:text="@string/was_on_average"
                             android:textColor="#000000" />
 
                         <TextView
@@ -392,7 +392,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="was highest at"
+                            android:text="@string/was_highest_at"
                             android:textColor="#000000" />
 
                         <TextView
@@ -420,7 +420,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="was lowest at"
+                            android:text="@string/was_lowest_at"
                             android:textColor="#000000" />
 
                         <TextView
@@ -454,14 +454,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="Active app count"
+                            android:text="@string/active_app_count"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="maximum"
+                            android:text="@string/maximum"
                             android:textColor="#000000" />
 
                         <TextView
@@ -489,7 +489,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="is on average"
+                            android:text="@string/is_on_average"
                             android:textColor="#000000" />
 
                         <TextView
@@ -517,14 +517,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="Average CPU usage "
+                            android:text="@string/average_cpu_usage"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="User "
+                            android:text="@string/user"
                             android:textColor="#000000" />
 
                         <TextView
@@ -552,7 +552,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="System "
+                            android:text="@string/system"
                             android:textColor="#000000" />
 
                         <TextView
@@ -614,14 +614,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="Memory"
+                            android:text="@string/memory"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="average"
+                            android:text="@string/average"
                             android:textColor="#000000" />
 
                         <TextView
@@ -655,14 +655,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="Observed CPU speed"
+                            android:text="@string/observed_cpu_speed"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="average is"
+                            android:text="@string/average_is"
                             android:textColor="#000000" />
 
                         <TextView
@@ -690,7 +690,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="highest was"
+                            android:text="@string/highest_was"
                             android:textColor="#000000" />
 
                         <TextView
@@ -718,7 +718,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="lowest at"
+                            android:text="@string/lowest_at"
                             android:textColor="#000000" />
 
                         <TextView
@@ -746,14 +746,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="Possible clockspeed "
+                            android:text="@string/possible_clockspeed"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="is max"
+                            android:text="@string/is_max"
                             android:textColor="#000000" />
 
                         <TextView
@@ -781,7 +781,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="is min"
+                            android:text="@string/is_min"
                             android:textColor="#000000" />
 
                         <TextView
@@ -815,14 +815,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="[ALL]Latest rate"
+                            android:text="@string/all_latest_rate"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="download"
+                            android:text="@string/download"
                             android:textColor="#000000" />
 
                         <TextView
@@ -850,7 +850,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="upload"
+                            android:text="@string/upload"
                             android:textColor="#000000" />
 
                         <TextView
@@ -871,14 +871,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="[ALL]Max speed (last 3h)"
+                            android:text="@string/all_max_speed_last_3h"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="download"
+                            android:text="@string/download"
                             android:textColor="#000000" />
 
                         <TextView
@@ -906,7 +906,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="upload"
+                            android:text="@string/upload"
                             android:textColor="#000000" />
 
                         <TextView
@@ -927,14 +927,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="[ALL]Max speed (last 24h)"
+                            android:text="@string/all_max_speed_last_24h"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="download"
+                            android:text="@string/download"
                             android:textColor="#000000" />
 
                         <TextView
@@ -962,7 +962,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="upload"
+                            android:text="@string/upload"
                             android:textColor="#000000" />
 
                         <TextView
@@ -990,14 +990,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="[ALL]Traffic (last 3h)"
+                            android:text="@string/all_traffic_last_3h"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="download"
+                            android:text="@string/download"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1025,7 +1025,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="upload"
+                            android:text="@string/upload"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1046,14 +1046,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="[ALL]Traffic (last 24h)"
+                            android:text="@string/all_traffic_last_24h"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="download"
+                            android:text="@string/download"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1081,7 +1081,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="upload"
+                            android:text="@string/upload"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1102,14 +1102,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="[ALL]Traffic (whole database)"
+                            android:text="@string/all_traffic_whole_database"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="download"
+                            android:text="@string/download"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1137,7 +1137,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="upload"
+                            android:text="@string/upload"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1166,14 +1166,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="[CELL]Latest rate"
+                            android:text="@string/cell_latest_rate"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="download"
+                            android:text="@string/download"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1201,7 +1201,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="upload"
+                            android:text="@string/upload"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1222,14 +1222,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="[CELL]Max speed (last 3h)"
+                            android:text="@string/cell_max_speed_last_3h"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="download"
+                            android:text="@string/download"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1257,7 +1257,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="upload"
+                            android:text="@string/upload"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1278,14 +1278,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="[CELL]Max speed (last 24h)"
+                            android:text="@string/cell_max_speed_last_24h"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="download"
+                            android:text="@string/download"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1313,7 +1313,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="upload"
+                            android:text="@string/upload"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1342,14 +1342,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="[CELL]Traffic (last 3h)"
+                            android:text="@string/cell_traffic_last_3h"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="download"
+                            android:text="@string/download"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1377,7 +1377,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="upload"
+                            android:text="@string/upload"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1398,14 +1398,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="[CELL]Traffic (last 24h)"
+                            android:text="@string/cell_traffic_last_24h"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="download"
+                            android:text="@string/download"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1433,7 +1433,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="upload"
+                            android:text="@string/upload"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1454,14 +1454,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
-                            android:text="[CELL]Traffic (whole database)"
+                            android:text="@string/cell_traffic_whole_database"
                             android:textColor="#000000" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="download"
+                            android:text="@string/download"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1489,7 +1489,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="upload"
+                            android:text="@string/upload"
                             android:textColor="#000000" />
 
                         <TextView
@@ -1519,14 +1519,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="7"
-                        android:text="External sdcard"
+                        android:text="@string/external_sdcard"
                         android:textColor="#000000" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="total"
+                        android:text="@string/total"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1555,7 +1555,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="used"
+                        android:text="@string/used"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1576,14 +1576,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="7"
-                        android:text="Internal sdcard"
+                        android:text="@string/internal_sdcard"
                         android:textColor="#000000" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="total"
+                        android:text="@string/total"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1612,7 +1612,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="used"
+                        android:text="@string/used"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1633,14 +1633,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="7"
-                        android:text="System partition"
+                        android:text="@string/system_partition"
                         android:textColor="#000000" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="total"
+                        android:text="@string/total"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1669,7 +1669,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="used"
+                        android:text="@string/used"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1690,14 +1690,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="7"
-                        android:text="Data partition"
+                        android:text="@string/data_partition"
                         android:textColor="#000000" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="total"
+                        android:text="@string/total"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1726,7 +1726,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="used"
+                        android:text="@string/used"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1755,14 +1755,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="7"
-                        android:text="WIFI signal"
+                        android:text="@string/wifi_signal"
                         android:textColor="#000000" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="average"
+                        android:text="@string/average"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1790,7 +1790,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="min"
+                        android:text="@string/min"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1818,7 +1818,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="max"
+                        android:text="@string/max"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1847,14 +1847,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="7"
-                        android:text="CELL signal"
+                        android:text="@string/cell_signal"
                         android:textColor="#000000" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="average"
+                        android:text="@string/average"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1882,7 +1882,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="min"
+                        android:text="@string/min"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1910,7 +1910,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="max"
+                        android:text="@string/max"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1939,14 +1939,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="7"
-                        android:text="Ping "
+                        android:text="@string/ping"
                         android:textColor="#000000" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="average"
+                        android:text="@string/average"
                         android:textColor="#000000" />
 
                     <TextView
@@ -1974,7 +1974,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="min"
+                        android:text="@string/min"
                         android:textColor="#000000" />
 
                     <TextView
@@ -2002,7 +2002,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="max"
+                        android:text="@string/max"
                         android:textColor="#000000" />
 
                     <TextView
@@ -2031,14 +2031,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="7"
-                        android:text="Disk write"
+                        android:text="@string/disk_write"
                         android:textColor="#000000" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="average"
+                        android:text="@string/average"
                         android:textColor="#000000" />
 
                     <TextView
@@ -2066,7 +2066,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="max"
+                        android:text="@string/max"
                         android:textColor="#000000" />
 
                     <TextView
@@ -2087,14 +2087,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="7"
-                        android:text="Disk read"
+                        android:text="@string/disk_read"
                         android:textColor="#000000" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="average"
+                        android:text="@string/average"
                         android:textColor="#000000" />
 
                     <TextView
@@ -2122,7 +2122,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="max"
+                        android:text="@string/max"
                         android:textColor="#000000" />
 
                     <TextView

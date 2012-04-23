@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Drag/Drop the icon up/down to sort.\nDragging the icon right, deletes that item"
+        android:text="@string/linebuider_welcome"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <LinearLayout
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="close"
-            android:text="Close" />
+            android:text="@string/close" />
     </LinearLayout>
 
     <eu.thedarken.diagnosis.TouchListView
