@@ -1,5 +1,7 @@
 package eu.thedarken.diagnosis;
 
+import java.util.ArrayList;
+
 public class InfoClass {
 	public static class BattInfo {
 		int scale = 100;
@@ -142,9 +144,9 @@ public class InfoClass {
 	}
 	
 	public static class FreqInfo {
-		int cpu_frequency = 0;
-		int cpu_max_frequency = 0;
-		int cpu_min_frequency = 0;
+		Integer[] cpu_frequency = new Integer[DGdata.CORES];
+		Integer[] cpu_max_frequency = new Integer[DGdata.CORES];
+		Integer[] cpu_min_frequency = new Integer[DGdata.CORES];
 		long system_time = 0;
 	}
 	

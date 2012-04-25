@@ -45,7 +45,7 @@ public class DGmain extends SherlockFragmentActivity {
 	private Intent service;
 	public static String versName = "";
 	public static int versCode = 0;
-	private final static int DB_DELETE_VERSION = 18;
+	private final static int DB_DELETE_VERSION = 25;
 	public static String BUSYBOX = "";
 	public static String BUSYBOX_VERSION = "";
 	private SharedPreferences settings;

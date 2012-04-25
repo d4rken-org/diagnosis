@@ -159,6 +159,7 @@ public class DGdata {
     private SharedPreferences settings;
 	private DGdatabase mDB;
 	public static int DB_CACHE_SIZE = 0;
+	public static int CORES = 4;
 	public static boolean db_cache_reset_required = false;
 	private TelephonyManager telman;
 	private PhoneInfoListener phoneinfolistener;
@@ -768,13 +769,15 @@ public class DGdata {
 				while(cnt != 0) {
 					FreqInfo temp = dbfreqlist.removeFirst();
 					avg.system_time += temp.system_time;
-					avg.cpu_frequency += temp.cpu_frequency;
+					for(int i=0;i<4;i++)
+						avg.cpu_frequency[i] += temp.cpu_frequency[i];
 					avg.cpu_max_frequency = temp.cpu_max_frequency;
 					avg.cpu_min_frequency = temp.cpu_min_frequency;
 					cnt--;
 				}
 				avg.system_time /= this.density;
-				avg.cpu_frequency /= this.density;
+				for(int i=0;i<4;i++)
+					avg.cpu_frequency[i] /= this.density;
 				f_inserts.add(avg);
 			}
 			if(f_inserts.size() > 0) mDB.addFreqs(f_inserts,false);
@@ -1124,7 +1127,7 @@ public class DGdata {
 	
 		Cmd c = new Cmd();
 		c.addCommand("BUSYBOX=" + BUSYBOX);
-		c.addCommand("$BUSYBOX iostat -d -z -k\n");
+		c.addCommand("$BUSYBOX iostat -d -z -k");
 		c.execute();
 		if(c.getOutput().size() > 3) {
 		    Matcher match;
@@ -1166,58 +1169,68 @@ public class DGdata {
 	}
 	
 	
-	private int getCpuMinFrequency() {
-		int ret = 0;
+	private Integer[] getCpuMinFrequency() {
+		Integer[] rets = new Integer[DGdata.CORES];
 		Cmd c = new Cmd();
-		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"\n");
-		c.addCommand("$BUSYBOX cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq\n");
+		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"");
+		for(int i=0;i<rets.length;i++)
+			c.addCommand("$BUSYBOX cat /sys/devices/system/cpu/cpu"+i+"/cpufreq/scaling_min_freq");
 		c.execute();
 		for(String err : c.getErrors())
 			Log.d(mContext.getPackageName(), err);
-
-		if(c.getOutput().size() > 0) {
-			ret = Integer.parseInt(c.getOutput().get(0));
-		}
 		
-		return ret;
+		int i=0;
+		for(String minfreq : c.getOutput()) {
+			rets[i++] = Integer.parseInt(minfreq);
+			if(i == rets.length)
+				break;
+		}
+		return rets;
 	}
 	
-	private int getCpuMaxFrequency() {
-		int ret = 0;
+	private Integer[] getCpuMaxFrequency() {
+		Integer[] rets = new Integer[DGdata.CORES];
 		Cmd c = new Cmd();
-		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"\n");
-		c.addCommand("$BUSYBOX cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq\n");
+		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"");
+		for(int i=0;i<rets.length;i++)
+			c.addCommand("$BUSYBOX cat /sys/devices/system/cpu/cpu"+i+"/cpufreq/scaling_max_freq");
 		c.execute();
 		for(String err : c.getErrors())
 			Log.d(mContext.getPackageName(), err);
-
-		if(c.getOutput().size() > 0) {
-			ret = Integer.parseInt(c.getOutput().get(0));
-		}
 		
-		return ret;
+		int i = 0;
+		for(String maxfreq : c.getOutput()) {
+			rets[i++] = Integer.parseInt(maxfreq);
+			if(i==rets.length)
+				break;
+		}			
+		
+		return rets;
 	}
 	
-	private int getCpuFrequency() {
-		int ret = 0;
+	private Integer[] getCpuFrequency() {
+		Integer[] rets = new Integer[DGdata.CORES];
 		Cmd c = new Cmd();
-		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"\n");
-		c.addCommand("$BUSYBOX cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq\n");
+		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"");
+		for(int i=0;i<rets.length;i++)
+			c.addCommand("$BUSYBOX cat /sys/devices/system/cpu/cpu"+i+"/cpufreq/scaling_cur_freq");
 		c.execute();
 		for(String err : c.getErrors())
 			Log.d(mContext.getPackageName(), err);
 
-		if(c.getOutput().size() > 0) {
-			ret = Integer.parseInt(c.getOutput().get(0));
+		int i = 0;
+		for(String freq : c.getOutput()) {
+			rets[i++] = Integer.parseInt(freq);
+			if(i == rets.length)
+				break;
 		}
-
-		return ret;
+		return rets;
 	}
 	
 	private void doTop(boolean domem,boolean docpu,boolean doload,boolean doapps) {
 		Cmd c = new Cmd();
-		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"\n");
-		c.addCommand("$BUSYBOX top -n1 \n");
+		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"");
+		c.addCommand("$BUSYBOX top -n1");
 		c.execute();
 		for(String err : c.getErrors())
 			Log.d(mContext.getPackageName(), err);
