@@ -1,6 +1,5 @@
 package eu.thedarken.diagnosis;
 
-import java.util.ArrayList;
 
 public class InfoClass {
 	public static class BattInfo {
@@ -144,16 +143,39 @@ public class InfoClass {
 	}
 	
 	public static class FreqInfo {
-		Integer[] cpu_frequency = new Integer[DGdata.CORES];
-		Integer[] cpu_max_frequency = new Integer[DGdata.CORES];
-		Integer[] cpu_min_frequency = new Integer[DGdata.CORES];
+		long[] cpu_frequency = new long[DGdata.CORES];
 		long system_time = 0;
+		
+		public static long calcAvgCoreFrequency(long[] freqs) {
+			long ret = 0;
+			int avg = 0;
+			for(int i=0;i<freqs.length;i++) {
+				if(freqs[i] != 0)
+					avg++;
+				ret += freqs[i];
+			}
+			if(avg != 0)
+				ret /= avg;
+			return ret;
+		}
 	}
 	
 	public static class FreqTabInfo extends FreqInfo {
-		int max_obs_cpu_freq = 0;
-		int min_obs_cpu_freq = 0;
-		float avg_cpu_freq = 0;
+		long[] max_obs_cpu_freq = new long[DGdata.CORES];
+		long[] min_obs_cpu_freq = new long[DGdata.CORES];
+		double[] avg_cpu_freq = new double[DGdata.CORES];
+		public static long calcAvgCoreFrequency(double[] freqs) {
+			long ret = 0;
+			int avg = 0;
+			for(int i=0;i<freqs.length;i++) {
+				if(freqs[i] != 0)
+					avg++;
+				ret += freqs[i];
+			}
+			if(avg != 0)
+				ret /= avg;
+			return ret;
+		}
 	}
 	
 	public static class LoadInfo {

@@ -637,161 +637,56 @@
 
             <TableLayout
                 android:id="@+id/freq_table"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg4"
+                android:padding="10dp" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:text="@string/observed_cpu_speed"
+                    android:textColor="#000000" />
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:text=""
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/min"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/max"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/average"
+                        android:textColor="#000000" />
+                </TableRow>
 
                 <TableLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg4"
-                    android:padding="10dp" >
-
-                    <TableRow
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="7"
-                            android:text="@string/observed_cpu_speed"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/average_is"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:id="@+id/observed_cpu_avg"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:text="1000MHZ"
-                            android:textColor="#000000" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="7"
-                            android:text=""
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/highest_was"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:id="@+id/observed_cpu_max"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:text="1300MHZ"
-                            android:textColor="#000000" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="7"
-                            android:text=""
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/lowest_at"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:id="@+id/observed_cpu_min"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:text="100MHZ"
-                            android:textColor="#000000" />
-                    </TableRow>
-                </TableLayout>
-
-                <TableLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg4"
-                    android:padding="10dp" >
-
-                    <TableRow
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="7"
-                            android:text="@string/possible_clockspeed"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/is_max"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:id="@+id/possible_cpu_max"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:text="1300"
-                            android:textColor="#000000" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="7"
-                            android:text=""
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/is_min"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:id="@+id/possible_cpu_min"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:text="100MHZ"
-                            android:textColor="#000000" />
-                    </TableRow>
+                    android:id="@+id/core_table"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
                 </TableLayout>
             </TableLayout>
 
@@ -1151,10 +1046,10 @@
                 </TableLayout>
 
                 <TableLayout
+                    android:id="@+id/mobile_traffic_rates"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg4"
-                    android:id="@+id/mobile_traffic_rates"
                     android:padding="10dp" >
 
                     <TableRow
@@ -1327,10 +1222,10 @@
                 </TableLayout>
 
                 <TableLayout
+                    android:id="@+id/mobile_traffic_total"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg4"
-                    android:id="@+id/mobile_traffic_total"
                     android:padding="10dp" >
 
                     <TableRow

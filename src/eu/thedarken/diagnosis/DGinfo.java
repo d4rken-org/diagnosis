@@ -45,7 +45,7 @@ public class DGinfo extends SherlockFragment {
 		db_status = (TextView) mView.findViewById(R.id.db_status);
 		
 		TextView welcome = (TextView) mView.findViewById(R.id.style_welcome);
-		welcome.setText("Welcome to Diagnosis " + DGmain.versName + ", try one of these styles or visit the settings and create your own.");
+		welcome.setText(mContext.getString(R.string.welcome_to_diagnosis) + " "+ DGmain.versName + " " + mContext.getString(R.string.try_a_style));
 	
 		ArrayAdapter<CharSequence> stylesadapter = ArrayAdapter.createFromResource(mContext, R.array.stylelist, android.R.layout.simple_spinner_item );
 		stylesadapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
@@ -99,7 +99,7 @@ public class DGinfo extends SherlockFragment {
 						break;
 				}
 				if(pos != 0) {
-					Toast.makeText(mContext, "Style " + pos + " set!", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, mContext.getString(R.string.style) + " " + pos + " " + mContext.getString(R.string.set) + "!", Toast.LENGTH_SHORT).show();
 					parent.setSelection(0);
 				}
 			}
@@ -134,7 +134,7 @@ public class DGinfo extends SherlockFragment {
 			dialog = new ProgDialog(mActivity);
 			dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			dialog.show();
-			dialog.updateMessage("Loading...");
+			dialog.updateMessage(mActivity.getString(R.string.loading));
 		}
 
 		@Override
@@ -144,13 +144,13 @@ public class DGinfo extends SherlockFragment {
 			StringBuilder db_status_sb = new StringBuilder();
 			int intervall = settings.getInt("general.intervall", 5);
 			if (intervall > 1) {
-				db_status_sb.append("Update interval is " + intervall + " seconds.\n");
+				db_status_sb.append(mContext.getString(R.string.update_interval_is) + " " + intervall + " " + mContext.getString(R.string.seconds) + ".\n");
 			} else {
-				db_status_sb.append("Update interval is " + intervall + " second.\n");
+				db_status_sb.append(mContext.getString(R.string.update_interval_is) + " " + intervall + " " + mContext.getString(R.string.second) + ".\n");
 			}
 
-			db_status_sb.append(settings.getInt("database.density", 6) + " data set(s) will be condensed into 1\n" + settings.getInt("database.cachesize", 24)
-					+ " set(s) are cached before saving to database");
+			db_status_sb.append(settings.getInt("database.density", 6) + " " + mContext.getString(R.string.data_set_s_will_be_condensed_into_1) + " \n" + settings.getInt("database.cachesize", 24)
+					+ " " + mContext.getString(R.string.set_s_are_cached_before_saving_to_database));
 
 			db_status.setText(db_status_sb.toString());
 
@@ -160,12 +160,12 @@ public class DGinfo extends SherlockFragment {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
-			dialog.updateMessage("Loading database info");
+			dialog.updateMessage(mActivity.getString(R.string.loading_database_info));
 
 			if (DGmain.db.exists()) {
-				db_size_sb.append("Database size:" + Formatter.formatFileSize(mContext, DGmain.db.length()));
+				db_size_sb.append(mContext.getString(R.string.database_size) + ":" + Formatter.formatFileSize(mContext, DGmain.db.length()));
 			} else {
-				db_size_sb.append("No DB yet");
+				db_size_sb.append(mContext.getString(R.string.no_db_yet));
 			}
 
 			return true;

@@ -37,6 +37,7 @@ public class ColorPickerDialog extends Dialog implements ColorPickerView.OnColor
 	private OnColorChangedListener mListener;
 	private EditText hexinput;
 	private Button sethex;
+	private final String TAG = "eu.thedarken.diagnosis.ColorPicker";
 	public interface OnColorChangedListener {
 		public void onColorChanged(int color);
 	}
@@ -82,13 +83,12 @@ public class ColorPickerDialog extends Dialog implements ColorPickerView.OnColor
 		sethex.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.d("eu.thedarken.diagnosis", "x");
 				if(v.getId() == R.id.old_color_panel) {
 					
 				} else {
 					if (mListener != null) {
 						String customcolor = hexinput.getText().toString();
-						Log.d("eu.thedarken.diagnosis", customcolor);
+						Log.d(TAG, customcolor);
 						int colorcode = 0;
 						try {
 							colorcode = Color.parseColor("#" + customcolor);
@@ -96,7 +96,7 @@ public class ColorPickerDialog extends Dialog implements ColorPickerView.OnColor
 							colorcode = mNewColor.getColor();
 							e.printStackTrace();
 						}
-						Log.d("eu.thedarken.diagnosis", "" + colorcode);
+						Log.d(TAG, "" + colorcode);
 						mListener.onColorChanged(colorcode);
 					}
 				}

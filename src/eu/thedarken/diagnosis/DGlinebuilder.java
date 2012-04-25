@@ -29,6 +29,7 @@ public class DGlinebuilder extends ListActivity {
 	private int line = 99;
 	private ArrayAdapter<CharSequence> itemadapter;
 	private Context mContext;
+	private final String TAG = "eu.thedarken.diagnosis.DGlinebuilder";
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
@@ -66,7 +67,9 @@ public class DGlinebuilder extends ListActivity {
 				int arraypos = parent.getSelectedItemPosition();
 				if (arraypos != 0) {
 					if (!DGmain.checkPro(mContext) && (arraypos == 35 || arraypos == 36 || arraypos == 37 || arraypos == 38 || arraypos == 39)) {
-						Toast.makeText(mContext, "Sorry, but this is only available in Diagnosis Pro", Toast.LENGTH_LONG).show();
+						Toast.makeText(mContext, mContext.getString(R.string.sorry_pro_only), Toast.LENGTH_LONG).show();
+						adapter.getItem(arraypos);
+						Log.d(TAG, adapter.getLabel(arraypos));
 					} else {
 						adapter.insert(arraypos, adapter.getCount());
 						adapter.notifyDataSetChanged();
@@ -77,7 +80,7 @@ public class DGlinebuilder extends ListActivity {
 			public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
-		itemspinner.setPrompt("Select an info");
+		itemspinner.setPrompt(mContext.getString(R.string.select_an_info));
 		itemspinner.setAdapter(itemadapter);
 	}
 
@@ -113,7 +116,7 @@ public class DGlinebuilder extends ListActivity {
 				DGoverlay.getLine(line).layout = array;
 			}
 			for (Integer ar : array) {
-				Log.d("eu.thedarken.diagnosis", "#" + ar);
+				Log.d(TAG, "#" + ar);
 			}
 		}
 
@@ -138,6 +141,10 @@ public class DGlinebuilder extends ListActivity {
 		/** Use the array index as a unique id. */
 		public long getItemId(int position) {
 			return position;
+		}
+		
+		public String getLabel(int pos) {
+			return String.valueOf(adapter.getItem(pos));
 		}
 
 		public View getView(int position, View convertView, ViewGroup parent) {

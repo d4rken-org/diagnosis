@@ -1,5 +1,12 @@
 ﻿v0.7.7(25)
 - Fixed FC in app stats page
+- Added cpu frequency support for multi-core processors
+- Tiny performances improvements
+- Multi language preperations
+- Removed possible max/min cpu freq (data was not conclusive and overlapped max/min observed)
+- Some work on the stats tab
+- Added external sd support for Transformer
+
 
 v0.7.6(24)
 - Fixed resetting settings bug

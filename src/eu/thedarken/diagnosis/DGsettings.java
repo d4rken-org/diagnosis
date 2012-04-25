@@ -31,6 +31,7 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 	private Editor prefEditor;
 	private PackageManager packageManager;
 	private ComponentName autostart;
+	private final String TAG = "eu.thedarken.diagnosis.DGsettings";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mContext = this;
@@ -43,7 +44,7 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
         } catch (Exception e) {
         	prefEditor.clear();
         	prefEditor.commit();
-        	Log.d(mContext.getPackageName(), "Settings were corrupt and have been reset!");
+        	Log.d(TAG, "Settings were corrupt and have been reset!");
         	addPreferencesFromResource(R.xml.preferences);
         }
         for(int i=0;i<4;i++) {
@@ -228,7 +229,7 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 	}
 	
 	private void loadSlot(int pos) {
-		Log.d("eu.thedarken.diagnosis", "loading slot " + pos);
+		Log.d(TAG, "loading slot " + pos);
 		for(int lineno=0;lineno<4;lineno++) {
 	    	prefEditor.putString("layout.line"+lineno,settings.getString("preset.custom.slot" + pos +".layout.line"+lineno, ObjectSerializer.serialize(new ArrayList<Line>())));
 			prefEditor.putString("overlay.x_pos.line"+lineno, settings.getString("preset.custom.slot" + pos +".overlay.x_pos.line"+lineno,"1"));
@@ -243,12 +244,12 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 		}
 		prefEditor.putString("overlay.divider", settings.getString("overlay.divider", "|"));
 		prefEditor.commit();
-		Toast.makeText(mContext, "Restored preset from slot "+ pos,Toast.LENGTH_SHORT).show();
+		Toast.makeText(mContext, mContext.getString(R.string.restored_preset_from_slot)+" "+ pos,Toast.LENGTH_SHORT).show();
     	DGoverlay.initReset();
 	}
 	
 	private void saveSlot(int pos) {
-		Log.d("eu.thedarken.diagnosis", "save to slot " + pos);
+		Log.d(TAG, "save to slot " + pos);
 		for(int lineno=0;lineno<4;lineno++) {
 	    	prefEditor.putString("preset.custom.slot" + pos +".layout.line"+lineno,settings.getString("layout.line"+lineno, ObjectSerializer.serialize(new ArrayList<Line>())));
 			prefEditor.putString("preset.custom.slot" + pos +".overlay.x_pos.line"+lineno, settings.getString("overlay.x_pos.line"+lineno,"1"));
@@ -263,7 +264,7 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 		}
 		prefEditor.putString("preset.custom.slot" + pos +".overlay.divider", settings.getString("overlay.divider", "|"));
 		prefEditor.commit();
-		Toast.makeText(mContext, "Preset saved to slot "+ pos,Toast.LENGTH_SHORT).show();
+		Toast.makeText(mContext, mContext.getString(R.string.preset_saved_to_slot)+" "+ pos,Toast.LENGTH_SHORT).show();
 	}
 	
     private class clearDBsTask extends AsyncTask<String, Void, Boolean> {
@@ -275,20 +276,20 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 
         protected void onPreExecute() {
         	dialog = new ProgDialog(mActivity);
-        	dialog.setMessage("Clearing database");
+        	dialog.setMessage(mActivity.getString(R.string.clearing_database));
         	dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         	dialog.show();
-        	Log.d("eu.thedarken.diagnosis", "Clearing DB...");
+        	Log.d(TAG, "Clearing DB...");
         }
 
         @Override
         protected void onPostExecute(final Boolean allok) {
         	if(allok) {
-        		Toast.makeText(mContext, "Database reset",Toast.LENGTH_LONG).show();
+        		Toast.makeText(mContext, mActivity.getString(R.string.database_reset),Toast.LENGTH_LONG).show();
         	} else {
-        		Toast.makeText(mContext, "Sorry there was an error, maybe stop Diagnosis?",Toast.LENGTH_LONG).show();
+        		Toast.makeText(mContext, mActivity.getString(R.string.sorry_stop_diagnosis),Toast.LENGTH_LONG).show();
         	}
-        	Log.d("eu.thedarken.diagnosis", "...done");
+        	Log.d(TAG, "...done");
 
             dialog.dismiss();
         }

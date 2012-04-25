@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import eu.thedarken.diagnosis.InfoClass.AppInfo;
+import eu.thedarken.diagnosis.InfoClass.FreqInfo;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -63,7 +64,7 @@ public class DGoverlay extends Service{
     public static int default_color_alert = 0xffffff00;
     public static int default_color_bg = 0x70000000;
     private final static int NOTIFICATION_ID = 88;
-    private final String TAG = "eu.thedarken.diagnosis.overlay";
+    private final String TAG = "eu.thedarken.diagnosis.DGoverlay";
 	public class Line {
 		String text = new String();
 		int x_pos = 0;
@@ -159,16 +160,16 @@ public class DGoverlay extends Service{
         this.registerReceiver(screenOnReciever, filter);
         
         isRunning = true;
-	    Toast.makeText(this.getApplicationContext(), "Diagnosis service created", Toast.LENGTH_SHORT).show();
+	    Toast.makeText(this.getApplicationContext(), mContext.getString(R.string.diagnosis_service_created), Toast.LENGTH_SHORT).show();
 	    
-		Notification note = new Notification(R.drawable.note, "We now know whats going on!", System.currentTimeMillis());
+		Notification note = new Notification(R.drawable.note, mContext.getString(R.string.we_now_know_whats_going_on), System.currentTimeMillis());
 		Intent i = new Intent(this, DGmain.class);
 
 		i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
 		PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
 
-		note.setLatestEventInfo(this, "Diagnosis", "Click me to open the App", pi);
+		note.setLatestEventInfo(this, mContext.getString(R.string.diagnosis), mContext.getString(R.string.click_me_to_open_app), pi);
 		note.flags |= Notification.FLAG_NO_CLEAR;
 		note.flags |= Notification.FLAG_FOREGROUND_SERVICE; 
 		note.flags |= Notification.FLAG_ONGOING_EVENT;
@@ -226,6 +227,7 @@ public class DGoverlay extends Service{
 //		canidates.add("/data/sdext2");
 		canidates.add("/mnt/usb_storage");
 		canidates.add("/mnt/sdcard/removable_sdcard");
+		canidates.add("/Removable/MicroSD");
 		
 		for(String c : canidates) {
 			File canidate = new File(c);
@@ -582,7 +584,7 @@ public class DGoverlay extends Service{
 					break;
 		        //<item>CPU frequency</item>
 				case 27:
-					toset.append((data.getFreq().cpu_frequency/1000) + "Mhz");
+					toset.append((FreqInfo.calcAvgCoreFrequency(data.getFreq().cpu_frequency)/1000) + "Mhz");
 					break;
 				//<item>Free external space</item>
 				case 28:
@@ -651,6 +653,34 @@ public class DGoverlay extends Service{
 					} else {
 						toset.append("cUL " + Formatter.formatFileSize(mContext, data.getNet().mobile_rate_up) + "/s");
 					}
+					break;
+			        //<item>Core1 frequency</item>
+				case 40:
+					if(DGdata.CORES > 0)
+						toset.append("C1 " + (data.getFreq().cpu_frequency[0]/1000) + "Mhz");
+					else
+						toset.append("C1 N/A");
+					break;
+			        //<item>Core2 frequency</item>
+				case 41:
+					if(DGdata.CORES > 1)
+						toset.append("C2 " + (data.getFreq().cpu_frequency[1]/1000) + "Mhz");
+					else
+						toset.append("C2 N/A");
+					break;
+			        //<item>Core3 frequency</item>
+				case 42:
+					if(DGdata.CORES > 2)
+						toset.append("C3 " + (data.getFreq().cpu_frequency[2]/1000) + "Mhz");
+					else
+						toset.append("C3 N/A");
+					break;
+			        //<item>Core4 frequency</item>
+				case 43:
+					if(DGdata.CORES > 3)
+						toset.append("C4 " + (data.getFreq().cpu_frequency[3]/1000) + "Mhz");
+					else
+						toset.append("C4 N/A");
 					break;
 				default:
 					toset.append("");

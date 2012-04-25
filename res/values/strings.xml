@@ -2,35 +2,32 @@
 <resources>
 
     <string name="app_name">Diagnosis</string>
-    <string name="no_data_yet">No data saved yet!\\nOpen the settings and select which data you want to save.\\n(It may take a few minutes until enough data is gathered)</string>
+    <string name="no_data_yet">No data saved yet!\nOpen the settings and select which data you want to save.\n(It may take a few minutes until enough data is gathered)</string>
     <string name="crash_toast_text">Sorry, but Diagnosis crashed.</string>
-    <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
     <string name="press_color_to_apply"></string>
     <string name="down_arrow">↓</string>
     <string name="visit_xda">Visit XDA</string>
     <string name="email_darken">Email darken</string>
     <string name="sortmode">Sortmode</string>
-    <string name="no_data_saved_yet">No data saved yet!\\nOpen the settings and select which data you want to save.\\n(It may take a few minutes until enough data is gathered)</string>
+    <string name="no_data_saved_yet">No data saved yet!\nOpen the settings and select which data you want to save.\n(It may take a few minutes until enough data is gathered)</string>
     <string name="seen">Seen</string>
     <string name="name">Name</string>
-    <string name="cpu_percent">CPU%</string>
-    <string name="ram_percent">RAM%</string>
     <string name="please_wait">look.away.!.you.shouldnt.see.me.like.this</string>
     <string name="colorcode_in_hex">Colorcode in Hex</string>
     <string name="style_examples">Style examples (create your own in settings!):</string>
-    <string name="welcome_text">Press &amp;apos;Start tracking&amp;apos; to begin!\\n\\nCheck out the settings!\\nEverything is highly customizable!\\n\\nIf you encounter bugs/problems or have requests, i would be happy if you send me an email(support@thedarken.eu), thanks!</string>
-    <string name="linebuider_welcome">Drag/Drop the icon up/down to sort.\\nDragging the icon right, deletes that item</string>
+    <string name="welcome_text">Press \"Start tracking\" to begin!\n\nCheck out the settings!\nEverything is highly customizable!\n\nIf you encounter bugs/problems or have requests, i would be happy if you send me an email(support@thedarken.eu), thanks!</string>
+    <string name="linebuider_welcome">Drag/Drop the icon up/down to sort.\nDragging the icon right, deletes that item</string>
     <string name="close">Close</string>
     <string name="is">is</string>
     <string name="your_batteries_health">Your batteries health</string>
     <string name="charge_level_">"Charge level "</string>
     <string name="is_currently">is currently</string>
     <string name="is_on_average">is on average</string>
-    <string name="your_batteries_voltage">"Your batteries voltage "</string>
+    <string name="your_batteries_voltage">Your batteries voltage</string>
     <string name="highest_was">highest was</string>
     <string name="lowest_was">lowest was</string>
-    <string name="your_battery_is">"Your battery is "</string>
+    <string name="your_battery_is">Your battery is</string>
     <string name="currently">currently</string>
     <string name="the_battery_temperature">The battery temperature</string>
     <string name="was_on_average">was on average</string>
@@ -43,11 +40,9 @@
     <string name="system">"System "</string>
     <string name="memory">Memory</string>
     <string name="average">average</string>
-    <string name="observed_cpu_speed">Observed CPU speed</string>
+    <string name="observed_cpu_speed">Observed CPU frequencies</string>
     <string name="average_is">average is</string>
     <string name="lowest_at">lowest at</string>
-    <string name="possible_clockspeed_">"Possible clockspeed "</string>
-    <string name="possible_clockspeed">"Possible clockspeed "</string>
     <string name="is_max">is max</string>
     <string name="is_min">is min</string>
     <string name="all_latest_rate">[ALL]Latest rate</string>
@@ -77,5 +72,71 @@
     <string name="ping">"Ping "</string>
     <string name="disk_write">Disk write</string>
     <string name="disk_read">Disk read</string>
+    <string name="loading_data_please_wait">Loading data, please wait.</string>
+    <string name="cpu_percent">CPU%</string>
+    <string name="ram_percent">RAM%</string>
+    <string name="loading">Loading...</string>
+    <string name="copying_busybox">Copying busybox...</string>
+    <string name="getting_busybox_version">Getting busybox version</string>
+    <string name="db_deletion_successfull">DB deletion successfull</string>
+    <string name="could_not_delete_db">Could not delete DB</string>
+    <string name="stopping_service">Stopping service...</string>
+    <string name="starting_service">Starting service...</string>
+    <string name="cleaning_old_database_entries">Cleaning old database entries</string>
+    <string name="diagnosis_changelog">Diagnosis Changelog:</string>
+    <string name="stop_tracking">Stop Tracking</string>
+    <string name="start_tracking">Start Tracking</string>
+    <string name="busybox_error">BUSYBOX error!</string>
+    <string name="busybox_error_explanation">Could not use our BUSYBOX :-(\nTo prevent unwanted behavior Diagnosis will close now.\nPlease try restarting or reinstalling Diagnosis.\nShould this not help please write me an email:\n(support@thedarken.eu)\nSorry for your troubles!</string>
+    <string name="database_removal">Database removal</string>
+    <string name="database_removal_explanation">This newer version of Diagnosis uses a different structure to store the periodic data.\nTo avoid errors and unwanted behavior, the previous version has been removed. I\'m telling you this so that you are not suprised that the database is empty.</string>
+    <string name="error">Error</string>
+    <string name="sorry_reinstall">Sorry, something went wrong and you will have to reinstall this app.</string>
+    <string name="quit">Quit</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="news">News</string>
+    <string name="news_content">v0.7.7\n-Fixed FC in app stats page\n-Cpu freq support for dual/quad core CPUs [Pro]\n-Stats tab will be more readable with next update\n\nHave a look at \'Diagnosis Pro\' if you are looking for additional features or want to support my work.\n\nQuestions,requests or ideas?\nMail me!</string>
+    <string name="no_market_application_found">No Market Application found.</string>
+    <string name="hide">Hide</string>
+    <string name="diagnosis_pro">Diagnosis Pro</string>
+    <string name="startup_error">Startup ERROR!</string>
+    <string name="pro">Pro</string>
+    <string name="welcome_to_diagnosis">Welcome to Diagnosis</string>
+    <string name="try_a_style">Try one of these styles or visit the settings and create your own.</string>
+    <string name="seconds">seconds</string>
+    <string name="second">second</string>
+    <string name="update_interval_is">"Update interval is "</string>
+    <string name="loading_database_info">Loading database info</string>
+    <string name="database_size">Database size</string>
+    <string name="no_db_yet">No DB yet</string>
+    <string name="data_set_s_will_be_condensed_into_1">data set(s) will be condensed into 1</string>
+    <string name="set_s_are_cached_before_saving_to_database">set(s) are cached before saving to database</string>
+    <string name="style">Style</string>
+    <string name="set">set</string>
+    <string name="sorry_pro_only">Sorry, but this is only available in Diagnosis Pro</string>
+    <string name="select_an_info">Select an info</string>
+    <string name="diagnosis_service_created">Diagnosis service created</string>
+    <string name="we_now_know_whats_going_on">We now know whats going on!</string>
+    <string name="diagnosis">Diagnosis</string>
+    <string name="click_me_to_open_app">Click me to open the App</string>
+    <string name="restored_preset_from_slot">Restored preset from slot</string>
+    <string name="preset_saved_to_slot">Preset saved to slot</string>
+    <string name="clearing_database">Clearing database</string>
+    <string name="database_reset">Database reset</string>
+    <string name="sorry_stop_diagnosis">Sorry there was an error, maybe stop Diagnosis?</string>
+    <string name="avg">AVG</string>
+    <string name="ms">ms</string>
+    
+    <!-- Preferences -->
+    <string name="preferences_interval_dialog_message">Interval</string>
+    <string name="preferences_interval_dialog_text">" seconds"</string>
+    <string name="preferences_interval_summary">How often diagnosis should refresh. Faster is more accurate, but consumes more resources. Just try it out, i recommend 3-5s.</string>
+    <string name="preferences_interval_title">Update interval</string>
+    
+    <string name="preferences_autostart_summary">Start Diagnosis automaticly after a reboot.\nRequires [Diagnosis Pro]</string>
+    <string name="preferences_autostart_title">Autostart</string>
+    
+    <string name="preferences_notification_title">Show notification</string>
+    <string name="preferences_notification_summary">Shows/Hides the notification bar entry\nRequires [Diagnosis Pro]</string>
 
 </resources>

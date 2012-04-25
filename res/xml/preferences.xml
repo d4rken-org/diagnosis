@@ -7,22 +7,22 @@
             android:dialogMessage="Interval"
             android:key="general.intervall"
             android:max="30"
-            android:summary="How often diagnosis should refresh. A smaller number means more accurate values, but also more database size and resources."
+            android:summary="@string/preferences_interval_summary"
             android:text=" seconds"
-            android:title="Update interval" />
+            android:title="@string/preferences_interval_title"/>
 
         <CheckBoxPreference
             android:defaultValue="false"
             android:enabled="false"
             android:key="autostart.enabled"
-            android:summary="Start Diagnosis automaticly after a reboot.\nRequires [Diagnosis Pro]"
-            android:title="Autostart" />
+            android:summary="@string/preferences_autostart_summary"
+            android:title="@string/preferences_autostart_title" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:enabled="false"
             android:key="general.notification.enabled"
-            android:summary="Shows/Hides the notifaction bar entry\nRequires [Diagnosis Pro]"
-            android:title="Show notification" />
+            android:summary="@string/preferences_notification_summary"
+            android:title="@string/preferences_notification_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Database" >
         <PreferenceScreen
@@ -136,7 +136,7 @@
                 <PreferenceCategory android:title="Layout" >
                     <PreferenceScreen
                         android:key="layout.line0"
-                        android:summary="Edit layout of line 1"
+                        android:summary="Edit displayed data of line 1"
                         android:title="Line 1" />
                 </PreferenceCategory>
                 <PreferenceCategory android:title="Style and position" >
@@ -212,7 +212,7 @@
                 <PreferenceCategory android:title="Layout" >
                     <PreferenceScreen
                         android:key="layout.line1"
-                        android:summary="Edit layout of line 2"
+                        android:summary="Edit displayed data of line 2"
                         android:title="Line 2" />
                 </PreferenceCategory>
                 <PreferenceCategory android:title="Style and position" >
@@ -288,7 +288,7 @@
                 <PreferenceCategory android:title="Layout" >
                     <PreferenceScreen
                         android:key="layout.line2"
-                        android:summary="Edit layout of line 3"
+                        android:summary="Edit displayed data of line 3"
                         android:title="Line 3" />
                 </PreferenceCategory>
                 <PreferenceCategory android:title="Style and position" >
@@ -364,7 +364,7 @@
                 <PreferenceCategory android:title="Layout" >
                     <PreferenceScreen
                         android:key="layout.line3"
-                        android:summary="Edit layout of line 4"
+                        android:summary="Edit displayed data of line 4"
                         android:title="Line 4" />
                 </PreferenceCategory>
                 <PreferenceCategory android:title="Style and position" >

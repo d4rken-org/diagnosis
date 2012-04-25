@@ -57,11 +57,9 @@ public class DGdatabase {
 	    "idle float, " +
 	    "io float, " +
 	    "active_apps integer); ";
-	static final String create_freq_data = "create table IF NOT EXISTS "+FREQ_TABLE+" " +
-	    "(system_time long, " +
-	    "cpu_frequency integer," +
-	    "cpu_max_frequency integer, " +
-	    "cpu_min_frequency integer); ";
+	
+	static String create_freq_data;
+	
 	static final String create_mem_data = "create table IF NOT EXISTS "+MEM_TABLE+" " +
 	    "(system_time long, " +
 	    "free long, " +
@@ -136,14 +134,23 @@ public class DGdatabase {
     //MEMBER VARIABLES
     private SQLiteDatabase mDB;
     private DatabaseHelper mDBhelper;
-
+    private final String TAG = "eu.thedarken.diagnosis.DGdatabase";
     //SINGLETON
     private static final DGdatabase instance = new DGdatabase();
     
     public DGdatabase() {
         //open the DB for read and write
         //mDB = mDBhelper.getWritableDatabase();
-        
+    	StringBuilder freqtablebuilder = new StringBuilder();
+    	freqtablebuilder.append("create table IF NOT EXISTS "+FREQ_TABLE+" ");
+    	freqtablebuilder.append("(system_time long");
+    	for(int i=0;i<DGdata.CORES;i++) {
+    		freqtablebuilder.append(", cpu"+i+"_frequency integer,");
+			freqtablebuilder.append("cpu"+i+"_max_frequency integer, ");
+			freqtablebuilder.append("cpu"+i+"_min_frequency integer ");
+    	}
+    	freqtablebuilder.append(");");
+    	create_freq_data = freqtablebuilder.toString();
     }
     
     public static DGdatabase getInstance(Context context) {
@@ -262,11 +269,11 @@ public class DGdatabase {
 	public synchronized void clean(long time, ProgDialog p) {
 		if (openWrite()) {
 			try {
-				Log.d(mContext.getPackageName(), "Cleaning old entries");
+				Log.d(TAG, "Cleaning old entries");
 				for (String t : mDBhelper.getTables()) {
 					p.updateMessage("Cleaning " + t);
 					mDB.execSQL("DELETE FROM " + t + " WHERE system_time<" + (System.currentTimeMillis() - time) + ";");
-					Log.d(mContext.getPackageName(), "Done cleaning " + t);
+					Log.d(TAG, "Done cleaning " + t);
 					p.incrProgress();
 				}
 			} catch (SQLiteException e) {
@@ -353,7 +360,7 @@ public class DGdatabase {
 				ret.act_apps_avg = c.getFloat(c.getColumnIndex("avg_act_apps"));
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getCpuTabInfo query1 resulted in null cursor");
+				Log.d(TAG,"getCpuTabInfo query1 resulted in null cursor");
 				tryClose();
 				return null;
 			}
@@ -431,7 +438,7 @@ public class DGdatabase {
 				ret.avg_cached_mem = c.getLong(c.getColumnIndex("avg_cached_mem"));
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getMemTabInfo query1 resulted in null cursor");
+				Log.d(TAG,"getMemTabInfo query1 resulted in null cursor");
 				return null;
 			}
 		}
@@ -522,7 +529,7 @@ public class DGdatabase {
 				c.close();
 			} else {
 	    		tryClose();
-				Log.d(mContext.getPackageName(),"getNetTabInfo query1 resulted in null cursor");
+				Log.d(TAG,"getNetTabInfo query1 resulted in null cursor");
 				return null;
 			}
 			//3 hours
@@ -549,7 +556,7 @@ public class DGdatabase {
 				ret.mobile_traffic_last_threehour_up = c.getLong(c.getColumnIndex("mobile_traffic_last_threehour_up"));
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getNetTabInfo query2 resulted in null cursor");
+				Log.d(TAG,"getNetTabInfo query2 resulted in null cursor");
 				tryClose();
 				return null;
 			}
@@ -577,7 +584,7 @@ public class DGdatabase {
 				ret.mobile_traffic_last_day_up = c.getLong(c.getColumnIndex("mobile_traffic_last_day_up"));
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getNetTabInfo query3 resulted in null cursor");
+				Log.d(TAG,"getNetTabInfo query3 resulted in null cursor");
 				tryClose();
 				return null;
 			}
@@ -605,7 +612,7 @@ public class DGdatabase {
 				ret.mobile_traffic_last_week_up = c.getLong(c.getColumnIndex("mobile_traffic_last_week_up"));
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getNetTabInfo query3 resulted in null cursor");
+				Log.d(TAG,"getNetTabInfo query3 resulted in null cursor");
 				tryClose();
 				return null;
 			}
@@ -691,7 +698,7 @@ public class DGdatabase {
 				ret.batt_temp_max = c.getInt(c.getColumnIndex("batt_temp_max"));
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getBattTabInfo query1 resulted in null cursor");
+				Log.d(TAG,"getBattTabInfo query1 resulted in null cursor");
 				tryClose();
 				return null;
 			}
@@ -789,11 +796,10 @@ public class DGdatabase {
 				}
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getAppTabInfo query1 resulted in null cursor");
+				Log.d(TAG,"getAppTabInfo query1 resulted in null cursor");
 				tryClose();
 				return null;
 			}
-			Log.d(mContext.getPackageName(),"arrasize: " + ret.size());
 		}
 	   	tryClose();
     	return ret;
@@ -866,7 +872,7 @@ public class DGdatabase {
 				ret.avg_data_diff = c.getLong(c.getColumnIndex("avg_data_diff"));
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getSpaceTabInfo query1 resulted in null cursor");
+				Log.d(TAG,"getSpaceTabInfo query1 resulted in null cursor");
 	    		tryClose();
 				return null;
 			}
@@ -943,7 +949,7 @@ public class DGdatabase {
 				//Log.d("MAAAX","MAX"+ret.max_signal);
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getWlanTabInfo query1 resulted in null cursor");
+				Log.d(TAG,"getWlanTabInfo query1 resulted in null cursor");
 				tryClose();
 				return null;
 			}
@@ -994,7 +1000,7 @@ public class DGdatabase {
 				ret.max_gsm_signal = c.getInt(c.getColumnIndex("max_gsm_signal"));
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getPhoneTabInfo query1 resulted in null cursor");
+				Log.d(TAG,"getPhoneTabInfo query1 resulted in null cursor");
 				tryClose();
 				return null;
 			}
@@ -1003,37 +1009,40 @@ public class DGdatabase {
     	return ret;
     }
     
-    public synchronized void addFreqs(LinkedList<FreqInfo> fi, boolean keepopen) {
-    	if(openWrite()) {
-            DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,FREQ_TABLE);
-            int system_time = ih.getColumnIndex("system_time");
-            int cpu_frequency = ih.getColumnIndex("cpu_frequency");
-            int cpu_max_frequency = ih.getColumnIndex("cpu_max_frequency");
-            int cpu_min_frequency = ih.getColumnIndex("cpu_min_frequency");
-            for(FreqInfo fis : fi) {
-                ih.prepareForInsert();
-            	ih.bind(system_time, fis.system_time);
-            	ih.bind(cpu_frequency , fis.cpu_frequency);
-            	ih.bind(cpu_max_frequency , fis.cpu_max_frequency);
-            	ih.bind(cpu_min_frequency , fis.cpu_min_frequency);
-            	ih.execute();
-            }
-            ih.close();
+	public synchronized void addFreqs(LinkedList<FreqInfo> fi, boolean keepopen) {
+		if (openWrite()) {
+			DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB, FREQ_TABLE);
+			int system_time = ih.getColumnIndex("system_time");
+			int[] cpu_frequency = new int[DGdata.CORES];
+			for (int i = 0; i < cpu_frequency.length; i++)
+				cpu_frequency[i] = ih.getColumnIndex("cpu"+i+"_frequency");
+			for (FreqInfo fis : fi) {
+				ih.prepareForInsert();
+				ih.bind(system_time, fis.system_time);
+				for(int i=0;i<cpu_frequency.length;i++)
+					ih.bind(cpu_frequency[i], fis.cpu_frequency[i]);
+				ih.execute();
+			}
+			ih.close();
 		}
-    	if(!keepopen) {
-    		tryClose();
-    	}
-    }
+		if (!keepopen) {
+			tryClose();
+		}
+	}
     
     public synchronized FreqTabInfo getFreqTabInfo() {
     	FreqTabInfo ret = new FreqTabInfo();
     	if(openRead()) {
 	    	Cursor c = null;
 	    	try {
-	    		c = mDB.rawQuery("SELECT system_time, cpu_frequency, cpu_min_frequency, cpu_max_frequency, AVG(Cast(cpu_frequency AS Float)) AS avg_cpu_freq, MAX(cpu_frequency) AS max_obs_cpu_freq, MIN(cpu_frequency) AS min_obs_cpu_freq " +
-	    				"FROM " + FREQ_TABLE + " " +
-	    				"ORDER BY system_time DESC " +
-	    				"LIMIT 1;",null);
+	    		StringBuilder querybuilder = new StringBuilder();
+	    		querybuilder.append("SELECT system_time");
+	    		for(int i=0;i<DGdata.CORES;i++)
+	    			querybuilder.append(", cpu"+i+"_frequency, AVG(Cast(cpu"+i+"_frequency AS Double)) AS avg_cpu"+i+"_freq, MAX(cpu"+i+"_frequency) AS max_obs_cpu"+i+"_freq, MIN(cpu"+i+"_frequency) AS min_obs_cpu"+i+"_freq ");
+	    		querybuilder.append(" FROM " + FREQ_TABLE + " ");
+	    		querybuilder.append("ORDER BY system_time DESC ");
+	    		querybuilder.append(";");
+	    		c = mDB.rawQuery(querybuilder.toString(),null);
 	    	} catch (SQLiteException e) {
 	    		e.printStackTrace();
 	    		tryClose();
@@ -1043,15 +1052,15 @@ public class DGdatabase {
 				c.moveToFirst();
 				ret.system_time = c.getLong(c.getColumnIndex("system_time"));
 				if(ret.system_time == 0) return null;
-				ret.cpu_frequency = c.getInt(c.getColumnIndex("cpu_frequency"));
-				ret.cpu_min_frequency = c.getInt(c.getColumnIndex("cpu_min_frequency"));
-				ret.cpu_max_frequency = c.getInt(c.getColumnIndex("cpu_max_frequency"));
-				ret.max_obs_cpu_freq = c.getInt(c.getColumnIndex("max_obs_cpu_freq"));
-				ret.min_obs_cpu_freq = c.getInt(c.getColumnIndex("min_obs_cpu_freq"));
-				ret.avg_cpu_freq = c.getFloat(c.getColumnIndex("avg_cpu_freq"));
+				for(int i=0;i<DGdata.CORES;i++) {
+					ret.cpu_frequency[i] = c.getLong(c.getColumnIndex("cpu"+i+"_frequency"));
+					ret.max_obs_cpu_freq[i] = c.getLong(c.getColumnIndex("max_obs_cpu"+i+"_freq"));
+					ret.min_obs_cpu_freq[i] = c.getLong(c.getColumnIndex("min_obs_cpu"+i+"_freq"));
+					ret.avg_cpu_freq[i] = c.getDouble(c.getColumnIndex("avg_cpu"+i+"_freq"));
+				}
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getFreqTab query1 resulted in null cursor");
+				Log.d(TAG,"getFreqTab query1 resulted in null cursor");
 				tryClose();
 				return null;
 			}
@@ -1070,7 +1079,6 @@ public class DGdatabase {
                 ih.prepareForInsert();
             	ih.bind(system_time, pings.system_time);
             	ih.bind(ping , pings.ping);
-//            	Log.d(mContext.getPackageName(), "a" + pings.ping);
             	ih.execute();
             }
             ih.close();
@@ -1103,7 +1111,7 @@ public class DGdatabase {
 				ret.min_ping = c.getInt(c.getColumnIndex("min_ping"));
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getPingTab query1 resulted in null cursor");
+				Log.d(TAG,"getPingTab query1 resulted in null cursor");
 				tryClose();
 				return null;
 			}
@@ -1138,7 +1146,7 @@ public class DGdatabase {
 				ret.max_read_rate = c.getLong(c.getColumnIndex("max_read_rate"));
 				c.close();
 			} else {
-				Log.d(mContext.getPackageName(),"getDiskTabInfo query1 resulted in null cursor");
+				Log.d(TAG,"getDiskTabInfo query1 resulted in null cursor");
 				tryClose();
 				return null;
 			}

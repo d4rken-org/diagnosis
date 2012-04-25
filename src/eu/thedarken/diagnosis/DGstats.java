@@ -15,6 +15,7 @@ import eu.thedarken.diagnosis.InfoClass.WlanTabInfo;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -24,6 +25,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
 public class DGstats extends SherlockFragment {
@@ -66,8 +69,8 @@ public class DGstats extends SherlockFragment {
 		private TextView max_apps, avg_apps;
 
 		private TableLayout freq_table;
+		private TableLayout core_table;
 		private FreqTabInfo freqinfo = null;
-		private TextView cpu_avg, cpu_max, cpu_min, poss_cpu_max, poss_cpu_min;
 
 		private TableLayout mem_table;
 		private MemTabInfo meminfo = null;
@@ -155,11 +158,7 @@ public class DGstats extends SherlockFragment {
 			avg_io = (TextView) mView.findViewById(R.id.cpu_avg_io);
 
 			freq_table = (TableLayout) mView.findViewById(R.id.freq_table);
-			cpu_avg = (TextView) mView.findViewById(R.id.observed_cpu_avg);
-			cpu_max = (TextView) mView.findViewById(R.id.observed_cpu_max);
-			cpu_min = (TextView) mView.findViewById(R.id.observed_cpu_min);
-			poss_cpu_max = (TextView) mView.findViewById(R.id.possible_cpu_max);
-			poss_cpu_min = (TextView) mView.findViewById(R.id.possible_cpu_min);
+			core_table = (TableLayout) mView.findViewById(R.id.core_table);
 
 			mem_table = (TableLayout) mView.findViewById(R.id.mem_table);
 			mem_avg = (TextView) mView.findViewById(R.id.mem_avg);
@@ -233,7 +232,7 @@ public class DGstats extends SherlockFragment {
 
 		protected void onPreExecute() {
 			dialog = new ProgDialog(mActivity);
-			dialog.setMessage("Loading data, please wait.");
+			dialog.setMessage(mActivity.getString(R.string.loading_data_please_wait));
 			dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			dialog.show();
 		}
@@ -280,11 +279,64 @@ public class DGstats extends SherlockFragment {
 
 			if (pull_freq) {
 				freq_table.setVisibility(View.VISIBLE);
-				cpu_avg.setText(String.valueOf((int) (freqinfo.avg_cpu_freq / 1000)) + " MHZ");
-				cpu_max.setText(String.valueOf(freqinfo.max_obs_cpu_freq / 1000) + " MHZ");
-				cpu_min.setText(String.valueOf(freqinfo.min_obs_cpu_freq / 1000) + " MHZ");
-				poss_cpu_max.setText(String.valueOf(freqinfo.cpu_max_frequency / 1000) + " MHZ");
-				poss_cpu_min.setText(String.valueOf(freqinfo.cpu_min_frequency / 1000) + " MHZ");
+				core_table.removeAllViews();
+				
+				TableRow r = new TableRow(mActivity);
+				TextView label = new TextView(mActivity);
+				label.setTextColor(Color.BLACK);
+				label.setText("All cores");
+				label.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 7f));
+				r.addView(label);
+				
+				TextView min = new TextView(mActivity);
+				min.setTextColor(Color.BLACK);
+				min.setText(FreqTabInfo.calcAvgCoreFrequency(freqinfo.min_obs_cpu_freq ) / 1000 + " MHZ");
+				min.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				r.addView(min);
+				
+				TextView max = new TextView(mActivity);
+				max.setTextColor(Color.BLACK);
+				max.setText(FreqTabInfo.calcAvgCoreFrequency(freqinfo.max_obs_cpu_freq ) / 1000 + " MHZ");
+				max.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				r.addView(max);
+				
+				TextView avg = new TextView(mActivity);
+				avg.setTextColor(Color.BLACK);
+				avg.setText(FreqTabInfo.calcAvgCoreFrequency(freqinfo.avg_cpu_freq ) / 1000 + " MHZ");
+				avg.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				r.addView(avg);
+				core_table.addView(r);
+				if(DGmain.checkPro(mActivity)) {
+					for(int i=0;i<freqinfo.cpu_frequency.length;i++) {
+						if(freqinfo.cpu_frequency[i] == 0)
+							break;
+						TableRow corerow = new TableRow(mActivity);
+						TextView corelabel = new TextView(mActivity);
+						corelabel.setTextColor(Color.BLACK);
+						corelabel.setText("Core"+(i+1));
+						corelabel.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 7f));
+						corerow.addView(corelabel);
+						
+						TextView coremin = new TextView(mActivity);
+						coremin.setTextColor(Color.BLACK);
+						coremin.setText(freqinfo.min_obs_cpu_freq[i] / 1000 + " MHZ");
+						coremin.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+						corerow.addView(coremin);
+						
+						TextView coremax = new TextView(mActivity);
+						coremax.setTextColor(Color.BLACK);
+						coremax.setText(freqinfo.max_obs_cpu_freq[i] / 1000 + " MHZ");
+						coremax.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+						corerow.addView(coremax);
+						
+						TextView coreavg = new TextView(mActivity);
+						coreavg.setTextColor(Color.BLACK);
+						coreavg.setText((long)(freqinfo.avg_cpu_freq[i] / 1000) + " MHZ");
+						coreavg.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+						corerow.addView(coreavg);
+						core_table.addView(corerow);
+					}
+				}
 			} else {
 				freq_table.setVisibility(View.GONE);
 			}
@@ -349,28 +401,28 @@ public class DGstats extends SherlockFragment {
 			if (pull_space) {
 				space_table.setVisibility(View.VISIBLE);
 				extern_total.setText(Formatter.formatFileSize(mActivity, spaceinfo.extern_total));
-				extern_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.extern_used) + " (AVG " + Formatter.formatFileSize(mActivity, spaceinfo.avg_extern_diff) + ")");
+				extern_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.extern_used) + " ("+mActivity.getString(R.string.avg)+" " + Formatter.formatFileSize(mActivity, spaceinfo.avg_extern_diff) + ")");
 				externalspacebar.setMax(100);
 				if (spaceinfo.extern_total != 0) {
 					externalspacebar.setProgress(Math.round((spaceinfo.extern_used * 100 / spaceinfo.extern_total)));
 				}
 
 				sdcard_total.setText(Formatter.formatFileSize(mActivity, spaceinfo.sdcard_total));
-				sdcard_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.sdcard_used) + " (AVG " + Formatter.formatFileSize(mActivity, spaceinfo.avg_sdcard_diff) + ")");
+				sdcard_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.sdcard_used) + " ("+mActivity.getString(R.string.avg)+" " + Formatter.formatFileSize(mActivity, spaceinfo.avg_sdcard_diff) + ")");
 				internalspacebar.setMax(100);
 				if (spaceinfo.sdcard_total != 0) {
 					internalspacebar.setProgress(Math.round((spaceinfo.sdcard_used * 100 / spaceinfo.sdcard_total)));
 				}
 
 				system_total.setText(Formatter.formatFileSize(mActivity, spaceinfo.system_total));
-				system_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.system_used) + " (AVG " + Formatter.formatFileSize(mActivity, spaceinfo.avg_system_diff) + ")");
+				system_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.system_used) + " ("+mActivity.getString(R.string.avg)+" " + Formatter.formatFileSize(mActivity, spaceinfo.avg_system_diff) + ")");
 				systemspacebar.setMax(100);
 				if (spaceinfo.system_total != 0) {
 					systemspacebar.setProgress(Math.round((spaceinfo.system_used * 100 / spaceinfo.system_total)));
 				}
 
 				data_total.setText(Formatter.formatFileSize(mActivity, spaceinfo.data_total));
-				data_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.data_used) + " (AVG " + Formatter.formatFileSize(mActivity, spaceinfo.avg_data_diff) + ")");
+				data_used.setText(Formatter.formatFileSize(mActivity, spaceinfo.data_used) + " ("+mActivity.getString(R.string.avg)+" " + Formatter.formatFileSize(mActivity, spaceinfo.avg_data_diff) + ")");
 				dataspacebar.setMax(100);
 				if (spaceinfo.data_total != 0) {
 					dataspacebar.setProgress(Math.round((spaceinfo.data_used * 100 / spaceinfo.data_total)));

@@ -107,7 +107,7 @@ public class DGmain extends SherlockFragmentActivity {
 	public void onResume() {
 		super.onResume();
 		if (DGmain.checkPro(mContext)) {
-			getSupportActionBar().setTitle("Pro");
+			getSupportActionBar().setTitle(mContext.getString(R.string.pro));
 		} else {
 			getSupportActionBar().setTitle("");
 		}
@@ -183,7 +183,7 @@ public class DGmain extends SherlockFragmentActivity {
 			dialog = new ProgDialog(mActivity);
 			dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			dialog.show();
-			dialog.updateMessage("Loading...");
+			dialog.updateMessage(mActivity.getString(R.string.loading));
 		}
 
 		@Override
@@ -193,27 +193,27 @@ public class DGmain extends SherlockFragmentActivity {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
-			dialog.updateMessage("Copying busybox...");
+			dialog.updateMessage(mActivity.getString(R.string.copying_busybox));
 			
 			CopyAssets();
 
-			dialog.updateMessage("Getting busybox version");
+			dialog.updateMessage(mActivity.getString(R.string.getting_busybox_version));
 			
 			BUSYBOX_VERSION = getBusyboxVersion();
 			if(BUSYBOX_VERSION.length() == 0) {
-				dialog.updateMessage("Startup ERROR!");
+				dialog.updateMessage(mActivity.getString(R.string.startup_error));
 				showMyDialog(Dialogs.BUSYBOX_ERROR);
 			}
 
 			if (settings.getInt("dbversion", 0) < DB_DELETE_VERSION && db.exists()) {
 				if (db.delete()) {
-					dialog.updateMessage("DB deletion successfull");
-					Log.d(TAG, "DB deletion successfull");
+					dialog.updateMessage(mActivity.getString(R.string.db_deletion_successfull));
+					Log.d(TAG, mActivity.getString(R.string.db_deletion_successfull));
 					prefEditor.putInt("dbversion", DGmain.versCode);
 					prefEditor.commit();
 				} else {
-					dialog.updateMessage("Could not delete DB");
-					Log.d(TAG, "Could not delete DB");
+					dialog.updateMessage(mActivity.getString(R.string.could_not_delete_db));
+					Log.d(TAG, mActivity.getString(R.string.could_not_delete_db));
 					showMyDialog(Dialogs.REINSTALL);
 				}
 				prefEditor.putInt("dbversion", DGmain.versCode);
@@ -242,7 +242,7 @@ public class DGmain extends SherlockFragmentActivity {
 		protected void onPreExecute() {
 			dialog = new ProgDialog(mActivity);
 			dialog.setProgressStyle(DGoverlay.isRunning ? ProgressDialog.STYLE_SPINNER : ProgressDialog.STYLE_HORIZONTAL);
-			dialog.updateMessage(DGoverlay.isRunning ? "Stopping service..." : "Starting service...");
+			dialog.updateMessage(DGoverlay.isRunning ? mActivity.getString(R.string.stopping_service) : mActivity.getString(R.string.starting_service));
 			dialog.show();
 
 		}
@@ -262,7 +262,7 @@ public class DGmain extends SherlockFragmentActivity {
 						Thread.sleep(25);
 				} else {
 
-					dialog.updateMessage("Cleaning old database entries");
+					dialog.updateMessage(mActivity.getString(R.string.cleaning_old_database_entries));
 					DGdatabase db_object = DGdatabase.getInstance(mContext.getApplicationContext());
 
 					dialog.setMax(db_object.getTableSize());
@@ -351,7 +351,7 @@ public class DGmain extends SherlockFragmentActivity {
 	private void showChangelog() {
 		Dialog dialog = new Dialog(this);
 		dialog.setContentView(R.layout.changelog);
-		dialog.setTitle("Diagnosis Changelog:");
+		dialog.setTitle(mContext.getString(R.string.diagnosis_changelog));
 		TextView text = (TextView) dialog.findViewById(R.id.ChangelogTextView);
 		text.setTextSize(13);
 		InputStreamReader reader;
@@ -439,9 +439,9 @@ public class DGmain extends SherlockFragmentActivity {
 		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
 		if(DGoverlay.isRunning) {
-			menu.findItem(R.id.starttracking).setTitle("Stop Tracking");
+			menu.findItem(R.id.starttracking).setTitle(mContext.getString(R.string.stop_tracking));
 		} else {
-			menu.findItem(R.id.starttracking).setTitle("Start Tracking");
+			menu.findItem(R.id.starttracking).setTitle(mContext.getString(R.string.start_tracking));
 		}
 
 		return true;
@@ -494,56 +494,55 @@ public class DGmain extends SherlockFragmentActivity {
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 			int id = getArguments().getInt("type");
 			switch (id) {
-			case 0:
+			case BUSYBOX_ERROR:
 				return new AlertDialog.Builder(getActivity())
-						.setTitle("BUSYBOX error!")
+						.setTitle(R.string.busybox_error)
 						.setCancelable(true)
 						.setMessage(
-								"Could not use our BUSYBOX :-(\nTo prevent unwanted behavior Diagnosis will close now.\nPlease try restarting or reinstalling Diagnosis.\nShould this not help please write me an email:\n(support@thedarken.eu)\nSorry for your troubles!")
-						.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+								R.string.busybox_error_explanation)
+						.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 								getActivity().finish();
 							}
 						}).create();
-			case 1:
+			case DATABASE_REMOVAL:
 				return new AlertDialog.Builder(getActivity())
-						.setTitle("Database removal")
+						.setTitle(R.string.database_removal)
 						.setCancelable(true)
 						.setMessage(
-								"This newer version of Diagnosis uses a different structure to store the periodic data.\nTo avoid errors and unwanted behavior, the previous version has been removed. I'm telling you this so that you are not suprised that the database is empty.")
-						.setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
+								R.string.database_removal_explanation)
+						.setPositiveButton(R.string.dismiss, new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 
 							}
 						}).create();
-			case 2:
-				return new AlertDialog.Builder(getActivity()).setTitle("Error").setCancelable(true)
-						.setMessage("Sorry, something went wrong and you will have to reinstall this app.")
-						.setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+			case REINSTALL:
+				return new AlertDialog.Builder(getActivity()).setTitle(R.string.error).setCancelable(true)
+						.setMessage(R.string.sorry_reinstall)
+						.setNegativeButton(R.string.quit, new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 								getActivity().finish();
 							}
 						}).create();
-			case 3:
+			case NEWS:
 				return new AlertDialog.Builder(getActivity())
-						.setTitle("News")
+						.setTitle(R.string.news)
 						.setCancelable(true)
-						.setMessage(
-								versName + ":\n-Fixed FC in app stats page\n\nHave a look 'Diagnosis Pro' if you are looking for additional features or want to support my work.\n\nQuestions,requests or ideas?\nMail me!")
-						.setPositiveButton("Diagnosis Pro", new DialogInterface.OnClickListener() {
+						.setMessage(getString(R.string.news_content))
+						.setPositiveButton(R.string.diagnosis_pro, new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 								try {
 									Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=eu.thedarken.diagnosis.pro"));
 									startActivity(marketIntent);
 								} catch (Exception e) {
-									Toast.makeText(getActivity(), "No Market Application found.", Toast.LENGTH_SHORT).show();
+									Toast.makeText(getActivity(), R.string.no_market_application_found, Toast.LENGTH_SHORT).show();
 								}
 							}
-						}).setNegativeButton("Hide", new DialogInterface.OnClickListener() {
+						}).setNegativeButton(R.string.hide, new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 							}

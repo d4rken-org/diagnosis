@@ -153,6 +153,7 @@ public class DGdata {
 	private List<PingInfo> pinglist = Collections.synchronizedList(new LinkedList<PingInfo>());
 	private List<PhoneInfo> phonelist = Collections.synchronizedList(new LinkedList<PhoneInfo>());
 	private List<WlanInfo> wlanlist = Collections.synchronizedList(new LinkedList<WlanInfo>());
+	private final String TAG = "eu.thedarken.diagnosis.DGdata";
     public static String BUSYBOX = "";
     private int biggest_data_count = 0;
     int highest_app = 0;
@@ -172,6 +173,8 @@ public class DGdata {
 		
 		mDB = DGdatabase.getInstance(mContext.getApplicationContext());
 		DB_CACHE_SIZE = settings.getInt("database.cachesize", 24);
+		
+		DGdata.CORES = detectCores();
 		
 	    IntentFilter batfilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
 	    
@@ -204,7 +207,7 @@ public class DGdata {
         	if(current_time != 0) {
         		battlist.add(temp);
         	}
-            Log.d(mContext.getPackageName(), "level is "+temp.level+"/"+temp.scale+", temp is "+temp.batt_temp_cur+", voltage is "+
+            Log.d(TAG, "level is "+temp.level+"/"+temp.scale+", temp is "+temp.batt_temp_cur+", voltage is "+
             		temp.voltage +",health is " + intent.getIntExtra(BatteryManager.EXTRA_HEALTH, -1)
             		+",status is " + intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
             		+",tech is " + intent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY)
@@ -224,6 +227,24 @@ public class DGdata {
 		}
 	};
 
+	private int detectCores() {
+		try {
+			int core_count = 0;
+			for(int i=0;i<8;i++) {
+				File core = new File("/sys/devices/system/cpu/cpu"+i+"/");
+				if(core.exists() && core.canRead() && core.isDirectory())
+					core_count++;
+			}
+			Log.d(TAG, core_count + " cpu cores detected.");
+			return core_count;
+		} catch (Exception e) {
+			e.printStackTrace();
+			Log.d(TAG, "Error defaulting to 1 cpu core");
+			return 1;
+		}
+	}
+	
+	
 	public CpuInfo getCpu() {
 		if(cpulist.isEmpty()) {
 			return new CpuInfo();
@@ -582,19 +603,6 @@ public class DGdata {
         	}
 
 			biggest_data_count=0;
-			/*Log.d(mContext.getPackageName(), "cpulist:" + cpulist.size());
-			Log.d(mContext.getPackageName(), "freqlist:" + freqlist.size());
-			Log.d(mContext.getPackageName(), "memlist:" + memlist.size());
-			Log.d(mContext.getPackageName(), "loadlist:" + loadlist.size());
-			Log.d(mContext.getPackageName(), "battlist:" + battlist.size());
-			Log.d(mContext.getPackageName(), "netlist:" + netlist.size());
-			Log.d(mContext.getPackageName(), "apps:" + apps.size());
-			Log.d(mContext.getPackageName(), "spacelist:" + spacelist.size());
-			Log.d(mContext.getPackageName(), "disklist:" + disklist.size());
-			Log.d(mContext.getPackageName(), "pinglist:" + pinglist.size());
-			Log.d(mContext.getPackageName(), "phonelist:" + phonelist.size());
-			Log.d(mContext.getPackageName(), "wlanlist:" + wlanlist.size());
-			Log.d(mContext.getPackageName(), "################################");*/
     			
 	    	if(cpulist.size() > biggest_data_count) biggest_data_count = cpulist.size();
 	    	if(freqlist.size() > biggest_data_count) biggest_data_count = freqlist.size();
@@ -608,7 +616,7 @@ public class DGdata {
 	    	if(pinglist.size() > biggest_data_count) biggest_data_count = pinglist.size();
 	    	if(phonelist.size() > biggest_data_count) biggest_data_count = phonelist.size();
 	    	if(wlanlist.size() > biggest_data_count) biggest_data_count = wlanlist.size();
-	    	//Log.d(mContext.getPackageName(), "biggest_data_count:" + biggest_data_count);
+	    	
 	    	updateTask_runs = false;
         }
         
@@ -732,7 +740,6 @@ public class DGdata {
 //			Log.d(mContext.getPackageName(), "Writing to DB...");
 			//Cpu data
 			LinkedList<CpuInfo> c_inserts = new LinkedList<CpuInfo>();
-			//Log.d(mContext.getPackageName(), "dbcpulistsize" + dbcpulist.size());
 			while(dbcpulist.size() >= this.density) {
 				int cnt = this.density;
 				CpuInfo avg = new CpuInfo();
@@ -769,14 +776,12 @@ public class DGdata {
 				while(cnt != 0) {
 					FreqInfo temp = dbfreqlist.removeFirst();
 					avg.system_time += temp.system_time;
-					for(int i=0;i<4;i++)
+					for(int i=0;i<avg.cpu_frequency.length;i++)
 						avg.cpu_frequency[i] += temp.cpu_frequency[i];
-					avg.cpu_max_frequency = temp.cpu_max_frequency;
-					avg.cpu_min_frequency = temp.cpu_min_frequency;
 					cnt--;
 				}
 				avg.system_time /= this.density;
-				for(int i=0;i<4;i++)
+				for(int i=0;i<avg.cpu_frequency.length;i++)
 					avg.cpu_frequency[i] /= this.density;
 				f_inserts.add(avg);
 			}
@@ -995,7 +1000,6 @@ public class DGdata {
 		} catch (IOException e) {
 			ping.ping = 1000;
 		}
-//		Log.d(mContext.getPackageName(), "ping!");
 		pinglist.add(ping);
 	}
     	
@@ -1026,7 +1030,7 @@ public class DGdata {
 			stat = new StatFs(p.getPath());
     	} catch (Exception e) {
     		e.printStackTrace();
-    		Log.d(mContext.getPackageName(), "There was a problem getting Stats for " + p.getName());
+    		Log.d(TAG, "There was a problem getting Stats for " + p.getName());
     		return ret;
     	}
 		long blockSize = stat.getBlockSize();
@@ -1054,7 +1058,7 @@ public class DGdata {
 			if(wi.getSSID() != null)
 				wlan.name = wi.getSSID();
 			wlanlist.add(wlan);
-//			Log.d(mContext.getPackageName(), "wifi signal " + wlan.signal);
+//			Log.d(TAG, "wifi signal " + wlan.signal);
 		}
 	}
 	
@@ -1142,7 +1146,7 @@ public class DGdata {
 			    }
 		    }
 		} else {
-			Log.d(mContext.getPackageName(), "Error while getting disk IO");
+			Log.d(TAG, "Error while getting disk IO");
 		}
 
 		//Rates
@@ -1167,60 +1171,18 @@ public class DGdata {
 		
 		disklist.add(ret);
 	}
-	
-	
-	private Integer[] getCpuMinFrequency() {
-		Integer[] rets = new Integer[DGdata.CORES];
-		Cmd c = new Cmd();
-		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"");
-		for(int i=0;i<rets.length;i++)
-			c.addCommand("$BUSYBOX cat /sys/devices/system/cpu/cpu"+i+"/cpufreq/scaling_min_freq");
-		c.execute();
-		for(String err : c.getErrors())
-			Log.d(mContext.getPackageName(), err);
 		
-		int i=0;
-		for(String minfreq : c.getOutput()) {
-			rets[i++] = Integer.parseInt(minfreq);
-			if(i == rets.length)
-				break;
-		}
-		return rets;
-	}
-	
-	private Integer[] getCpuMaxFrequency() {
-		Integer[] rets = new Integer[DGdata.CORES];
-		Cmd c = new Cmd();
-		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"");
-		for(int i=0;i<rets.length;i++)
-			c.addCommand("$BUSYBOX cat /sys/devices/system/cpu/cpu"+i+"/cpufreq/scaling_max_freq");
-		c.execute();
-		for(String err : c.getErrors())
-			Log.d(mContext.getPackageName(), err);
-		
-		int i = 0;
-		for(String maxfreq : c.getOutput()) {
-			rets[i++] = Integer.parseInt(maxfreq);
-			if(i==rets.length)
-				break;
-		}			
-		
-		return rets;
-	}
-	
-	private Integer[] getCpuFrequency() {
-		Integer[] rets = new Integer[DGdata.CORES];
+	private long[] getCpuFrequency() {
+		long[] rets = new long[DGdata.CORES];
 		Cmd c = new Cmd();
 		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"");
 		for(int i=0;i<rets.length;i++)
 			c.addCommand("$BUSYBOX cat /sys/devices/system/cpu/cpu"+i+"/cpufreq/scaling_cur_freq");
 		c.execute();
-		for(String err : c.getErrors())
-			Log.d(mContext.getPackageName(), err);
 
 		int i = 0;
 		for(String freq : c.getOutput()) {
-			rets[i++] = Integer.parseInt(freq);
+			rets[i++] = Long.parseLong(freq);
 			if(i == rets.length)
 				break;
 		}
@@ -1233,7 +1195,7 @@ public class DGdata {
 		c.addCommand("$BUSYBOX top -n1");
 		c.execute();
 		for(String err : c.getErrors())
-			Log.d(mContext.getPackageName(), err);
+			Log.d(TAG, err);
 		if(c.getOutput().size() > 4) {
 			Matcher matcher;
 			if(domem) {
@@ -1250,7 +1212,6 @@ public class DGdata {
 					mem.total_free = mem.free + mem.buff + mem.cached;
 					mem.usage = 100-((float)(mem.total_free*100) /(float)(mem.total_free + mem.used + mem.shared));
 					mem.system_time = current_time;
-					//Log.d(mContext.getPackageName(), "" + mem.usage);
 				}
 				memlist.add(mem);
 			}
@@ -1310,15 +1271,13 @@ public class DGdata {
 				cpu.act_apps_cur = active_apps.size();
 			}
 		} else {
-			Log.d(mContext.getPackageName(), "Error while getting TOP data");
+			Log.d(TAG, "Error while getting TOP data");
 		}
 	}
 	
 	public void doFreq() {
 		FreqInfo freq = new FreqInfo();
 		freq.cpu_frequency = getCpuFrequency();
-		freq.cpu_max_frequency = getCpuMaxFrequency();
-		freq.cpu_min_frequency = getCpuMinFrequency();
 		freq.system_time = current_time;
 		freqlist.add(freq);
 	}

@@ -58,9 +58,6 @@ public class DGapps extends SherlockFragment {
        		}
        	); 
        	
-        //apps_table.setColumnStretchable(0, true);
-        //apps_table.setColumnCollapsed(1, true);
-       	//showGraph(null);
     }
 
     @Override
@@ -87,7 +84,7 @@ public class DGapps extends SherlockFragment {
 
         protected void onPreExecute() {
           	dialog = new ProgDialog(mActivity);
-            dialog.setMessage("Loading data, please wait.");
+            dialog.setMessage(mActivity.getString(R.string.loading_data_please_wait));
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             dialog.show();
         }
@@ -105,26 +102,26 @@ public class DGapps extends SherlockFragment {
             	tr.setGravity(Gravity.CENTER);
             	
                 TextView t1 = new TextView(mActivity);
-                t1.setText("Seen ");
+                t1.setText(mActivity.getString(R.string.seen) + " ");
                 t1.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
                 t1.setTextColor(Color.BLACK);
                 t1.setSingleLine(true);
 
                 TextView t2 = new TextView(mActivity);
-                t2.setText("Name");
+                t2.setText(mActivity.getString(R.string.name));
                 t2.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
                 t2.setTextColor(Color.BLACK);
                 t2.setSingleLine(true);
                 
                 TextView t3 = new TextView(mActivity);
-                t3.setText("CPU% ");
+                t3.setText(mActivity.getString(R.string.cpu_percent));
                 t3.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
                 t3.setTextColor(Color.BLACK);
                 t3.setSingleLine(true);
                 t3.setPadding(5, 0, 0, 0);
 
                 TextView t4 = new TextView(mActivity);
-                t4.setText("RAM%");
+                t4.setText(mActivity.getString(R.string.ram_percent));
                 t4.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
                 t4.setTextColor(Color.BLACK);
                 t4.setSingleLine(true);
