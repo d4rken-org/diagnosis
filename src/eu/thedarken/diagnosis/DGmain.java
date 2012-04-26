@@ -45,7 +45,7 @@ public class DGmain extends SherlockFragmentActivity {
 	private Intent service;
 	public static String versName = "";
 	public static int versCode = 0;
-	private final static int DB_DELETE_VERSION = 25;
+	private final static int DB_DELETE_VERSION = 26;
 	public static String BUSYBOX = "";
 	public static String BUSYBOX_VERSION = "";
 	private SharedPreferences settings;
@@ -205,7 +205,7 @@ public class DGmain extends SherlockFragmentActivity {
 				showMyDialog(Dialogs.BUSYBOX_ERROR);
 			}
 
-			if (settings.getInt("dbversion", 0) < DB_DELETE_VERSION && db.exists()) {
+			if(settings.getInt("dbversion", 0) < DB_DELETE_VERSION && db.exists()) {
 				if (db.delete()) {
 					dialog.updateMessage(mActivity.getString(R.string.db_deletion_successfull));
 					Log.d(TAG, mActivity.getString(R.string.db_deletion_successfull));
@@ -216,8 +216,6 @@ public class DGmain extends SherlockFragmentActivity {
 					Log.d(TAG, mActivity.getString(R.string.could_not_delete_db));
 					showMyDialog(Dialogs.REINSTALL);
 				}
-				prefEditor.putInt("dbversion", DGmain.versCode);
-				prefEditor.commit();
 				showMyDialog(Dialogs.DATABASE_REMOVAL);
 			} else {
 				prefEditor.putInt("dbversion", DGmain.versCode);
