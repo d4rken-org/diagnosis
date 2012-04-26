@@ -66,10 +66,9 @@ public class DGlinebuilder extends ListActivity {
 			public void onItemSelected(AdapterView<?> parent, View arg1, int arg2, long arg3) {
 				int arraypos = parent.getSelectedItemPosition();
 				if (arraypos != 0) {
-					if (!DGmain.checkPro(mContext) && (arraypos == 35 || arraypos == 36 || arraypos == 37 || arraypos == 38 || arraypos == 39)) {
+					Log.d(TAG, String.valueOf(itemadapter.getItem(arraypos)));
+					if (!DGmain.checkPro(mContext) && String.valueOf(itemadapter.getItem(arraypos)).contains("[Pro]")) {
 						Toast.makeText(mContext, mContext.getString(R.string.sorry_pro_only), Toast.LENGTH_LONG).show();
-						adapter.getItem(arraypos);
-						Log.d(TAG, adapter.getLabel(arraypos));
 					} else {
 						adapter.insert(arraypos, adapter.getCount());
 						adapter.notifyDataSetChanged();
@@ -115,9 +114,6 @@ public class DGlinebuilder extends ListActivity {
 			if (DGoverlay.getLine(line) != null) {
 				DGoverlay.getLine(line).layout = array;
 			}
-			for (Integer ar : array) {
-				Log.d(TAG, "#" + ar);
-			}
 		}
 
 		public void insert(Integer item, int to) {
@@ -141,10 +137,6 @@ public class DGlinebuilder extends ListActivity {
 		/** Use the array index as a unique id. */
 		public long getItemId(int position) {
 			return position;
-		}
-		
-		public String getLabel(int pos) {
-			return String.valueOf(adapter.getItem(pos));
 		}
 
 		public View getView(int position, View convertView, ViewGroup parent) {
