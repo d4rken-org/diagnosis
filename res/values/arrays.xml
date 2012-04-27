@@ -5,12 +5,12 @@
         <item>Apps >[Settings]%CPU</item><!-- 1 -->
         <item>Apps >40%CPU</item><!-- 2 -->
         <item>Apps >1% CPU</item><!-- 3 -->
-        <item>Total Cpu use</item><!--4 -->
-        <item>Cpu usage USR</item><!-- 5 -->
-        <item>Cpu usage SYS</item><!-- 6 -->
-        <item>Cpu usage IDLE</item><!-- 7 -->
-        <item>Cpu usage IO</item><!-- 8 -->
-        <item>Cpu usage NICE</item><!-- 9 -->
+        <item>Cpu usage (All cores)</item><!--4 -->
+        <item>Cpu USR (All cores)</item><!-- 5 -->
+        <item>Cpu SYS (All cores)</item><!-- 6 -->
+        <item>Cpu IDLE (All cores)</item><!-- 7 -->
+        <item>Cpu IO (All cores)</item><!-- 8 -->
+        <item>Cpu NICE (All cores)</item><!-- 9 -->
         <item>Total free memory</item><!-- 10 -->
         <item>Real free memory</item><!--11 -->
         <item>Used memory</item><!-- 12 -->
@@ -28,7 +28,7 @@
         <item>Date</item><!-- 24 -->
         <item>Disk READ</item><!-- 25 -->
         <item>Disk WRITE</item><!-- 26 -->
-        <item>Cpu frequency(Avg of all cores)</item><!-- 27 -->
+        <item>Cpu frequency(All cores)</item><!-- 27 -->
         <item>Free external space</item><!-- 28 -->
         <item>Free sdcard space</item><!-- 29 -->
         <item>Free system space</item><!-- 30 -->
@@ -36,15 +36,46 @@
         <item>Ping</item><!-- 32 -->
         <item>WIFI signal strength</item><!-- 33 -->
 		<item>CELL signal strength</item><!-- 34 -->
+		
+		
 		<item>WIFI IP address [Pro]</item><!-- 35 -->
 		<item>WIFI name [Pro]</item><!-- 36 -->
 		<item>WIFI linkspeed [Pro]</item><!-- 37 -->
 		<item>Download (cell) [Pro]</item><!-- 38 -->
 		<item>Upload (cell) [Pro]</item><!-- 39 -->
-		<item>Core1 freq [Pro]</item><!-- 40 -->
-		<item>Core2 freq [Pro]</item><!-- 41 -->
-		<item>Core3 freq [Pro]</item><!-- 42 -->
-		<item>Core4 freq [Pro]</item><!-- 43 -->
+		
+		<item>Core#1 freq [Pro]</item><!-- 40 -->
+		<item>Core#2 freq [Pro]</item><!-- 41 -->
+		<item>Core#3 freq [Pro]</item><!-- 42 -->
+		<item>Core#4 freq [Pro]</item><!-- 43 -->
+		
+        <item>Core#1 usage [Pro]</item><!-- 44 -->
+        <item>Core#1 USR [Pro]</item><!-- 45 -->
+        <item>Core#1 SYS [Pro]</item><!-- 46 -->
+        <item>Core#1 IDLE [Pro]</item><!-- 47 -->
+        <item>Core#1 IO [Pro]</item><!-- 48 -->
+        <item>Core#1 NICE [Pro]</item><!-- 49 -->
+        
+        <item>Core#2 usage [Pro]</item><!--50 -->
+        <item>Core#2 USR [Pro]</item><!-- 51 -->
+        <item>Core#2 SYS [Pro]</item><!-- 52 -->
+        <item>Core#2 IDLE [Pro]</item><!-- 53 -->
+        <item>Core#2 IO [Pro]</item><!-- 54 -->
+        <item>Core#2 NICE [Pro]</item><!-- 55 -->
+        
+        <item>Core#3 usage [Pro]</item><!--56 -->
+        <item>Core#3 USR [Pro]</item><!-- 57 -->
+        <item>Core#3 SYS [Pro]</item><!-- 58 -->
+        <item>Core#3 IDLE [Pro]</item><!-- 59 -->
+        <item>Core#3 IO [Pro]</item><!-- 60 -->
+        <item>Core#3 NICE [Pro]</item><!-- 61 -->
+        
+        <item>Core#4 usage [Pro]</item><!--62 -->
+        <item>Core#4 USR [Pro]</item><!-- 63 -->
+        <item>Core#4 SYS [Pro]</item><!-- 64 -->
+        <item>Core#4 IDLE [Pro]</item><!-- 65 -->
+        <item>Core#4 IO [Pro]</item><!-- 66 -->
+        <item>Core#4 NICE [Pro]</item><!-- 67 -->
 	</string-array>
 	    <string-array name="stylelist">
         <item>Click me and choose!</item><!-- 0 -->

@@ -41,6 +41,7 @@
     <string name="memory">Memory</string>
     <string name="average">average</string>
     <string name="observed_cpu_speed">Observed CPU frequencies</string>
+    <string name="observed_cpu_usage">Observed average CPU usage</string>
     <string name="average_is">average is</string>
     <string name="lowest_at">lowest at</string>
     <string name="is_max">is max</string>
@@ -95,7 +96,7 @@
     <string name="quit">Quit</string>
     <string name="dismiss">Dismiss</string>
     <string name="news">News</string>
-    <string name="news_content">v0.7.8\n-Added temporary fix for core detection\n-Preparations for multicore cpu usage and translations\n\nv0.7.7\n-Fixed FC in app stats page\n-Cpu freq support for dual/quad core CPUs [Pro]\n-Stats tab will be more readable with next update\n\nHave a look at \'Diagnosis Pro\' if you are looking for additional features or want to support my work.\n\nQuestions,requests or ideas?\nMail me!</string>
+    <string name="news_content">v0.7.8\n-Temp fix for core detection FC\n-Preperations for translations\n-New busybox\n-Added multicore cpu info [Pro]\n\nv0.7.7\n-Fixed FC in app stats page\n-Cpu freq support for dual/quad core CPUs [Pro]\n-Stats tab will be more readable with next update\n\nHave a look at \'Diagnosis Pro\' if you are looking for additional features or want to support my work.\n\nQuestions,requests or ideas?\nMail me!</string>
     <string name="no_market_application_found">No Market Application found.</string>
     <string name="hide">Hide</string>
     <string name="diagnosis_pro">Diagnosis Pro</string>
@@ -126,6 +127,9 @@
     <string name="sorry_stop_diagnosis">Sorry there was an error, maybe stop Diagnosis?</string>
     <string name="avg">AVG</string>
     <string name="ms">ms</string>
+    <string name="all_cores">All cores</string>
+    <string name="core">Core</string>
+    <string name="io">I/O</string>
     
     <!-- Preferences -->
     <string name="preferences_interval_dialog_message">Interval</string>
