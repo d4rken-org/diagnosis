@@ -95,7 +95,7 @@
     <string name="quit">Quit</string>
     <string name="dismiss">Dismiss</string>
     <string name="news">News</string>
-    <string name="news_content">v0.7.7\n-Fixed FC in app stats page\n-Cpu freq support for dual/quad core CPUs [Pro]\n-Stats tab will be more readable with next update\n\nHave a look at \'Diagnosis Pro\' if you are looking for additional features or want to support my work.\n\nQuestions,requests or ideas?\nMail me!</string>
+    <string name="news_content">v0.7.8\n-Added temporary fix for core detection\n-Preparations for multicore cpu usage and translations\n\nv0.7.7\n-Fixed FC in app stats page\n-Cpu freq support for dual/quad core CPUs [Pro]\n-Stats tab will be more readable with next update\n\nHave a look at \'Diagnosis Pro\' if you are looking for additional features or want to support my work.\n\nQuestions,requests or ideas?\nMail me!</string>
     <string name="no_market_application_found">No Market Application found.</string>
     <string name="hide">Hide</string>
     <string name="diagnosis_pro">Diagnosis Pro</string>
@@ -139,4 +139,134 @@
     <string name="preferences_notification_title">Show notification</string>
     <string name="preferences_notification_summary">Shows/Hides the notification bar entry\nRequires [Diagnosis Pro]</string>
 
+    <string name="preferences_database_general_title">Database</string>
+    <string name="preferences_database_general_summary">Which information will be saved and displayed in the stats tab</string>
+    
+    <string name="preferences_database_doapps_title">Application statistics</string>
+    <string name="preferences_database_doapps_summary">Keeps a list of watched apps, their cpu usage, memory and more</string>
+    
+    <string name="preferences_database_dobatt_title">Battery statistics</string>
+    <string name="preferences_database_dobatt_summary">Charge level, temperature, voltage,...</string>
+    
+    <string name="preferences_database_docpu_title">Cpu statistics</string>
+    <string name="preferences_database_docpu_summary">Cpu infos, io/system/user/nice/idle usages...</string>
+    
+    <string name="preferences_database_dofreq_title">Cpu frequency statistics</string>
+    <string name="preferences_database_dofreq_summary">Frequency, max ,min, possible</string>
+    
+    <string name="preferences_database_domem_title">Save memory statistics</string>
+    <string name="preferences_database_domem_summary">System memory (Total/Real/Buffered/Cached)</string>
+    
+    <string name="preferences_database_donet_title">Network statistics</string>
+    <string name="preferences_database_donet_summary">Traffic, upload + download</string>
+    
+    <string name="preferences_database_dospace_title">Partition statistics</string>
+    <string name="preferences_database_dospace_summary">android os, system, app data, sdcard, external cards...</string>
+    
+    <string name="preferences_database_dowifi_title">Wifi statistics</string>
+    <string name="preferences_database_dowifi_summary">currently only signal strength</string>
+    
+    <string name="preferences_database_dophone_title">Phone statistics</string>
+    <string name="preferences_database_dophone_summary">GSM signal</string>
+        
+    <string name="preferences_database_doping_title">Internet statistics</string>
+    <string name="preferences_database_doping_summary">Statistics that would cause data usage (ping only at this moment)</string>
+    
+    <string name="preferences_database_dodisk_title">Disk statistics</string>
+    <string name="preferences_database_dodisk_summary">Read/Write speed to flash memory</string>
+    
+	<string name="preferences_database_doload_title">Load statistics</string>
+    <string name="preferences_database_doload_summary">System load unix style</string>
+    
+    <string name="load">Load</string>
+    <string name="save_dot_dot_dot">Save...</string>
+    <string name="load_save_custom_presets">Load/Save custom presets</string>
+    
+    <string name="load_slot_1">Load slot 1</string>
+    <string name="load_slot_2">Load slot 2</string>
+    <string name="load_slot_3">Load slot 3</string>
+    
+    <string name="save_slot_1">Save to slot 1</string>
+    <string name="save_slot_2">Save to slot 2</string>
+    <string name="save_slot_3">Save to slot 3</string>
+
+    <string name="preferences_customize_lines_summary">Customize and tailor each info line to your needs.</string>
+    <string name="preferences_customize_lines_title">Customize lines</string>
+    
+    <string name="preferences_edit_line_1">Edit line 1</string>
+    <string name="preferences_edit_line_2">Edit line 2</string>
+    <string name="preferences_edit_line_3">Edit line 3</string>
+    <string name="preferences_edit_line_4">Edit line 4</string>
+    
+    <string name="preferences_edit_displayed_data">Edit displayed data</string>
+    
+    <string name="preferences_line_1">Line 1</string>
+    <string name="preferences_line_2">Line 2</string>
+    <string name="preferences_line_3">Line 3</string>
+    <string name="preferences_line_4">Line 4</string>
+    
+    <string name="layout">Layout</string>
+    
+    <string name="preferences_style_and_position_title">Style and position</string>
+    
+    <string name="preferences_x_position_summary">Horizontal position of the overlay</string>
+    <string name="preferences_x_position_title">X-position</string>
+    
+    <string name="preferences_y_position_summary">Vertical position of the overlay</string>
+    <string name="preferences_y_position_title">Y-position</string>
+    
+    <string name="preferences_fontsize_summary">How big the letters will be</string>
+    <string name="preferences_fontsize_title">Fontsize</string>
+    
+	<string name="preferences_text_color_normal_summary">Text color used for normal display</string>
+    <string name="preferences_text_color_normal_title">Normal text color</string>
+    
+	<string name="preferences_text_color_alert_summary">Text color used to highlight alerts</string>
+    <string name="preferences_text_color_alert_title">Alert text color</string>
+    
+    <string name="preferences_fonttype_summary">Choose what font type is used.</string>
+    <string name="preferences_fonttype_title">Font</string>
+    
+    <string name="preferences_alignright_summary">The text will be drawn left of the setup position(i.e. turn this on an set x to your screen width)</string>
+    <string name="preferences_alignright_title">Align right</string>
+    
+    <string name="preferences_drawbackground_summary">Draw a background behind the text to make it easier readable.</string>
+    <string name="preferences_drawbackground_title">Draw background</string>
+    
+    <string name="preferences_backgroundcolor_summary">Color used as background</string>
+    <string name="preferences_backgroundcolor_title">Text background color</string>
+    
+    <string name="preferences_customize_general_summary">Change options which affect every line</string>
+    <string name="preferences_customize_general_title">Customize options</string>
+    
+    <string name="preferences_fahrenheit_summary">Uses Fahrenheit instead of Celsius for temperature</string>
+    <string name="preferences_fahrenheit_title">Use Fahrenheit</string>
+    
+    <string name="preferences_divider_summary">Change the symbol that seperates information in the overlay.</string>
+    <string name="preferences_divider_title">Divider</string>
+    
+    <string name="preferences_cpu_threshold_summary">How high does the CPU need to be, for an app to be shown.[Diagnosis Pro]</string>
+    <string name="preferences_cpu_threshold_title">Cpu threshold</string>
+    
+    <string name="preferences_hide_system_entries_summary">Hides the system entries, leaving only apps to be shown.</string>
+    <string name="preferences_hide_system_entries_title">Hide core processes</string>
+    
+    <string name="preferences_ping_target_summary">Which address should the ping feature target?</string>
+    <string name="preferences_ping_target_title">Ping target</string>
+    
+    <string name="preferences_advanced_settings">Advanced settings</string>
+    
+    <string name="database">Database</string>
+    
+    <string name="preferences_database_agelimit_summary">After what amount of time should old data be deleted?(Happens when starting service)</string>
+    <string name="preferences_database_agelimit_title">Data age limit</string>
+    
+    <string name="prefrence_database_dropall_summary">Drop all database tables thus reseting it.</string>
+    <string name="prefrence_database_dropall_title">Drop database</string>
+    
+    <string name="prefrence_database_density_summary">Condenses multiple datasets into one. A smaller number means more accurate data, but bigger database.</string>
+    <string name="prefrence_database_density_title">Data density</string>
+    
+    <string name="prefrence_database_cachesize_summary">How many entries should be saved in RAM before attempting to write to memory</string>
+    <string name="prefrence_database_cachesize_title">Cache size</string>
 </resources>
