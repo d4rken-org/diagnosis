@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import eu.thedarken.diagnosis.InfoClass.AppInfo;
 import eu.thedarken.diagnosis.InfoClass.FreqInfo;
+import eu.thedarken.diagnosis.InfoClass.CpuInfo;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -484,27 +485,27 @@ public class DGoverlay extends Service{
 					break;
 		        //<item>Total Cpu use</item>
 				case 4:
-					toset.append("CPU " + Math.round(data.getCpu().usage) + "%");
+					toset.append("CPU " + Math.round(CpuInfo.calcAvgCpu(data.getCpu().usage)) + "%");
 					break;
 		        //<item>Cpu usage USR</item>
 				case 5:
-					toset.append("user " + data.getCpu().user + "%");
+					toset.append("user " + CpuInfo.calcAvgCpu(data.getCpu().user) + "%");
 					break;
 		        //<item>Cpu usage SYS</item>
 				case 6:
-					toset.append("sys " + data.getCpu().system + "%");
+					toset.append("sys " + CpuInfo.calcAvgCpu(data.getCpu().system) + "%");
 					break;
 		        //<item>Cpu usage IDLE</item>
 				case 7:
-					toset.append("idl " + data.getCpu().idle + "%");
+					toset.append("idl " + CpuInfo.calcAvgCpu(data.getCpu().idle) + "%");
 					break;
 		        //<item>Cpu usage IO</item>
 				case 8:
-					toset.append("io " + data.getCpu().io + "%");
+					toset.append("io " + CpuInfo.calcAvgCpu(data.getCpu().io) + "%");
 					break;
 		        //<item>Cpu usage NICE</item>
 				case 9:
-					toset.append("nic " + data.getCpu().nice + "%");
+					toset.append("nic " + CpuInfo.calcAvgCpu(data.getCpu().nice) + "%");
 					break;
 		        //<item>Total free memory</item>
 				case 10:
@@ -675,13 +676,49 @@ public class DGoverlay extends Service{
 					else
 						toset.append("C3 N/A");
 					break;
-			        //<item>Core4 frequency</item>
-				case 43:
-					if(DGdata.CORES > 3)
-						toset.append("C4 " + (data.getFreq().cpu_frequency[3]/1000) + "Mhz");
+					
+					//<item>Core#1 usage [Pro]</item><!-- 44 -->
+				case 44:
+					if(DGdata.CORES > 0)
+						toset.append("C1 " + data.getCpu().usage[0] + "%");
 					else
-						toset.append("C4 N/A");
+						toset.append("C1 N/A");
 					break;
+					//<item>Core#1 USR [Pro]</item><!-- 45 -->
+				case 45:
+					if(DGdata.CORES > 0)
+						toset.append("C1[usr] " + data.getCpu().user[0] + "%");
+					else
+						toset.append("C1[usr] N/A");
+					break;
+					//<item>Core#1 SYS [Pro]</item><!-- 46 -->
+				case 46:
+					if(DGdata.CORES > 0)
+						toset.append("C1[sys] " + data.getCpu().system[0] + "%");
+					else
+						toset.append("C1[sys] N/A");
+					break;
+					//<item>Core#1 IDLE [Pro]</item><!-- 47 -->
+				case 47:
+					if(DGdata.CORES > 0)
+						toset.append("C1[idl] " + data.getCpu().idle[0] + "%");
+					else
+						toset.append("C1[idl] N/A");
+					break;
+					//<item>Core#1 IO [Pro]</item><!-- 48 -->
+				case 48:
+					if(DGdata.CORES > 0)
+						toset.append("C1[io] " + data.getCpu().io[0] + "%");
+					else
+						toset.append("C1[io] N/A");
+					break;
+					//<item>Core#1 NICE [Pro]</item><!-- 49 -->
+				case 49:
+					if(DGdata.CORES > 0)
+						toset.append("C1[nic] " + data.getCpu().nice[0] + "%");
+					else
+						toset.append("C1[nic] N/A");
+					break; 
 				default:
 					toset.append("");
 					break;

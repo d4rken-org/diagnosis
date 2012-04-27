@@ -1,7 +1,10 @@
 ﻿v0.7.8(26)
 - Fixed bug in core detection, hardcoding 4 for now
 - More translation preperations
-- Preperations for multicore cpu usage (new busybox)
+- Added new busybox
+- Added multicore cpu usage [Pro]
+- Tweaks to linebuilder
+- Fixed UI crash
 
 v0.7.7(25)
 - Fixed FC in app stats page

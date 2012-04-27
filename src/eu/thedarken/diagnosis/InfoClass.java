@@ -122,24 +122,37 @@ public class InfoClass {
 	}
 	
 	public static class CpuInfo {
-		float usage = 0;
-		float user = 0;
-		float nice = 0;
-		float system = 0;
-		float idle = 0;
-		float io = 0;
+		float[] usage = new float[DGdata.CORES];
+		float[] user = new float[DGdata.CORES];
+		float[] nice = new float[DGdata.CORES];
+		float[] system = new float[DGdata.CORES];
+		float[] idle = new float[DGdata.CORES];
+		float[] io = new float[DGdata.CORES];
 		int act_apps_cur = 0;
 		long system_time = 0;
 		String governor = "";
+		public static float calcAvgCpu(float[] use) {
+			float ret = 0;
+			int avg = 0;
+			for(int i=0;i<use.length;i++) {
+				if(use[i] != 0)
+					avg++;
+				ret += use[i];
+			}
+			if(avg != 0)
+				ret /= avg;
+			ret = ((float)(Math.round(ret  * 10)) / 10);
+			return ret;
+		}
 	}
 	
 	public static class CpuTabInfo extends CpuInfo {
-		float cpu_avg_user = 0;
-		float cpu_avg_system = 0;
-		float cpu_avg_io = 0;
+		float[] cpu_avg_user = new float[DGdata.CORES];
+		float[] cpu_avg_system = new float[DGdata.CORES];
+		float[] cpu_avg_io = new float[DGdata.CORES];
+		float[] cpu_avg_total = new float[DGdata.CORES];
 		float act_apps_avg = 0;
 		int act_apps_max = 0;
-		float cpu_avg_total = 0;
 	}
 	
 	public static class FreqInfo {

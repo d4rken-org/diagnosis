@@ -45,7 +45,7 @@ import android.util.Log;
 
 public class DGdata {
     private static final Pattern CPU_PATTERN2 = Pattern.compile("^" + // start
-            "(CPU:)" + // cpu (group = 1)
+            "(CPU\\d:)" + // cpu (group = 1)
             "\\s+" + // blanks
             "([0-9]+\\.[0-9]+%)" + // usr nr(group = 2)
             "\\s+" + // blanks
@@ -746,24 +746,30 @@ public class DGdata {
 				while(cnt != 0) {
 					CpuInfo temp = dbcpulist.removeFirst();
 					avg.act_apps_cur += temp.act_apps_cur;
-					avg.idle += temp.idle;
-					avg.nice += temp.nice;
-					avg.system += temp.system;
+					for(int i=0;i<avg.usage.length;i++) {
+						avg.idle[i] += temp.idle[i];
+						avg.nice[i] += temp.nice[i];
+						avg.system[i] += temp.system[i];
+						avg.usage[i] += temp.usage[i];
+						avg.user[i] += temp.user[i];
+						avg.io[i] += temp.io[i];
+					}
 					avg.system_time += temp.system_time;
-					avg.usage += temp.usage;
-					avg.user += temp.user;
-					avg.io += temp.io;
 					avg.governor = temp.governor;
 					cnt--;
 				}
+				for(int i=0;i<avg.usage.length;i++) {
+					avg.usage[i] /= this.density;
+					avg.user[i] /= this.density;
+					avg.io[i] /= this.density;
+					avg.idle[i] /= this.density;
+					avg.nice[i] /= this.density;
+					avg.system[i] /= this.density;
+				}
+				
 				avg.act_apps_cur /= this.density;
-				avg.idle /= this.density;
-				avg.nice /= this.density;
-				avg.system /= this.density;
 				avg.system_time /= this.density;
-				avg.usage /= this.density;
-				avg.user /= this.density;
-				avg.io /= this.density;
+
 				c_inserts.add(avg);
 			}
 			if(c_inserts.size() > 0) mDB.addCpus(c_inserts,false);
@@ -1189,18 +1195,19 @@ public class DGdata {
 		return rets;
 	}
 	
-	private void doTop(boolean domem,boolean docpu,boolean doload,boolean doapps) {
+	private void doTop(boolean domem, boolean docpu, boolean doload, boolean doapps) {
 		Cmd c = new Cmd();
-		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX +"");
+		c.addCommand("BUSYBOX=" + DGdata.BUSYBOX + "");
 		c.addCommand("$BUSYBOX top -n1");
 		c.execute();
 		for(String err : c.getErrors())
 			Log.d(TAG, err);
 		if(c.getOutput().size() > 4) {
+			int readline = 0;
 			Matcher matcher;
 			if(domem) {
 				//Memory
-				matcher = MEMORY_PATTERN.matcher(c.getOutput().get(0));
+				matcher = MEMORY_PATTERN.matcher(c.getOutput().get(readline));
 				MemInfo mem = new MemInfo();
 				if(matcher.matches()) {
 					mem.used = Integer.parseInt(matcher.group(2))*1024;
@@ -1210,30 +1217,36 @@ public class DGdata {
 					mem.cached = Integer.parseInt(matcher.group(10))*1024;
 					mem.total = mem.used + mem.free;
 					mem.total_free = mem.free + mem.buff + mem.cached;
-					mem.usage = 100-((float)(mem.total_free*100) /(float)(mem.total_free + mem.used + mem.shared));
+					mem.usage = 100 - ((float)(mem.total_free*100) /(float)(mem.total_free + mem.used + mem.shared));
 					mem.system_time = current_time;
 				}
 				memlist.add(mem);
 			}
-	
+			readline++;
+			
 			CpuInfo cpu = new CpuInfo();
 			cpu.system_time =  current_time;
 			if(docpu) {
-				matcher = CPU_PATTERN2.matcher(c.getOutput().get(1));
-				if(matcher.matches()) {
-					cpu.user = Float.parseFloat(matcher.group(2).substring(0,(matcher.group(2).length()-1)));
-					cpu.nice = Float.parseFloat(matcher.group(6).substring(0,(matcher.group(6).length()-1)));
-					cpu.system = Float.parseFloat(matcher.group(4).substring(0,(matcher.group(4).length()-1)));
-					cpu.idle = Float.parseFloat(matcher.group(8).substring(0,(matcher.group(8).length()-1)));
-					cpu.io = Float.parseFloat(matcher.group(10).substring(0,(matcher.group(10).length()-1)));
+				for(int i=0;i<cpu.usage.length;i++) {
+					matcher = CPU_PATTERN2.matcher(c.getOutput().get(readline));
+					if(matcher.matches()) {
+						readline++;	
+						cpu.user[i] = Float.parseFloat(matcher.group(2).substring(0,(matcher.group(2).length()-1)));
+						cpu.system[i] = Float.parseFloat(matcher.group(4).substring(0,(matcher.group(4).length()-1)));
+						cpu.nice[i] = Float.parseFloat(matcher.group(6).substring(0,(matcher.group(6).length()-1)));
+						cpu.idle[i] = Float.parseFloat(matcher.group(8).substring(0,(matcher.group(8).length()-1)));
+						cpu.io[i] = Float.parseFloat(matcher.group(10).substring(0,(matcher.group(10).length()-1)));	
+						cpu.usage[i] = 100 - cpu.idle[i];
+					} else {
+						cpulist.add(cpu);
+						break;
+					}
 				}
-				cpu.usage = 100 - cpu.idle;
-				cpulist.add(cpu);
 			}
 			
 			if(doload) {
 				//Load
-				matcher = LOAD_PATTERN.matcher(c.getOutput().get(2));
+				matcher = LOAD_PATTERN.matcher(c.getOutput().get(readline));
 				LoadInfo load = new LoadInfo();
 				if(matcher.matches()) {
 					load.first = Float.parseFloat(matcher.group(2));
@@ -1245,11 +1258,11 @@ public class DGdata {
 			}
 			
 			//Column description = 3
-			
+			readline++;
 			active_apps.clear();
 			if(doapps) {
-				for(int i = 4;i<c.getOutput().size();i++) {
-					String te = c.getOutput().get(i);
+				for(;readline<c.getOutput().size();readline++) {
+					String te = c.getOutput().get(readline);
 					matcher = APP_PATTERN.matcher(te);
 					if(matcher.matches()) {
 						AppInfo temp = new AppInfo();

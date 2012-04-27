@@ -37,8 +37,8 @@ public class DGlinebuilder extends ListActivity {
 		settings = PreferenceManager.getDefaultSharedPreferences(this);
 		prefEditor = settings.edit();
 		mContext = this;
-		itemadapter = ArrayAdapter.createFromResource(this, R.array.infolist, android.R.layout.simple_spinner_item);
-		itemadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		itemadapter = ArrayAdapter.createFromResource(this, R.array.infolist, R.layout.spinneritem);
+		itemadapter.setDropDownViewResource(R.layout.spinnerdropdownitem);
 
 		// retrieve the data from intent (or bundle)
 		Intent in = getIntent();

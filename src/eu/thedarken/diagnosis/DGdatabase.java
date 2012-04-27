@@ -48,15 +48,7 @@ public class DGdatabase {
 	static final String PHONE_TABLE = "phone_data";
 	static final String PING_TABLE = "ping_data";
 	
-	static final String create_cpu_data = "create table IF NOT EXISTS "+CPU_TABLE+" " +
-	    "(system_time long, " +
-	    "usage float, " +
-	    "user float, " +
-	    "nice float, " +
-	    "system float, " +
-	    "idle float, " +
-	    "io float, " +
-	    "active_apps integer); ";
+	static String create_cpu_data;
 	
 	static String create_freq_data;
 	
@@ -151,6 +143,20 @@ public class DGdatabase {
     	}
     	freqtablebuilder.append(");");
     	create_freq_data = freqtablebuilder.toString();
+    	
+    	StringBuilder cputablebuilder = new StringBuilder();
+    	cputablebuilder.append("create table IF NOT EXISTS "+CPU_TABLE+" ");
+    	cputablebuilder.append("(system_time long");
+ 	    for(int i=0;i<DGdata.CORES;i++) {
+ 	    	cputablebuilder.append(", core"+i+"_usage float, ");
+ 	    	cputablebuilder.append("core"+i+"_user float, ");
+ 	    	cputablebuilder.append("core"+i+"_nice float, ");
+ 	    	cputablebuilder.append("core"+i+"_system float, ");
+ 	    	cputablebuilder.append("core"+i+"_idle float, ");
+ 	    	cputablebuilder.append("core"+i+"_io float");
+ 	    }
+ 	    cputablebuilder.append(", active_apps integer); ");
+ 	    create_cpu_data = cputablebuilder.toString();
     }
     
     public static DGdatabase getInstance(Context context) {
@@ -301,22 +307,32 @@ public class DGdatabase {
     public synchronized void addCpus(LinkedList<CpuInfo> c, boolean keepopen) {
     	if(openWrite()) {
             DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,CPU_TABLE);
-            int usage = ih.getColumnIndex("usage");
-            int user = ih.getColumnIndex("user");
-            int nice = ih.getColumnIndex("nice");
-            int system = ih.getColumnIndex("system");
-            int idle = ih.getColumnIndex("idle");
-            int io = ih.getColumnIndex("io");
+            int[] usage = new int[DGdata.CORES];
+            int[] user = new int[DGdata.CORES];
+            int[] nice = new int[DGdata.CORES];
+            int[] system = new int[DGdata.CORES];
+            int[] idle = new int[DGdata.CORES];
+            int[] io = new int[DGdata.CORES];
+            for(int i=0;i<DGdata.CORES;i++) {
+                usage[i] = ih.getColumnIndex("core"+i+"_usage");
+                user[i] = ih.getColumnIndex("core"+i+"_user");
+                nice[i] = ih.getColumnIndex("core"+i+"_nice");
+                system[i] = ih.getColumnIndex("core"+i+"_system");
+                idle[i] = ih.getColumnIndex("core"+i+"_idle");
+                io[i] = ih.getColumnIndex("core"+i+"_io");
+            }
             int act_apps_cur = ih.getColumnIndex("active_apps");
             int system_time = ih.getColumnIndex("system_time");
             for(CpuInfo ci : c) {
                 ih.prepareForInsert();
-            	ih.bind(usage, ci.usage);
-            	ih.bind(user, ci.user);
-            	ih.bind(nice, ci.nice);
-            	ih.bind(system, ci.system);
-            	ih.bind(idle, ci.idle);
-            	ih.bind(io, ci.io);
+            	for(int i=0;i<ci.usage.length;i++) {
+	            	ih.bind(usage[i], ci.usage[i]);
+	            	ih.bind(user[i], ci.user[i]);
+	            	ih.bind(nice[i], ci.nice[i]);
+	            	ih.bind(system[i], ci.system[i]);
+	            	ih.bind(idle[i], ci.idle[i]);
+	            	ih.bind(io[i], ci.io[i]);
+            	}
             	ih.bind(act_apps_cur, ci.act_apps_cur);
             	ih.bind(system_time, ci.system_time);
             	ih.execute();
@@ -333,10 +349,15 @@ public class DGdatabase {
     	if(openRead()) {
 	    	Cursor c = null;
 	    	try {
-	    		c = mDB.rawQuery("SELECT *, AVG(Cast(user AS Float)) AS cpu_avg_user, AVG(Cast(system AS Float)) AS cpu_avg_system, AVG(Cast(io AS Float)) AS cpu_avg_io, AVG(Cast(active_apps AS Float)) AS avg_act_apps, MAX(active_apps) AS max_act_apps " +
-	    				"FROM " + CPU_TABLE + " " +
-	    				"ORDER BY system_time DESC " +
-	    				"LIMIT 1;",null);
+	    		StringBuilder querrybuilder = new StringBuilder();
+	    		querrybuilder.append("SELECT ");
+	    		querrybuilder.append("system_time, active_apps, AVG(Cast(active_apps AS Float)) AS avg_act_apps, MAX(active_apps) AS max_act_apps");
+	    		for(int i=0;i<ret.usage.length;i++)
+	    			querrybuilder.append(",  AVG(Cast(core"+i+"_usage AS Float)) AS core"+i+"_avg_total, AVG(Cast(core"+i+"_user AS Float)) AS core"+i+"_avg_user, AVG(Cast(core"+i+"_system AS Float)) AS core"+i+"_avg_system, AVG(Cast(core"+i+"_io AS Float)) AS core"+i+"_avg_io ");
+	    		querrybuilder.append(" FROM " + CPU_TABLE + " ");
+	    		querrybuilder.append("ORDER BY system_time DESC ");
+	    		querrybuilder.append("LIMIT 1;");
+	    		c = mDB.rawQuery(querrybuilder.toString(),null);
 	    	} catch (SQLiteException e) {
 	    		tryClose();
 	    		e.printStackTrace();
@@ -346,18 +367,15 @@ public class DGdatabase {
 				c.moveToFirst();
 				ret.system_time = c.getLong(c.getColumnIndex("system_time"));
 				if(ret.system_time == 0) return null;
-				ret.usage = c.getFloat(c.getColumnIndex("usage"));
-				ret.user = c.getFloat(c.getColumnIndex("user"));
-				ret.nice = c.getFloat(c.getColumnIndex("nice"));
-				ret.system = c.getFloat(c.getColumnIndex("system"));
-				ret.idle = c.getFloat(c.getColumnIndex("idle"));
-				ret.io = c.getFloat(c.getColumnIndex("io"));
+				for(int i=0;i<ret.usage.length;i++) {
+					ret.cpu_avg_user[i] = c.getFloat(c.getColumnIndex("core"+i+"_avg_user"));
+					ret.cpu_avg_system[i] = c.getFloat(c.getColumnIndex("core"+i+"_avg_system"));
+					ret.cpu_avg_io[i] = c.getFloat(c.getColumnIndex("core"+i+"_avg_io"));
+					ret.cpu_avg_total[i] = c.getFloat(c.getColumnIndex("core"+i+"_avg_total"));
+				}
+				ret.act_apps_avg = c.getFloat(c.getColumnIndex("avg_act_apps"));
 				ret.act_apps_cur = c.getInt(c.getColumnIndex("active_apps"));
 				ret.act_apps_max = c.getInt(c.getColumnIndex("max_act_apps"));
-				ret.cpu_avg_user = c.getFloat(c.getColumnIndex("cpu_avg_user"));
-				ret.cpu_avg_system = c.getFloat(c.getColumnIndex("cpu_avg_system"));
-				ret.cpu_avg_io = c.getFloat(c.getColumnIndex("cpu_avg_io"));
-				ret.act_apps_avg = c.getFloat(c.getColumnIndex("avg_act_apps"));
 				c.close();
 			} else {
 				Log.d(TAG,"getCpuTabInfo query1 resulted in null cursor");
@@ -1019,7 +1037,7 @@ public class DGdatabase {
 			for (FreqInfo fis : fi) {
 				ih.prepareForInsert();
 				ih.bind(system_time, fis.system_time);
-				for(int i=0;i<cpu_frequency.length;i++)
+				for(int i=0;i<fis.cpu_frequency.length;i++)
 					ih.bind(cpu_frequency[i], fis.cpu_frequency[i]);
 				ih.execute();
 			}
@@ -1037,7 +1055,7 @@ public class DGdatabase {
 	    	try {
 	    		StringBuilder querybuilder = new StringBuilder();
 	    		querybuilder.append("SELECT system_time");
-	    		for(int i=0;i<DGdata.CORES;i++)
+	    		for(int i=0;i<ret.cpu_frequency.length;i++)
 	    			querybuilder.append(", cpu"+i+"_frequency, AVG(Cast(cpu"+i+"_frequency AS Double)) AS avg_cpu"+i+"_freq, MAX(cpu"+i+"_frequency) AS max_obs_cpu"+i+"_freq, MIN(cpu"+i+"_frequency) AS min_obs_cpu"+i+"_freq ");
 	    		querybuilder.append(" FROM " + FREQ_TABLE + " ");
 	    		querybuilder.append("ORDER BY system_time DESC ");
@@ -1052,7 +1070,7 @@ public class DGdatabase {
 				c.moveToFirst();
 				ret.system_time = c.getLong(c.getColumnIndex("system_time"));
 				if(ret.system_time == 0) return null;
-				for(int i=0;i<DGdata.CORES;i++) {
+				for(int i=0;i<ret.cpu_frequency.length;i++) {
 					ret.cpu_frequency[i] = c.getLong(c.getColumnIndex("cpu"+i+"_frequency"));
 					ret.max_obs_cpu_freq[i] = c.getLong(c.getColumnIndex("max_obs_cpu"+i+"_freq"));
 					ret.min_obs_cpu_freq[i] = c.getLong(c.getColumnIndex("min_obs_cpu"+i+"_freq"));

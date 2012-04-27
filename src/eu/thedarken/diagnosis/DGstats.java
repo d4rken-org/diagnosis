@@ -64,8 +64,8 @@ public class DGstats extends SherlockFragment {
 				temp_min;
 
 		private TableLayout cpu_table;
+		private TableLayout core_usage_table;
 		private CpuTabInfo cpuinfo = null;
-		private TextView avg_user, avg_sys, avg_io;
 		private TextView max_apps, avg_apps;
 
 		private TableLayout freq_table;
@@ -151,12 +151,10 @@ public class DGstats extends SherlockFragment {
 			temp_min = (TextView) mView.findViewById(R.id.batterytemp_min);
 
 			cpu_table = (TableLayout) mView.findViewById(R.id.cpu_table);
+			core_usage_table = (TableLayout) mView.findViewById(R.id.core_usage_table);
 			max_apps = (TextView) mView.findViewById(R.id.cpu_max_apps);
 			avg_apps = (TextView) mView.findViewById(R.id.cpu_avg_apps);
-			avg_user = (TextView) mView.findViewById(R.id.cpu_avg_user);
-			avg_sys = (TextView) mView.findViewById(R.id.cpu_avg_system);
-			avg_io = (TextView) mView.findViewById(R.id.cpu_avg_io);
-
+			
 			freq_table = (TableLayout) mView.findViewById(R.id.freq_table);
 			core_table = (TableLayout) mView.findViewById(R.id.core_table);
 
@@ -268,11 +266,80 @@ public class DGstats extends SherlockFragment {
 
 			if (pull_cpu) {
 				cpu_table.setVisibility(View.VISIBLE);
+				core_usage_table.removeAllViews();
+				
+				TableRow r = new TableRow(mActivity);
+				TextView label = new TextView(mActivity);
+				label.setTextColor(Color.BLACK);
+				label.setText(mActivity.getString(R.string.all_cores));
+				label.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 7f));
+				r.addView(label);
+
+				TextView total = new TextView(mActivity);
+				total.setTextColor(Color.BLACK);
+				total.setText(CpuTabInfo.calcAvgCpu(cpuinfo.cpu_avg_total) + "%");
+				total.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				r.addView(total);
+				
+				TextView user = new TextView(mActivity);
+				user.setTextColor(Color.BLACK);
+				user.setText(CpuTabInfo.calcAvgCpu(cpuinfo.cpu_avg_user) + "%");
+				user.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				r.addView(user);
+				
+				TextView system = new TextView(mActivity);
+				system.setTextColor(Color.BLACK);
+				system.setText(CpuTabInfo.calcAvgCpu(cpuinfo.cpu_avg_system) + "%");
+				system.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				r.addView(system);
+				
+				TextView io = new TextView(mActivity);
+				io.setTextColor(Color.BLACK);
+				io.setText(CpuTabInfo.calcAvgCpu(cpuinfo.cpu_avg_io) + "%");
+				io.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				r.addView(io);
+				core_usage_table.addView(r);
+				
+				if(DGmain.checkPro(mActivity)) {
+					for(int i=0;i<cpuinfo.usage.length;i++) {
+						if(cpuinfo.usage[i] == 0 && cpuinfo.system[i] == 0 && cpuinfo.io[i] == 0)
+							break;
+						TableRow corerow = new TableRow(mActivity);
+						TextView corelabel = new TextView(mActivity);
+						corelabel.setTextColor(Color.BLACK);
+						corelabel.setText(mActivity.getString(R.string.core)+(i+1));
+						corelabel.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 7f));
+						corerow.addView(corelabel);
+	
+						TextView coretotal = new TextView(mActivity);
+						coretotal.setTextColor(Color.BLACK);
+						coretotal.setText(String.valueOf((float)(Math.round(cpuinfo.cpu_avg_total[i]  * 10)) / 10)+"%");
+						coretotal.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+						corerow.addView(coretotal);
+						
+						TextView coreuser = new TextView(mActivity);
+						coreuser.setTextColor(Color.BLACK);
+						coreuser.setText(String.valueOf((float)(Math.round(cpuinfo.cpu_avg_user[i]  * 10)) / 10)+"%");
+						coreuser.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+						corerow.addView(coreuser);
+						
+						TextView coresystem = new TextView(mActivity);
+						coresystem.setTextColor(Color.BLACK);
+						coresystem.setText(String.valueOf((float)(Math.round(cpuinfo.cpu_avg_system[i]  * 10)) / 10)+"%");
+						coresystem.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+						corerow.addView(coresystem);
+						
+						TextView coreio = new TextView(mActivity);
+						coreio.setTextColor(Color.BLACK);
+						coreio.setText(String.valueOf((float)(Math.round(cpuinfo.cpu_avg_io[i]  * 10)) / 10)+"%");
+						coreio.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+						corerow.addView(coreio);
+						core_usage_table.addView(corerow);
+					}
+				}
+				cpu_table.setVisibility(View.VISIBLE);
 				max_apps.setText(String.valueOf(cpuinfo.act_apps_max));
-				avg_apps.setText(String.valueOf((double) (Math.round(cpuinfo.act_apps_avg * 1000)) / 1000));
-				avg_user.setText(String.valueOf((double) (Math.round(cpuinfo.cpu_avg_user * 100)) / 100));
-				avg_sys.setText(String.valueOf((double) (Math.round(cpuinfo.cpu_avg_system * 100)) / 100));
-				avg_io.setText(String.valueOf((double) (Math.round(cpuinfo.cpu_avg_io * 100)) / 100));
+				avg_apps.setText(String.valueOf((float) (Math.round(cpuinfo.act_apps_avg * 1000)) / 1000));
 			} else {
 				cpu_table.setVisibility(View.GONE);
 			}
@@ -284,7 +351,7 @@ public class DGstats extends SherlockFragment {
 				TableRow r = new TableRow(mActivity);
 				TextView label = new TextView(mActivity);
 				label.setTextColor(Color.BLACK);
-				label.setText("All cores");
+				label.setText(mActivity.getString(R.string.all_cores));
 				label.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 7f));
 				r.addView(label);
 				
@@ -313,7 +380,7 @@ public class DGstats extends SherlockFragment {
 						TableRow corerow = new TableRow(mActivity);
 						TextView corelabel = new TextView(mActivity);
 						corelabel.setTextColor(Color.BLACK);
-						corelabel.setText("Core"+(i+1));
+						corelabel.setText(mActivity.getString(R.string.core)+(i+1));
 						corelabel.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 7f));
 						corerow.addView(corelabel);
 						
