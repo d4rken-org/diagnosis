@@ -46,6 +46,7 @@ public class DGmain extends SherlockFragmentActivity {
 	public static String versName = "";
 	public static int versCode = 0;
 	private final static int DB_DELETE_VERSION = 26;
+	private final static int BUSYBOX_DELETE_VERSION = 26;
 	public static String BUSYBOX = "";
 	public static String BUSYBOX_VERSION = "";
 	private SharedPreferences settings;
@@ -209,7 +210,7 @@ public class DGmain extends SherlockFragmentActivity {
 				if (db.delete()) {
 					dialog.updateMessage(mActivity.getString(R.string.db_deletion_successfull));
 					Log.d(TAG, mActivity.getString(R.string.db_deletion_successfull));
-					prefEditor.putInt("dbversion", DGmain.versCode);
+					prefEditor.putInt("dbversion", DB_DELETE_VERSION);
 					prefEditor.commit();
 				} else {
 					dialog.updateMessage(mActivity.getString(R.string.could_not_delete_db));
@@ -218,7 +219,7 @@ public class DGmain extends SherlockFragmentActivity {
 				}
 				showMyDialog(Dialogs.DATABASE_REMOVAL);
 			} else {
-				prefEditor.putInt("dbversion", DGmain.versCode);
+				prefEditor.putInt("dbversion", DB_DELETE_VERSION);
 				prefEditor.commit();
 			}
 
@@ -278,6 +279,11 @@ public class DGmain extends SherlockFragmentActivity {
 	}
 
 	private Boolean CopyAssets() {
+		if(settings.getInt("busyboxversion", 0) < BUSYBOX_DELETE_VERSION) {
+			new File(mContext.getFilesDir() + "/busybox").delete();
+			prefEditor.putInt("busyboxversion", BUSYBOX_DELETE_VERSION);
+			prefEditor.commit();
+		}
 		if (!new File(mContext.getFilesDir() + "/busybox").exists()) {
 			AssetManager am = mContext.getAssets();
 			try {
@@ -321,9 +327,9 @@ public class DGmain extends SherlockFragmentActivity {
 		c.addCommand(DGmain.BUSYBOX + " | " + DGmain.BUSYBOX + " head -n1" + "\n");
 		c.setTimeout(5000);
 		c.execute();
-		if (c.getOutput().size()>0 && c.getOutput().get(0).length() > 20) {
+		if (c.getOutput().size()>0 && c.getOutput().get(0).length() > 21) {
 			String vers = c.getOutput().get(0);
-			vers = (String) vers.subSequence(0, 21);
+			vers = (String) vers.subSequence(0, 22);
 			Log.d(TAG, "Busybox version: " + vers);
 			return vers;
 		} else {

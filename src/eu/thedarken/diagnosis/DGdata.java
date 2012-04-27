@@ -174,7 +174,7 @@ public class DGdata {
 		mDB = DGdatabase.getInstance(mContext.getApplicationContext());
 		DB_CACHE_SIZE = settings.getInt("database.cachesize", 24);
 		
-		DGdata.CORES = detectCores();
+		DGdata.CORES = 4;//detectCores();
 		
 	    IntentFilter batfilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
 	    
