@@ -485,27 +485,27 @@ public class DGoverlay extends Service{
 					break;
 		        //<item>Total Cpu use</item>
 				case 4:
-					toset.append("CPU " + Math.round(CpuInfo.calcAvgCpu(data.getCpu().usage)) + "%");
+					toset.append("CPU " + (int)CpuInfo.calcAvgCpu(data.getCpu().usage) + "%");
 					break;
 		        //<item>Cpu usage USR</item>
 				case 5:
-					toset.append("user " + CpuInfo.calcAvgCpu(data.getCpu().user) + "%");
+					toset.append("user " + (int)CpuInfo.calcAvgCpu(data.getCpu().user) + "%");
 					break;
 		        //<item>Cpu usage SYS</item>
 				case 6:
-					toset.append("sys " + CpuInfo.calcAvgCpu(data.getCpu().system) + "%");
+					toset.append("sys " + (int)CpuInfo.calcAvgCpu(data.getCpu().system) + "%");
 					break;
 		        //<item>Cpu usage IDLE</item>
 				case 7:
-					toset.append("idl " + CpuInfo.calcAvgCpu(data.getCpu().idle) + "%");
+					toset.append("idl " + (int)CpuInfo.calcAvgCpu(data.getCpu().idle) + "%");
 					break;
 		        //<item>Cpu usage IO</item>
 				case 8:
-					toset.append("io " + CpuInfo.calcAvgCpu(data.getCpu().io) + "%");
+					toset.append("io " + (int)CpuInfo.calcAvgCpu(data.getCpu().io) + "%");
 					break;
 		        //<item>Cpu usage NICE</item>
 				case 9:
-					toset.append("nic " + CpuInfo.calcAvgCpu(data.getCpu().nice) + "%");
+					toset.append("nic " + (int)CpuInfo.calcAvgCpu(data.getCpu().nice) + "%");
 					break;
 		        //<item>Total free memory</item>
 				case 10:
@@ -736,7 +736,7 @@ public class DGoverlay extends Service{
 					//<item>Core#2 SYS [Pro]</item><!-- 52 -->
 				case 52:
 					if(DGdata.CORES > 1)
-						toset.append("C2" + (int)data.getCpu().system[1] + "%");
+						toset.append("C2[sys] " + (int)data.getCpu().system[1] + "%");
 					else
 						toset.append("C2[sys] N/A");
 					break;

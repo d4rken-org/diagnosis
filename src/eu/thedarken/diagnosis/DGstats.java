@@ -20,6 +20,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,7 @@ import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
 public class DGstats extends SherlockFragment {
-
+	private final String TAG = "eu.thedarken.diagnosis.DGstats";
 	private SharedPreferences settings;
 	private View mView;
 
@@ -267,6 +268,10 @@ public class DGstats extends SherlockFragment {
 
 			if (pull_cpu) {
 				cpu_table.setVisibility(View.VISIBLE);
+				
+				max_apps.setText(String.valueOf(cpuinfo.act_apps_max));
+				avg_apps.setText(String.valueOf((float) (Math.round(cpuinfo.act_apps_avg * 1000)) / 1000));
+				
 				core_usage_table.removeAllViews();
 				
 				TableRow r = new TableRow(mActivity);
@@ -306,9 +311,10 @@ public class DGstats extends SherlockFragment {
 				r.addView(io);
 				core_usage_table.addView(r);
 				
+				Log.d(TAG, ""+cpuinfo.cpu_avg_total[0]);
 				if(DGmain.checkPro(mActivity)) {
-					for(int i=0;i<cpuinfo.usage.length;i++) {
-						if(cpuinfo.usage[i] == 0 && cpuinfo.system[i] == 0 && cpuinfo.io[i] == 0)
+					for(int i=0;i<cpuinfo.cpu_avg_total.length;i++) {
+						if(cpuinfo.cpu_avg_io[i] == 0 && cpuinfo.cpu_avg_system[i] == 0 && cpuinfo.cpu_avg_user[i] == 0 && cpuinfo.cpu_avg_total[i] == 0)
 							break;
 						TableRow corerow = new TableRow(mActivity);
 						TextView corelabel = new TextView(mActivity);
@@ -317,7 +323,7 @@ public class DGstats extends SherlockFragment {
 						corelabel.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 9f));
 						corelabel.setGravity(Gravity.LEFT);
 						corerow.addView(corelabel);
-	
+						
 						TextView coretotal = new TextView(mActivity);
 						coretotal.setTextColor(Color.BLACK);
 						coretotal.setText(String.valueOf((float)(Math.round(cpuinfo.cpu_avg_total[i]  * 10)) / 10)+"%");
@@ -345,12 +351,10 @@ public class DGstats extends SherlockFragment {
 						coreio.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f));
 						coreio.setGravity(Gravity.LEFT);
 						corerow.addView(coreio);
+						
 						core_usage_table.addView(corerow);
 					}
 				}
-				cpu_table.setVisibility(View.VISIBLE);
-				max_apps.setText(String.valueOf(cpuinfo.act_apps_max));
-				avg_apps.setText(String.valueOf((float) (Math.round(cpuinfo.act_apps_avg * 1000)) / 1000));
 			} else {
 				cpu_table.setVisibility(View.GONE);
 			}
