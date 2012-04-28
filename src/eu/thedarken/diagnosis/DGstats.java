@@ -20,6 +20,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.format.Formatter;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -272,31 +273,36 @@ public class DGstats extends SherlockFragment {
 				TextView label = new TextView(mActivity);
 				label.setTextColor(Color.BLACK);
 				label.setText(mActivity.getString(R.string.all_cores));
-				label.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 7f));
+				label.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 9f));
+				label.setGravity(Gravity.LEFT);
 				r.addView(label);
 
 				TextView total = new TextView(mActivity);
 				total.setTextColor(Color.BLACK);
 				total.setText(CpuTabInfo.calcAvgCpu(cpuinfo.cpu_avg_total) + "%");
-				total.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				total.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+				total.setGravity(Gravity.LEFT);
 				r.addView(total);
 				
 				TextView user = new TextView(mActivity);
 				user.setTextColor(Color.BLACK);
 				user.setText(CpuTabInfo.calcAvgCpu(cpuinfo.cpu_avg_user) + "%");
-				user.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				user.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+				user.setGravity(Gravity.LEFT);
 				r.addView(user);
 				
 				TextView system = new TextView(mActivity);
 				system.setTextColor(Color.BLACK);
 				system.setText(CpuTabInfo.calcAvgCpu(cpuinfo.cpu_avg_system) + "%");
-				system.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				system.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+				system.setGravity(Gravity.LEFT);
 				r.addView(system);
 				
 				TextView io = new TextView(mActivity);
 				io.setTextColor(Color.BLACK);
 				io.setText(CpuTabInfo.calcAvgCpu(cpuinfo.cpu_avg_io) + "%");
-				io.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				io.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+				io.setGravity(Gravity.LEFT);
 				r.addView(io);
 				core_usage_table.addView(r);
 				
@@ -308,31 +314,36 @@ public class DGstats extends SherlockFragment {
 						TextView corelabel = new TextView(mActivity);
 						corelabel.setTextColor(Color.BLACK);
 						corelabel.setText(mActivity.getString(R.string.core)+(i+1));
-						corelabel.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 7f));
+						corelabel.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 9f));
+						corelabel.setGravity(Gravity.LEFT);
 						corerow.addView(corelabel);
 	
 						TextView coretotal = new TextView(mActivity);
 						coretotal.setTextColor(Color.BLACK);
 						coretotal.setText(String.valueOf((float)(Math.round(cpuinfo.cpu_avg_total[i]  * 10)) / 10)+"%");
-						coretotal.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+						coretotal.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+						coretotal.setGravity(Gravity.LEFT);
 						corerow.addView(coretotal);
 						
 						TextView coreuser = new TextView(mActivity);
 						coreuser.setTextColor(Color.BLACK);
 						coreuser.setText(String.valueOf((float)(Math.round(cpuinfo.cpu_avg_user[i]  * 10)) / 10)+"%");
-						coreuser.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+						coreuser.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+						coreuser.setGravity(Gravity.LEFT);
 						corerow.addView(coreuser);
 						
 						TextView coresystem = new TextView(mActivity);
 						coresystem.setTextColor(Color.BLACK);
 						coresystem.setText(String.valueOf((float)(Math.round(cpuinfo.cpu_avg_system[i]  * 10)) / 10)+"%");
-						coresystem.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+						coresystem.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+						coresystem.setGravity(Gravity.LEFT);
 						corerow.addView(coresystem);
 						
 						TextView coreio = new TextView(mActivity);
 						coreio.setTextColor(Color.BLACK);
 						coreio.setText(String.valueOf((float)(Math.round(cpuinfo.cpu_avg_io[i]  * 10)) / 10)+"%");
-						coreio.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+						coreio.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+						coreio.setGravity(Gravity.LEFT);
 						corerow.addView(coreio);
 						core_usage_table.addView(corerow);
 					}
