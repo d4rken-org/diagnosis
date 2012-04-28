@@ -92,6 +92,8 @@ public class DGmain extends SherlockFragmentActivity {
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayShowTitleEnabled(true);
 
+		actionBar.removeAllTabs();
+		
 		Tab tab = actionBar.newTab().setText("info").setTabListener(new TabListener<DGinfo>(this, "Info", DGinfo.class));
 		actionBar.addTab(tab);
 
@@ -101,8 +103,18 @@ public class DGmain extends SherlockFragmentActivity {
 		tab = actionBar.newTab().setText("apps").setTabListener(new TabListener<DGapps>(this, "apps", DGapps.class));
 		actionBar.addTab(tab);
 
+		if( savedInstanceState != null ){
+			actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tabState"));
+	     }
 
 	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+	    super.onSaveInstanceState(outState);
+	    outState.putInt("tabState", getSupportActionBar().getSelectedTab().getPosition());
+	}
+
 	
 	@Override
 	public void onResume() {
@@ -157,7 +169,11 @@ public class DGmain extends SherlockFragmentActivity {
 				// If it exists, simply attach it in order to show it
 				ft.attach(mFragment);
 			}
+			try {
 			ft.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
