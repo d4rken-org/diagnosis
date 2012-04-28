@@ -680,44 +680,170 @@ public class DGoverlay extends Service{
 					//<item>Core#1 usage [Pro]</item><!-- 44 -->
 				case 44:
 					if(DGdata.CORES > 0)
-						toset.append("C1 " + data.getCpu().usage[0] + "%");
+						toset.append("C1 " + (int)data.getCpu().usage[0] + "%");
 					else
 						toset.append("C1 N/A");
 					break;
 					//<item>Core#1 USR [Pro]</item><!-- 45 -->
 				case 45:
 					if(DGdata.CORES > 0)
-						toset.append("C1[usr] " + data.getCpu().user[0] + "%");
+						toset.append("C1[usr] " + (int)data.getCpu().user[0] + "%");
 					else
 						toset.append("C1[usr] N/A");
 					break;
 					//<item>Core#1 SYS [Pro]</item><!-- 46 -->
 				case 46:
 					if(DGdata.CORES > 0)
-						toset.append("C1[sys] " + data.getCpu().system[0] + "%");
+						toset.append("C1[sys] " + (int)data.getCpu().system[0] + "%");
 					else
 						toset.append("C1[sys] N/A");
 					break;
 					//<item>Core#1 IDLE [Pro]</item><!-- 47 -->
 				case 47:
 					if(DGdata.CORES > 0)
-						toset.append("C1[idl] " + data.getCpu().idle[0] + "%");
+						toset.append("C1[idl] " + (int)data.getCpu().idle[0] + "%");
 					else
 						toset.append("C1[idl] N/A");
 					break;
 					//<item>Core#1 IO [Pro]</item><!-- 48 -->
 				case 48:
 					if(DGdata.CORES > 0)
-						toset.append("C1[io] " + data.getCpu().io[0] + "%");
+						toset.append("C1[io] " + (int)data.getCpu().io[0] + "%");
 					else
 						toset.append("C1[io] N/A");
 					break;
 					//<item>Core#1 NICE [Pro]</item><!-- 49 -->
 				case 49:
 					if(DGdata.CORES > 0)
-						toset.append("C1[nic] " + data.getCpu().nice[0] + "%");
+						toset.append("C1[nic] " + (int)data.getCpu().nice[0] + "%");
 					else
 						toset.append("C1[nic] N/A");
+					break; 
+					//<item>Core#2 usage [Pro]</item><!-- 50 -->
+				case 50:
+					if(DGdata.CORES > 1)
+						toset.append("C2 " + (int)data.getCpu().usage[1] + "%");
+					else
+						toset.append("C2 N/A");
+					break;
+					//<item>Core#2 USR [Pro]</item><!-- 51 -->
+				case 51:
+					if(DGdata.CORES > 1)
+						toset.append("C2[usr] " + (int)data.getCpu().user[1] + "%");
+					else
+						toset.append("C2[usr] N/A");
+					break;
+					//<item>Core#2 SYS [Pro]</item><!-- 52 -->
+				case 52:
+					if(DGdata.CORES > 1)
+						toset.append("C2" + (int)data.getCpu().system[1] + "%");
+					else
+						toset.append("C2[sys] N/A");
+					break;
+					//<item>Core#2 IDLE [Pro]</item><!-- 53 -->
+				case 53:
+					if(DGdata.CORES > 1)
+						toset.append("C2[idl] " + (int)data.getCpu().idle[1] + "%");
+					else
+						toset.append("C2[idl] N/A");
+					break;
+					//<item>Core#2 IO [Pro]</item><!-- 54 -->
+				case 54:
+					if(DGdata.CORES > 1)
+						toset.append("C2[io] " + (int)data.getCpu().io[1] + "%");
+					else
+						toset.append("C2[io] N/A");
+					break;
+					//<item>Core#2 NICE [Pro]</item><!-- 55 -->
+				case 55:
+					if(DGdata.CORES > 1)
+						toset.append("C2[nic] " + (int)data.getCpu().nice[1] + "%");
+					else
+						toset.append("C2[nic] N/A");
+					break; 
+					//<item>Core#3 usage [Pro]</item><!-- 56 -->
+				case 56:
+					if(DGdata.CORES > 2)
+						toset.append("C3 " + (int)data.getCpu().usage[2] + "%");
+					else
+						toset.append("C3 N/A");
+					break;
+					//<item>Core#3 USR [Pro]</item><!-- 57 -->
+				case 57:
+					if(DGdata.CORES > 2)
+						toset.append("C3[usr] " + (int)data.getCpu().user[2] + "%");
+					else
+						toset.append("C3[usr] N/A");
+					break;
+					//<item>Core#3 SYS [Pro]</item><!-- 58 -->
+				case 58:
+					if(DGdata.CORES > 2)
+						toset.append("C3[sys] " + (int)data.getCpu().system[2] + "%");
+					else
+						toset.append("C3[sys] N/A");
+					break;
+					//<item>Core#3 IDLE [Pro]</item><!-- 59 -->
+				case 59:
+					if(DGdata.CORES > 2)
+						toset.append("C3[idl] " + (int)data.getCpu().idle[2] + "%");
+					else
+						toset.append("C3[idl] N/A");
+					break;
+					//<item>Core#3 IO [Pro]</item><!-- 60 -->
+				case 60:
+					if(DGdata.CORES > 2)
+						toset.append("C3[io] " + (int)data.getCpu().io[2] + "%");
+					else
+						toset.append("C3[io] N/A");
+					break;
+					//<item>Core#3 NICE [Pro]</item><!-- 61 -->
+				case 61:
+					if(DGdata.CORES > 2)
+						toset.append("C3[nic] " + (int)data.getCpu().nice[2] + "%");
+					else
+						toset.append("C3[nic] N/A");
+					break; 
+					//<item>Core#4 usage [Pro]</item><!-- 62 -->
+				case 62:
+					if(DGdata.CORES > 3)
+						toset.append("C4 " + (int)data.getCpu().usage[3] + "%");
+					else
+						toset.append("C4 N/A");
+					break;
+					//<item>Core#4 USR [Pro]</item><!-- 63 -->
+				case 63:
+					if(DGdata.CORES > 3)
+						toset.append("C4[usr] " + (int)data.getCpu().user[3] + "%");
+					else
+						toset.append("C4[usr] N/A");
+					break;
+					//<item>Core#4 SYS [Pro]</item><!-- 64 -->
+				case 64:
+					if(DGdata.CORES > 3)
+						toset.append("C4[sys] " + (int)data.getCpu().system[3] + "%");
+					else
+						toset.append("C4[sys] N/A");
+					break;
+					//<item>Core#4 IDLE [Pro]</item><!-- 65 -->
+				case 65:
+					if(DGdata.CORES > 3)
+						toset.append("C4[idl] " + (int)data.getCpu().idle[3] + "%");
+					else
+						toset.append("C4[idl] N/A");
+					break;
+					//<item>Core#4 IO [Pro]</item><!-- 66 -->
+				case 66:
+					if(DGdata.CORES > 3)
+						toset.append("C4[io] " + (int)data.getCpu().io[3] + "%");
+					else
+						toset.append("C4[io] N/A");
+					break;
+					//<item>Core#4 NICE [Pro]</item><!-- 67 -->
+				case 67:
+					if(DGdata.CORES > 3)
+						toset.append("C4[nic] " + (int)data.getCpu().nice[3] + "%");
+					else
+						toset.append("C4[nic] N/A");
 					break; 
 				default:
 					toset.append("");
