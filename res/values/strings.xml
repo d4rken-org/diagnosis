@@ -97,15 +97,15 @@
     <string name="dismiss">Dismiss</string>
     <string name="news">News</string>
     <string name="news_content">
-        v0.7.8\n
+        v0.7.9\n
+        -Fix for 0 output for some of the new infos\n
+        -Small tweaks\n
+        \nv0.7.8\n
         -Temp fix for core detection FC\n
         -Preperations for translations\n
         -New busybox\n
         -Added multicore cpu info [Pro]\n
         -Finally found the cause for the UI crash and fixed it\n
-        \nv0.7.7\n-Fixed FC in app stats page\n
-        -Cpu freq support for dual/quad core CPUs [Pro]\n
-        -Stats tab will be more readable with next update\n
         \nHave a look at \'Diagnosis Pro\' if you are looking for additional features or want to support my work.\n
         \nQuestions,requests or ideas?\n
         Mail me!</string>

@@ -1,4 +1,8 @@
-﻿v0.7.8(26)
+﻿v0.7.9(27)
+- Fixed 0 output for some of the new infos
+- Some small code tweaks
+
+v0.7.8(26)
 - Fixed bug in core detection, hardcoding 4 for now
 - More translation preperations
 - Added new busybox
