@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg4"
-                android:text="@string/no_data_yet"
+                android:text="@string/no_data_saved_yet"
                 android:textColor="#000000" />
 
             <TableLayout

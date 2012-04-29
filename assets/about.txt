@@ -3,41 +3,19 @@ Helpfile by DarkhShadow
 
 Should you have any question, problem or request, just send me an email (support@thedarken.eu).
 
-This help guide will cover the basics of the Diagnosis app.
+This help guide will cover the basics of Diagnosis.
 
 Some important information about the overlay!
 The overlay can hang/lag or even vanish, if other apps need the resources desperately, this is preferred though as we do want to prevent Diagnosis to influence other apps. Don't worry, it will fix itself when resources are available again.
 
 Introduction:
 Now first things first, if you wish to use the various statistics available within the app you will need to turn database collection on, in order to do this, have a look at the settings.
-Please keep in mind this can cause lag on lower end phones and if so you may not be able to use this function.
+Please keep in mind this can cause lag on lower end phones and if so you may not want to use this function.
 The update interval is how often data is collected (in seconds) and the information overlay is updated. Lower values use more CPU but offer faster updates. A value of 3-5 is usually fine, lower end devices might need to increase this to 9-10 to avoid lag.
+The data displayed in the overlay is what will be written to the database too, if you enabled it.
 
-Customisation:
+Customization:
 The overlay can be customized in various ways, one is what each line displays. Opening the settings you will see an entry called 'Customize lines' containing Line1/2/3/4, these will determine what each line of the overlay displays. There are alot to choose from and probably more to come with each update, just look through them and find your preferred information.
-
-As display space is scarse acronyms are used to label the information in the overlay.
-Let me explain:
-
-C=Central processor unit, shown in %, the closer to 100% the more likely it is that you will encounter lag.
-
-M=Memory, refers to free RAM (in this case its the sum of free,buffered and cached memory).
-
-XXXMHZ=Megahertz, the current clockspeed of the CPU, with less load this is likely to go lower to conserve battery power.
-
-DL/UP=Download/Upload, current rate of your network interfaces (3G+Wifi+Bluetooth).
-
-Bat=Battery,Chargelevel of your battery
-
-YY°C or XX°F=Temperature of your battery
-
-X,xxxV=Voltage, this is the current voltage your battery is running at.
-
-R/W=Is the read/write rate at which your device is currently reading/writing data from a device.
-
-(X)=Tells you the number of active processes
-
-...XXXXXXX @ YY% Are the names of processes using YY amount of CPU
 
 Advanced settings:
 You don't really need to change these. The default settings are usually okay.

@@ -2,9 +2,9 @@
 <resources>
 
     <string name="app_name">Diagnosis</string>
-    <string name="no_data_yet">No data saved yet!\nOpen the settings and select which data you want to save.\n(It may take a few minutes until enough data is gathered)</string>
     <string name="crash_toast_text">Sorry, but Diagnosis crashed.</string>
     <string name="dialog_color_picker">Color Picker</string>
+    <string name="checking_database">Checking database</string>
     <string name="press_color_to_apply"></string>
     <string name="down_arrow">↓</string>
     <string name="visit_xda">Visit XDA</string>
@@ -97,16 +97,10 @@
     <string name="dismiss">Dismiss</string>
     <string name="news">News</string>
     <string name="news_content">
-        If you want to help translate Diagnosis, send me a mail.\n
+        If you want to translate Diagnosis to your native language, send me a mail.\n
         \nv0.7.9\n
         -Fix for 0 output for some of the new infos\n
         -Small tweaks\n
-        \nv0.7.8\n
-        -Temp fix for core detection FC\n
-        -Preperations for translations\n
-        -New busybox\n
-        -Added multicore cpu info [Pro]\n
-        -Finally found the cause for the UI crash and fixed it\n
         \nHave a look at \'Diagnosis Pro\' if you are looking for additional features or want to support my work.\n
         \nQuestions,requests or ideas?\n
         Mail me!</string>

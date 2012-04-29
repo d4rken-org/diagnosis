@@ -1,10 +1,11 @@
 ﻿v0.7.9(27)
 - Fixed 0 output for some of the new infos
 - Some small code tweaks
+- More translation preparations
 
 v0.7.8(26)
 - Fixed bug in core detection, hardcoding 4 for now
-- More translation preperations
+- More translation preparations
 - Added new busybox
 - Added multicore cpu usage [Pro]
 - Tweaks to linebuilder
@@ -14,7 +15,7 @@ v0.7.7(25)
 - Fixed FC in app stats page
 - Added cpu frequency support for multi-core processors
 - Tiny performances improvements
-- Multi language preperations
+- Multi language preparations
 - Removed possible max/min cpu freq (data was not conclusive and overlapped max/min observed)
 - Some work on the stats tab
 - Added external sd support for Transformer

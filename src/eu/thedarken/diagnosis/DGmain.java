@@ -221,11 +221,15 @@ public class DGmain extends SherlockFragmentActivity {
 				dialog.updateMessage(mActivity.getString(R.string.startup_error));
 				showMyDialog(Dialogs.BUSYBOX_ERROR);
 			}
+			
+			dialog.updateMessage(mActivity.getString(R.string.checking_database));
 
 			if(settings.getInt("dbversion", 0) < DB_DELETE_VERSION && db.exists()) {
 				if (db.delete()) {
 					dialog.updateMessage(mActivity.getString(R.string.db_deletion_successfull));
 					Log.d(TAG, mActivity.getString(R.string.db_deletion_successfull));
+//			    	DGdatabase db_object = DGdatabase.getInstance(mContext.getApplicationContext());
+//			    	db_object.init();
 					prefEditor.putInt("dbversion", DB_DELETE_VERSION);
 					prefEditor.commit();
 				} else {
