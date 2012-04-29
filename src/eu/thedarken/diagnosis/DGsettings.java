@@ -267,7 +267,7 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 		Toast.makeText(mContext, mContext.getString(R.string.preset_saved_to_slot)+" "+ pos,Toast.LENGTH_SHORT).show();
 	}
 	
-    private class clearDBsTask extends AsyncTask<String, Void, Boolean> {
+    public class clearDBsTask extends AsyncTask<String, Void, Boolean> {
         private PreferenceActivity mActivity;
         private ProgDialog dialog;
         public clearDBsTask(PreferenceActivity activity) {
@@ -297,7 +297,7 @@ public class DGsettings extends PreferenceActivity implements OnSharedPreference
 		@Override
 		protected Boolean doInBackground(String... params) {
 		    File db = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/eu.thedarken.diagnosis/databases/database.db");
-		    if(db.delete()) {
+		    if(db.delete() || !db.exists()) {
 		    	DGdatabase db_object = DGdatabase.getInstance(mContext.getApplicationContext());
 		    	db_object.init();
 		    	return true;

@@ -97,7 +97,8 @@
     <string name="dismiss">Dismiss</string>
     <string name="news">News</string>
     <string name="news_content">
-        v0.7.9\n
+        If you want to help translate Diagnosis, send me a mail.\n
+        \nv0.7.9\n
         -Fix for 0 output for some of the new infos\n
         -Small tweaks\n
         \nv0.7.8\n
@@ -144,8 +145,10 @@
     <string name="io">I/O</string>
     
     <!-- Preferences -->
-    <string name="preferences_interval_dialog_message">Interval</string>
-    <string name="preferences_interval_dialog_text">" seconds"</string>
+    
+    
+    <string name="preferences_interval_dialog_message">3-5 is recommended</string>
+    <string name="preferences_interval_dialog_suffix">" seconds"</string>
     <string name="preferences_interval_summary">How often diagnosis should refresh. Faster is more accurate, but consumes more resources. Just try it out, i recommend 3-5s.</string>
     <string name="preferences_interval_title">Update interval</string>
     
@@ -276,13 +279,17 @@
     
     <string name="preferences_database_agelimit_summary">After what amount of time should old data be deleted?(Happens when starting service)</string>
     <string name="preferences_database_agelimit_title">Data age limit</string>
+    <string name="preferences_database_agelimit_dialog_message">Data age limit</string>
+    <string name="preferences_database_agelimit_dialog_suffix">" hours"</string>
     
     <string name="prefrence_database_dropall_summary">Drop all database tables thus reseting it.</string>
     <string name="prefrence_database_dropall_title">Drop database</string>
     
     <string name="prefrence_database_density_summary">Condenses multiple datasets into one. A smaller number means more accurate data, but bigger database.</string>
+    <string name="prefrence_database_density_dialog_message">Pick 1 for highest accuracy, or go higher if you do not care about accuracy but want the database to stay smaller.</string>
     <string name="prefrence_database_density_title">Data density</string>
     
     <string name="prefrence_database_cachesize_summary">How many entries should be saved in RAM before attempting to write to memory</string>
+    <string name="prefrence_database_cachesize_dialog_message">Bigger means less resources used, lower writes the values sooner to database.</string>
     <string name="prefrence_database_cachesize_title">Cache size</string>
 </resources>

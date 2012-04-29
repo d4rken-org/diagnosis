@@ -4,11 +4,11 @@
     <PreferenceCategory android:title="General" >
         <eu.thedarken.diagnosis.SeekBarPreference
             android:defaultValue="5"
-            android:dialogMessage="Interval"
+            android:dialogMessage="@string/preferences_interval_dialog_message"
             android:key="general.intervall"
             android:max="30"
             android:summary="@string/preferences_interval_summary"
-            android:text=" seconds"
+            android:text="@string/preferences_interval_dialog_suffix"
             android:title="@string/preferences_interval_title"/>
 
         <CheckBoxPreference
@@ -159,7 +159,7 @@
 
                     <eu.thedarken.diagnosis.SeekBarPreference
                         android:defaultValue="15"
-                        android:dialogMessage="Fontsize"
+                        android:dialogMessage="@string/preferences_fontsize_title"
                         android:key="overlay.font.size.line0"
                         android:max="50"
                         android:summary="@string/preferences_fontsize_summary"
@@ -236,7 +236,7 @@
 
                     <eu.thedarken.diagnosis.SeekBarPreference
                         android:defaultValue="15"
-                        android:dialogMessage="Fontsize"
+                        android:dialogMessage="@string/preferences_fontsize_title"
                         android:key="overlay.font.size.line1"
                         android:max="50"
                         android:summary="@string/preferences_fontsize_summary"
@@ -312,7 +312,7 @@
 
                     <eu.thedarken.diagnosis.SeekBarPreference
                         android:defaultValue="15"
-                        android:dialogMessage="Fontsize"
+                        android:dialogMessage="@string/preferences_fontsize_title"
                         android:key="overlay.font.size.line2"
                         android:max="50"
                         android:summary="@string/preferences_fontsize_summary"
@@ -388,7 +388,7 @@
 
                     <eu.thedarken.diagnosis.SeekBarPreference
                         android:defaultValue="15"
-                        android:dialogMessage="Fontsize"
+                        android:dialogMessage="@string/preferences_fontsize_title"
                         android:key="overlay.font.size.line3"
                         android:max="50"
                         android:summary="@string/preferences_fontsize_summary"
@@ -455,7 +455,7 @@
 
             <eu.thedarken.diagnosis.SeekBarPreference
                 android:defaultValue="70"
-                android:dialogMessage="Cpu threshold"
+                android:dialogMessage="@string/preferences_cpu_threshold_title"
                 android:enabled="false"
                 android:key="overlay.cpu.threshold"
                 android:max="100"
@@ -488,7 +488,7 @@
                     android:key="database.agelimit"
                     android:max="168"
                     android:summary="@string/preferences_database_agelimit_summary"
-                    android:text="hours"
+                    android:text="@string/preferences_database_agelimit_dialog_suffix"
                     android:title="@string/preferences_database_agelimit_title" />
 
                 <PreferenceScreen
@@ -498,15 +498,16 @@
 
                 <eu.thedarken.diagnosis.SeekBarPreference
                     android:defaultValue="6"
-                    android:dialogMessage="Data density"
+                    android:dialogMessage="@string/prefrence_database_density_dialog_message"
                     android:key="database.density"
                     android:max="60"
                     android:summary="@string/prefrence_database_density_summary"
                     android:text=""
                     android:title="@string/prefrence_database_density_title" />
+                
                 <eu.thedarken.diagnosis.SeekBarPreference
                     android:defaultValue="24"
-                    android:dialogMessage="Cache size"
+                    android:dialogMessage="@string/prefrence_database_cachesize_dialog_message"
                     android:key="database.cachesize"
                     android:max="50"
                     android:summary="@string/prefrence_database_cachesize_summary"

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -24,11 +25,25 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
 		super(context,attrs); 
 		mContext = context;
 		
-		mDialogMessage = attrs.getAttributeValue(androidns,"dialogMessage");
-		mSuffix = attrs.getAttributeValue(androidns,"text");
+//		mDialogMessage = attrs.getAttributeValue(androidns,"dialogMessage");
+		int dm_id = attrs.getAttributeResourceValue(androidns, "dialogMessage", 0);
+		if(dm_id == 0) {
+			mDialogMessage = attrs.getAttributeValue(androidns,"dialogMessage");
+		} else {
+			mDialogMessage = mContext.getString(dm_id);
+		}
+		
+//		mSuffix = attrs.getAttributeValue(androidns,"text");
+		int suffix_id = attrs.getAttributeResourceValue(androidns, "text", 0);
+		if(suffix_id == 0) {
+			mSuffix = attrs.getAttributeValue(androidns,"text");
+		} else {
+			mSuffix = mContext.getString(suffix_id);
+		}
 		mDefault = attrs.getAttributeIntValue(androidns,"defaultValue", 0);
 		mMax = attrs.getAttributeIntValue(androidns,"max", 100);
 	}
+	
 	@Override 
 	protected View onCreateDialogView() {
 	    LinearLayout.LayoutParams params;
