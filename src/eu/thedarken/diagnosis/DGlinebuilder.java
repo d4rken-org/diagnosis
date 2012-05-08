@@ -67,7 +67,7 @@ public class DGlinebuilder extends ListActivity {
 				int arraypos = parent.getSelectedItemPosition();
 				if (arraypos != 0) {
 					Log.d(TAG, String.valueOf(itemadapter.getItem(arraypos)));
-					if (!DGmain.checkPro(mContext) && String.valueOf(itemadapter.getItem(arraypos)).contains("[Pro]")) {
+					if (!DGmain.checkPro(mContext) && (arraypos >= 34 && arraypos <= 67)) {
 						Toast.makeText(mContext, mContext.getString(R.string.sorry_pro_only), Toast.LENGTH_LONG).show();
 					} else {
 						adapter.insert(arraypos, adapter.getCount());

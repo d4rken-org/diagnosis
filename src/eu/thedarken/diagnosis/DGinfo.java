@@ -45,7 +45,7 @@ public class DGinfo extends SherlockFragment {
 		db_status = (TextView) mView.findViewById(R.id.db_status);
 		
 		TextView welcome = (TextView) mView.findViewById(R.id.style_welcome);
-		welcome.setText(mContext.getString(R.string.welcome_to_diagnosis) + " "+ DGmain.versName + " " + mContext.getString(R.string.try_a_style));
+		welcome.setText(mContext.getString(R.string.welcome_to_diagnosis) + " "+ DGmain.versName + "\n" + mContext.getString(R.string.try_a_style));
 	
 		ArrayAdapter<CharSequence> stylesadapter = ArrayAdapter.createFromResource(mContext, R.array.stylelist, android.R.layout.simple_spinner_item );
 		stylesadapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
