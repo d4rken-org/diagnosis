@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Diagnosis</string>
     <string name="crash_toast_text">Sorry, but Diagnosis crashed.</string>
     <string name="dialog_color_picker">Color Picker</string>
@@ -10,14 +9,21 @@
     <string name="visit_xda">Visit XDA</string>
     <string name="email_darken">Email darken</string>
     <string name="sortmode">Sortmode</string>
-    <string name="no_data_saved_yet">No data saved yet!\nOpen the settings and select which data you want to save.\n(It may take a few minutes until enough data is gathered)</string>
+    <string name="no_data_saved_yet">"No data saved yet!
+Open the settings and select which data you want to save.
+(It may take a few minutes until enough data is gathered)"</string>
     <string name="seen">Seen</string>
     <string name="name">Name</string>
     <string name="please_wait">look.away.!.you.shouldnt.see.me.like.this</string>
     <string name="colorcode_in_hex">Colorcode in Hex</string>
     <string name="style_examples">Style examples (create your own in settings!):</string>
-    <string name="welcome_text">Press \"Start tracking\" to begin!\n\nCheck out the settings!\nEverything is highly customizable!\n\nIf you encounter bugs/problems or have requests, i would be happy if you send me an email(support@thedarken.eu), thanks!</string>
-    <string name="linebuider_welcome">Drag/Drop the icon up/down to sort.\nDragging the icon right, deletes that item</string>
+    <string name="welcome_text">"Press \"Start tracking\" to begin!
+Check out the settings!
+Everything is highly customizable!
+
+If you encounter bugs/problems or have requests, i would be happy if you send me an email(support@thedarken.eu), thanks!"</string>
+    <string name="linebuider_welcome">"Drag/Drop the icon up/down to sort.
+Dragging the icon right, deletes that item"</string>
     <string name="close">Close</string>
     <string name="is">is</string>
     <string name="your_batteries_health">Your batteries health</string>
@@ -88,22 +94,31 @@
     <string name="stop_tracking">Stop Tracking</string>
     <string name="start_tracking">Start Tracking</string>
     <string name="busybox_error">BUSYBOX error!</string>
-    <string name="busybox_error_explanation">Could not use our BUSYBOX :-(\nTo prevent unwanted behavior Diagnosis will close now.\nPlease try restarting or reinstalling Diagnosis.\nShould this not help please write me an email:\n(support@thedarken.eu)\nSorry for your troubles!</string>
+    <string name="busybox_error_explanation">"Could not use our BUSYBOX :-(
+To prevent unwanted behavior Diagnosis will close now.
+Please try restarting or reinstalling Diagnosis.
+Should this not help please write me an email:
+(support@thedarken.eu)
+Sorry for your troubles!"</string>
     <string name="database_removal">Database removal</string>
-    <string name="database_removal_explanation">This newer version of Diagnosis uses a different structure to store the periodic data.\nTo avoid errors and unwanted behavior, the previous version has been removed. I\'m telling you this so that you are not suprised that the database is empty.</string>
+    <string name="database_removal_explanation">"This newer version of Diagnosis uses a different structure to store the periodic data.
+To avoid errors and unwanted behavior, the previous version has been removed.
+I\'m telling you this so that you are not suprised that the database is empty."</string>
     <string name="error">Error</string>
     <string name="sorry_reinstall">Sorry, something went wrong and you will have to reinstall this app.</string>
     <string name="quit">Quit</string>
     <string name="dismiss">Dismiss</string>
     <string name="news">News</string>
-    <string name="news_content">
-        If you want to translate Diagnosis to your native language, send me a mail.\n
-        \nv0.7.9\n
-        -Fix for 0 output for some of the new infos\n
-        -Small tweaks\n
-        \nHave a look at \'Diagnosis Pro\' if you are looking for additional features or want to support my work.\n
-        \nQuestions,requests or ideas?\n
-        Mail me!</string>
+    <string name="news_content">"If you want to translate Diagnosis to your native language, send me a mail.
+
+v0.7.9
+-Fix for 0 output for some of the new infos
+-Small tweaks
+
+Have a look at \'Diagnosis Pro\' if you are looking for additional features or want to support my work.
+
+Questions,requests or ideas?
+Mail me!"</string>
     <string name="no_market_application_found">No Market Application found.</string>
     <string name="hide">Hide</string>
     <string name="diagnosis_pro">Diagnosis Pro</string>
@@ -146,11 +161,13 @@
     <string name="preferences_interval_summary">How often diagnosis should refresh. Faster is more accurate, but consumes more resources. Just try it out, i recommend 3-5s.</string>
     <string name="preferences_interval_title">Update interval</string>
     
-    <string name="preferences_autostart_summary">Start Diagnosis automaticly after a reboot.\nRequires [Diagnosis Pro]</string>
+    <string name="preferences_autostart_summary">"Start Diagnosis automaticly after a reboot.
+Requires [Diagnosis Pro]"</string>	
     <string name="preferences_autostart_title">Autostart</string>
     
     <string name="preferences_notification_title">Show notification</string>
-    <string name="preferences_notification_summary">Shows/Hides the notification bar entry\nRequires [Diagnosis Pro]</string>
+    <string name="preferences_notification_summary">"Shows/Hides the notification bar entry.
+Requires [Diagnosis Pro]"</string>
 
     <string name="preferences_database_general_title">Database</string>
     <string name="preferences_database_general_summary">Which information will be saved and displayed in the stats tab</string>
@@ -286,4 +303,28 @@
     <string name="prefrence_database_cachesize_summary">How many entries should be saved in RAM before attempting to write to memory</string>
     <string name="prefrence_database_cachesize_dialog_message">Bigger means less resources used, lower writes the values sooner to database.</string>
     <string name="prefrence_database_cachesize_title">Cache size</string>
+    
+    <string name="about_help_text">"Diagnosis by darken
+
+Should you have any question, problem or request, just send me an email (support\\@thedarken.eu).
+
+This help guide will cover the basics of Diagnosis.
+
+Some important information about the overlay!
+The overlay can hang/lag or even vanish, if other apps need the resources desperately, this is preferred though as we do want to prevent Diagnosis to influence other apps. Don\'t worry, it will fix itself when resources are available again.
+
+Introduction:
+Now first things first, if you wish to use the various statistics available within the app you will need to turn database collection on, in order to do this, have a look at the settings.
+Please keep in mind this can cause lag on lower end phones and if so you may not want to use this function.
+The update interval is how often data is collected (in seconds) and the information overlay is updated. Lower values use more CPU but offer faster updates. A value of 3-5 is usually fine, lower end devices might need to increase this to 9-10 to avoid lag.
+The data displayed in the overlay is what will be written to the database too, if you enabled it.
+
+Customization:
+The overlay can be customized in various ways, one is what each line displays. Opening the settings you will see an entry called \'Customize lines\' containing Line1/2/3/4, these will determine what each line of the overlay displays. There are alot to choose from and probably more to come with each update, just look through them and find your preferred information.
+
+Advanced settings:
+You don\'t really need to change these. The default settings are usually okay.
+Update interval is how often Diagnosis will collect data(this will also update overlay),cache size is how much to store into RAM before attempting to write to disk, this defaults at 24, a bigger data density means smaller database file but less accurate information, so with density of 5 and cache at 10 it will cache 10 data sets, condense them into 2 and then write to database.
+\"Drop database\" will delete the database, thus freeing the diskspace, but removing the saved data.
+Data age limit lets you specificy an amount of hours for which you want to keep the data, any data older than this will be deleted the next time you start the overlay."</string>
 </resources>

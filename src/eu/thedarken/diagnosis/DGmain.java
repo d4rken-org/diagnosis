@@ -418,19 +418,7 @@ public class DGmain extends SherlockFragmentActivity {
 		});
 
 		TextView text = (TextView) dialog.findViewById(R.id.HelpTextView);
-		InputStreamReader reader;
-		try {
-			reader = new InputStreamReader(this.getAssets().open("about.txt"));
-			BufferedReader br = new BufferedReader(reader);
-			String line = null;
-			while ((line = br.readLine()) != null) {
-				text.append(line + "\n");
-			}
-			reader.close();
-		} catch (IOException e) {
-			Log.d(TAG, "Error while reading about file");
-			e.printStackTrace();
-		}
+		text.setText(mContext.getString(R.string.about_help_text));
 		dialog.show();
 	}
 
