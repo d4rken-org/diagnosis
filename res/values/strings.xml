@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Diagnosis</string>
+    <string name="help_translate">Translate Diagnosis</string>
     <string name="crash_toast_text">Sorry, but Diagnosis crashed.</string>
     <string name="dialog_color_picker">Color Picker</string>
     <string name="checking_database">Checking database</string>

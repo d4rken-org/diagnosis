@@ -554,7 +554,15 @@ public class DGmain extends SherlockFragmentActivity {
 									Toast.makeText(getActivity(), R.string.no_market_application_found, Toast.LENGTH_SHORT).show();
 								}
 							}
-						}).setNegativeButton(R.string.hide, new DialogInterface.OnClickListener() {
+						})
+						.setNeutralButton(R.string.help_translate, new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.getlocalization.com/diagnosis/"));
+								startActivity(browserIntent);
+							}
+						})
+						.setNegativeButton(R.string.hide, new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 							}
