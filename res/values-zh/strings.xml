@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">诊断仪</string>
+    <string name="crash_toast_text">抱歉，诊断仪崩溃了。</string>
+    <string name="dialog_color_picker">颜色选择器</string>
+    <string name="checking_database">正在检查数据库</string>
+    <string name="press_color_to_apply"></string>
+    <string name="down_arrow">↓</string>
+    <string name="visit_xda">参观生产</string>
+    <string name="email_darken">电子邮件变暗</string>
+    <string name="sortmode">排序模式</string>
+    <string name="no_data_saved_yet">"无尚未保存的数据 ！
+打开设置，然后选择您要保存的数据。
+（可能需要几分钟，直到收集足够的数据）"</string>
+    <string name="seen">见过</string>
+    <string name="name">名称</string>
+    <string name="please_wait">look.away。!。you.shouldnt.see.me.like.this</string>
+    <string name="colorcode_in_hex">以十六进制表示的 Colorcode</string>
+    <string name="style_examples">（创建您自己的设置 ！） 样式的示例：</string>
+    <string name="welcome_text">"按 \"Start tracking\"开始 ！
+签出设置 ！
+一切都是高度可定制 ！
+
+如果您遇到的错误/问题或有要求，我会很快乐，如果你寄给我的 email(support@thedarken.eu)，谢谢你 ！"</string>
+    <string name="linebuider_welcome">"拖放向上/向下的图标进行排序。
+右拖动图标时，将删除该项目"</string>
+    <string name="close">关闭</string>
+    <string name="is">是</string>
+    <string name="your_batteries_health">你的电池健康</string>
+    <string name="charge_level_">"收费水平"</string>
+    <string name="is_currently">目前是</string>
+    <string name="is_on_average">平均</string>
+    <string name="your_batteries_voltage">你的电池电压</string>
+    <string name="highest_was">最高是</string>
+    <string name="lowest_was">最低是</string>
+    <string name="your_battery_is">您的电池是</string>
+    <string name="currently">目前</string>
+    <string name="the_battery_temperature">电池温度</string>
+    <string name="was_on_average">平均</string>
+    <string name="was_highest_at">是最高，</string>
+    <string name="was_lowest_at">是最低水平</string>
+    <string name="active_app_count">活动应用程序计数</string>
+    <string name="maximum">最大</string>
+    <string name="average_cpu_usage">"平均 CPU 使用率"</string>
+    <string name="user">"用户"</string>
+    <string name="system">"系统"</string>
+    <string name="memory">内存</string>
+    <string name="average">平均水平</string>
+    <string name="observed_cpu_speed">观察到的 CPU 频率</string>
+    <string name="observed_cpu_usage">观察到的平均 CPU 使用率</string>
+    <string name="average_is">平均是</string>
+    <string name="lowest_at">最低水平</string>
+    <string name="is_max">为最大的</string>
+    <string name="is_min">是民</string>
+    <string name="all_latest_rate">[所有]最新的速率</string>
+    <string name="download">下载</string>
+    <string name="upload">上传</string>
+    <string name="all_max_speed_last_3h">[所有]最大速度 (最后 3 h)</string>
+    <string name="all_max_speed_last_24h">[所有]最大速度 (最后 24 小时)</string>
+    <string name="all_traffic_last_3h">[所有]交通 (最后 3 h)</string>
+    <string name="all_traffic_last_24h">[所有]交通 (最后 24 小时)</string>
+    <string name="all_traffic_whole_database">[所有]交通 （整个数据库）</string>
+    <string name="cell_latest_rate">[单元格]最新的速率</string>
+    <string name="cell_max_speed_last_3h">[单元格]最大速度 (最后 3 h)</string>
+    <string name="cell_max_speed_last_24h">[单元格]最大速度 (最后 24 小时)</string>
+    <string name="cell_traffic_last_3h">[单元格]交通 (最后 3 h)</string>
+    <string name="cell_traffic_last_24h">[单元格]交通 (最后 24 小时)</string>
+    <string name="cell_traffic_whole_database">[单元格]交通 （整个数据库）</string>
+    <string name="external_sdcard">外部 sdcard</string>
+    <string name="total">总计</string>
+    <string name="used">使用</string>
+    <string name="internal_sdcard">内部 sdcard</string>
+    <string name="system_partition">系统分区</string>
+    <string name="data_partition">数据分区</string>
+    <string name="wifi_signal">WIFI 信号</string>
+    <string name="min">最小值</string>
+    <string name="cell_signal">细胞信号</string>
+    <string name="max">最大</string>
+    <string name="ping">""Ping</string>
+    <string name="disk_write">磁盘写入</string>
+    <string name="disk_read">磁盘读取</string>
+    <string name="loading_data_please_wait">数据加载中，请稍候。</string>
+    <string name="cpu_percent">CPU %</string>
+    <string name="ram_percent">RAM %</string>
+    <string name="loading">正在加载...</string>
+    <string name="copying_busybox">正在复制你可以自行修改...</string>
+    <string name="getting_busybox_version">获取你可以自行修改版本</string>
+    <string name="db_deletion_successfull">DB 删除成功</string>
+    <string name="could_not_delete_db">不能删除 DB</string>
+    <string name="stopping_service">正在停止服务...</string>
+    <string name="starting_service">正在启动服务...</string>
+    <string name="cleaning_old_database_entries">清洗旧数据库条目</string>
+    <string name="diagnosis_changelog">诊断仪 Changelog：</string>
+    <string name="stop_tracking">停止跟踪</string>
+    <string name="start_tracking">开始跟踪</string>
+    <string name="busybox_error">你可以自行修改错误 ！</string>
+    <string name="busybox_error_explanation">"不能使用我们你可以自行修改:-(
+为防止不需要的行为诊断仪将立即关闭。
+请尝试重新启动或重新安装诊断仪。
+这不应该帮助请给我写一封电子邮件：
+（support@thedarken.eu）
+对不起，对自己的烦恼 ！"</string>
+    <string name="database_removal">数据库删除</string>
+    <string name="database_removal_explanation">"诊断仪此新版本使用不同的结构来存储周期的数据。
+为了避免错误和不需要的行为，已删除以前的版本。
+我告诉你这，使你不是撞上数据库为空。"</string>
+    <string name="error">错误</string>
+    <string name="sorry_reinstall">出了错，你将不得不重新安装此应用程序。</string>
+    <string name="quit">退出</string>
+    <string name="dismiss">解雇</string>
+    <string name="news">新闻</string>
+    <string name="news_content">"
+如果你想你的母语翻译诊断仪，给我写邮件。
+
+v0.7.9
+-修复0输出一些新信息显示
+-小更改
+
+看一看 \'诊断仪专业版\' 如果您希望得到额外的功能请支持我的工作。
+
+问题、建议，想法?
+发邮件给我!"</string>
+    <string name="no_market_application_found">未找到的市场应用程序。</string>
+    <string name="hide">隐藏</string>
+    <string name="diagnosis_pro">诊断仪专业版</string>
+    <string name="startup_error">启动错误 ！</string>
+    <string name="pro">专业版</string>
+    <string name="welcome_to_diagnosis">欢迎来到诊断仪</string>
+    <string name="try_a_style">请尝试这些样式之一或访问设置并创建您自己。</string>
+    <string name="seconds">秒</string>
+    <string name="second">第二次</string>
+    <string name="update_interval_is">"更新间隔是"</string>
+    <string name="loading_database_info">加载数据库信息</string>
+    <string name="database_size">数据库大小</string>
+    <string name="no_db_yet">然而没有 DB</string>
+    <string name="data_set_s_will_be_condensed_into_1">数据设置会凝结成 1</string>
+    <string name="set_s_are_cached_before_saving_to_database">集缓存保存到数据库之前</string>
+    <string name="style">样式</string>
+    <string name="set">设置</string>
+    <string name="sorry_pro_only">对不起，但这只是在诊断仪专业版中可用</string>
+    <string name="select_an_info">选择信息</string>
+    <string name="diagnosis_service_created">创建诊断仪服务</string>
+    <string name="we_now_know_whats_going_on">我们现在知道了然 ！</string>
+    <string name="diagnosis">诊断仪</string>
+    <string name="click_me_to_open_app">单击我开这款应用程序</string>
+    <string name="restored_preset_from_slot">插槽已恢复的的预设</string>
+    <string name="preset_saved_to_slot">保存到插槽的预设</string>
+    <string name="clearing_database">清除数据库</string>
+    <string name="database_reset">数据库重置</string>
+    <string name="sorry_stop_diagnosis">很抱歉时出现错误，需要停止诊断仪吗？</string>
+    <string name="avg">AVG</string>
+    <string name="ms">ms</string>
+    <string name="all_cores">所有核心</string>
+    <string name="core">核心</string>
+    <string name="io">I/O</string>
+    
+    <!-- Preferences -->
+    
+    
+    <string name="preferences_interval_dialog_message">推荐 3-5</string>
+    <string name="preferences_interval_dialog_suffix">"秒"</string>
+    <string name="preferences_interval_summary">频率如何诊断仪应刷新。更快更准确，但会消耗更多的资源。只是试试它，我推荐 3-5 秒。</string>
+    <string name="preferences_interval_title">更新间隔</string>
+    
+    <string name="preferences_autostart_summary">"开始诊断仪自动重启后。需要 [诊断仪专业版]"</string>	
+    <string name="preferences_autostart_title">自动启动</string>
+    
+    <string name="preferences_notification_title">显示通知</string>
+    <string name="preferences_notification_summary">"显示/隐藏通知栏条目要求 [诊断仪专业版]"</string>
+
+    <string name="preferences_database_general_title">数据库</string>
+    <string name="preferences_database_general_summary">将保存和统计信息选项卡中显示的信息</string>
+    
+    <string name="preferences_database_doapps_title">应用统计</string>
+    <string name="preferences_database_doapps_summary">保留受监视应用程序，其 cpu 使用率、 内存和更多列表</string>
+    
+    <string name="preferences_database_dobatt_title">电池统计</string>
+    <string name="preferences_database_dobatt_summary">收费水平、 温度、 电压、...</string>
+    
+    <string name="preferences_database_docpu_title">Cpu 统计</string>
+    <string name="preferences_database_docpu_summary">Cpu 信息，io/系统/用户/好/空闲的使用实例...</string>
+    
+    <string name="preferences_database_dofreq_title">Cpu 频率统计</string>
+    <string name="preferences_database_dofreq_summary">频率，最大、 最小可能</string>
+    
+    <string name="preferences_database_domem_title">保存内存统计信息</string>
+    <string name="preferences_database_domem_summary">系统内存 （共/房地产/缓冲/缓存）</string>
+    
+    <string name="preferences_database_donet_title">网络统计信息</string>
+    <string name="preferences_database_donet_summary">交通上, 传下载</string>
+    
+    <string name="preferences_database_dospace_title">分区统计数字</string>
+    <string name="preferences_database_dospace_summary">android 操作系统、 系统、 应用程序数据、 sdcard、 外部卡...</string>
+    
+    <string name="preferences_database_dowifi_title">Wifi 统计</string>
+    <string name="preferences_database_dowifi_summary">目前只有信号强度</string>
+    
+    <string name="preferences_database_dophone_title">电话统计</string>
+    <string name="preferences_database_dophone_summary">GSM 信号</string>
+        
+    <string name="preferences_database_doping_title">互联网统计数据</string>
+    <string name="preferences_database_doping_summary">统计信息会导致数据使用 (仅在这个时刻平)</string>
+    
+    <string name="preferences_database_dodisk_title">磁盘统计信息</string>
+    <string name="preferences_database_dodisk_summary">闪速存储器的读写速度</string>
+    
+	<string name="preferences_database_doload_title">装载的统计信息</string>
+    <string name="preferences_database_doload_summary">系统负荷的 unix 样式</string>
+    
+    <string name="load">负载</string>
+    <string name="save_dot_dot_dot">保存...</string>
+    <string name="load_save_custom_presets">负载/保存的自定义预设</string>
+    
+    <string name="load_slot_1">负载插槽 1</string>
+    <string name="load_slot_2">负载插槽 2</string>
+    <string name="load_slot_3">负载插槽 3</string>
+    
+    <string name="save_slot_1">将保存到插槽 1</string>
+    <string name="save_slot_2">将保存到插槽 2</string>
+    <string name="save_slot_3">将保存到插槽 3</string>
+
+    <string name="preferences_customize_lines_summary">自定义和定制您的需要的每个信息行。</string>
+    <string name="preferences_customize_lines_title">自定义行</string>
+    
+    <string name="preferences_edit_line_1">编辑行 1</string>
+    <string name="preferences_edit_line_2">编辑行 2</string>
+    <string name="preferences_edit_line_3">编辑行 3</string>
+    <string name="preferences_edit_line_4">编辑行 4</string>
+    
+    <string name="preferences_edit_displayed_data">编辑显示数据</string>
+    
+    <string name="preferences_line_1">第 1 行</string>
+    <string name="preferences_line_2">第 2 行</string>
+    <string name="preferences_line_3">3 号线</string>
+    <string name="preferences_line_4">4 号线</string>
+    
+    <string name="layout">布局</string>
+    
+    <string name="preferences_style_and_position_title">样式和位置</string>
+    
+    <string name="preferences_x_position_summary">叠加的水平位置</string>
+    <string name="preferences_x_position_title">X 位置</string>
+    
+    <string name="preferences_y_position_summary">叠加的垂直位置</string>
+    <string name="preferences_y_position_title">Y 位置</string>
+    
+    <string name="preferences_fontsize_summary">字母将是多大</string>
+    <string name="preferences_fontsize_title">字号</string>
+    
+	<string name="preferences_text_color_normal_summary">用于正常显示的文本颜色</string>
+    <string name="preferences_text_color_normal_title">普通文本的颜色</string>
+    
+	<string name="preferences_text_color_alert_summary">文本颜色用于突出显示的警报</string>
+    <string name="preferences_text_color_alert_title">警报文本颜色</string>
+    
+    <string name="preferences_fonttype_summary">选择使用哪种字体类型。</string>
+    <string name="preferences_fonttype_title">字体</string>
+    
+    <string name="preferences_alignright_summary">将绘制文本左的安装位置 （即打开这套到您屏幕的宽度 x)</string>
+    <string name="preferences_alignright_title">右对齐</string>
+    
+    <string name="preferences_drawbackground_summary">绘制要使它变得更容易可读的文本后面的背景。</string>
+    <string name="preferences_drawbackground_title">绘制背景</string>
+    
+    <string name="preferences_backgroundcolor_summary">用作背景的颜色</string>
+    <string name="preferences_backgroundcolor_title">文本背景颜色</string>
+    
+    <string name="preferences_customize_general_summary">更改选项会影响每一条线</string>
+    <string name="preferences_customize_general_title">自定义选项</string>
+    
+    <string name="preferences_fahrenheit_summary">使用华氏温度而不是摄氏温度</string>
+    <string name="preferences_fahrenheit_title">使用华氏温度</string>
+    
+    <string name="preferences_divider_summary">更改符号中叠加的年龄及地质意义信息。</string>
+    <string name="preferences_divider_title">分隔线</string>
+    
+    <string name="preferences_cpu_threshold_summary">多高 CPU 需要将应用程序在显示。[诊断仪专业版]</string>
+    <string name="preferences_cpu_threshold_title">Cpu 阈值</string>
+    
+    <string name="preferences_hide_system_entries_summary">隐藏系统条目，离开只显示的应用程序。</string>
+    <string name="preferences_hide_system_entries_title">隐藏核心流程</string>
+    
+    <string name="preferences_ping_target_summary">哪个地址应 ping 功能目标？</string>
+    <string name="preferences_ping_target_title">Ping 目标</string>
+    
+    <string name="preferences_advanced_settings">高级的设置</string>
+    
+    <string name="database">数据库</string>
+    
+    <string name="preferences_database_agelimit_summary">什么时间后应删除旧的数据？（时发生启动服务时）</string>
+    <string name="preferences_database_agelimit_title">数据的年龄限制</string>
+    <string name="preferences_database_agelimit_dialog_message">数据的年龄限制</string>
+    <string name="preferences_database_agelimit_dialog_suffix">"小时"</string>
+    
+    <string name="prefrence_database_dropall_summary">所有数据库的下降，因此表重置它。</string>
+    <string name="prefrence_database_dropall_title">删除数据库</string>
+    
+    <string name="prefrence_database_density_summary">凝结成一的多个数据集。较小的数字意味着更准确的数据，但更大的数据库。</string>
+    <string name="prefrence_database_density_dialog_message">选择最高的准确度，1 或走高，如果你不关心精度，但想要保持较小的数据库。</string>
+    <string name="prefrence_database_density_title">数据密度</string>
+    
+    <string name="prefrence_database_cachesize_summary">多少个条目应尝试写入内存之前保存在 RAM 中</string>
+    <string name="prefrence_database_cachesize_dialog_message">大意味着更少的资源使用、 低写入越早到数据库的值。</string>
+    <string name="prefrence_database_cachesize_title">高速缓存大小</string>
+    
+    <string name="about_help_text">"诊断仪器来自darken
+
+如果您有任何问题，问题或要求，给我发送电子邮件 (support@thedarken.eu).
+
+本帮助指南将涵盖诊断仪的基础知识.
+
+覆盖的一些重要信息!
+覆盖可能卡住/延时甚至死机, 如果其他应用程序拼命的需要资源, 这是首选，因为我们不希望妨碍影响到其他应用程序的诊断。
+不用担心, 在资源再次可用时，他会自我修复.
+
+简介:
+现在首先第一件事情, 如果你想使用的应用程序内提供的各种统计，你会需要打开数据库来收集, 关于这一点，看设置.
+请记住，这可能会导致低端手机上的延时，如果是这样的话，最好使用此功能。
+更新的时间间隔作用是：多久收集一次数据（单位：秒）以及覆盖更新数据. 设置较低的值，使用更多的CPU，但刷新数据速度更快. 一般设置3-5是最好的, 较低的设备，可能需要设置9-10，以避免延时。
+如果启动了它，覆盖更新的数据将被写入数据库.
+
+定制:
+可定制各种方式的覆盖, 一种是每行显示.打开设置，你会看到“自定义行”选项包含1/2/3/4行, 这些设置将决定覆盖的每一行显示. 有很多选择,可能更多的是用更新, 只是浏览它们找回您首选的信息。
+
+高级设置:
+你并不真的需要改变这些。默认设置通常较好.
+更新的时间间隔是多久诊断仪将收集数据(这也将更新覆盖),高速缓存的大小是尝试写入到磁盘存储之前的RAM是多少, 这里默认是24, 一个更大的数据密度意味着更小的数据库文件，但是信息会不准确, 所以密度为5和10时在缓存中，它会缓存10个数据集, 它们凝结成2，然后写入数据库。
+"删除数据库" 会删除数据库,删除保存的数据，从而释放磁盘空间.
+数据的年龄限制，允许您特殊的时间要保持数据的量, 在下一次启动覆盖时，任何比这个旧数据将被删除.\n\n\n\n"</string>
+</resources>
