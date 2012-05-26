@@ -328,4 +328,10 @@ You don\'t really need to change these. The default settings are usually okay.
 Update interval is how often Diagnosis will collect data(this will also update overlay),cache size is how much to store into RAM before attempting to write to disk, this defaults at 24, a bigger data density means smaller database file but less accurate information, so with density of 5 and cache at 10 it will cache 10 data sets, condense them into 2 and then write to database.
 \"Drop database\" will delete the database, thus freeing the diskspace, but removing the saved data.
 Data age limit lets you specificy an amount of hours for which you want to keep the data, any data older than this will be deleted the next time you start the overlay."</string>
+    
+    <string name="about">About</string>
+    
+    <string name="settings">Settings</string>
+    
+    <string name="changelog">Changelog</string>
 </resources>

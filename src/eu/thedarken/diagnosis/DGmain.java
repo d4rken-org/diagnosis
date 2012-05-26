@@ -6,12 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.ActionBar.Tab;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -39,6 +34,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.ActionBar.Tab;
+import com.actionbarsherlock.app.SherlockDialogFragment;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 
 public class DGmain extends SherlockFragmentActivity {
 	private static Context mContext;
@@ -472,6 +475,10 @@ public class DGmain extends SherlockFragmentActivity {
 			Intent startPreferencesActivity = new Intent(this, DGsettings.class);
 			this.startActivity(startPreferencesActivity);
 			break;
+		case R.id.help_translate:
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.getlocalization.com/diagnosis/"));
+			startActivity(browserIntent);
+			break;
 		case R.id.changelog:
 			showChangelog();
 			break;
@@ -499,6 +506,7 @@ public class DGmain extends SherlockFragmentActivity {
 			Bundle args = new Bundle();
 			args.putInt("type", type);
 			frag.setArguments(args);
+			frag.setStyle(SherlockDialogFragment.STYLE_NO_FRAME, R.style.Theme_Sherlock_Light_Dialog);
 			return frag;
 		}
 
@@ -553,13 +561,6 @@ public class DGmain extends SherlockFragmentActivity {
 								} catch (Exception e) {
 									Toast.makeText(getActivity(), R.string.no_market_application_found, Toast.LENGTH_SHORT).show();
 								}
-							}
-						})
-						.setNeutralButton(R.string.help_translate, new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.getlocalization.com/diagnosis/"));
-								startActivity(browserIntent);
 							}
 						})
 						.setNegativeButton(R.string.hide, new DialogInterface.OnClickListener() {

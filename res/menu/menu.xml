@@ -1,6 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/starttracking" android:title="Start Tracking" android:showAsAction="ifRoom|withText" />
-    <item android:id="@+id/settings" android:title="Settings"/>
-    <item android:id="@+id/changelog" android:title="Changelog"/>
-    <item android:id="@+id/about" android:title="About"/>
+    <item android:id="@+id/starttracking" android:title="@string/start_tracking" android:showAsAction="ifRoom|withText" />
+    <item android:id="@+id/settings" android:title="@string/settings"/>
+    <item android:id="@+id/help_translate" android:title="@string/help_translate"/>
+    <item android:id="@+id/changelog" android:title="@string/changelog"/>
+    <item android:id="@+id/about" android:title="@string/about"/>
 </menu>
