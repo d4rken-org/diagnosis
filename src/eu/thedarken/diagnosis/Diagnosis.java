@@ -5,7 +5,7 @@ import org.acra.annotation.*;
 
 
 @ReportsCrashes(formKey = "dExNZ2w0N1pWLW54aTg4RnJBQjV3YVE6MQ")
-public class Diagnosis  extends Application {
+public class Diagnosis extends Application {
     @Override
     public void onCreate() {
         // The following line triggers the initialization of ACRA
