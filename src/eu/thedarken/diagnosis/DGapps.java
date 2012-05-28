@@ -98,7 +98,7 @@ public class DGapps extends SherlockFragment {
             	
         		apps_table.setVisibility(View.VISIBLE);
             	TableRow tr = new TableRow(mActivity);
-            	tr.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+            	tr.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             	tr.setGravity(Gravity.CENTER);
             	
                 TextView t1 = new TextView(mActivity);
@@ -130,11 +130,11 @@ public class DGapps extends SherlockFragment {
                 tr.addView(t2);
                 tr.addView(t3);
                 tr.addView(t4);
-                apps_table.addView(tr,new TableLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+                apps_table.addView(tr,new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
                 
                 for(int i=0;i<infos.size() && i < 50;i++) {
                 	TableRow r = new TableRow(mActivity);
-                	r.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+                	r.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
                 	r.setGravity(Gravity.CENTER);
                 	
                     TextView seen = new TextView(mActivity);

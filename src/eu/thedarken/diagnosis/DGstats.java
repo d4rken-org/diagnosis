@@ -367,25 +367,25 @@ public class DGstats extends SherlockFragment {
 				TextView label = new TextView(mActivity);
 				label.setTextColor(Color.BLACK);
 				label.setText(mActivity.getString(R.string.all_cores));
-				label.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 7f));
+				label.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 7f));
 				r.addView(label);
 				
 				TextView min = new TextView(mActivity);
 				min.setTextColor(Color.BLACK);
 				min.setText(FreqTabInfo.calcAvgCoreFrequency(freqinfo.min_obs_cpu_freq ) / 1000 + " MHZ");
-				min.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				min.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 2f));
 				r.addView(min);
 				
 				TextView max = new TextView(mActivity);
 				max.setTextColor(Color.BLACK);
 				max.setText(FreqTabInfo.calcAvgCoreFrequency(freqinfo.max_obs_cpu_freq ) / 1000 + " MHZ");
-				max.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				max.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 2f));
 				r.addView(max);
 				
 				TextView avg = new TextView(mActivity);
 				avg.setTextColor(Color.BLACK);
 				avg.setText(FreqTabInfo.calcAvgCoreFrequency(freqinfo.avg_cpu_freq ) / 1000 + " MHZ");
-				avg.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+				avg.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 2f));
 				r.addView(avg);
 				core_table.addView(r);
 				if(DGmain.checkPro(mActivity)) {
@@ -396,25 +396,25 @@ public class DGstats extends SherlockFragment {
 						TextView corelabel = new TextView(mActivity);
 						corelabel.setTextColor(Color.BLACK);
 						corelabel.setText(mActivity.getString(R.string.core)+(i+1));
-						corelabel.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 7f));
+						corelabel.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 7f));
 						corerow.addView(corelabel);
 						
 						TextView coremin = new TextView(mActivity);
 						coremin.setTextColor(Color.BLACK);
 						coremin.setText(freqinfo.min_obs_cpu_freq[i] / 1000 + " MHZ");
-						coremin.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+						coremin.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 2f));
 						corerow.addView(coremin);
 						
 						TextView coremax = new TextView(mActivity);
 						coremax.setTextColor(Color.BLACK);
 						coremax.setText(freqinfo.max_obs_cpu_freq[i] / 1000 + " MHZ");
-						coremax.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+						coremax.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 2f));
 						corerow.addView(coremax);
 						
 						TextView coreavg = new TextView(mActivity);
 						coreavg.setTextColor(Color.BLACK);
 						coreavg.setText((long)(freqinfo.avg_cpu_freq[i] / 1000) + " MHZ");
-						coreavg.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 2f));
+						coreavg.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 2f));
 						corerow.addView(coreavg);
 						core_table.addView(corerow);
 					}

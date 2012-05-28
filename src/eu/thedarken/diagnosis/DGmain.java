@@ -29,9 +29,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -399,55 +396,6 @@ public class DGmain extends SherlockFragmentActivity {
 		}
 		dialog.show();
 	}
-
-	private void showAbout() {
-		final Dialog dialog = new Dialog(this);
-		dialog.setContentView(R.layout.aboutbox);
-		dialog.setTitle("Diagnosis " + versName+"("+versCode+")");
-		Button xda = (Button) dialog.findViewById(R.id.xda);
-		xda.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://forum.xda-developers.com/showthread.php?t=1411074"));
-				startActivity(browserIntent);
-			}
-		});
-		Button email = (Button) dialog.findViewById(R.id.email);
-		email.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				createSupportEmail();
-			}
-		});
-
-		TextView text = (TextView) dialog.findViewById(R.id.HelpTextView);
-		text.setText(mContext.getString(R.string.about_help_text));
-		dialog.show();
-	}
-
-	private void createSupportEmail() {
-		Intent intent = new Intent(Intent.ACTION_SEND);
-		intent.setType("message/rfc822");
-		intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "support@thedarken.eu" });
-		StringBuilder version = new StringBuilder();
-		try {
-			version.append(mContext.getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
-			version.append("(");
-			version.append(mContext.getPackageManager().getPackageInfo(getPackageName(), 0).versionCode);
-			version.append(")");
-		} catch (NameNotFoundException e1) {
-			Log.d(mContext.getPackageName(), "Error while getting version");
-			e1.printStackTrace();
-		}
-
-		String subject = "[Diagnosis] Question/Request";
-		intent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
-		intent.putExtra(android.content.Intent.EXTRA_TEXT, "\n\n" +
-
-		"Send from inside the app.\n\n" + "Debug Information:\n" + "(This is anonymous and only tells me your device + firmware version.)\n"
-				+ "Diagnosis Version: " + version.toString() + "\n" + "FINGERPRINT: " + android.os.Build.FINGERPRINT + "\n");
-		startActivity(Intent.createChooser(intent, ""));
-	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -483,7 +431,8 @@ public class DGmain extends SherlockFragmentActivity {
 			showChangelog();
 			break;
 		case R.id.about:
-			showAbout();
+			AboutFragment about = AboutFragment.newInstance();
+			about.showDialog(getSupportFragmentManager());
 			break;
 		}
 		return true;
