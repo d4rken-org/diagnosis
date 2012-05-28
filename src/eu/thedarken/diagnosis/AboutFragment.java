@@ -15,8 +15,13 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
 
+import eu.thedarken.diagnosis.R;
+import eu.thedarken.diagnosis.R.id;
+import eu.thedarken.diagnosis.R.layout;
+import eu.thedarken.diagnosis.R.string;
+
 public class AboutFragment extends SherlockDialogFragment {
-	static AboutFragment newInstance() {
+	public static AboutFragment newInstance() {
 		AboutFragment f = new AboutFragment();
 		return f;
 	}

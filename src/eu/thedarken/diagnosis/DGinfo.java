@@ -53,7 +53,7 @@ public class DGinfo extends SherlockFragment {
 
 		styles.setOnItemSelectedListener(new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View arg1, int pos, long arg3) {
-				Log.d(TAG, "Spinner call, parent: " + parent.getSelectedItemPosition() + " arg2 " + pos);
+//				Log.d(TAG, "Spinner call, parent: " + parent.getSelectedItemPosition() + " arg2 " + pos);
 				Styles s = new Styles(mContext);
 				switch(pos) {
 					default:
