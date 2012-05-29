@@ -20,9 +20,9 @@ import eu.thedarken.diagnosis.R.id;
 import eu.thedarken.diagnosis.R.layout;
 import eu.thedarken.diagnosis.R.string;
 
-public class AboutFragment extends SherlockDialogFragment {
-	public static AboutFragment newInstance() {
-		AboutFragment f = new AboutFragment();
+public class AboutDialogFragment extends SherlockDialogFragment {
+	static AboutDialogFragment newInstance() {
+		AboutDialogFragment f = new AboutDialogFragment();
 		return f;
 	}
 
@@ -44,8 +44,8 @@ public class AboutFragment extends SherlockDialogFragment {
 	
 	void showDialog(FragmentManager fragman) {
         // Create the fragment and show it as a dialog.
-    	SherlockDialogFragment show = AboutFragment.newInstance();
-        show.show(fragman, "show");
+    	SherlockDialogFragment show = AboutDialogFragment.newInstance();
+        show.show(fragman, "about_dialog");
     }
 
 	@Override

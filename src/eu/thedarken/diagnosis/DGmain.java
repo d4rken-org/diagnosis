@@ -129,7 +129,8 @@ public class DGmain extends SherlockFragmentActivity {
 		if(settings.getInt("news.shown", 0) < versCode) {
 			prefEditor.putInt("news.shown", versCode);
 			prefEditor.commit();
-			showMyDialog(Dialogs.NEWS);
+			MiscDialogFragments news = MiscDialogFragments.newInstance(MiscDialogFragments.NEWS);
+			news.showDialog(getSupportFragmentManager());
 		}
 	}
 
@@ -220,7 +221,8 @@ public class DGmain extends SherlockFragmentActivity {
 			BUSYBOX_VERSION = getBusyboxVersion();
 			if(BUSYBOX_VERSION.length() == 0) {
 				dialog.updateMessage(mActivity.getString(R.string.startup_error));
-				showMyDialog(Dialogs.BUSYBOX_ERROR);
+				MiscDialogFragments busybox_error = MiscDialogFragments.newInstance(MiscDialogFragments.BUSYBOX_ERROR);
+				busybox_error.showDialog(getSupportFragmentManager());
 			}
 			
 			dialog.updateMessage(mActivity.getString(R.string.checking_database));
@@ -236,9 +238,11 @@ public class DGmain extends SherlockFragmentActivity {
 				} else {
 					dialog.updateMessage(mActivity.getString(R.string.could_not_delete_db));
 					Log.d(TAG, mActivity.getString(R.string.could_not_delete_db));
-					showMyDialog(Dialogs.REINSTALL);
+					MiscDialogFragments reinstall = MiscDialogFragments.newInstance(MiscDialogFragments.REINSTALL);
+					reinstall.showDialog(getSupportFragmentManager());
 				}
-				showMyDialog(Dialogs.DATABASE_REMOVAL);
+				MiscDialogFragments db_removal = MiscDialogFragments.newInstance(MiscDialogFragments.DATABASE_REMOVAL);
+				db_removal.showDialog(getSupportFragmentManager());
 			} else {
 				prefEditor.putInt("dbversion", DB_DELETE_VERSION);
 				prefEditor.commit();
@@ -372,31 +376,6 @@ public class DGmain extends SherlockFragmentActivity {
 		}
 		return false;
 	}
-
-	private void showChangelog() {
-		Dialog dialog = new Dialog(this);
-		dialog.setContentView(R.layout.changelog);
-		dialog.setTitle(mContext.getString(R.string.diagnosis_changelog));
-		TextView text = (TextView) dialog.findViewById(R.id.ChangelogTextView);
-		text.setTextSize(13);
-		InputStreamReader reader;
-		try {
-			reader = new InputStreamReader(this.getAssets().open("changelog.txt"));
-
-			BufferedReader br = new BufferedReader(reader);
-			StringBuilder buffer = new StringBuilder();
-			String line = null;
-			while ((line = br.readLine()) != null) {
-				buffer.append(line).append('\n');
-			}
-			text.setText(buffer.toString());
-			reader.close();
-		} catch (IOException e) {
-			Log.d(TAG, "Error while reading changelog.txt");
-			e.printStackTrace();
-		}
-		dialog.show();
-	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -415,7 +394,8 @@ public class DGmain extends SherlockFragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			showMyDialog(Dialogs.NEWS);
+			MiscDialogFragments news = MiscDialogFragments.newInstance(MiscDialogFragments.NEWS);
+			news.showDialog(getSupportFragmentManager());
 			break;
 		case R.id.starttracking:
 			new serviceTask(this).execute();
@@ -429,99 +409,14 @@ public class DGmain extends SherlockFragmentActivity {
 			startActivity(browserIntent);
 			break;
 		case R.id.changelog:
-			showChangelog();
+			ChangelogDialogFragment changelog = ChangelogDialogFragment.newInstance();
+			changelog.showDialog(getSupportFragmentManager());
 			break;
 		case R.id.about:
-			AboutFragment about = AboutFragment.newInstance();
+			AboutDialogFragment about = AboutDialogFragment.newInstance();
 			about.showDialog(getSupportFragmentManager());
 			break;
 		}
 		return true;
 	}
-
-	public void showMyDialog(int type) {
-		FragmentManager ft = getSupportFragmentManager();
-		DialogFragment newFragment = Dialogs.newInstance(type);
-		newFragment.show(ft, "dialog");
-	}
-	
-	public static class Dialogs extends DialogFragment {
-		final static int BUSYBOX_ERROR = 0;
-		final static int DATABASE_REMOVAL = 1;
-		final static int REINSTALL = 2;
-		final static int NEWS = 3;
-		
-		public static Dialogs newInstance(int type) {
-			Dialogs frag = new Dialogs();
-			Bundle args = new Bundle();
-			args.putInt("type", type);
-			frag.setArguments(args);
-			frag.setStyle(SherlockDialogFragment.STYLE_NO_FRAME, R.style.Theme_Sherlock_Light_Dialog);
-			return frag;
-		}
-
-		@Override
-		public Dialog onCreateDialog(Bundle savedInstanceState) {
-			int id = getArguments().getInt("type");
-			switch (id) {
-			case BUSYBOX_ERROR:
-				return new AlertDialog.Builder(getActivity())
-						.setTitle(R.string.busybox_error)
-						.setCancelable(true)
-						.setMessage(
-								R.string.busybox_error_explanation)
-						.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								getActivity().finish();
-							}
-						}).create();
-			case DATABASE_REMOVAL:
-				return new AlertDialog.Builder(getActivity())
-						.setTitle(R.string.database_removal)
-						.setCancelable(true)
-						.setMessage(
-								R.string.database_removal_explanation)
-						.setPositiveButton(R.string.dismiss, new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-
-							}
-						}).create();
-			case REINSTALL:
-				return new AlertDialog.Builder(getActivity()).setTitle(R.string.error).setCancelable(true)
-						.setMessage(R.string.sorry_reinstall)
-						.setNegativeButton(R.string.quit, new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								getActivity().finish();
-							}
-						}).create();
-			case NEWS:
-				return new AlertDialog.Builder(getActivity())
-						.setTitle(R.string.news)
-						.setCancelable(true)
-						.setMessage(getString(R.string.news_content))
-						.setPositiveButton(R.string.diagnosis_pro, new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								try {
-									Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=eu.thedarken.diagnosis.pro"));
-									startActivity(marketIntent);
-								} catch (Exception e) {
-									Toast.makeText(getActivity(), R.string.no_market_application_found, Toast.LENGTH_SHORT).show();
-								}
-							}
-						})
-						.setNegativeButton(R.string.hide, new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-							}
-						}).create();
-			}
-			Dialog dialog = null;
-			return dialog;
-		}
-	}
-
 }
