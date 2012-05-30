@@ -110,8 +110,9 @@ I\'m telling you this so that you are not suprised that the database is empty."<
     <string name="quit">Quit</string>
     <string name="dismiss">Dismiss</string>
     <string name="news">News</string>
-    <string name="news_content">"If you want to translate Diagnosis to your native language, send me a mail.
+    <string name="news_content">"Have you rated Diagnosis yet?
 
+What is new?
 v0.8.0
 -Few UI fixes and tweaks
 -Translation changes
