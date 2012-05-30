@@ -335,4 +335,5 @@ Data age limit lets you specificy an amount of hours for which you want to keep 
     <string name="settings">Settings</string>
     
     <string name="changelog">Changelog</string>
+    <string name="visit_homepage">Visit homepage</string>
 </resources>
