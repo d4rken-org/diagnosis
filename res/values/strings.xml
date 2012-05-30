@@ -113,8 +113,9 @@ I\'m telling you this so that you are not suprised that the database is empty."<
     <string name="news_content">"If you want to translate Diagnosis to your native language, send me a mail.
 
 v0.8.0
--Made some small improvements
--Translation and UI changes
+-Few UI fixes and tweaks
+-Translation changes
+-Performance tweaks
 
 Have a look at \'Diagnosis Pro\' if you are looking for additional features or want to support my work.
 

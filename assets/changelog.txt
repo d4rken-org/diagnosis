@@ -1,6 +1,9 @@
 ﻿v0.8.0(28)
 - Translation updates
 - UI tweaks
+- Performance tweaks to reduce memory footprint
+- Fix for potential UI FC
+- Updated ABS to 4.1
 
 v0.7.9(27)
 - Fixed 0 output for some of the new infos
