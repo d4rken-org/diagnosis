@@ -56,11 +56,11 @@ public class AboutDialogFragment extends SherlockDialogFragment {
 		
 		View v = inflater.inflate(R.layout.about_fragment, container, false);
 
-		Button xda = (Button) v.findViewById(R.id.xda);
-		xda.setOnClickListener(new OnClickListener() {
+		Button homepage = (Button) v.findViewById(R.id.homepage);
+		homepage.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://forum.xda-developers.com/showthread.php?t=1411074"));
+				Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://www.thedarken.eu"));
 				startActivity(browserIntent);
 			}
 		});
