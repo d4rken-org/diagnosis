@@ -1,7 +1,7 @@
 package eu.thedarken.diagnosis;
 
 import java.util.ArrayList;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import eu.thedarken.diagnosis.InfoClass.AppInfo;
 import eu.thedarken.diagnosis.InfoClass.AppTabInfo;
 import eu.thedarken.diagnosis.InfoClass.BattInfo;
@@ -304,7 +304,7 @@ public class DGdatabase {
 		return 0;
 	}
     
-    public synchronized void addCpus(ArrayList<CpuInfo> c, boolean keepopen) {
+    public synchronized void addCpus(LinkedList<CpuInfo> c, boolean keepopen) {
     	if(openWrite()) {
             DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,CPU_TABLE);
             int[] usage = new int[DGdata.CORES];
@@ -387,7 +387,7 @@ public class DGdatabase {
     	return ret;
     }
     
-    public synchronized void addMems(ArrayList<MemInfo> m, boolean keepopen) {
+    public synchronized void addMems(LinkedList<MemInfo> m, boolean keepopen) {
     	if(openWrite()) {
             DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,MEM_TABLE);
             int system_time = ih.getColumnIndex("system_time");
@@ -464,7 +464,7 @@ public class DGdatabase {
     	return ret;
     }
     
-    public synchronized void addLoads(ArrayList<LoadInfo> l, boolean keepopen) {
+    public synchronized void addLoads(LinkedList<LoadInfo> l, boolean keepopen) {
     	if(openWrite()) {
             DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,LOAD_TABLE);
             int first = ih.getColumnIndex("first");
@@ -486,7 +486,7 @@ public class DGdatabase {
     	}
     }
     
-    public synchronized void addNets(ArrayList<NetInfo> n, boolean keepopen) {
+    public synchronized void addNets(LinkedList<NetInfo> n, boolean keepopen) {
     	if(openWrite()) {
             DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,NET_TABLE);
             int traffic_up = ih.getColumnIndex("traffic_up");
@@ -639,7 +639,7 @@ public class DGdatabase {
     	return ret;
     }
     
-    public synchronized void addBats(ArrayList<BattInfo> b, boolean keepopen) {
+    public synchronized void addBats(LinkedList<BattInfo> b, boolean keepopen) {
     	if(openWrite()) {
         
             DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,BATT_TABLE);
@@ -725,7 +725,7 @@ public class DGdatabase {
     	return ret;
     }
     
-    public synchronized void addApps(ArrayList<AppInfo> a, boolean keepopen) {
+    public synchronized void addApps(LinkedList<AppInfo> a, boolean keepopen) {
     	if(openWrite()) {
             DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,APP_TABLE);
             int command = ih.getColumnIndex("command");
@@ -823,7 +823,7 @@ public class DGdatabase {
     	return ret;
     }
     
-    public synchronized void addSpaces(ArrayList<SpaceInfo> s, boolean keepopen) {
+    public synchronized void addSpaces(LinkedList<SpaceInfo> s, boolean keepopen) {
     	if(openWrite()) {
             DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,SPACE_TABLE);
             int system_time = ih.getColumnIndex("system_time");
@@ -899,7 +899,7 @@ public class DGdatabase {
     	return ret;
     }
     
-    public synchronized void addDisks(ArrayList<DiskInfo> s, boolean keepopen) {
+    public synchronized void addDisks(LinkedList<DiskInfo> s, boolean keepopen) {
     	if(openWrite()) {
             DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,DISK_TABLE);
             int system_time = ih.getColumnIndex("system_time");
@@ -923,7 +923,7 @@ public class DGdatabase {
     	}
     }
     
-    public synchronized void addWlans(ArrayList<WlanInfo> wi, boolean keepopen) {
+    public synchronized void addWlans(LinkedList<WlanInfo> wi, boolean keepopen) {
     	if(openWrite()) {
             DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,WLAN_TABLE);
             int system_time = ih.getColumnIndex("system_time");
@@ -976,7 +976,7 @@ public class DGdatabase {
     	return ret;
     }
     
-    public synchronized void addPhones(ArrayList<PhoneInfo> pi, boolean keepopen) {
+    public synchronized void addPhones(LinkedList<PhoneInfo> pi, boolean keepopen) {
     	if(openWrite()) {
             DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,PHONE_TABLE);
             int system_time = ih.getColumnIndex("system_time");
@@ -1027,7 +1027,7 @@ public class DGdatabase {
     	return ret;
     }
     
-	public synchronized void addFreqs(ArrayList<FreqInfo> fi, boolean keepopen) {
+	public synchronized void addFreqs(LinkedList<FreqInfo> fi, boolean keepopen) {
 		if (openWrite()) {
 			DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB, FREQ_TABLE);
 			int system_time = ih.getColumnIndex("system_time");
@@ -1088,7 +1088,7 @@ public class DGdatabase {
     }
     
     
-    public synchronized void addPings(ArrayList<PingInfo> pinglist, boolean keepopen) {
+    public synchronized void addPings(LinkedList<PingInfo> pinglist, boolean keepopen) {
     	if(openWrite()) {
             DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(mDB,PING_TABLE);
             int system_time = ih.getColumnIndex("system_time");

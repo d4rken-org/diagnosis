@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
@@ -140,19 +140,19 @@ public class DGdata {
     
     private Context mContext;
 	private long current_time = 0;
-	private List<CpuInfo> cpulist = Collections.synchronizedList(new ArrayList<CpuInfo>());
-	private List<FreqInfo> freqlist = Collections.synchronizedList(new ArrayList<FreqInfo>());
-	private List<MemInfo> memlist = Collections.synchronizedList(new ArrayList<MemInfo>());
-	private List<LoadInfo> loadlist = Collections.synchronizedList(new ArrayList<LoadInfo>());
-	private List<BattInfo> battlist = Collections.synchronizedList(new ArrayList<BattInfo>());
-	private List<NetInfo> netlist = Collections.synchronizedList(new ArrayList<NetInfo>());
-	private List<AppInfo> active_apps = Collections.synchronizedList(new ArrayList<AppInfo>());
-	private List<AppInfo> apps = Collections.synchronizedList(new ArrayList<AppInfo>());
-	private List<SpaceInfo> spacelist = Collections.synchronizedList(new ArrayList<SpaceInfo>());
-	private List<DiskInfo> disklist = Collections.synchronizedList(new ArrayList<DiskInfo>());
-	private List<PingInfo> pinglist = Collections.synchronizedList(new ArrayList<PingInfo>());
-	private List<PhoneInfo> phonelist = Collections.synchronizedList(new ArrayList<PhoneInfo>());
-	private List<WlanInfo> wlanlist = Collections.synchronizedList(new ArrayList<WlanInfo>());
+	private List<CpuInfo> cpulist = Collections.synchronizedList(new LinkedList<CpuInfo>());
+	private List<FreqInfo> freqlist = Collections.synchronizedList(new LinkedList<FreqInfo>());
+	private List<MemInfo> memlist = Collections.synchronizedList(new LinkedList<MemInfo>());
+	private List<LoadInfo> loadlist = Collections.synchronizedList(new LinkedList<LoadInfo>());
+	private List<BattInfo> battlist = Collections.synchronizedList(new LinkedList<BattInfo>());
+	private List<NetInfo> netlist = Collections.synchronizedList(new LinkedList<NetInfo>());
+	private List<AppInfo> active_apps = Collections.synchronizedList(new LinkedList<AppInfo>());
+	private List<AppInfo> apps = Collections.synchronizedList(new LinkedList<AppInfo>());
+	private List<SpaceInfo> spacelist = Collections.synchronizedList(new LinkedList<SpaceInfo>());
+	private List<DiskInfo> disklist = Collections.synchronizedList(new LinkedList<DiskInfo>());
+	private List<PingInfo> pinglist = Collections.synchronizedList(new LinkedList<PingInfo>());
+	private List<PhoneInfo> phonelist = Collections.synchronizedList(new LinkedList<PhoneInfo>());
+	private List<WlanInfo> wlanlist = Collections.synchronizedList(new LinkedList<WlanInfo>());
 	private final String TAG = "eu.thedarken.diagnosis.DGdata";
     public static String BUSYBOX = "";
     private int biggest_data_count = 0;
@@ -420,18 +420,18 @@ public class DGdata {
         	}
         	if(biggest_data_count >= DB_CACHE_SIZE && dbTask_runs.getAndSet(true)) {
         		boolean haveData = false;
-            	List<CpuInfo> dbcpulist = new ArrayList<CpuInfo>();
-            	List<FreqInfo> dbfreqlist = new ArrayList<FreqInfo>();
-            	List<MemInfo> dbmemlist = new ArrayList<MemInfo>();
-            	List<LoadInfo> dbloadlist = new ArrayList<LoadInfo>();
-            	List<BattInfo> dbbattlist = new ArrayList<BattInfo>();
-            	List<NetInfo> dbnetlist = new ArrayList<NetInfo>();
-            	List<AppInfo> dbapps = new ArrayList<AppInfo>();
-            	List<SpaceInfo> dbspacelist = new ArrayList<SpaceInfo>();
-            	List<DiskInfo> dbdisklist = new ArrayList<DiskInfo>();
-            	List<WlanInfo> dbwlanlist = new ArrayList<WlanInfo>();
-            	List<PhoneInfo> dbphonelist = new ArrayList<PhoneInfo>();
-            	List<PingInfo> dbpinglist = new ArrayList<PingInfo>();
+            	List<CpuInfo> dbcpulist = new LinkedList<CpuInfo>();
+            	List<FreqInfo> dbfreqlist = new LinkedList<FreqInfo>();
+            	List<MemInfo> dbmemlist = new LinkedList<MemInfo>();
+            	List<LoadInfo> dbloadlist = new LinkedList<LoadInfo>();
+            	List<BattInfo> dbbattlist = new LinkedList<BattInfo>();
+            	List<NetInfo> dbnetlist = new LinkedList<NetInfo>();
+            	List<AppInfo> dbapps = new LinkedList<AppInfo>();
+            	List<SpaceInfo> dbspacelist = new LinkedList<SpaceInfo>();
+            	List<DiskInfo> dbdisklist = new LinkedList<DiskInfo>();
+            	List<WlanInfo> dbwlanlist = new LinkedList<WlanInfo>();
+            	List<PhoneInfo> dbphonelist = new LinkedList<PhoneInfo>();
+            	List<PingInfo> dbpinglist = new LinkedList<PingInfo>();
             	
     			int fix = 0;
             	int density = settings.getInt("database.density", 6);
@@ -440,7 +440,7 @@ public class DGdata {
 	        	if(settings.getBoolean("general.database.dobatt", false)) {
 					int battlistsize = battlist.size()-1;
 					if(battlistsize < 0) battlistsize = 0;
-					dbbattlist = new ArrayList<BattInfo>(battlist.subList(0, battlistsize));
+					dbbattlist = new LinkedList<BattInfo>(battlist.subList(0, battlistsize));
 					while(--battlistsize > 0) battlist.remove(0);
 					haveData = true;
 	        	} else {
@@ -453,7 +453,7 @@ public class DGdata {
 	        		if(((float)size/density) > 1) {
 	        			int cnt = (int)Math.floor(size/density);
 			        	int cpulistsize = cnt*density - fix;
-			        	dbcpulist = new ArrayList<CpuInfo>(cpulist.subList(0, cpulistsize));
+			        	dbcpulist = new LinkedList<CpuInfo>(cpulist.subList(0, cpulistsize));
 						while(cpulistsize-- > 0) cpulist.remove(0);
 						haveData = true;
 	        		}
@@ -466,7 +466,7 @@ public class DGdata {
 	        		if(((float)size/density) > 1) {
 	        			int cnt = (int)Math.floor(size/density);
 			        	int freqlistsize = cnt*density - fix;
-			        	dbfreqlist = new ArrayList<FreqInfo>(freqlist.subList(0, freqlistsize));
+			        	dbfreqlist = new LinkedList<FreqInfo>(freqlist.subList(0, freqlistsize));
 						while(freqlistsize-- > 0) freqlist.remove(0);
 						haveData = true;
 	        		}
@@ -479,7 +479,7 @@ public class DGdata {
 	        		if(((float)size/density) > 1) {
 	        			int cnt = (int)Math.floor(size/density);
 	        			int memlistsize = cnt*density - fix;
-	        			dbmemlist = new ArrayList<MemInfo>(memlist.subList(0, memlistsize));
+	        			dbmemlist = new LinkedList<MemInfo>(memlist.subList(0, memlistsize));
 	        			while(memlistsize-- > 0) memlist.remove(0);
 	        			haveData = true;
 	        		}
@@ -492,7 +492,7 @@ public class DGdata {
 	        		if(((float)size/density) > 1) {
 	        			int cnt = (int)Math.floor(size/density);
 			        	int loadlistsize = cnt*density - fix;
-			        	dbloadlist = new ArrayList<LoadInfo>(loadlist.subList(0, loadlistsize));
+			        	dbloadlist = new LinkedList<LoadInfo>(loadlist.subList(0, loadlistsize));
 						while(loadlistsize-- > 0) loadlist.remove(0);
 						haveData = true;
 	        		}
@@ -503,7 +503,7 @@ public class DGdata {
 	        	if(settings.getBoolean("general.database.doapps", false)) {
 					int appsize = apps.size()-2;
 					if(appsize < 0) appsize = 0;
-					dbapps = new ArrayList<AppInfo>(apps.subList(0, appsize));
+					dbapps = new LinkedList<AppInfo>(apps.subList(0, appsize));
 					while(--appsize > 0) apps.remove(0);
 					haveData = true;
 	        	} else {
@@ -515,7 +515,7 @@ public class DGdata {
 	        		if(((float)size/density) > 1) {
 	        			int cnt = (int)Math.floor(size/density);
 			        	int netlistsize = cnt*density - fix;
-			        	dbnetlist = new ArrayList<NetInfo>(netlist.subList(0, netlistsize));
+			        	dbnetlist = new LinkedList<NetInfo>(netlist.subList(0, netlistsize));
 						while(netlistsize-- > 0) netlist.remove(0);
 						haveData = true;
 	        		}
@@ -528,7 +528,7 @@ public class DGdata {
 	        		if(((float)size/density) > 1) {
 	        			int cnt = (int)Math.floor(size/density);
 			        	int spacelistsize = cnt*density - fix;
-			        	dbspacelist = new ArrayList<SpaceInfo>(spacelist.subList(0, spacelistsize));
+			        	dbspacelist = new LinkedList<SpaceInfo>(spacelist.subList(0, spacelistsize));
 						while(spacelistsize-- > 0) spacelist.remove(0);
 						haveData = true;
 	        		}
@@ -541,7 +541,7 @@ public class DGdata {
 	        		if(((float)size/density) > 1) {
 	        			int cnt = (int)Math.floor(size/density);
 			        	int disklistsize = cnt*density - fix;
-			        	dbdisklist = new ArrayList<DiskInfo>(disklist.subList(0, disklistsize));
+			        	dbdisklist = new LinkedList<DiskInfo>(disklist.subList(0, disklistsize));
 						while(disklistsize-- > 0) disklist.remove(0);
 						haveData = true;
 	        		}
@@ -554,7 +554,7 @@ public class DGdata {
 	        		if(((float)size/density) > 1) {
 	        			int cnt = (int)Math.floor(size/density);
 			        	int wlanlistsize = cnt*density - fix;
-			        	dbwlanlist = new ArrayList<WlanInfo>(wlanlist.subList(0, wlanlistsize));
+			        	dbwlanlist = new LinkedList<WlanInfo>(wlanlist.subList(0, wlanlistsize));
 						while(wlanlistsize-- > 0) wlanlist.remove(0);
 						haveData = true;
 	        		}
@@ -567,7 +567,7 @@ public class DGdata {
 	        		if(((float)size/density) > 1) {
 	        			int cnt = (int)Math.floor(size/density);
 			        	int phonelistsize = cnt*density - fix;
-			        	dbphonelist = new ArrayList<PhoneInfo>(phonelist.subList(0, phonelistsize));
+			        	dbphonelist = new LinkedList<PhoneInfo>(phonelist.subList(0, phonelistsize));
 						while(--phonelistsize > 0) phonelist.remove(0);
 						haveData = true;
 	        		}
@@ -580,7 +580,7 @@ public class DGdata {
 	        		if(((float)size/density) > 1) {
 	        			int cnt = (int)Math.floor(size/density);
 			        	int pinglistsize = cnt*density - fix;
-			        	dbpinglist = new ArrayList<PingInfo>(pinglist.subList(0, pinglistsize));
+			        	dbpinglist = new LinkedList<PingInfo>(pinglist.subList(0, pinglistsize));
 						while(pinglistsize-- > 0) pinglist.remove(0);
 						haveData = true;
 	        		}
@@ -694,18 +694,18 @@ public class DGdata {
     }
 
     private class dbTask extends AsyncTask<String, Void, Boolean> {
-    	private ArrayList<CpuInfo> dbcpulist = new ArrayList<CpuInfo>();
-    	private ArrayList<FreqInfo> dbfreqlist = new ArrayList<FreqInfo>();
-    	private ArrayList<MemInfo> dbmemlist = new ArrayList<MemInfo>();
-    	private ArrayList<LoadInfo> dbloadlist = new ArrayList<LoadInfo>();
-    	private ArrayList<BattInfo> dbbattlist = new ArrayList<BattInfo>();
-    	private ArrayList<NetInfo> dbnetlist = new ArrayList<NetInfo>();
-    	private ArrayList<AppInfo> dbapps = new ArrayList<AppInfo>();
-    	private ArrayList<SpaceInfo> dbspacelist = new ArrayList<SpaceInfo>();
-    	private ArrayList<DiskInfo> dbdisklist = new ArrayList<DiskInfo>();
-    	private ArrayList<WlanInfo> dbwlanlist = new ArrayList<WlanInfo>();
-    	private ArrayList<PhoneInfo> dbphonelist = new ArrayList<PhoneInfo>();
-    	private ArrayList<PingInfo> dbpinglist = new ArrayList<PingInfo>();
+    	private LinkedList<CpuInfo> dbcpulist = new LinkedList<CpuInfo>();
+    	private LinkedList<FreqInfo> dbfreqlist = new LinkedList<FreqInfo>();
+    	private LinkedList<MemInfo> dbmemlist = new LinkedList<MemInfo>();
+    	private LinkedList<LoadInfo> dbloadlist = new LinkedList<LoadInfo>();
+    	private LinkedList<BattInfo> dbbattlist = new LinkedList<BattInfo>();
+    	private LinkedList<NetInfo> dbnetlist = new LinkedList<NetInfo>();
+    	private LinkedList<AppInfo> dbapps = new LinkedList<AppInfo>();
+    	private LinkedList<SpaceInfo> dbspacelist = new LinkedList<SpaceInfo>();
+    	private LinkedList<DiskInfo> dbdisklist = new LinkedList<DiskInfo>();
+    	private LinkedList<WlanInfo> dbwlanlist = new LinkedList<WlanInfo>();
+    	private LinkedList<PhoneInfo> dbphonelist = new LinkedList<PhoneInfo>();
+    	private LinkedList<PingInfo> dbpinglist = new LinkedList<PingInfo>();
     	private int density = 1;
         public dbTask(List<CpuInfo> cpuinfolist, List<FreqInfo> freqinfolist, List<MemInfo> meminfolist, List<LoadInfo> loadinfolist,
         		List<BattInfo> battinfolist, List<NetInfo> netinfolist,
@@ -739,12 +739,12 @@ public class DGdata {
 		protected Boolean doInBackground(String... params) {
 //			Log.d(mContext.getPackageName(), "Writing to DB...");
 			//Cpu data
-			ArrayList<CpuInfo> c_inserts = new ArrayList<CpuInfo>();
+			LinkedList<CpuInfo> c_inserts = new LinkedList<CpuInfo>();
 			while(dbcpulist.size() >= this.density) {
 				int cnt = this.density;
 				CpuInfo avg = new CpuInfo();
 				while(cnt != 0) {
-					CpuInfo temp = dbcpulist.remove(0);
+					CpuInfo temp = dbcpulist.removeFirst();
 					avg.act_apps_cur += temp.act_apps_cur;
 					for(int i=0;i<avg.usage.length;i++) {
 						avg.idle[i] += temp.idle[i];
@@ -775,12 +775,12 @@ public class DGdata {
 			if(c_inserts.size() > 0) mDB.addCpus(c_inserts,false);
 			
 			//Freq data
-			ArrayList<FreqInfo> f_inserts = new ArrayList<FreqInfo>();
+			LinkedList<FreqInfo> f_inserts = new LinkedList<FreqInfo>();
 			while(dbfreqlist.size() >= this.density) {
 				int cnt = this.density;
 				FreqInfo avg = new FreqInfo();
 				while(cnt != 0) {
-					FreqInfo temp = dbfreqlist.remove(0);
+					FreqInfo temp = dbfreqlist.removeFirst();
 					avg.system_time += temp.system_time;
 					for(int i=0;i<avg.cpu_frequency.length;i++)
 						avg.cpu_frequency[i] += temp.cpu_frequency[i];
@@ -794,12 +794,12 @@ public class DGdata {
 			if(f_inserts.size() > 0) mDB.addFreqs(f_inserts,false);
 			
 			//Memory data
-			ArrayList<MemInfo> m_inserts = new ArrayList<MemInfo>();
+			LinkedList<MemInfo> m_inserts = new LinkedList<MemInfo>();
 			while(dbmemlist.size() >= this.density) {
 				int cnt = this.density;
 				MemInfo avg = new MemInfo();
 				while(cnt != 0) {
-					MemInfo temp = dbmemlist.remove(0);
+					MemInfo temp = dbmemlist.removeFirst();
 					avg.free += temp.free;
 					avg.used += temp.used;
 					avg.shared += temp.shared;
@@ -825,12 +825,12 @@ public class DGdata {
 			if(m_inserts.size() > 0) mDB.addMems(m_inserts,false);
 			
 			//Load data
-			ArrayList<LoadInfo> l_inserts = new ArrayList<LoadInfo>();
+			LinkedList<LoadInfo> l_inserts = new LinkedList<LoadInfo>();
 			while(dbloadlist.size() >= this.density) {
 				int cnt = this.density;
 				LoadInfo avg = new LoadInfo();
 				while(cnt != 0) {
-					LoadInfo temp = dbloadlist.remove(0);
+					LoadInfo temp = dbloadlist.removeFirst();
 					avg.active_apps += temp.active_apps;
 					avg.first += temp.first;
 					avg.second += temp.second;
@@ -846,17 +846,17 @@ public class DGdata {
 			if(l_inserts.size() > 0) mDB.addLoads(l_inserts,false);
 			
 			//Battery data
-			ArrayList<BattInfo> b_inserts = new ArrayList<BattInfo>();
+			LinkedList<BattInfo> b_inserts = new LinkedList<BattInfo>();
 			b_inserts.addAll(dbbattlist);
 			if(b_inserts.size() > 0) mDB.addBats(b_inserts, false);
 			
 			//Net data
-			ArrayList<NetInfo> n_inserts = new ArrayList<NetInfo>();
+			LinkedList<NetInfo> n_inserts = new LinkedList<NetInfo>();
 			while(dbnetlist.size() >= this.density) {
 				int cnt = this.density;
 				NetInfo avg = new NetInfo();
 				while(cnt != 0) {
-					NetInfo temp = dbnetlist.remove(0);
+					NetInfo temp = dbnetlist.removeFirst();
 					avg.rate_down += temp.rate_down;
 					avg.rate_up += temp.rate_up;
 					avg.traffic_down += temp.traffic_down;
@@ -878,7 +878,7 @@ public class DGdata {
 			if(n_inserts.size() > 0) mDB.addNets(n_inserts,false);
 			
 			//App data
-			ArrayList<AppInfo> a_inserts = new ArrayList<AppInfo>();
+			LinkedList<AppInfo> a_inserts = new LinkedList<AppInfo>();
 			for(AppInfo a : dbapps) {
 				if(a.command.contains(mContext.getPackageName())) continue;
 				a_inserts.add(a);
@@ -886,12 +886,12 @@ public class DGdata {
 			if(a_inserts.size() > 0) mDB.addApps(a_inserts, false);
 			
 			//Space data
-			ArrayList<SpaceInfo> s_inserts = new ArrayList<SpaceInfo>();
+			LinkedList<SpaceInfo> s_inserts = new LinkedList<SpaceInfo>();
 			while(dbspacelist.size() >= this.density) {
 				int cnt = this.density;
 				SpaceInfo avg = new SpaceInfo();
 				while(cnt != 0) {
-					SpaceInfo temp = dbspacelist.remove(0);
+					SpaceInfo temp = dbspacelist.removeFirst();
 					avg.system_time += temp.system_time;
 					avg.extern_total += temp.extern_total;
 					avg.extern_used += temp.extern_used;
@@ -917,12 +917,12 @@ public class DGdata {
 			if(s_inserts.size() > 0)  mDB.addSpaces(s_inserts,false);
 			
 			//Disk data
-			ArrayList<DiskInfo> d_inserts = new ArrayList<DiskInfo>();
+			LinkedList<DiskInfo> d_inserts = new LinkedList<DiskInfo>();
 			while(dbdisklist.size() >= this.density) {
 				int cnt = this.density;
 				DiskInfo avg = new DiskInfo();
 				while(cnt != 0) {
-					DiskInfo temp = dbdisklist.remove(0);
+					DiskInfo temp = dbdisklist.removeFirst();
 					avg.system_time += temp.system_time;
 					avg.read += temp.read;
 					avg.written += temp.written;
@@ -938,17 +938,17 @@ public class DGdata {
 			if(d_inserts.size() > 0) mDB.addDisks(d_inserts,false);
 			
 			//Phone data
-			ArrayList<PhoneInfo> p_inserts = new ArrayList<PhoneInfo>();
+			LinkedList<PhoneInfo> p_inserts = new LinkedList<PhoneInfo>();
 			p_inserts.addAll(dbphonelist);
 			if(p_inserts.size() > 0) mDB.addPhones(p_inserts, false);
 			
 			//Wlan data
-			ArrayList<WlanInfo> w_inserts = new ArrayList<WlanInfo>();
+			LinkedList<WlanInfo> w_inserts = new LinkedList<WlanInfo>();
 			while(dbwlanlist.size() >= this.density) {
 				int cnt = this.density;
 				WlanInfo avg = new WlanInfo();
 				while(cnt != 0) {
-					WlanInfo temp = dbwlanlist.remove(0);
+					WlanInfo temp = dbwlanlist.removeFirst();
 					avg.system_time += temp.system_time;
 					avg.signal += temp.signal;
 					cnt--;
@@ -960,12 +960,12 @@ public class DGdata {
 			if(w_inserts.size() > 0) mDB.addWlans(w_inserts,false);
 			
 			//Ping data
-			ArrayList<PingInfo> pi_inserts = new ArrayList<PingInfo>();
+			LinkedList<PingInfo> pi_inserts = new LinkedList<PingInfo>();
 			while(dbpinglist.size() >= this.density) {
 				int cnt = this.density;
 				PingInfo avg = new PingInfo();
 				while(cnt != 0) {
-					PingInfo temp = dbpinglist.remove(0);
+					PingInfo temp = dbpinglist.removeFirst();
 					avg.system_time += temp.system_time;
 					avg.ping += temp.ping;
 					cnt--;
