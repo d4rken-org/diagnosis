@@ -1,4 +1,7 @@
-﻿v0.8.0(28)
+﻿v0.8.1(29)
+- Updated translations
+
+v0.8.0(28)
 - Translation updates
 - UI tweaks
 - Performance tweaks to reduce memory footprint
