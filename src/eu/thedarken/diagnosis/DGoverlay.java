@@ -218,6 +218,7 @@ public class DGoverlay extends Service{
 		canidates.add("/mnt/sdcard-ext");
 		canidates.add(Environment.getExternalStorageDirectory().getAbsolutePath() + "/external_sd");
 		canidates.add("/mnt/emmc");
+		canidates.add("/mnt/extSdCard");
 		canidates.add("/emmc");
 		canidates.add(Environment.getExternalStorageDirectory().getAbsolutePath() + "/_ExternalSD");
 		canidates.add(Environment.getExternalStorageDirectory().getAbsolutePath() + "/sd");

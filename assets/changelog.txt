@@ -1,6 +1,7 @@
 ﻿v0.8.1(29)
 - Updated translations
 - Added targetApi to change menu button behavior
+- Added path for sgs3
 
 v0.8.0(28)
 - Translation updates
