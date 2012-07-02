@@ -342,7 +342,7 @@ public class DGmain extends SherlockFragmentActivity {
 	private String getBusyboxVersion() {
 		Cmd c = new Cmd();
 		c.addCommand(DGmain.BUSYBOX + " | " + DGmain.BUSYBOX + " head -n1" + "\n");
-		c.setTimeout(5000);
+		c.setTimeout(15000);
 		c.execute();
 		if (c.getOutput().size() > 0 && c.getOutput().get(0).length() > 21) {
 			String vers = c.getOutput().get(0);
