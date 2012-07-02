@@ -1,18 +1,12 @@
 package eu.thedarken.diagnosis;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -23,23 +17,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
-import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-
 
 public class DGmain extends SherlockFragmentActivity {
 	private static Context mContext;
@@ -54,6 +43,8 @@ public class DGmain extends SherlockFragmentActivity {
 	private SharedPreferences.Editor prefEditor;
 	private final String TAG = "eu.thedarken.diagnosis.DGmain";
 	public static File db;
+
+	private Bundle savedInstanceState;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -75,48 +66,17 @@ public class DGmain extends SherlockFragmentActivity {
 		prefEditor.putString("BUSYBOX", BUSYBOX);
 		prefEditor.commit();
 
+		this.savedInstanceState = savedInstanceState;
+
 		new setupTask(this).execute();
-
-		try {
-			versCode = mContext.getPackageManager().getPackageInfo("eu.thedarken.diagnosis", 0).versionCode;
-			versName = mContext.getPackageManager().getPackageInfo("eu.thedarken.diagnosis", 0).versionName;
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-			versCode = 0;
-			versName = "";
-		}
-		Log.d(TAG, "VersionName: " + DGmain.versName);
-		Log.d(TAG, "VersionCode: " + DGmain.versCode);
-
-		// setup action bar for tabs
-		ActionBar actionBar = getSupportActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		actionBar.setDisplayShowTitleEnabled(true);
-
-		actionBar.removeAllTabs();
-		
-		Tab tab = actionBar.newTab().setText("info").setTabListener(new TabListener<DGinfo>(this, "Info", DGinfo.class));
-		actionBar.addTab(tab);
-
-		tab = actionBar.newTab().setText("stats").setTabListener(new TabListener<DGstats>(this, "Stats", DGstats.class));
-		actionBar.addTab(tab);
-
-		tab = actionBar.newTab().setText("apps").setTabListener(new TabListener<DGapps>(this, "apps", DGapps.class));
-		actionBar.addTab(tab);
-
-		if( savedInstanceState != null ){
-			actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tabState"));
-	     }
-
 	}
-	
+
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-	    super.onSaveInstanceState(outState);
-	    outState.putInt("tabState", getSupportActionBar().getSelectedTab().getPosition());
+		super.onSaveInstanceState(outState);
+		outState.putInt("tabState", getSupportActionBar().getSelectedTab().getPosition());
 	}
 
-	
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -125,8 +85,8 @@ public class DGmain extends SherlockFragmentActivity {
 		} else {
 			getSupportActionBar().setTitle("");
 		}
-		
-		if(settings.getInt("news.shown", 0) < versCode) {
+
+		if (settings.getInt("news.shown", 0) < versCode) {
 			prefEditor.putInt("news.shown", versCode);
 			prefEditor.commit();
 			MiscDialogFragments news = MiscDialogFragments.newInstance(MiscDialogFragments.NEWS);
@@ -172,7 +132,7 @@ public class DGmain extends SherlockFragmentActivity {
 				ft.attach(mFragment);
 			}
 			try {
-			ft.commit();
+				ft.commit();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -207,32 +167,64 @@ public class DGmain extends SherlockFragmentActivity {
 
 		@Override
 		protected void onPostExecute(final Boolean ok) {
+			try {
+				versCode = mContext.getPackageManager().getPackageInfo("eu.thedarken.diagnosis", 0).versionCode;
+				versName = mContext.getPackageManager().getPackageInfo("eu.thedarken.diagnosis", 0).versionName;
+			} catch (NameNotFoundException e) {
+				e.printStackTrace();
+				versCode = 0;
+				versName = "";
+			}
+			Log.d(TAG, "VersionName: " + DGmain.versName);
+			Log.d(TAG, "VersionCode: " + DGmain.versCode);
+
+			// setup action bar for tabs
+			ActionBar actionBar = getSupportActionBar();
+			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			actionBar.setDisplayShowTitleEnabled(true);
+
+			actionBar.removeAllTabs();
+
+			Tab tab = actionBar.newTab().setText("info").setTabListener(new TabListener<DGinfo>(DGmain.this, "Info", DGinfo.class));
+			actionBar.addTab(tab);
+
+			tab = actionBar.newTab().setText("stats").setTabListener(new TabListener<DGstats>(DGmain.this, "Stats", DGstats.class));
+			actionBar.addTab(tab);
+
+			tab = actionBar.newTab().setText("apps").setTabListener(new TabListener<DGapps>(DGmain.this, "apps", DGapps.class));
+			actionBar.addTab(tab);
+
+			if (savedInstanceState != null) {
+				actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tabState"));
+			}
+
 			dialog.dismiss();
 		}
 
 		@Override
 		protected Boolean doInBackground(String... params) {
 			dialog.updateMessage(mActivity.getString(R.string.copying_busybox));
-			
+
 			CopyAssets();
 
 			dialog.updateMessage(mActivity.getString(R.string.getting_busybox_version));
-			
+
 			BUSYBOX_VERSION = getBusyboxVersion();
-			if(BUSYBOX_VERSION.length() == 0) {
+			if (BUSYBOX_VERSION.length() == 0) {
 				dialog.updateMessage(mActivity.getString(R.string.startup_error));
 				MiscDialogFragments busybox_error = MiscDialogFragments.newInstance(MiscDialogFragments.BUSYBOX_ERROR);
 				busybox_error.showDialog(getSupportFragmentManager());
 			}
-			
+
 			dialog.updateMessage(mActivity.getString(R.string.checking_database));
 
-			if(settings.getInt("dbversion", 0) < DB_DELETE_VERSION && db.exists()) {
+			if (settings.getInt("dbversion", 0) < DB_DELETE_VERSION && db.exists()) {
 				if (db.delete()) {
 					dialog.updateMessage(mActivity.getString(R.string.db_deletion_successfull));
 					Log.d(TAG, mActivity.getString(R.string.db_deletion_successfull));
-//			    	DGdatabase db_object = DGdatabase.getInstance(mContext.getApplicationContext());
-//			    	db_object.init();
+					// DGdatabase db_object =
+					// DGdatabase.getInstance(mContext.getApplicationContext());
+					// db_object.init();
 					prefEditor.putInt("dbversion", DB_DELETE_VERSION);
 					prefEditor.commit();
 				} else {
@@ -250,7 +242,7 @@ public class DGmain extends SherlockFragmentActivity {
 
 			Styles s = new Styles(mContext);
 			s.initLines();
-			
+
 			return true;
 		}
 	}
@@ -304,7 +296,7 @@ public class DGmain extends SherlockFragmentActivity {
 	}
 
 	private Boolean CopyAssets() {
-		if(settings.getInt("busyboxversion", 0) < BUSYBOX_DELETE_VERSION) {
+		if (settings.getInt("busyboxversion", 0) < BUSYBOX_DELETE_VERSION) {
 			new File(mContext.getFilesDir() + "/busybox").delete();
 			prefEditor.putInt("busyboxversion", BUSYBOX_DELETE_VERSION);
 			prefEditor.commit();
@@ -340,7 +332,7 @@ public class DGmain extends SherlockFragmentActivity {
 		Cmd c = new Cmd();
 		c.addCommand("chmod 777 " + DGmain.BUSYBOX + "\n");
 		c.execute();
-		if(c.getExitCode() == 0) {
+		if (c.getExitCode() == 0) {
 			Log.d(TAG, "Rights for non root busybox successfully set.");
 		} else {
 			Log.d(TAG, "Error when trying to set rights for non rooted busybox.");
@@ -352,7 +344,7 @@ public class DGmain extends SherlockFragmentActivity {
 		c.addCommand(DGmain.BUSYBOX + " | " + DGmain.BUSYBOX + " head -n1" + "\n");
 		c.setTimeout(5000);
 		c.execute();
-		if (c.getOutput().size()>0 && c.getOutput().get(0).length() > 21) {
+		if (c.getOutput().size() > 0 && c.getOutput().get(0).length() > 21) {
 			String vers = c.getOutput().get(0);
 			vers = (String) vers.subSequence(0, 22);
 			Log.d(TAG, "Busybox version: " + vers);
@@ -376,12 +368,12 @@ public class DGmain extends SherlockFragmentActivity {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
-		if(DGoverlay.isRunning) {
+		if (DGoverlay.isRunning) {
 			menu.findItem(R.id.starttracking).setTitle(mContext.getString(R.string.stop_tracking));
 		} else {
 			menu.findItem(R.id.starttracking).setTitle(mContext.getString(R.string.start_tracking));
@@ -393,29 +385,29 @@ public class DGmain extends SherlockFragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case android.R.id.home:
-			MiscDialogFragments news = MiscDialogFragments.newInstance(MiscDialogFragments.NEWS);
-			news.showDialog(getSupportFragmentManager());
-			break;
-		case R.id.starttracking:
-			new serviceTask(this).execute();
-			break;
-		case R.id.settings:
-			Intent startPreferencesActivity = new Intent(this, DGsettings.class);
-			this.startActivity(startPreferencesActivity);
-			break;
-		case R.id.help_translate:
-			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.getlocalization.com/diagnosis/"));
-			startActivity(browserIntent);
-			break;
-		case R.id.changelog:
-			ChangelogDialogFragment changelog = ChangelogDialogFragment.newInstance();
-			changelog.showDialog(getSupportFragmentManager());
-			break;
-		case R.id.about:
-			AboutDialogFragment about = AboutDialogFragment.newInstance();
-			about.showDialog(getSupportFragmentManager());
-			break;
+			case android.R.id.home:
+				MiscDialogFragments news = MiscDialogFragments.newInstance(MiscDialogFragments.NEWS);
+				news.showDialog(getSupportFragmentManager());
+				break;
+			case R.id.starttracking:
+				new serviceTask(this).execute();
+				break;
+			case R.id.settings:
+				Intent startPreferencesActivity = new Intent(this, DGsettings.class);
+				this.startActivity(startPreferencesActivity);
+				break;
+			case R.id.help_translate:
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.getlocalization.com/diagnosis/"));
+				startActivity(browserIntent);
+				break;
+			case R.id.changelog:
+				ChangelogDialogFragment changelog = ChangelogDialogFragment.newInstance();
+				changelog.showDialog(getSupportFragmentManager());
+				break;
+			case R.id.about:
+				AboutDialogFragment about = AboutDialogFragment.newInstance();
+				about.showDialog(getSupportFragmentManager());
+				break;
 		}
 		return true;
 	}
