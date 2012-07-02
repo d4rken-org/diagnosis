@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Diagnosi</string>
+    <string name="help_translate">Tradurre Diagnosis</string>
+    <string name="crash_toast_text">Spiacente, ma Diagnosis ha chiuso inaspettatamente</string>
+    <string name="dialog_color_picker">Scegliere un colore </string>
+    <string name="checking_database">Controllando database </string>
+    <string name="press_color_to_apply"></string>
+    <string name="down_arrow">↓</string>
+    <string name="visit_xda">Visita XDA</string>
+    <string name="email_darken">Email darken </string>
+    <string name="sortmode">Modo sorteggio </string>
+    <string name="no_data_saved_yet">"Nessun data salvata ancora!
+Apre le impostazioni e selezionare quale data volete salvare.
+(Potrebbe volere qualche minuto finchè abbastanza data è raccolta)"</string>
+    <string name="seen">Visto </string>
+    <string name="name">Nome </string>
+    <string name="please_wait">Guarda altrove, non deve vedermi cosi\'</string>
+    <string name="colorcode_in_hex">Codice colore in Hex</string>
+    <string name="style_examples">Esempio stile (personalizzare in impostazioni):</string>
+    <string name="welcome_text">Premere \ "Start tracking " - "Iniziare monitoraggio " per cominciare! 
+Controllare le impostazioni! 
+Il tutto e\' altamente personalizzabile! 
+Se si incontrano bugs/problemi o avete domande sarei grato se mi mandate un email a (support@thedarken.eu). 
+Grazie. </string>
+    <string name="linebuider_welcome">Drag/drop l\'icona su/giu\' per sorteggiare. 
+Trascinando l\'icona a destra cancella quella voce. </string>
+    <string name="close">Chiudi</string>
+    <string name="is">è</string>
+    <string name="your_batteries_health">Salute della batteria </string>
+    <string name="charge_level_">"Livello di carico"</string>
+    <string name="is_currently">È attualmente </string>
+    <string name="is_on_average">è in media</string>
+    <string name="your_batteries_voltage">Voltaggio della batteria</string>
+    <string name="highest_was">Il massimo era</string>
+    <string name="lowest_was">Il minimo era</string>
+    <string name="your_battery_is">La batteria è</string>
+    <string name="currently">attualmente</string>
+    <string name="the_battery_temperature">Temperatura batteria</string>
+    <string name="was_on_average">era in media</string>
+    <string name="was_highest_at">Era massimo alle </string>
+    <string name="was_lowest_at">Era minimo alle </string>
+    <string name="active_app_count">Attivo conto app</string>
+    <string name="maximum">Massimo (max) </string>
+    <string name="average_cpu_usage">"Uso CPU media"</string>
+    <string name="user">"Utente"</string>
+    <string name="system">"Sistema"</string>
+    <string name="memory">Memoria </string>
+    <string name="average">Media </string>
+    <string name="observed_cpu_speed">CPU frequenza osservata </string>
+    <string name="observed_cpu_usage">CPU uso media osservata</string>
+    <string name="average_is">La media è</string>
+    <string name="lowest_at">Il minimo era</string>
+    <string name="is_max">Massimo è</string>
+    <string name="is_min">Minimo è</string>
+    <string name="all_latest_rate">(Tutto)Ultima data</string>
+    <string name="download">scaricare</string>
+    <string name="upload">caricare</string>
+    <string name="all_max_speed_last_3h">(Tutte) Max velocità (ultime 3 ore) </string>
+    <string name="all_max_speed_last_24h">(Tutte) Max velocità (ultime 24 ore) </string>
+    <string name="all_traffic_last_3h">(Tutto)Traffico (ultime 3 ore)</string>
+    <string name="all_traffic_last_24h">(Tutto)Traffico (ultime 24 ore)</string>
+    <string name="all_traffic_whole_database">(tutto)Traffico (database completa)</string>
+    <string name="cell_latest_rate">(Cell)Ultima rata</string>
+    <string name="cell_max_speed_last_3h">(Cell)Velocità massima (Ultime 3 ore)</string>
+    <string name="cell_max_speed_last_24h">(Cell)Velocità massima (ultime 24 ore)</string>
+    <string name="cell_traffic_last_3h">(Cell)Traffico (ultime 3 ore)</string>
+    <string name="cell_traffic_last_24h">(Tutto)Traffico (ultime 3 ore)</string>
+    <string name="cell_traffic_whole_database">(tutto)Traffico (database completa)</string>
+    <string name="external_sdcard">SD card esterna</string>
+    <string name="total">Totale</string>
+    <string name="used">Usato</string>
+    <string name="internal_sdcard">SDcard interna</string>
+    <string name="system_partition">Partizione sistema</string>
+    <string name="data_partition">Partizione data</string>
+    <string name="wifi_signal">Segnale WIFI</string>
+    <string name="min">Minimo</string>
+    <string name="cell_signal">CELL potenza segnale</string>
+    <string name="max">Massimo è</string>
+    <string name="ping">"Ping"</string>
+    <string name="disk_write">Scrivere su disco</string>
+    <string name="disk_read">Leggere da disco</string>
+    <string name="loading_data_please_wait">Caricando data, prego attendere.</string>
+    <string name="cpu_percent">CPU%</string>
+    <string name="ram_percent">RAM%</string>
+    <string name="loading">Caricando...</string>
+    <string name="copying_busybox">Copiando a busybox...</string>
+    <string name="getting_busybox_version">Ottenendo versione busybox</string>
+    <string name="db_deletion_successfull">DB cancellato con successo</string>
+    <string name="could_not_delete_db">Non ho potuto cancellare DB</string>
+    <string name="stopping_service">Fermando servizio...</string>
+    <string name="starting_service">Iniziando servizio...</string>
+    <string name="cleaning_old_database_entries">Pulendo vecchio database voci</string>
+    <string name="diagnosis_changelog">Diagnosis novità</string>
+    <string name="stop_tracking">Interrompere il tracciamento</string>
+    <string name="start_tracking">Iniziare il tracciamento</string>
+    <string name="busybox_error">BUSYBOX errore!</string>
+    <string name="busybox_error_explanation">"Non potevo usare nostro BUSYBOX :-(
+Per prevenire comportamento indesiderato Diagnosis chiuderà.
+Prego provare a riprendere o reinstallare Diagnosis.
+Se questo non è di aiuto, per favore mandami un email:
+(support@thedarken.eu)
+Scusate per il disservizio!"</string>
+    <string name="database_removal">Rimozione database</string>
+    <string name="database_removal_explanation">"Questo nuovo versione di Diagnosis adopera una struttura differente per immagazzinare la data periodica. 
+Per evitare errori o comportamento indesiderato la versione precedente è stata rimossa. Dico questo poiché non siete sorprese che la database è vuota."</string>
+    <string name="error">Errore </string>
+    <string name="sorry_reinstall">Spiacente, qualcosa non ha funzionato e dovete reinstallare l\'app. </string>
+    <string name="quit">Esci </string>
+    <string name="dismiss">Abbandonare </string>
+    <string name="news">Novità</string>
+    <string name="news_content">"Avete già valutato Diagnosis?
+Cosa c\'è di nuovo?
+v0.8.0
+-Qualche UI ritocchi e tweaks
+  Traduzioni cambiamenti
+- Prestazione tweaks
+Date un\'occhiata a1Diagnosis Pro\se state cercando funzionalità addizionale o volete supportare il mio lavoro,
+Domande, richiesti o idee?
+Mandami un email1"</string>
+    <string name="no_market_application_found">Nessuna Marke applicazione trovata. </string>
+    <string name="hide">Nascondi</string>
+    <string name="diagnosis_pro">Diagnosis Pro</string>
+    <string name="startup_error">Errore di avvio</string>
+    <string name="pro">Pro</string>
+    <string name="welcome_to_diagnosis">Benvenuto in Diagnosis </string>
+    <string name="try_a_style">Prova uno di questi stili o andare in impostazioni per creare uno vostro personalizzato. </string>
+    <string name="seconds">Secondi </string>
+    <string name="second">Secondo </string>
+    <string name="update_interval_is">"Intervallo di aggiornamento è</string>
+    <string name="loading_database_info">Caricando info database </string>
+    <string name="database_size">Dimensioni database </string>
+    <string name="no_db_yet">No database ancora </string>
+    <string name="data_set_s_will_be_condensed_into_1">Database settaggio(i) saranno condensati in 1</string>
+    <string name="set_s_are_cached_before_saving_to_database">Settaggio(i) trasferiti nella cache prima di salvataggio nella database </string>
+    <string name="style">Stile </string>
+    <string name="set">Settare </string>
+    <string name="sorry_pro_only">Spiacente, ma questo è possibile soltanto nella versione Pro</string>
+    <string name="select_an_info">Selezionare info </string>
+    <string name="diagnosis_service_created">Servizio Diagnosis creato </string>
+    <string name="we_now_know_whats_going_on">Adesso sappiamo cosa succede! </string>
+    <string name="diagnosis">Diagnosi </string>
+    <string name="click_me_to_open_app">Clicca per aprire l\'app</string>
+    <string name="restored_preset_from_slot">Restaurato presettaggio dallo slot </string>
+    <string name="preset_saved_to_slot">Presettaggio salvato nello slot </string>
+    <string name="clearing_database">Pulendo database </string>
+    <string name="database_reset">Database resettata</string>
+    <string name="sorry_stop_diagnosis">Spiacente c\'è stato un errore, prova chiudere Diagnosis? </string>
+    <string name="avg">AVG</string>
+    <string name="ms">ms</string>
+    <string name="all_cores">Tutti cores </string>
+    <string name="core">Core </string>
+    <string name="io">I/O</string>
+    
+    <!-- Preferences -->
+    
+    
+    <string name="preferences_interval_dialog_message">3-5 è raccomandato</string>
+    <string name="preferences_interval_dialog_suffix">"secondi"</string>
+    <string name="preferences_interval_summary">Intervallo di aggiornamento Diagnosis. 
+Veloce è più preciso, ma consuma più risorse. Fate una prova,  io raccomando 3-5s. </string>
+    <string name="preferences_interval_title">Intervallo di aggiornamento </string>
+    
+    <string name="preferences_autostart_summary">"Iniziare Diagnosis dopo un riavvio. 
+Richiesto [Diagnosis Pro]"</string>	
+    <string name="preferences_autostart_title">Auto avvio</string>
+    
+    <string name="preferences_notification_title">Mostra notifiche </string>
+    <string name="preferences_notification_summary">"Visualizza/nasconde icona nella barra notifica. 
+Richiesto [Diagnosis Pro]" </string>
+
+    <string name="preferences_database_general_title">Database </string>
+    <string name="preferences_database_general_summary">Quale informazioni salvare e visualizzare nella tab statistici </string>
+    
+    <string name="preferences_database_doapps_title">Statistiche applicazioni </string>
+    <string name="preferences_database_doapps_summary">Mostra una lista di applicazioni controllate, loro uso CPU, memoria ed altro </string>
+    
+    <string name="preferences_database_dobatt_title">Statistiche batteria </string>
+    <string name="preferences_database_dobatt_summary">Livello carico, temperatura, voltaggio... </string>
+    
+    <string name="preferences_database_docpu_title">Statistiche CPU </string>
+    <string name="preferences_database_docpu_summary">Cpu info, io/sistema/utente/esatto/inattivo utilizzi...</string>
+    
+    <string name="preferences_database_dofreq_title">Cpu frequenza statistiche</string>
+    <string name="preferences_database_dofreq_summary">Frequenza, massimo,minimo, possibile</string>
+    
+    <string name="preferences_database_domem_title">Salva statistiche memoria</string>
+    <string name="preferences_database_domem_summary">Memoria sistema (Totale/Reale/Buffered/Cache)</string>
+    
+    <string name="preferences_database_donet_title">Statistiche rete</string>
+    <string name="preferences_database_donet_summary">Traffico, carico + scarico</string>
+    
+    <string name="preferences_database_dospace_title">Statistiche partizione</string>
+    <string name="preferences_database_dospace_summary">android os, sistema, app data, sdcard, esterna card...</string>
+    
+    <string name="preferences_database_dowifi_title">Statistiche Wifi</string>
+    <string name="preferences_database_dowifi_summary">attualmente soltanto forza segnale</string>
+    
+    <string name="preferences_database_dophone_title">Cellulare statistiche</string>
+    <string name="preferences_database_dophone_summary">Segnale GSM</string>
+        
+    <string name="preferences_database_doping_title">Statistiche Internet</string>
+    <string name="preferences_database_doping_summary">Statistiche che possono causare uso data (ping soltanto in questo momento)</string>
+    
+    <string name="preferences_database_dodisk_title">Statistiche disco</string>
+    <string name="preferences_database_dodisk_summary">Leggere/scrivere velocità alla memoria flash</string>
+    
+	<string name="preferences_database_doload_title">Carica statistiche</string>
+    <string name="preferences_database_doload_summary">Carico sistema stile unix</string>
+    
+    <string name="load">Carica</string>
+    <string name="save_dot_dot_dot">Salva...</string>
+    <string name="load_save_custom_presets">Carica/Salva preimpostazioni personalizzati</string>
+    
+    <string name="load_slot_1">Carica slot 1</string>
+    <string name="load_slot_2">Carica slot 2</string>
+    <string name="load_slot_3">Carica slot 3</string>
+    
+    <string name="save_slot_1">Salva in slot 1</string>
+    <string name="save_slot_2">Salva in slot 2</string>
+    <string name="save_slot_3">Salva in slot 3</string>
+
+    <string name="preferences_customize_lines_summary">Personalizza e confezionare ogni linea info a vostro piacere</string>
+    <string name="preferences_customize_lines_title">Personalizzare linee</string>
+    
+    <string name="preferences_edit_line_1">Modificare Linea 1</string>
+    <string name="preferences_edit_line_2">Modificare linea 2</string>
+    <string name="preferences_edit_line_3">Modificare linea 3</string>
+    <string name="preferences_edit_line_4">Modificare linea 4</string>
+    
+    <string name="preferences_edit_displayed_data">Modificare data visualizzazione</string>
+    
+    <string name="preferences_line_1">Linea 1</string>
+    <string name="preferences_line_2">Linea 2</string>
+    <string name="preferences_line_3">Linea 3</string>
+    <string name="preferences_line_4">Linea 4</string>
+    
+    <string name="layout">Disposizione</string>
+    
+    <string name="preferences_style_and_position_title">Stile e posizione</string>
+    
+    <string name="preferences_x_position_summary">Posizione orizzontale della posizione</string>
+    <string name="preferences_x_position_title">X-posizione</string>
+    
+    <string name="preferences_y_position_summary">Posizione verticale della disposizione</string>
+    <string name="preferences_y_position_title">Y-posizione</string>
+    
+    <string name="preferences_fontsize_summary">Dimensioni delle carattere</string>
+    <string name="preferences_fontsize_title">Dimensioni font</string>
+    
+	<string name="preferences_text_color_normal_summary">Colore testo per visualizzazione normale</string>
+    <string name="preferences_text_color_normal_title">Colore testo normale</string>
+    
+	<string name="preferences_text_color_alert_summary">Colore testo per evidenziare avvisi</string>
+    <string name="preferences_text_color_alert_title">Colore testo avvisi</string>
+    
+    <string name="preferences_fonttype_summary">Scegliere tipo di font</string>
+    <string name="preferences_fonttype_title">Font</string>
+    
+    <string name="preferences_alignright_summary">Il testo sarà immesso alla sinistra della posizione setup (cioè applicare in relazione della larghezza schermo)</string>
+    <string name="preferences_alignright_title">Allineare a destra</string>
+    
+    <string name="preferences_drawbackground_summary">Desingare un fondo dietro il testo per renderlo più leggibile</string>
+    <string name="preferences_drawbackground_title">Disegnare fondo</string>
+    
+    <string name="preferences_backgroundcolor_summary">Colore per il fondo</string>
+    <string name="preferences_backgroundcolor_title">Colore testo di fondo</string>
+    
+    <string name="preferences_customize_general_summary">Cambia opzioni che comprendono ogni linea</string>
+    <string name="preferences_customize_general_title">Personalizzare opzioni </string>
+    
+    <string name="preferences_fahrenheit_summary">Usare Fahrenheit invece di celsius per la temperatura</string>
+    <string name="preferences_fahrenheit_title">Usare Fahrenheit</string>
+    
+    <string name="preferences_divider_summary">Cambia il simbolo che separa informazione nel overlay</string>
+    <string name="preferences_divider_title">Divisore</string>
+    
+    <string name="preferences_cpu_threshold_summary">Immettere un  limite CPU per una app prima che questa appare. (Diagnosis Pro)</string>
+    <string name="preferences_cpu_threshold_title">Soglia CPU</string>
+    
+    <string name="preferences_hide_system_entries_summary">Nasconde le voci sistema, lasciando soltanto le app.</string>
+    <string name="preferences_hide_system_entries_title">Nasconde core processore</string>
+    
+    <string name="preferences_ping_target_summary">A quale indirizzo deve essere indirizzato la funzione ping?</string>
+    <string name="preferences_ping_target_title">Ping obbiettivo </string>
+    
+    <string name="preferences_advanced_settings">Impostazioni avanzati </string>
+    
+    <string name="database">Database</string>
+    
+    <string name="preferences_database_agelimit_summary">Dopo quanto tempo deve essere cancellata?(Succede quando inizia il servizio)</string>
+    <string name="preferences_database_agelimit_title">Limite data età</string>
+    <string name="preferences_database_agelimit_dialog_message">Limite data età</string>
+    <string name="preferences_database_agelimit_dialog_suffix">" ore "</string>
+    
+    <string name="prefrence_database_dropall_summary">Scarica tutte le tabelle database così risettandole</string>
+    <string name="prefrence_database_dropall_title">Scarica database</string>
+    
+    <string name="prefrence_database_density_summary">Condensa multiple database in una. Un numero inferiore vuol dire data più accurata, ma database maggiore.</string>
+    <string name="prefrence_database_density_dialog_message">Scegliere 1 per massima precisione, o più  alto se non ti interessa la precisione ma vuoi database minore.</string>
+    <string name="prefrence_database_density_title">Densità data</string>
+    
+    <string name="prefrence_database_cachesize_summary">Quanti voci devono essere salvata in RAM prima di tentare di scrivere nella memoria</string>
+    <string name="prefrence_database_cachesize_dialog_message">Maggiore vuol dire più risorse usate, minore scrive i valori alla database più veloce.</string>
+    <string name="prefrence_database_cachesize_title">Dimensioni cache</string>
+    
+    <string name="about_help_text">"Diagnosis by darken
+
+Se avete domande, problemi o richiesti, prego mandarmi una email (support@thedarken.eu).
+
+Questa guida copre le base di Diagnosis.
+
+Alcuni informazioni importanti riguarda la sovrapposizione!
+La sovrapposizione puo appendere/ritardare o anche svanire, se le altre applicazioni hanno bisogno di risorse disperatamente, ciò è preferito comunque poichè non vogliamo che Diagnosis influisce sulle altre app. Non vi preoccupate, ritornerà alla norma quando le risorse sono di nuovo disponibile.
+
+Introduzione:
+Ora, prima di tutto, se desiderate usare le varie statistiche disponibile nella app dovrete iniziare a collezionare le database, per fare ciò guardate nelle impostazioni.
+Per favore tenete a mente questo puo causare lentezza su dispositivi inferiori e se è così forse non vorrete usare questo funzione.
+L\'intervallo di update è quanto spesso la data è raccolta (in secondi) e l\'informazione sovrapposta è aggiornata. Valore inferiore usano più CPU ma offre un update più veloce. Un valore di 3-5 normally va bene, dispositivi inferiori potrebbe incrementare a 9-10 per evitare ritardi.
+La data fornita nel sovrapposizione è lo stesso che sarà scritta nella database, se è abilitato.
+Personalizzazione:
+La sovrapposizione puo essere personalizztata in vari modi, uno è quello che ogni linea monitorizza. Aprendo impostazioni vedrete una voce nominata \'Customize Lines\' che contiene Line (Linea)1/2/3/4, queste determinerà ciò che mostra ogni linea nella sovrapposizione. Ci sono tante da cui svegliere e probabilmente altre in arrivo con ogni update, basta guardare e scegliere l\'informazione desiderata.
+
+Impostazioni avanzati:
+Non è necessario cambiarlì.Le impostazioni default normalmente vanno bene.
+Update intervallo è quanto spesso Diagnosis raccoglie data(questa aggiorna anche la sovrapposizione/overlay),dimenzione cache è quanto ci vuole memorizzare nella RAM prima di tentare di scrivere sul disco, default è 24, una maggiore densità significa un file database minore ma meno precisione di informazione, quindi con una densità di 5 e cache di 10 indicherà 10 data impostazzioni, condensare a 2 e quindi scrivere nella database.
+"Drop database"(Calare database) eliminerà la database, così liberando spazio su disco, ma eliminando la data salvata.
+Data Limite età permette di specificare la quantità di ore per il quale volete tenire data, data più vecchia di questa srà eliminata la prossima volta che inizia overlay.
+"</string>
+    
+    <string name="about">Circa</string>
+    
+    <string name="settings">Impostazioni</string>
+    
+    <string name="changelog">Changelog (Novità)</string>
+    <string name="visit_homepage">Visita la homepage</string>
+</resources>
