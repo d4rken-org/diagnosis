@@ -43,8 +43,6 @@ public class DGmain extends SherlockFragmentActivity {
 	private SharedPreferences.Editor prefEditor;
 	private final String TAG = "eu.thedarken.diagnosis.DGmain";
 	public static File db;
-	private ActionBar mBar;
-	private Bundle savedInstanceState;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -66,7 +64,25 @@ public class DGmain extends SherlockFragmentActivity {
 		prefEditor.putString("BUSYBOX", BUSYBOX);
 		prefEditor.commit();
 
-		this.savedInstanceState = savedInstanceState;
+
+		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		getSupportActionBar().setDisplayShowTitleEnabled(true);
+		getSupportActionBar().setHomeButtonEnabled(true);
+
+		getSupportActionBar().removeAllTabs();
+
+		Tab tab = getSupportActionBar().newTab().setText("info").setTabListener(new TabListener<DGinfo>(DGmain.this, "Info", DGinfo.class));
+		getSupportActionBar().addTab(tab);
+
+		tab = getSupportActionBar().newTab().setText("stats").setTabListener(new TabListener<DGstats>(DGmain.this, "Stats", DGstats.class));
+		getSupportActionBar().addTab(tab);
+
+		tab = getSupportActionBar().newTab().setText("apps").setTabListener(new TabListener<DGapps>(DGmain.this, "apps", DGapps.class));
+		getSupportActionBar().addTab(tab);
+
+		if (savedInstanceState != null) {
+			getSupportActionBar().setSelectedNavigationItem(savedInstanceState.getInt("tabState"));
+		}
 
 		new setupTask(this).execute();
 	}
@@ -74,8 +90,7 @@ public class DGmain extends SherlockFragmentActivity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		if (mBar != null)
-			outState.putInt("tabState", mBar.getSelectedTab().getPosition());
+		outState.putInt("tabState", getSupportActionBar().getSelectedTab().getPosition());
 	}
 
 	@Override
@@ -177,27 +192,6 @@ public class DGmain extends SherlockFragmentActivity {
 			}
 			Log.d(TAG, "VersionName: " + DGmain.versName);
 			Log.d(TAG, "VersionCode: " + DGmain.versCode);
-
-			// setup action bar for tabs
-			mBar = getSupportActionBar();
-			mBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-			mBar.setDisplayShowTitleEnabled(true);
-			mBar.setHomeButtonEnabled(true);
-
-			mBar.removeAllTabs();
-
-			Tab tab = mBar.newTab().setText("info").setTabListener(new TabListener<DGinfo>(DGmain.this, "Info", DGinfo.class));
-			mBar.addTab(tab);
-
-			tab = mBar.newTab().setText("stats").setTabListener(new TabListener<DGstats>(DGmain.this, "Stats", DGstats.class));
-			mBar.addTab(tab);
-
-			tab = mBar.newTab().setText("apps").setTabListener(new TabListener<DGapps>(DGmain.this, "apps", DGapps.class));
-			mBar.addTab(tab);
-
-			if (savedInstanceState != null) {
-				mBar.setSelectedNavigationItem(savedInstanceState.getInt("tabState"));
-			}
 
 			dialog.dismiss();
 		}
