@@ -311,7 +311,7 @@ public class DGstats extends SherlockFragment {
 				r.addView(io);
 				core_usage_table.addView(r);
 				
-				Log.d(TAG, ""+cpuinfo.cpu_avg_total[0]);
+
 				if(DGmain.checkPro(mActivity)) {
 					for(int i=0;i<cpuinfo.cpu_avg_total.length;i++) {
 						if(cpuinfo.cpu_avg_io[i] == 0 && cpuinfo.cpu_avg_system[i] == 0 && cpuinfo.cpu_avg_user[i] == 0 && cpuinfo.cpu_avg_total[i] == 0)
