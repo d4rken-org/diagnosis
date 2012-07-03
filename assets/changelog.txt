@@ -1,4 +1,7 @@
-﻿v0.8.1(29)
+﻿v0.8.2(30)
+- Small bugfixes
+
+v0.8.1(29)
 - Updated translations
 - Added Italian language
 - Added targetApi to change menu button behavior

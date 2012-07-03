@@ -43,7 +43,7 @@ public class DGmain extends SherlockFragmentActivity {
 	private SharedPreferences.Editor prefEditor;
 	private final String TAG = "eu.thedarken.diagnosis.DGmain";
 	public static File db;
-
+	private ActionBar mBar;
 	private Bundle savedInstanceState;
 
 	@Override
@@ -74,7 +74,8 @@ public class DGmain extends SherlockFragmentActivity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putInt("tabState", getSupportActionBar().getSelectedTab().getPosition());
+		if (mBar != null)
+			outState.putInt("tabState", mBar.getSelectedTab().getPosition());
 	}
 
 	@Override
@@ -89,8 +90,7 @@ public class DGmain extends SherlockFragmentActivity {
 		if (settings.getInt("news.shown", 0) < versCode) {
 			prefEditor.putInt("news.shown", versCode);
 			prefEditor.commit();
-			MiscDialogFragments news = MiscDialogFragments.newInstance(MiscDialogFragments.NEWS);
-			news.showDialog(getSupportFragmentManager());
+			MiscDialogFragments.showDialog(getSupportFragmentManager(), MiscDialogFragments.NEWS);
 		}
 	}
 
@@ -179,23 +179,24 @@ public class DGmain extends SherlockFragmentActivity {
 			Log.d(TAG, "VersionCode: " + DGmain.versCode);
 
 			// setup action bar for tabs
-			ActionBar actionBar = getSupportActionBar();
-			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-			actionBar.setDisplayShowTitleEnabled(true);
+			mBar = getSupportActionBar();
+			mBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			mBar.setDisplayShowTitleEnabled(true);
+			mBar.setHomeButtonEnabled(true);
 
-			actionBar.removeAllTabs();
+			mBar.removeAllTabs();
 
-			Tab tab = actionBar.newTab().setText("info").setTabListener(new TabListener<DGinfo>(DGmain.this, "Info", DGinfo.class));
-			actionBar.addTab(tab);
+			Tab tab = mBar.newTab().setText("info").setTabListener(new TabListener<DGinfo>(DGmain.this, "Info", DGinfo.class));
+			mBar.addTab(tab);
 
-			tab = actionBar.newTab().setText("stats").setTabListener(new TabListener<DGstats>(DGmain.this, "Stats", DGstats.class));
-			actionBar.addTab(tab);
+			tab = mBar.newTab().setText("stats").setTabListener(new TabListener<DGstats>(DGmain.this, "Stats", DGstats.class));
+			mBar.addTab(tab);
 
-			tab = actionBar.newTab().setText("apps").setTabListener(new TabListener<DGapps>(DGmain.this, "apps", DGapps.class));
-			actionBar.addTab(tab);
+			tab = mBar.newTab().setText("apps").setTabListener(new TabListener<DGapps>(DGmain.this, "apps", DGapps.class));
+			mBar.addTab(tab);
 
 			if (savedInstanceState != null) {
-				actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tabState"));
+				mBar.setSelectedNavigationItem(savedInstanceState.getInt("tabState"));
 			}
 
 			dialog.dismiss();
@@ -212,8 +213,7 @@ public class DGmain extends SherlockFragmentActivity {
 			BUSYBOX_VERSION = getBusyboxVersion();
 			if (BUSYBOX_VERSION.length() == 0) {
 				dialog.updateMessage(mActivity.getString(R.string.startup_error));
-				MiscDialogFragments busybox_error = MiscDialogFragments.newInstance(MiscDialogFragments.BUSYBOX_ERROR);
-				busybox_error.showDialog(getSupportFragmentManager());
+				MiscDialogFragments.showDialog(getSupportFragmentManager(), MiscDialogFragments.BUSYBOX_ERROR);
 			}
 
 			dialog.updateMessage(mActivity.getString(R.string.checking_database));
@@ -230,11 +230,10 @@ public class DGmain extends SherlockFragmentActivity {
 				} else {
 					dialog.updateMessage(mActivity.getString(R.string.could_not_delete_db));
 					Log.d(TAG, mActivity.getString(R.string.could_not_delete_db));
-					MiscDialogFragments reinstall = MiscDialogFragments.newInstance(MiscDialogFragments.REINSTALL);
-					reinstall.showDialog(getSupportFragmentManager());
+					MiscDialogFragments.showDialog(getSupportFragmentManager(), MiscDialogFragments.REINSTALL);
 				}
-				MiscDialogFragments db_removal = MiscDialogFragments.newInstance(MiscDialogFragments.DATABASE_REMOVAL);
-				db_removal.showDialog(getSupportFragmentManager());
+
+				MiscDialogFragments.showDialog(getSupportFragmentManager(), MiscDialogFragments.DATABASE_REMOVAL);
 			} else {
 				prefEditor.putInt("dbversion", DB_DELETE_VERSION);
 				prefEditor.commit();
@@ -386,8 +385,7 @@ public class DGmain extends SherlockFragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case android.R.id.home:
-				MiscDialogFragments news = MiscDialogFragments.newInstance(MiscDialogFragments.NEWS);
-				news.showDialog(getSupportFragmentManager());
+				MiscDialogFragments.showDialog(getSupportFragmentManager(), MiscDialogFragments.NEWS);
 				break;
 			case R.id.starttracking:
 				new serviceTask(this).execute();

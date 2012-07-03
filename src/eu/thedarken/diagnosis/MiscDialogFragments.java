@@ -16,7 +16,7 @@ public class MiscDialogFragments extends SherlockDialogFragment {
 	final static int DATABASE_REMOVAL = 1;
 	final static int REINSTALL = 2;
 	final static int NEWS = 3;
-	private String dialog_tag = "";
+	
 	public static MiscDialogFragments newInstance(int type) {
 		MiscDialogFragments frag = new MiscDialogFragments();
 		Bundle args = new Bundle();
@@ -25,16 +25,23 @@ public class MiscDialogFragments extends SherlockDialogFragment {
 		return frag;
 	}
 	
-	public void showDialog(FragmentManager fm) {
-		this.show(fm, dialog_tag);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
 	}
+	
+	public static void showDialog(FragmentManager fragman, int type) {
+        // Create the fragment and show it as a dialog.
+    	SherlockDialogFragment show = MiscDialogFragments.newInstance(type);
+        show.show(fragman, "MiscDialogFragments");
+    }
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		int id = getArguments().getInt("type");
 		switch (id) {
 		case BUSYBOX_ERROR:
-			dialog_tag = "busybox_error_dialog";
 			return new AlertDialog.Builder(getActivity())
 					.setTitle(R.string.busybox_error)
 					.setCancelable(true)
@@ -47,7 +54,6 @@ public class MiscDialogFragments extends SherlockDialogFragment {
 						}
 					}).create();
 		case DATABASE_REMOVAL:
-			dialog_tag = "database_removal_dialog";
 			return new AlertDialog.Builder(getActivity())
 					.setTitle(R.string.database_removal)
 					.setCancelable(true)
@@ -60,7 +66,6 @@ public class MiscDialogFragments extends SherlockDialogFragment {
 						}
 					}).create();
 		case REINSTALL:
-			dialog_tag = "reinstall_dialog";
 			return new AlertDialog.Builder(getActivity()).setTitle(R.string.error).setCancelable(true)
 					.setMessage(R.string.sorry_reinstall)
 					.setNegativeButton(R.string.quit, new DialogInterface.OnClickListener() {
@@ -70,7 +75,6 @@ public class MiscDialogFragments extends SherlockDialogFragment {
 						}
 					}).create();
 		case NEWS:
-			dialog_tag = "news_dialog";
 			return new AlertDialog.Builder(getActivity())
 					.setTitle(R.string.news)
 					.setCancelable(true)
@@ -93,7 +97,6 @@ public class MiscDialogFragments extends SherlockDialogFragment {
 					}).create();
 		}
 		Dialog dialog = null;
-		dialog_tag = "unknown_dialog";
 		return dialog;
 	}
 }
