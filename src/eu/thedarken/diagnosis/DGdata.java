@@ -1157,6 +1157,8 @@ public class DGdata {
 
 		//Rates
 		long intervall = System.currentTimeMillis() - disk_duration;
+		if(intervall == 0)
+			intervall++;
 		ret.write_rate = Math.round((current_written - global_write)*1000/intervall);
 		ret.read_rate = Math.round((current_read - global_read)*1000/intervall);	
 		if(ret.write_rate < 0 || global_write == 0) ret.write_rate = 0;

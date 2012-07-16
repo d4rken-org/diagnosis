@@ -1,4 +1,7 @@
-﻿v0.8.2(30)
+﻿v0.8.3(31)
+- Small bugfixes in data calculation
+
+v0.8.2(30)
 - Small bugfixes
 
 v0.8.1(29)
