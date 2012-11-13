@@ -514,19 +514,19 @@ public class DGoverlay extends Service{
 					break;
 		        //<item>Real free memory</item>
 				case 11:
-					toset.append("free " + Formatter.formatFileSize(mContext,(long)(data.getMem().free)));
+					toset.append("Free " + Formatter.formatFileSize(mContext,(long)(data.getMem().free)));
 					break;
 		        //<item>Used memory</item>
 				case 12:
-					toset.append("used " + Formatter.formatFileSize(mContext,(long)(data.getMem().used)));
+					toset.append("Used " + Formatter.formatFileSize(mContext,(long)(data.getMem().used)));
 					break;
 		        //<item>Buffered memory</item>
 				case 13:
-					toset.append("buff " + Formatter.formatFileSize(mContext,(long)(data.getMem().buff)));
+					toset.append("Buff " + Formatter.formatFileSize(mContext,(long)(data.getMem().buff)));
 					break;
 		        //<item>Cached memory</item>
 				case 14:
-					toset.append("cache " + Formatter.formatFileSize(mContext,(long)(data.getMem().cached)));
+					toset.append("Cache " + Formatter.formatFileSize(mContext,(long)(data.getMem().cached)));
 					break;
 				//<item>System time</item>    
 				case 15:
@@ -615,7 +615,7 @@ public class DGoverlay extends Service{
 					break;
 				//<item>WIFI signal strength</item>
 				case 33:
-					toset.append("Wifi " + data.getWlan().formatSignal(data.getWlan().signal));
+					toset.append("WiFi " + data.getWlan().formatSignal(data.getWlan().signal));
 					break;
 				//<item>CELL signal strength</item>
 				case 34:
