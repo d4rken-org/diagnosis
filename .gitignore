@@ -1,3 +1,8 @@
-/bin
-/gen
-/lib
+.gradle
+/local.properties
+*.iml
+.idea/
+/build
+/sdmlib/build
+/*.apk
+/crowdin-cli.jar

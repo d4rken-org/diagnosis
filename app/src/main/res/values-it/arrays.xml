@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="infolist">
+        <item>Selezionare qualcosa</item><!-- 0 -->
+        <item>Apps >[Impostazioni]%CPU</item><!-- 1 -->
+        <item>Apps >40%CPU</item><!-- 2 -->
+        <item>Apps >1% CPU</item><!-- 3 -->
+        <item>Cpu uso (TUTTI cores)</item><!--4 -->
+        <item>Cpu USR (TUTTI cores)</item><!-- 5 -->
+        <item>Cpu SYS (TUTTI cores)</item><!-- 6 -->
+        <item>Cpu IDLE (TUTTI cores)</item><!-- 7 -->
+        <item>Cpu IO (TUTTI cores)</item><!-- 8 -->
+        <item>Cpu NICE (TUTTI cores)</item><!-- 9 -->
+        <item>Totale memoria libera</item><!-- 10 -->
+        <item>Reale memoria libera</item><!--11 -->
+        <item>Memoria usata</item><!-- 12 -->
+        <item>Buffered memoria</item><!-- 13 -->
+        <item>Cache memoria</item><!-- 14 -->
+        <item>Sistema tempo</item>      <!-- 15 -->
+        <item>Download</item><!-- 16 -->
+        <item>Upload</item><!-- 17 -->
+        <item>Sistema carica</item><!-- 18 -->
+        <item>Attivo conto app</item><!-- 19 -->
+        <item>Batteria livello</item><!-- 20 -->
+        <item>Batteria voltaggio</item><!-- 21 -->
+        <item>Batteria temp</item><!-- 22 -->
+        <item>Ora</item><!--23 -->
+        <item>Data</item><!-- 24 -->
+        <item>Disco LEGGERE</item><!-- 25 -->
+        <item>Disco SCRIVERE</item><!-- 26 -->
+        <item>Cpu frequenza(TUTTI cores)</item><!-- 27 -->
+        <item>Spazio esterno libero</item><!-- 28 -->
+        <item>Spazio sdcard libero</item><!-- 29 -->
+        <item>Spazio sistema libero</item><!-- 30 -->
+        <item>Spazio interno libero</item><!-- 31 -->
+        <item>Ping</item><!-- 32 -->
+        <item>WIFI potenza segnale</item><!-- 33 -->
+        <item>CELL potenza segnale</item><!-- 34 -->
+
+
+        <item>WIFI IP indirizzo [Pro]</item><!-- 35 -->
+        <item>WIFI nome [Pro]</item><!-- 36 -->
+        <item>WIFI velocità link [Pro]</item><!-- 37 -->
+        <item>Download (cell) [Pro]</item><!-- 38 -->
+        <item>Upload (cell) [Pro]</item><!-- 39 -->
+
+        <item>Core#1 freq [Pro]</item><!-- 40 -->
+        <item>Core#2 freq [Pro]</item><!-- 41 -->
+        <item>Core#3 freq [Pro]</item><!-- 42 -->
+        <item>Core#4 freq [Pro]</item><!-- 43 -->
+
+        <item>Core#1 uso [Pro]</item><!-- 44 -->
+        <item>Core#1 USR [Pro]</item><!-- 45 -->
+        <item>Core#1 SYS [Pro]</item><!-- 46 -->
+        <item>Core#1 INATTIVO [Pro]</item><!-- 47 -->
+        <item>Core#1 IO [Pro]</item><!-- 48 -->
+        <item>Core#1 NICE [Pro]</item><!-- 49 -->
+
+        <item>Core#2 uso [Pro]</item><!--50 -->
+        <item>Core#2 USR [Pro]</item><!-- 51 -->
+        <item>Core#2 SYS [Pro]</item><!-- 52 -->
+        <item>Core#2 INATTIVO [Pro]</item><!-- 53 -->
+        <item>Core#2 IO [Pro]</item><!-- 54 -->
+        <item>Core#2 NICE [Pro]</item><!-- 55 -->
+
+        <item>Core#3 uso [Pro]</item><!--56 -->
+        <item>Core#3 USR [Pro]</item><!-- 57 -->
+        <item>Core#3 SYS [Pro]</item><!-- 58 -->
+        <item>Core#3 INATTIVO [Pro]</item><!-- 59 -->
+        <item>Core#3 IO [Pro]</item><!-- 60 -->
+        <item>Core#3 NICE [Pro]</item><!-- 61 -->
+
+        <item>Core#4 usage [Pro]</item><!--62 -->
+        <item>Core#4 USR [Pro]</item><!-- 63 -->
+        <item>Core#4 SYS [Pro]</item><!-- 64 -->
+        <item>Core#4 INATTIVO [Pro]</item><!-- 65 -->
+        <item>Core#4 IO [Pro]</item><!-- 66 -->
+        <item>Core#4 NICE [Pro]</item><!-- 67 -->
+    </string-array>
+    <string-array name="stylelist">
+        <item>Clicca e scegliere!</item><!-- 0 -->
+        <item>Stile 1</item><!-- 1 -->
+        <item>Stile 2</item><!-- 2 -->
+        <item>Stile 3</item><!-- 3 -->
+        <item>Stile 4</item><!--4 -->
+        <item>Stile 5</item><!-- 5 -->
+        <item>Stile 6</item><!-- 6 -->
+        <item>Stile 7</item><!-- 7 -->
+        <item>Stile 8</item><!-- 8 -->
+        <item>Stile 9</item><!-- 9 -->
+        <item>Stile 10</item><!-- 10 -->
+        <item>Stile 11</item><!--11 -->
+        <item>Stile 12</item><!-- 12 -->
+    </string-array>
+    <string-array name="dividerlist">
+        <item>Selezionare qualcosa</item>
+        <item>vuoto/spazio</item>
+        <item>|</item>
+        <item>*</item>
+        <item>,</item>
+        <item>.</item>
+        <item>;</item>
+        <item>-</item>
+        <item>+</item>
+        <item>#</item>
+        <item>~</item>
+        <item>/</item>
+        <item>(</item>
+        <item>)</item>
+        <item>[</item>
+        <item>]</item>
+    </string-array>
+    <string-array name="fontNames">
+        <item>Normale</item>
+        <item>Grassetto</item>
+        <item>Monospazio</item>
+        <item>Sans Serif</item>
+        <item>Serif</item>
+    </string-array>
+    <string-array name="fontValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="sortmode_app">
+        <item>conteggio visto</item>
+        <item>memoria media</item>
+        <item>media cpu utilizzo</item>
+        <item>ultimo visto</item>
+        <item>comando</item>
+    </string-array>
+
+</resources>
