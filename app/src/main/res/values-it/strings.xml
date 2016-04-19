@@ -20,9 +20,7 @@ Apre le impostazioni e selezionare quale data volete salvare.
     <string name="style_examples">Esempio stile (personalizzare in impostazioni):</string>
     <string name="welcome_text">Premere \ "Start tracking " - "Iniziare monitoraggio " per cominciare! 
 Controllare le impostazioni! 
-Il tutto e\' altamente personalizzabile! 
-Se si incontrano bugs/problemi o avete domande sarei grato se mi mandate un email a (support@thedarken.eu). 
-Grazie. </string>
+Il tutto e\' altamente personalizzabile! </string>
     <string name="linebuider_welcome">Drag/drop l\'icona su/giu\' per sorteggiare. 
 Trascinando l\'icona a destra cancella quella voce. </string>
     <string name="close">Chiudi</string>
@@ -97,10 +95,7 @@ Trascinando l\'icona a destra cancella quella voce. </string>
     <string name="busybox_error">BUSYBOX errore!</string>
     <string name="busybox_error_explanation">"Non potevo usare nostro BUSYBOX :-(
 Per prevenire comportamento indesiderato Diagnosis chiuderà.
-Prego provare a riprendere o reinstallare Diagnosis.
-Se questo non è di aiuto, per favore mandami un email:
-(support@thedarken.eu)
-Scusate per il disservizio!"</string>
+Prego provare a riprendere o reinstallare Diagnosis."</string>
     <string name="database_removal">Rimozione database</string>
     <string name="database_removal_explanation">"Questo nuovo versione di Diagnosis adopera una struttura differente per immagazzinare la data periodica. 
 Per evitare errori o comportamento indesiderato la versione precedente è stata rimossa. Dico questo poiché non siete sorprese che la database è vuota."</string>
@@ -109,15 +104,6 @@ Per evitare errori o comportamento indesiderato la versione precedente è stata 
     <string name="quit">Esci </string>
     <string name="dismiss">Abbandonare </string>
     <string name="news">Novità</string>
-    <string name="news_content">"Avete già valutato Diagnosis?
-Cosa c\'è di nuovo?
-v0.8.0
--Qualche UI ritocchi e tweaks
-  Traduzioni cambiamenti
-- Prestazione tweaks
-Date un\'occhiata a1Diagnosis Pro\se state cercando funzionalità addizionale o volete supportare il mio lavoro,
-Domande, richiesti o idee?
-Mandami un email1"</string>
     <string name="no_market_application_found">Nessuna Marke applicazione trovata. </string>
     <string name="hide">Nascondi</string>
     <string name="diagnosis_pro">Diagnosis Pro</string>
@@ -305,8 +291,6 @@ Richiesto [Diagnosis Pro]" </string>
     <string name="prefrence_database_cachesize_title">Dimensioni cache</string>
     
     <string name="about_help_text">"Diagnosis by darken
-
-Se avete domande, problemi o richiesti, prego mandarmi una email (support@thedarken.eu).
 
 Questa guida copre le base di Diagnosis.
 

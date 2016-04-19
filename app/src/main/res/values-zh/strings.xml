@@ -19,9 +19,7 @@
     <string name="style_examples">（创建您自己的设置 ！） 样式的示例：</string>
     <string name="welcome_text">"按 \"Start tracking\"开始 ！
 签出设置 ！
-一切都是高度可定制 ！
-
-如果您遇到的错误/问题或有要求，我会很快乐，如果你寄给我的 email(support@thedarken.eu)，谢谢你 ！"</string>
+一切都是高度可定制 ！"</string>
     <string name="linebuider_welcome">"拖放向上/向下的图标进行排序。
 右拖动图标时，将删除该项目"</string>
     <string name="close">关闭</string>
@@ -96,10 +94,7 @@
     <string name="busybox_error">你可以自行修改错误 ！</string>
     <string name="busybox_error_explanation">"不能使用我们你可以自行修改:-(
 为防止不需要的行为诊断仪将立即关闭。
-请尝试重新启动或重新安装诊断仪。
-这不应该帮助请给我写一封电子邮件：
-（support@thedarken.eu）
-对不起，对自己的烦恼 ！"</string>
+请尝试重新启动或重新安装诊断仪。"</string>
     <string name="database_removal">数据库删除</string>
     <string name="database_removal_explanation">"诊断仪此新版本使用不同的结构来存储周期的数据。
 为了避免错误和不需要的行为，已删除以前的版本。
@@ -109,17 +104,6 @@
     <string name="quit">退出</string>
     <string name="dismiss">解雇</string>
     <string name="news">新闻</string>
-    <string name="news_content">"
-如果你想你的母语翻译诊断仪，给我写邮件。
-
-v0.7.9
--修复0输出一些新信息显示
--小更改
-
-看一看 \'诊断仪专业版\' 如果您希望得到额外的功能请支持我的工作。
-
-问题、建议，想法?
-发邮件给我!"</string>
     <string name="no_market_application_found">未找到的市场应用程序。</string>
     <string name="hide">隐藏</string>
     <string name="diagnosis_pro">诊断仪专业版</string>
@@ -304,8 +288,6 @@ v0.7.9
     <string name="prefrence_database_cachesize_title">高速缓存大小</string>
     
     <string name="about_help_text">"诊断仪器来自darken
-
-如果您有任何问题，问题或要求，给我发送电子邮件 (support@thedarken.eu).
 
 本帮助指南将涵盖诊断仪的基础知识.
 

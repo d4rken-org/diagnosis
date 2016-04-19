@@ -20,9 +20,7 @@ Open the settings and select which data you want to save.
     <string name="style_examples">Style examples (create your own in settings!):</string>
     <string name="welcome_text">"Press \"Start tracking\" to begin!
 Check out the settings!
-Everything is highly customizable!
-
-If you encounter bugs/problems or have requests, i would be happy if you send me an email(support@thedarken.eu), thanks!"</string>
+Everything is highly customizable!"</string>
     <string name="linebuider_welcome">"Drag/Drop the icon up/down to sort.
 Dragging the icon right, deletes that item"</string>
     <string name="close">Close</string>
@@ -98,8 +96,6 @@ Dragging the icon right, deletes that item"</string>
     <string name="busybox_error_explanation">"Could not use our BUSYBOX :-(
 To prevent unwanted behavior Diagnosis will close now.
 Please try restarting or reinstalling Diagnosis.
-Should this not help please write me an email:
-(support@thedarken.eu)
 Sorry for your troubles!"</string>
     <string name="database_removal">Database removal</string>
     <string name="database_removal_explanation">"This newer version of Diagnosis uses a different structure to store the periodic data.
@@ -110,21 +106,8 @@ I\'m telling you this so that you are not suprised that the database is empty."<
     <string name="quit">Quit</string>
     <string name="dismiss">Dismiss</string>
     <string name="news">News</string>
-    <string name="news_content">"Have you rated Diagnosis yet?
-
-What is new?
-v0.8.2
-- Small bugfixes
-
-v0.8.1
--Translation updates
--Added Italian translation
--Tweaked startup and ui
-
-Have a look at \'Diagnosis Pro\' if you are looking for additional features or want to support my work.
-
-Questions,requests or ideas?
-Mail me!"</string>
+    <string name="news_content">"v0.8.4
+- Security fix"</string>
     <string name="no_market_application_found">No Market Application found.</string>
     <string name="hide">Hide</string>
     <string name="diagnosis_pro">Diagnosis Pro</string>
@@ -311,8 +294,6 @@ Requires [Diagnosis Pro]"</string>
     <string name="prefrence_database_cachesize_title">Cache size</string>
     
     <string name="about_help_text">"Diagnosis by darken
-
-Should you have any question, problem or request, just send me an email (support\\@thedarken.eu).
 
 This help guide will cover the basics of Diagnosis.
 
