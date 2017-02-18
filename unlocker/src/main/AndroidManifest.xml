@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:tools="http://schemas.android.com/tools"
+          package="eu.thedarken.diagnosis.pro"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <supports-screens android:anyDensity="true"/>
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:allowBackup="false"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".DiagnosisProActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

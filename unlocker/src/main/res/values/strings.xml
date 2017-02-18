@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Diagnosis Pro</string>
+    <string name="thank_you">"Thank you for purchasing Diagnosis Pro and supporting my work!
+"</string>
+    <string name="explanation">"This Unlocker enables the additional features in the free version of Diagnosis.
+
+Starting the Unlocker is not necessary and will just show this explanation.
+
+NOTE: The unlocker needs to stay installed, but you can hide the icon from your app list/menu by pressing the button (might need device restart).
+
+Further questions? Email me!
+support@thedarken.eu
+
+Now proceed by launching Diagnosis.
+"</string>
+    <string name="diagnosis_market">Diagnosis(Market)</string>
+    <string name="hide_icon">Hide launcher icon</string>
+    <string name="hidden_toast">"Icon hidden (may need reboot)"</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">诊断仪专业版</string>
+    <string name="thank_you">"感谢你支持我的工作，购买诊断仪专业版!
+"</string>
+    <string name="explanation">"这个解锁器是用来激活免费版的附加功能.
+	
+解锁器不用特意运行它，程序会直接显示为专业版.
+
+提示：解锁器下载后需要安装，您可以从您的应用程序列表/菜单隐藏的图标，按下按钮（可能需要重启设备）.
+
+如果还有其他问题发邮件给我.
+support@thedarken.eu
+
+现在打开诊断仪试试吧."</string>
+    <string name="diagnosis_market">诊断仪(市场版)</string>
+    <string name="hide_icon">隐藏程序图标</string>
+    <string name="hidden_toast">"隐藏图标 (可能需要重启设备)"</string>
+</resources>

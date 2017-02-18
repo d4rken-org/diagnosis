@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Diagnosis Pro</string>
+    <string name="thank_you">"Grazie di aver acquistato Diagnosis Pro e per sostenendo il mio lavoro!
+"</string>
+    <string name="explanation">"Questo unlocker (sblocco) e consente di utilizzare le funzionalita\' addizionale nella versione gratis di Diagnosis.
+
+L\'avviamento del unlocker non e\' necessario ma semplicemente mostra questa spiegazione.
+
+NOTA: La Unlocker deve rimanere installata, ma potete nascondere l\'icona dalla lista/menu appapp list/menu cliccando il bottone (un riavvio potrebbe essere necessario).
+
+Altre domande? Mandami un Email!
+support@thedarken.eu
+
+Adesso procedete con il lancio di Diagnosis.
+"</string>
+    <string name="diagnosis_market">Diagnosis(Market)</string>
+    <string name="hide_icon">Nasconde icona lancio</string>
+    <string name="hidden_toast">Icona nascosta (potrebbe essere necessario un riavvio)</string>
+</resources>

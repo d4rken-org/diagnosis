@@ -2,12 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 16
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "eu.thedarken.diagnosis"
         minSdkVersion 8
         targetSdkVersion 15
+        versionCode 32
+        versionName "0.8.4"
     }
     lintOptions {
         abortOnError false        // true by default
